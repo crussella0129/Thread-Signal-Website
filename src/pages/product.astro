@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Product" description="Thread & Signal's CAD software and geometry kernel — precision-engineered design tools.">
+  <!-- Product Hero -->
+  <section class="product-hero section container">
+    <div class="product-hero-content">
+      <span class="product-badge">In Development</span>
+      <h1>The Geometry Kernel <br />& CAD Platform</h1>
+      <p class="product-lead">
+        We're building a CAD platform from the ground up — starting with our own geometry kernel.
+        Precision-engineered for the next generation of design software.
+      </p>
+      <div class="hero-cta">
+        <a href="/contact" class="btn btn-primary">Get Early Access</a>
+        <a href="#features" class="btn btn-outline">Learn More</a>
+      </div>
+    </div>
+    <div class="product-visual">
+      <div class="kernel-viz">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="100,20 180,70 180,140 100,190 20,140 20,70"
+            fill="none" stroke="#00d4ff" stroke-width="1" opacity="0.4"/>
+          <polygon points="100,45 155,75 155,135 100,165 45,135 45,75"
+            fill="none" stroke="#00d4ff" stroke-width="1" opacity="0.6"/>
+          <polygon points="100,70 130,85 130,125 100,140 70,125 70,85"
+            fill="none" stroke="#f0a030" stroke-width="1.5" opacity="0.8"/>
+          <circle cx="100" cy="100" r="4" fill="#f0a030"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="geo-divider"></div>
+
+  <!-- Features -->
+  <section id="features" class="section container">
+    <h2 class="section-title">Built Different</h2>
+    <p class="section-subtitle">
+      Not a wrapper around someone else's kernel. Built from first principles.
+    </p>
+
+    <div class="features-grid">
+      <div class="card feature">
+        <h3>Custom Geometry Kernel</h3>
+        <p>
+          Our own kernel — not a thin layer over Open CASCADE or CGAL. Full control over
+          the mathematical foundations of the platform.
+        </p>
+      </div>
+      <div class="card feature">
+        <h3>Precision First</h3>
+        <p>
+          Exact arithmetic where it matters, robust floating-point where it doesn't.
+          No tolerance hacks, no silent geometry failures.
+        </p>
+      </div>
+      <div class="card feature">
+        <h3>Modern Architecture</h3>
+        <p>
+          Clean APIs, modular design, built for extensibility. The kind of CAD platform
+          developers actually want to build on.
+        </p>
+      </div>
+      <div class="card feature">
+        <h3>Developer-Friendly</h3>
+        <p>
+          Scriptable, automatable, and designed for power users. Because CAD shouldn't
+          mean clicking through 47 dialogs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="geo-divider"></div>
+
+  <!-- CTA -->
+  <section class="section container" style="text-align: center;">
+    <h2>Want Early Access?</h2>
+    <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">
+      The kernel and platform are under active development. Reach out to learn more or get on the early access list.
+    </p>
+    <a href="/contact" class="btn btn-primary">Get In Touch</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .product-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    min-height: 60vh;
+  }
+
+  .product-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 99px;
+    background: var(--accent-warm-glow);
+    color: var(--accent-warm);
+    border: 1px solid rgba(240, 160, 48, 0.3);
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-lead {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .product-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .kernel-viz {
+    width: 280px;
+    height: 280px;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .kernel-viz svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.2));
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .feature h3 {
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+    font-size: 1.1rem;
+  }
+
+  .feature p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .product-hero {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
+
+    .kernel-viz {
+      width: 200px;
+      height: 200px;
+    }
+  }
+</style>
