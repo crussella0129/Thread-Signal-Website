@@ -1,0 +1,93 @@
+---
+import HeroCanvas from './HeroCanvas';
+---
+
+<section class="hero">
+  <HeroCanvas client:only="react" />
+
+  <div class="container hero-content">
+    <p class="hero-tag">Software Consultancy</p>
+    <h1 class="hero-title">
+      We weave the <span class="highlight-thread">threads</span><br />
+      that carry your <span class="highlight-signal">signal</span>.
+    </h1>
+    <p class="hero-sub">
+      Applications. Games. CAD. AI. From concept to deployment,
+      Thread &amp; Signal builds what others can't.
+    </p>
+    <div class="hero-cta">
+      <a href="/contact" class="btn btn-primary">Start a Conversation</a>
+      <a href="/portfolio" class="btn btn-outline">See Our Work</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: calc(100vh - var(--nav-height));
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+  }
+
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .highlight-thread {
+    color: var(--accent);
+  }
+
+  .highlight-signal {
+    color: var(--accent-warm);
+  }
+
+  .hero-sub {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 80vh;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 100%;
+    }
+
+    .hero-sub {
+      max-width: 100%;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
+  }
+</style>
