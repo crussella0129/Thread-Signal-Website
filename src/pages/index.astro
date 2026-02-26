@@ -1,14 +1,70 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
 ---
 
 <BaseLayout title="Home">
-  <section class="section container" style="text-align: center; min-height: 60vh; display: flex; align-items: center; justify-content: center;">
-    <div>
-      <h1>Thread &amp; Signal</h1>
-      <p style="color: var(--text-muted); margin-top: 1rem; font-size: 1.25rem;">
-        Site coming together — layout scaffolding complete.
-      </p>
+  <Hero />
+
+  <div class="geo-divider"></div>
+
+  <!-- Services Preview -->
+  <section class="section container">
+    <h2 class="section-title">What We Build</h2>
+    <p class="section-subtitle">
+      From embedded geometry kernels to full-stack web apps — we tackle the problems others walk away from.
+    </p>
+
+    <div class="services-grid">
+      <ServiceCard
+        icon="{ }"
+        title="Software Development"
+        description="Full-stack applications, APIs, and systems built with precision and care."
+      />
+      <ServiceCard
+        icon="&#9650;"
+        title="CAD &amp; Geometry"
+        description="CAD software development, geometry kernels, and professional CAD training."
+      />
+      <ServiceCard
+        icon="&#9881;"
+        title="Game Development"
+        description="From concept to release — game engines, mechanics, and interactive experiences."
+      />
+      <ServiceCard
+        icon="&#9733;"
+        title="AI &amp; ML Solutions"
+        description="Intelligent agents, ML pipelines, and LLM integrations for real-world problems."
+      />
+      <ServiceCard
+        icon="&#8644;"
+        title="Technical Consulting"
+        description="Architecture reviews, code audits, and strategic technical guidance."
+      />
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="/services" class="btn btn-outline">View All Services</a>
     </div>
   </section>
+
+  <div class="geo-divider"></div>
+
+  <!-- CTA Section -->
+  <section class="section container" style="text-align: center;">
+    <h2 class="section-title">Ready to Build Something?</h2>
+    <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">
+      Whether you need a full product, a consulting session, or CAD training — let's talk.
+    </p>
+    <a href="/contact" class="btn btn-primary">Get In Touch</a>
+  </section>
 </BaseLayout>
+
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+</style>
