@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+function readingTime(body: string): string {
+  const words = body.split(/\s+/).length;
+  const mins = Math.ceil(words / 200);
+  return `${mins} min read`;
+}
+---
+
+<BaseLayout title="Blog" description="Technical articles from Thread & Signal — software, CAD, AI, and games.">
+  <section class="section container">
+    <h1 class="section-title">Blog</h1>
+    <p class="section-subtitle">
+      Technical deep-dives, project updates, and lessons learned.
+    </p>
+
+    <div class="post-list">
+      {posts.map(post => (
+        <a href={`/blog/${post.id}`} class="card post-card">
+          <div class="post-meta">
+            <time datetime={post.data.pubDate.toISOString()}>
+              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>
+            <span class="post-reading-time">{readingTime(post.body ?? '')}</span>
+          </div>
+          <h2 class="post-title">{post.data.title}</h2>
+          <p class="post-desc">{post.data.description}</p>
+          <div class="post-tags">
+            {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    display: block;
+    color: var(--text);
+  }
+
+  .post-card:hover {
+    color: var(--text);
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .post-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .post-card:hover .post-title {
+    color: var(--accent);
+  }
+
+  .post-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 99px;
+    background: rgba(0, 212, 255, 0.08);
+    color: var(--accent);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+  }
+</style>
