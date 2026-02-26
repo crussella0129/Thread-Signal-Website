@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact" description="Get in touch with Thread & Signal for software, CAD, AI, and consulting services.">
+  <section class="section container contact-page">
+    <div class="contact-content">
+      <h1 class="section-title">Let's Talk</h1>
+      <p class="section-subtitle">
+        Have a project in mind? Need consulting? Want CAD lessons?
+        Drop us a line and we'll get back to you.
+      </p>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <h3>Email</h3>
+          <a href="mailto:hello@threadandsignal.com">hello@threadandsignal.com</a>
+        </div>
+        <div class="contact-item">
+          <h3>GitHub</h3>
+          <a href="https://github.com/crussella0129" target="_blank" rel="noopener">github.com/crussella0129</a>
+        </div>
+      </div>
+    </div>
+
+    <form class="card contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required placeholder="Your name" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com" />
+      </div>
+      <div class="form-group">
+        <label for="subject">What are you looking for?</label>
+        <select id="subject" name="subject" required>
+          <option value="" disabled selected>Select a service</option>
+          <option value="software">Software Development</option>
+          <option value="cad">CAD Development / Lessons</option>
+          <option value="games">Game Development</option>
+          <option value="ai">AI / ML Solutions</option>
+          <option value="consulting">Technical Consulting</option>
+          <option value="other">Something Else</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+    </form>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-info {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-item h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+  }
+
+  .contact-item a {
+    font-size: 1rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: border-color var(--transition);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+  }
+
+  .form-group select {
+    cursor: pointer;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.5;
+  }
+
+  @media (max-width: 768px) {
+    .contact-page {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
