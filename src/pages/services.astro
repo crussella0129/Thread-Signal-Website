@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Services" description="Software development, CAD, games, AI, and consulting services from Thread & Signal.">
+  <section class="section container">
+    <h1 class="section-title">Services</h1>
+    <p class="section-subtitle">
+      Deep technical expertise across multiple domains. Here's how we can help.
+    </p>
+
+    <div class="service-list">
+      <div class="card service-detail">
+        <div class="service-header">
+          <span class="service-icon">{ }</span>
+          <h2>Software Development</h2>
+        </div>
+        <p>
+          Full-stack application development from architecture to deployment. We build web apps,
+          desktop applications, APIs, and backend systems. Clean code, tested thoroughly, built to last.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Python</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">REST APIs</span>
+        </div>
+      </div>
+
+      <div class="card service-detail">
+        <div class="service-header">
+          <span class="service-icon">&#9650;</span>
+          <h2>CAD &amp; Geometry</h2>
+        </div>
+        <p>
+          Custom CAD software development, geometry kernel engineering, and professional CAD training.
+          Whether you need help with a CAD workflow, want to learn the tools, or need a custom solution built
+          from scratch — we've got you.
+        </p>
+        <div class="service-tags">
+          <span class="tag">CAD Development</span>
+          <span class="tag">Geometry Kernels</span>
+          <span class="tag">CAD Lessons</span>
+          <span class="tag">3D Modeling</span>
+        </div>
+      </div>
+
+      <div class="card service-detail">
+        <div class="service-header">
+          <span class="service-icon">&#9881;</span>
+          <h2>Game Development</h2>
+        </div>
+        <p>
+          End-to-end game development — from initial concept and game design to engine work,
+          mechanics programming, and release. We build interactive experiences that people want to play.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Game Engines</span>
+          <span class="tag">Mechanics Design</span>
+          <span class="tag">Interactive Experiences</span>
+        </div>
+      </div>
+
+      <div class="card service-detail">
+        <div class="service-header">
+          <span class="service-icon">&#9733;</span>
+          <h2>AI &amp; Machine Learning</h2>
+        </div>
+        <p>
+          Practical AI solutions — intelligent agents, ML pipelines, LLM integrations, and data-driven
+          systems. We focus on AI that solves real problems, not buzzword-driven vaporware.
+        </p>
+        <div class="service-tags">
+          <span class="tag">LLM Agents</span>
+          <span class="tag">ML Pipelines</span>
+          <span class="tag">Data Science</span>
+          <span class="tag">AI Integration</span>
+        </div>
+      </div>
+
+      <div class="card service-detail">
+        <div class="service-header">
+          <span class="service-icon">&#8644;</span>
+          <h2>Technical Consulting</h2>
+        </div>
+        <p>
+          Architecture reviews, code audits, technical strategy, and mentoring. Whether you need a
+          second opinion on your stack, help navigating a complex migration, or guidance on best
+          practices — we bring clarity.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Architecture Review</span>
+          <span class="tag">Code Audit</span>
+          <span class="tag">Strategy</span>
+          <span class="tag">Mentoring</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="geo-divider"></div>
+
+  <section class="section container" style="text-align: center;">
+    <h2>Interested?</h2>
+    <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">
+      Every project starts with a conversation. Tell us what you're building.
+    </p>
+    <a href="/contact" class="btn btn-primary">Start a Conversation</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .service-detail p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-icon {
+    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: var(--accent-glow);
+    flex-shrink: 0;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 99px;
+    background: rgba(0, 212, 255, 0.08);
+    color: var(--accent);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+  }
+</style>
