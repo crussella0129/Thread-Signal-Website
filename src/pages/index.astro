@@ -1,17 +1,14 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home">
+  <section class="section container" style="text-align: center; min-height: 60vh; display: flex; align-items: center; justify-content: center;">
+    <div>
+      <h1>Thread &amp; Signal</h1>
+      <p style="color: var(--text-muted); margin-top: 1rem; font-size: 1.25rem;">
+        Site coming together — layout scaffolding complete.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

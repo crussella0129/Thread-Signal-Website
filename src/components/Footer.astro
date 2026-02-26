@@ -1,0 +1,112 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="geo-divider"></div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">
+        <span style="color: var(--accent)">Thread</span>
+        <span style="color: var(--text-muted)">&amp;</span>
+        <span style="color: var(--accent-warm)">Signal</span>
+      </span>
+      <p class="footer-tagline">Building the future, one thread at a time.</p>
+    </div>
+
+    <nav class="footer-nav">
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="/services">Services</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/product">Product</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="/blog">Blog</a>
+        <a href="/contact">Contact</a>
+        <a href="https://github.com/crussella0129" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </nav>
+
+    <p class="footer-copy">&copy; {year} Thread &amp; Signal. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-top: 0;
+  }
+
+  .footer-inner {
+    padding: 3rem 1.5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .footer-brand {
+    grid-column: 1;
+  }
+
+  .footer-logo {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .footer-tagline {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-col h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-col a {
+    color: var(--text);
+    font-size: 0.9rem;
+  }
+
+  .footer-col a:hover {
+    color: var(--accent);
+  }
+
+  .footer-copy {
+    grid-column: 1 / -1;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-nav {
+      gap: 2rem;
+    }
+  }
+</style>
