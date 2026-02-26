@@ -1,0 +1,96 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  category: string;
+  link?: string;
+}
+
+const { title, description, tags, category, link } = Astro.props;
+---
+
+<div class="card project-card" data-category={category}>
+  <div class="project-placeholder">
+    <span class="placeholder-icon">&#9670;</span>
+  </div>
+  <div class="project-body">
+    <span class="project-category">{category}</span>
+    <h3 class="project-title">
+      {link ? <a href={link} target="_blank" rel="noopener">{title}</a> : title}
+    </h3>
+    <p class="project-desc">{description}</p>
+    <div class="project-tags">
+      {tags.map(tag => <span class="tag">{tag}</span>)}
+    </div>
+  </div>
+</div>
+
+<style>
+  .project-card {
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .project-placeholder {
+    height: 180px;
+    background: linear-gradient(135deg, var(--bg-surface) 0%, rgba(0, 212, 255, 0.05) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .placeholder-icon {
+    font-size: 3rem;
+    color: var(--accent);
+    opacity: 0.3;
+  }
+
+  .project-body {
+    padding: 1.5rem;
+  }
+
+  .project-category {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-warm);
+  }
+
+  .project-title {
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .project-title a {
+    color: var(--text);
+  }
+
+  .project-title a:hover {
+    color: var(--accent);
+  }
+
+  .project-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 99px;
+    background: rgba(0, 212, 255, 0.08);
+    color: var(--accent);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+  }
+</style>
