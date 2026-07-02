@@ -28,4 +28,10 @@
 - **Description:** Fix the contact page identity and offers
 - **Completed:** 2026-07-02T03:59:00Z
 - **Files modified:** src/pages/contact.astro
+- **Commit:** 2521a94
+
+## T-006 (sprint 0)
+- **Description:** Build the /animus landing page
+- **Completed:** 2026-07-02T04:01:00Z
+- **Files modified:** src/pages/animus.astro
 - **Commit:** (filled post-commit)
