@@ -34,4 +34,10 @@
 - **Description:** Build the /animus landing page
 - **Completed:** 2026-07-02T04:01:00Z
 - **Files modified:** src/pages/animus.astro
+- **Commit:** 5b68e77
+
+## T-007 (sprint 0)
+- **Description:** Build the /skills landing page with workshops offer
+- **Completed:** 2026-07-02T04:02:00Z
+- **Files modified:** src/pages/skills.astro
 - **Commit:** (filled post-commit)
