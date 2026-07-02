@@ -16,4 +16,10 @@
 - **Description:** Upgrade BaseLayout head with full SEO/social/structured-data support
 - **Completed:** 2026-07-02T03:57:00Z
 - **Files modified:** src/layouts/BaseLayout.astro, src/pages/blog/index.astro
+- **Commit:** 3fda5e8
+
+## T-004 (sprint 0)
+- **Description:** Update Nav and Footer to the new IA and correct identity
+- **Completed:** 2026-07-02T03:58:00Z
+- **Files modified:** src/components/Nav.astro, src/components/Footer.astro
 - **Commit:** (filled post-commit)

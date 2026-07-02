@@ -1,4 +1,6 @@
 ---
+import { EMAIL, GITHUB_URL, LINKEDIN_URL } from '../data/site';
+
 const year = new Date().getFullYear();
 ---
 
@@ -16,16 +18,23 @@ const year = new Date().getFullYear();
 
     <nav class="footer-nav">
       <div class="footer-col">
-        <h4>Navigate</h4>
+        <h4>Work With Us</h4>
         <a href="/services">Services</a>
-        <a href="/portfolio">Portfolio</a>
-        <a href="/product">Product</a>
+        <a href="/animus">Animus</a>
+        <a href="/skills">Agent Skills</a>
+        <a href="/design">CAD &amp; 3D Design</a>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="/projects">Projects</a>
+        <a href="/blog">Blog</a>
+        <a href="/contact">Contact</a>
       </div>
       <div class="footer-col">
         <h4>Connect</h4>
-        <a href="/blog">Blog</a>
-        <a href="/contact">Contact</a>
-        <a href="https://github.com/crussella0129" target="_blank" rel="noopener">GitHub</a>
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        <a href={GITHUB_URL} target="_blank" rel="noopener">GitHub</a>
+        <a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </nav>
 
