@@ -89,3 +89,9 @@
 - **Completed:** 2026-07-02T04:11:00Z
 - **Files modified:** docs/positioning.md
 - **Commit:** 7d28930
+
+## T-101 (sprint 1)
+- **Description:** Rebuild global.css as the Lamplight Atelier design system
+- **Completed:** 2026-07-02T13:35:00Z
+- **Files modified:** src/styles/global.css
+- **Commit:** (filled post-commit)

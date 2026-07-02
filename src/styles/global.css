@@ -1,25 +1,36 @@
+/* ════════════════════════════════════════════════════════════
+   Thread & Signal — "Lamplight Atelier" design system (v3)
+   Ink ground, linen text, traditional dye accents:
+   copper (signal) · verdigris (thread) · madder (fabrication)
+   ════════════════════════════════════════════════════════════ */
+
 /* ── Fonts ──────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* ── CSS Variables ──────────────────────────── */
 :root {
-  --bg: #0a0e1a;
-  --bg-surface: #121829;
-  --accent: #00d4ff;
-  --accent-glow: rgba(0, 212, 255, 0.15);
-  --accent-warm: #f0a030;
-  --accent-warm-glow: rgba(240, 160, 48, 0.15);
-  --text: #e8ecf0;
-  --text-muted: #6b7a8d;
-  --border: rgba(255, 255, 255, 0.06);
+  --bg: #141210;
+  --bg-surface: #1c1917;
+  --bg-raised: #211d19;
 
-  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --accent: #e8a33d;                       /* copper — the signal */
+  --accent-glow: rgba(232, 163, 61, 0.14);
+  --accent-warm: #c2543f;                  /* madder — fabrication */
+  --accent-warm-glow: rgba(194, 84, 63, 0.14);
+  --thread: #4fb8a8;                       /* verdigris — the thread */
+  --thread-glow: rgba(79, 184, 168, 0.13);
+
+  --text: #ece5d8;                         /* linen */
+  --text-muted: #9a9184;
+  --border: rgba(236, 229, 216, 0.09);
+
+  --font-heading: 'Fraunces', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --max-width: 1200px;
-  --nav-height: 72px;
-  --radius: 12px;
+  --nav-height: 76px;
+  --radius: 14px;
   --transition: 0.25s ease;
 }
 
@@ -36,11 +47,18 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Ink ground: lamp-glow radials over a faint woven crosshatch. */
 body {
   font-family: var(--font-body);
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1100px 750px at 12% -8%, rgba(232, 163, 61, 0.07), transparent 62%),
+    radial-gradient(950px 700px at 90% 112%, rgba(194, 84, 63, 0.055), transparent 62%),
+    repeating-linear-gradient(45deg, rgba(236, 229, 216, 0.013) 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(-45deg, rgba(236, 229, 216, 0.013) 0 1px, transparent 1px 8px);
+  background-attachment: fixed, fixed, scroll, scroll;
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.65;
   min-height: 100vh;
 }
 
@@ -51,18 +69,28 @@ a {
 }
 
 a:hover {
-  color: var(--accent-warm);
+  color: var(--text);
 }
 
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
 }
 
-h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
-h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
-h3 { font-size: clamp(1.125rem, 2vw, 1.5rem); }
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  font-weight: 700;
+}
+
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.5rem); }
+h3 { font-size: clamp(1.15rem, 2vw, 1.5rem); }
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
 
 code {
   font-family: var(--font-mono);
@@ -85,7 +113,7 @@ img {
 }
 
 .section {
-  padding: 5rem 0;
+  padding: 5.5rem 0;
 }
 
 .section-title {
@@ -96,23 +124,88 @@ img {
   color: var(--text-muted);
   font-size: 1.125rem;
   margin-bottom: 3rem;
-  max-width: 600px;
+  max-width: 640px;
 }
 
-/* ── Geometric Divider ──────────────────────── */
+/* Eyebrow: the machine voice announcing the fable. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 1.25rem;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 2.25rem;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+/* Gradient ink for display keywords. */
+.ink-gradient {
+  background: linear-gradient(115deg, var(--accent) 20%, #f2cf8a 50%, var(--accent) 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ink-thread {
+  background: linear-gradient(115deg, var(--thread) 20%, #a8ddd2 50%, var(--thread) 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ink-madder {
+  background: linear-gradient(115deg, var(--accent-warm) 15%, #e69078 50%, var(--accent-warm) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Mono copper numerals for numbered plaques/steps. */
+.numeral {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+/* ── Carrier Line (section divider) ─────────── */
+/* A thin transmission line with a signal pulse standing in it. */
 .geo-divider {
+  position: relative;
   width: 100%;
   height: 1px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--accent) 20%,
+    var(--thread) 22%,
     var(--accent) 50%,
-    var(--accent-warm) 80%,
+    var(--accent-warm) 78%,
     transparent 100%
   );
-  opacity: 0.3;
+  opacity: 0.35;
   margin: 0;
+}
+
+.geo-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
 }
 
 /* ── Button Styles ──────────────────────────── */
@@ -120,49 +213,131 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--radius);
-  font-family: var(--font-heading);
+  padding: 0.8rem 1.8rem;
+  border-radius: 10px;
+  font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.95rem;
+  letter-spacing: 0.01em;
   cursor: pointer;
   transition: all var(--transition);
   border: none;
 }
 
 .btn-primary {
-  background: var(--accent);
-  color: var(--bg);
+  background: linear-gradient(180deg, #f0b355, var(--accent));
+  color: #241a09;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 8px 24px rgba(232, 163, 61, 0.18);
 }
 
 .btn-primary:hover {
-  background: #33dfff;
-  box-shadow: 0 0 24px var(--accent-glow);
-  color: var(--bg);
+  transform: translateY(-2px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 12px 32px rgba(232, 163, 61, 0.3);
+  color: #241a09;
 }
 
 .btn-outline {
   background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--accent);
+  color: var(--text);
+  border: 1px solid rgba(236, 229, 216, 0.25);
 }
 
 .btn-outline:hover {
-  background: var(--accent-glow);
-  box-shadow: 0 0 24px var(--accent-glow);
+  border-color: var(--accent);
   color: var(--accent);
+  background: var(--accent-glow);
+  transform: translateY(-2px);
 }
 
-/* ── Card Base ──────────────────────────────── */
+/* ── Card System ────────────────────────────── */
 .card {
-  background: var(--bg-surface);
+  --lane: var(--accent);
+  --lane-glow: var(--accent-glow);
+  position: relative;
+  background: linear-gradient(180deg, var(--bg-raised), var(--bg-surface));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2rem;
-  transition: all var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
 .card:hover {
-  border-color: rgba(0, 212, 255, 0.2);
-  box-shadow: 0 0 30px var(--accent-glow);
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--lane) 40%, transparent);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 28px var(--lane-glow);
+}
+
+/* Lane dye variants: a woven selvedge along the top edge. */
+.card-copper { --lane: var(--accent); --lane-glow: var(--accent-glow); }
+.card-thread { --lane: var(--thread); --lane-glow: var(--thread-glow); }
+.card-madder { --lane: var(--accent-warm); --lane-glow: var(--accent-warm-glow); }
+
+.card-copper::before,
+.card-thread::before,
+.card-madder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--radius);
+  right: var(--radius);
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--lane), transparent);
+  opacity: 0.75;
+}
+
+/* ── Reveal System (progressive enhancement) ── */
+/* Hidden state only exists when JS has marked <html class="js">;
+   without JS everything is visible. */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+html.js .reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Staggered children for grids. */
+html.js .reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+html.js .reveal-stagger.revealed > * {
+  opacity: 1;
+  transform: none;
+}
+
+html.js .reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.1s; }
+html.js .reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.2s; }
+html.js .reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.3s; }
+html.js .reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.4s; }
+
+/* ── Reduced Motion ─────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  html.js .reveal,
+  html.js .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .card:hover,
+  .btn-primary:hover,
+  .btn-outline:hover {
+    transform: none;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
