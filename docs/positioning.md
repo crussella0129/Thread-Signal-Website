@@ -90,6 +90,25 @@ warm lead for automation work.
    ("saved 6 hours/week"). Numbers on the services page are the next conversion
    multiplier.
 
+## Brand voice — "Lamplight Atelier" (added sprint 1, 2026-07-02)
+
+The user-approved rebrand direction. All future copy should speak this voice:
+
+- **Master tagline:** "Handwoven automation." Anchor story: *the first
+  programmable machine was a loom — we've been weaving ever since.*
+- **Lane taglines:** Animus — "Intelligence that stays home." · Skills —
+  "Skills that outlive subscriptions." · Design — "Drawn, printed, held."
+- **Vocabulary:** commission, workshop, bench, woven, thread, signal. CTAs are
+  "Commission a build" / "Book a workshop" / "Book a Lesson" — never "Get
+  started" or "Learn more".
+- **Palette (traditional dye colors on ink):** ground #141210, linen text
+  #ece5d8, copper #e8a33d (signal/primary), verdigris #4fb8a8 (thread/skills),
+  madder #c2543f (fabrication/design).
+- **Type:** Fraunces display serif (the fable voice) + Inter body +
+  JetBrains Mono (the machine voice).
+- **Rule:** literary but concrete — every poetic line is backed by a factual
+  claim (star counts, repo links, named hardware) in the same breath.
+
 ## What NOT to sell (for now)
 
 - **Game development as a service** — removed from the site; it diluted the story.

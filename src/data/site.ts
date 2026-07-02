@@ -16,4 +16,4 @@ export const LINKEDIN_URL = 'https://www.linkedin.com/in/cgriv/';
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
 
 export const SITE_DESCRIPTION =
-  'Thread & Signal — agentic AI development studio. Custom agent harnesses and business process automation in Rust and Python, local-first LLM deployments on your hardware, harness-agnostic agent skills, and CAD/3D-printing design and lessons.';
+  'Thread & Signal — handwoven automation. Custom AI agents and business process automation in Rust and Python, local-first LLM deployments on hardware you own, harness-agnostic agent skills, and CAD/3D-printing design and lessons.';
