@@ -71,3 +71,15 @@
 - **Completed:** 2026-07-02T04:08:00Z
 - **Files modified:** src/pages/services.astro
 - **Commit:** 3717c91
+
+## T-013 (sprint 0)
+- **Description:** Add robots.txt for crawler discovery
+- **Completed:** 2026-07-02T04:09:00Z
+- **Files modified:** public/robots.txt
+- **Commit:** eb2ac78
+
+## T-014 (sprint 0)
+- **Description:** Add llms.txt for AI-agent discovery
+- **Completed:** 2026-07-02T04:10:00Z
+- **Files modified:** public/llms.txt
+- **Commit:** (filled post-commit)
