@@ -156,25 +156,41 @@
       ctx.stroke();
     }
 
-    // Golden wave packets: a textile waveform — triangular (zigzag) carrier
-    // inside a raised-cosine envelope — traveling along a thread, with
-    // stitch ticks marking the weave.
+    // Wave packets, twofold — the brand dichotomy drawn literally:
+    // a golden SQUARE wave (the signal, digital) and its smooth sine
+    // fundamental in verdigris (the thread, analog), traveling in tandem
+    // inside one raised-cosine envelope.
+    var VERDIGRIS = '79,184,168';
+
     function spawnPacket() {
       packets.push({
         t: threads[Math.floor(Math.random() * threads.length)],
-        x: -120,
+        x: -140,
         v: 55 + Math.random() * 45,            // px per second — unhurried
-        w: 130 + Math.random() * 70,           // packet width
+        w: 150 + Math.random() * 70,           // packet width
         amp: 9 + Math.random() * 6,            // displacement amplitude
-        wl: 22 + Math.random() * 8,            // carrier zigzag wavelength
+        wl: 26 + Math.random() * 10,           // carrier wavelength
         ph: Math.random(),
       });
     }
 
-    // Triangle (zigzag) wave in [-1, 1] — the woven carrier.
-    function zig(u) {
-      var f = u - Math.floor(u);
-      return 4 * Math.abs(f - 0.5) - 1;
+    // Square wave in [-1, 1] — the signal carrier.
+    function sq(u) {
+      return (u - Math.floor(u)) < 0.5 ? 1 : -1;
+    }
+
+    function envelopeAt(p, x, half) {
+      return 0.5 * (1 + Math.cos(Math.PI * (x - p.x) / half));
+    }
+
+    function tracePacket(p, time, half, x0, x1, carrier, ampScale) {
+      ctx.beginPath();
+      for (var x = x0; x <= x1; x += 2) {
+        var u = x / p.wl - time * 1.1 + p.ph;
+        var dy = envelopeAt(p, x, half) * p.amp * ampScale * carrier(u);
+        var y = threadY(p.t, x, time) + dy;
+        x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
     }
 
     function drawPacket(p, time) {
@@ -183,39 +199,44 @@
       var x1 = Math.min(W, p.x + half);
       if (x1 <= x0) return;
 
-      // Horizontal gradient tracks the envelope: sheer at the selvages,
-      // golden at the heart of the packet.
-      var grad = ctx.createLinearGradient(p.x - half, 0, p.x + half, 0);
-      grad.addColorStop(0, 'rgba(' + GOLD + ',0)');
-      grad.addColorStop(0.5, 'rgba(' + GOLD + ',0.9)');
-      grad.addColorStop(1, 'rgba(' + GOLD + ',0)');
+      // The thread's voice: smooth sine fundamental, verdigris, underneath.
+      var tgrad = ctx.createLinearGradient(p.x - half, 0, p.x + half, 0);
+      tgrad.addColorStop(0, 'rgba(' + VERDIGRIS + ',0)');
+      tgrad.addColorStop(0.5, 'rgba(' + VERDIGRIS + ',0.7)');
+      tgrad.addColorStop(1, 'rgba(' + VERDIGRIS + ',0)');
+      tracePacket(p, time, half, x0, x1, function (u) {
+        return Math.sin(2 * Math.PI * u);
+      }, 0.9);
+      ctx.strokeStyle = tgrad;
+      ctx.lineWidth = 1.2;
+      ctx.shadowColor = 'rgba(' + VERDIGRIS + ',0.4)';
+      ctx.shadowBlur = 6;
+      ctx.stroke();
 
-      ctx.beginPath();
-      for (var x = x0; x <= x1; x += 3) {
-        var env = 0.5 * (1 + Math.cos(Math.PI * (x - p.x) / half));
-        var dy = env * p.amp * zig(x / p.wl - time * 1.1 + p.ph);
-        var y = threadY(p.t, x, time) + dy;
-        x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = grad;
+      // The signal's voice: crisp square wave, gold, on top.
+      var sgrad = ctx.createLinearGradient(p.x - half, 0, p.x + half, 0);
+      sgrad.addColorStop(0, 'rgba(' + GOLD + ',0)');
+      sgrad.addColorStop(0.5, 'rgba(' + GOLD + ',0.9)');
+      sgrad.addColorStop(1, 'rgba(' + GOLD + ',0)');
+      tracePacket(p, time, half, x0, x1, sq, 1);
+      ctx.strokeStyle = sgrad;
       ctx.lineWidth = 1.5;
       ctx.shadowColor = 'rgba(' + GOLD + ',0.55)';
       ctx.shadowBlur = 8;
       ctx.stroke();
       ctx.shadowBlur = 0;
 
-      // Stitch ticks: short weft marks pinned to the weave, strongest at
-      // the packet's heart.
+      // Faint stitch ticks keep the weave grounded under both voices.
       var step = p.wl / 2;
       var start = Math.ceil(x0 / step) * step;
       for (var sx = start; sx <= x1; sx += step) {
-        var e = 0.5 * (1 + Math.cos(Math.PI * (sx - p.x) / half));
-        if (e < 0.12) continue;
+        var e = envelopeAt(p, sx, half);
+        if (e < 0.15) continue;
         var sy = threadY(p.t, sx, time);
         ctx.beginPath();
-        ctx.moveTo(sx, sy - 2 - 2.5 * e);
-        ctx.lineTo(sx, sy + 2 + 2.5 * e);
-        ctx.strokeStyle = 'rgba(' + GOLD + ',' + (0.5 * e).toFixed(2) + ')';
+        ctx.moveTo(sx, sy - 1.5 - 2 * e);
+        ctx.lineTo(sx, sy + 1.5 + 2 * e);
+        ctx.strokeStyle = 'rgba(' + GOLD + ',' + (0.32 * e).toFixed(2) + ')';
         ctx.lineWidth = 1;
         ctx.stroke();
       }
