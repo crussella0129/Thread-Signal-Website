@@ -137,3 +137,9 @@
 - **Completed:** 2026-07-02T13:48:00Z
 - **Files modified:** src/pages/design.astro
 - **Commit:** 56215c7
+
+## T-109 (sprint 1)
+- **Description:** Project card art + /projects polish
+- **Completed:** 2026-07-02T13:50:00Z
+- **Files modified:** src/components/ProjectCard.astro, src/pages/projects.astro
+- **Commit:** ad6578e

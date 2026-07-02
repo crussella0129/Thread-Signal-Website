@@ -8,10 +8,11 @@ const description =
 
 <BaseLayout title="Services" description={description}>
   <section class="section container">
-    <h1 class="section-title">Services</h1>
+    <p class="eyebrow">The workshop's ledger</p>
+    <h1 class="section-title">Five ways to commission us.</h1>
     <p class="section-subtitle">
-      Five ways to hire Thread &amp; Signal. Every engagement starts with a short consult,
-      then a scoped, fixed-deliverable build — no open-ended retainers unless you want one.
+      Every engagement starts with a short consult, then a scoped,
+      fixed-deliverable build — no open-ended retainers unless you want one.
     </p>
 
     <div class="service-list">
@@ -114,14 +115,29 @@ const description =
 
   <div class="geo-divider"></div>
 
-  <section class="section container" style="text-align: center;">
-    <h2>How Engagements Work</h2>
-    <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">
-      1. A short consult to understand the problem. &nbsp;2. A scoped proposal with concrete
-      deliverables. &nbsp;3. The build, with progress you can watch in a repo.
-      Email <a href={`mailto:${EMAIL}`}>{EMAIL}</a> or use the form.
-    </p>
-    <a href="/contact" class="btn btn-primary">Start a Conversation</a>
+  <section class="section container commission-how reveal">
+    <h2 style="text-align: center;">How a commission works</h2>
+    <div class="steps reveal-stagger">
+      <div class="step">
+        <p class="numeral">01</p>
+        <h3>The conversation</h3>
+        <p>A short consult to understand the problem — what eats your hours, what can't leave your building, what you want to hold in your hands.</p>
+      </div>
+      <div class="step">
+        <p class="numeral">02</p>
+        <h3>The pattern</h3>
+        <p>A scoped proposal with concrete deliverables and a fixed shape — you know what's being woven before the loom starts.</p>
+      </div>
+      <div class="step">
+        <p class="numeral">03</p>
+        <h3>The build</h3>
+        <p>Progress you can watch in a repo, commit by commit, until the work is in your hands and running on your hardware.</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 2.5rem;">
+      <a href="/contact" class="btn btn-primary">Commission a build</a>
+      <p class="cta-note">Or email <a href={`mailto:${EMAIL}`}>{EMAIL}</a> directly.</p>
+    </div>
   </section>
 </BaseLayout>
 
@@ -168,8 +184,37 @@ const description =
     font-size: 0.75rem;
     padding: 0.3rem 0.75rem;
     border-radius: 99px;
-    background: rgba(0, 212, 255, 0.08);
+    background: var(--accent-glow);
     color: var(--accent);
-    border: 1px solid rgba(0, 212, 255, 0.15);
+    border: 1px solid rgba(232, 163, 61, 0.22);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    max-width: 960px;
+    margin: 2.5rem auto 0;
+  }
+
+  .step .numeral {
+    margin-bottom: 0.6rem;
+  }
+
+  .step h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .step p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .cta-note {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 1rem;
   }
 </style>
