@@ -95,7 +95,9 @@ warm lead for automation work.
 The user-approved rebrand direction. All future copy should speak this voice:
 
 - **Master tagline:** "Handwoven automation." Anchor story: *the first
-  programmable machine was a loom — we've been weaving ever since.*
+  programmable business machine was a loom — let's build yours.* (Earlier
+  draft "we've been weaving ever since" was dropped — it read as claiming we
+  invented the loom.)
 - **Lane taglines:** Animus — "Intelligence that stays home." · Skills —
   "Skills that outlive subscriptions." · Design — "Drawn, printed, held."
 - **Vocabulary:** commission, workshop, bench, woven, thread, signal. CTAs are
