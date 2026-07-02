@@ -9,6 +9,7 @@ export default defineConfig({
   site: 'https://threadandsignal.com',
   integrations: [react(), sitemap()],
   redirects: {
-    '/portfolio': '/projects'
+    '/portfolio': '/projects',
+    '/product': '/animus'
   }
 });

@@ -52,4 +52,10 @@
 - **Description:** Replace /portfolio with a real /projects page
 - **Completed:** 2026-07-02T04:05:00Z
 - **Files modified:** src/pages/projects.astro (new), src/pages/portfolio.astro (deleted), astro.config.mjs
+- **Commit:** 5078398
+
+## T-010 (sprint 0)
+- **Description:** Retire the fictional /product page
+- **Completed:** 2026-07-02T04:06:00Z
+- **Files modified:** src/pages/product.astro (deleted), astro.config.mjs
 - **Commit:** (filled post-commit)
