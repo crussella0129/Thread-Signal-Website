@@ -1,6 +1,5 @@
 # Agent Tasks (Persistent Backlog)
 
-- [ ] T-005 (sprint 0): Fix the contact page identity and offers — touches: src/pages/contact.astro
 - [ ] T-006 (sprint 0): Build the /animus landing page — touches: src/pages/animus.astro
 - [ ] T-007 (sprint 0): Build the /skills landing page with workshops offer — touches: src/pages/skills.astro
 - [ ] T-008 (sprint 0): Build the /design landing page (CAD & 3D printing) — touches: src/pages/design.astro

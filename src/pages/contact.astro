@@ -1,29 +1,34 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { EMAIL, GITHUB_URL, LINKEDIN_URL, FORMSPREE_ENDPOINT } from '../data/site';
 ---
 
-<BaseLayout title="Contact" description="Get in touch with Thread & Signal for software, CAD, AI, and consulting services.">
+<BaseLayout title="Contact" description="Book a consult with Thread & Signal — business process automation, custom agent harnesses, agent skills and workshops, CAD and 3D printing design and lessons.">
   <section class="section container contact-page">
     <div class="contact-content">
       <h1 class="section-title">Let's Talk</h1>
       <p class="section-subtitle">
-        Have a project in mind? Need consulting? Want CAD lessons?
-        Drop us a line and we'll get back to you.
+        Automation to build? A harness to deploy? A design to commission?
+        Every engagement starts with a conversation — tell me what you're working on.
       </p>
 
       <div class="contact-info">
-        <div class="contact-item">
-          <h3>Email</h3>
-          <a href="mailto:hello@threadandsignal.com">hello@threadandsignal.com</a>
+        <div class="contact-item contact-primary">
+          <h3>Email — fastest response</h3>
+          <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
         </div>
         <div class="contact-item">
           <h3>GitHub</h3>
-          <a href="https://github.com/crussella0129" target="_blank" rel="noopener">github.com/crussella0129</a>
+          <a href={GITHUB_URL} target="_blank" rel="noopener">github.com/crussella0129</a>
+        </div>
+        <div class="contact-item">
+          <h3>LinkedIn</h3>
+          <a href={LINKEDIN_URL} target="_blank" rel="noopener">linkedin.com/in/cgriv</a>
         </div>
       </div>
     </div>
 
-    <form class="card contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+    <form class="card contact-form" action={FORMSPREE_ENDPOINT} method="POST">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required placeholder="Your name" />
@@ -36,19 +41,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <label for="subject">What are you looking for?</label>
         <select id="subject" name="subject" required>
           <option value="" disabled selected>Select a service</option>
-          <option value="software">Software Development</option>
-          <option value="cad">CAD Development / Lessons</option>
-          <option value="games">Game Development</option>
-          <option value="ai">AI / ML Solutions</option>
-          <option value="consulting">Technical Consulting</option>
+          <option value="automation">Business Process Automation</option>
+          <option value="animus">Animus / Custom Harness Implementation</option>
+          <option value="skills">Agent Skills &amp; Workshops</option>
+          <option value="design">CAD / 3D Design Commission</option>
+          <option value="lessons">CAD &amp; 3D Printing Lessons</option>
           <option value="other">Something Else</option>
         </select>
       </div>
       <div class="form-group">
         <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+        <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
       </div>
       <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+      <p class="form-note">Prefer email? Writing directly to <a href={`mailto:${EMAIL}`}>{EMAIL}</a> gets the fastest response.</p>
     </form>
   </section>
 </BaseLayout>
@@ -78,6 +84,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .contact-item a {
     font-size: 1rem;
+  }
+
+  .contact-primary {
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 10px;
+    background: var(--accent-glow);
+  }
+
+  .contact-primary a {
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .form-note {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-align: center;
+    margin-top: 0.25rem;
   }
 
   .contact-form {

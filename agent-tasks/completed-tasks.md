@@ -22,4 +22,10 @@
 - **Description:** Update Nav and Footer to the new IA and correct identity
 - **Completed:** 2026-07-02T03:58:00Z
 - **Files modified:** src/components/Nav.astro, src/components/Footer.astro
+- **Commit:** a0af22d
+
+## T-005 (sprint 0)
+- **Description:** Fix the contact page identity and offers
+- **Completed:** 2026-07-02T03:59:00Z
+- **Files modified:** src/pages/contact.astro
 - **Commit:** (filled post-commit)
