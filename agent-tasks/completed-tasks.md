@@ -64,4 +64,10 @@
 - **Description:** Rewrite the home page around the three revenue lanes
 - **Completed:** 2026-07-02T04:07:00Z
 - **Files modified:** src/pages/index.astro, src/components/Hero.astro
+- **Commit:** bc30402
+
+## T-012 (sprint 0)
+- **Description:** Rewrite the services page as the commercial umbrella
+- **Completed:** 2026-07-02T04:08:00Z
+- **Files modified:** src/pages/services.astro
 - **Commit:** (filled post-commit)
