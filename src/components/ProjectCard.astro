@@ -8,11 +8,81 @@ interface Props {
 }
 
 const { title, description, tags, category, link } = Astro.props;
+
+// Per-category header art: pattern id + dye color.
+const art: Record<string, { pattern: string; color: string }> = {
+  'agents': { pattern: 'circuit', color: 'var(--accent)' },
+  'rust-tools': { pattern: 'warp', color: 'var(--thread)' },
+  'cad-3dp': { pattern: 'iso', color: 'var(--accent-warm)' },
+  'systems': { pattern: 'hex', color: 'var(--text-muted)' },
+};
+const { pattern, color } = art[category] ?? art['systems'];
 ---
 
-<div class="card project-card" data-category={category}>
-  <div class="project-placeholder">
-    <span class="placeholder-icon">&#9670;</span>
+<div class="card project-card" data-category={category} style={`--art-color: ${color}`}>
+  <div class="project-art">
+    <svg
+      viewBox="0 0 320 120"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+      data-pattern={pattern}
+    >
+      {pattern === 'circuit' && (
+        <g stroke="currentColor" fill="none" stroke-width="1">
+          <path d="M-10 24 H90 L110 44 H210 L230 24 H340" opacity="0.5" />
+          <path d="M-10 60 H140 L160 80 H340" opacity="0.35" />
+          <path d="M-10 96 H60 L80 76 H180 L200 96 H340" opacity="0.5" />
+          <circle cx="110" cy="44" r="3" fill="currentColor" stroke="none" />
+          <circle cx="230" cy="24" r="3" fill="currentColor" stroke="none" />
+          <circle cx="160" cy="80" r="3" fill="currentColor" stroke="none" />
+          <circle cx="80" cy="76" r="3" fill="currentColor" stroke="none" />
+        </g>
+      )}
+      {pattern === 'warp' && (
+        <g stroke="currentColor" fill="none" stroke-width="1">
+          {Array.from({ length: 17 }, (_, i) => (
+            <line
+              x1={i * 20}
+              y1="-4"
+              x2={i * 20 + 6}
+              y2="124"
+              opacity={i % 3 === 0 ? 0.55 : 0.25}
+            />
+          ))}
+          <path d="M-10 60 C 60 44, 140 76, 210 56 S 320 64, 340 58" opacity="0.7" stroke-width="1.4" />
+        </g>
+      )}
+      {pattern === 'iso' && (
+        <g stroke="currentColor" fill="none" stroke-width="1">
+          <path d="M-20 90 L160 -14 M40 124 L220 20 M100 150 L280 46 M160 176 L340 72" opacity="0.3" />
+          <path d="M340 90 L160 -14 M280 124 L100 20 M220 150 L40 46" opacity="0.3" />
+          <path d="M160 26 L212 56 V96 L160 126 L108 96 V56 Z" opacity="0.75" stroke-width="1.3" />
+          <path d="M160 26 V66 M160 66 L212 56 M160 66 L108 56" opacity="0.5" />
+        </g>
+      )}
+      {pattern === 'hex' && (
+        <g stroke="currentColor" fill="none" stroke-width="1">
+          {Array.from({ length: 6 }, (_, i) => (
+            <path
+              d={`M${i * 64 - 20} 60 l16 -28 h32 l16 28 l-16 28 h-32 Z`}
+              opacity={i % 2 === 0 ? 0.5 : 0.3}
+            />
+          ))}
+          {Array.from({ length: 6 }, (_, i) => (
+            <path
+              d={`M${i * 64 + 12} 4 l16 -28 h32 l16 28 l-16 28 h-32 Z`}
+              opacity="0.25"
+            />
+          ))}
+          {Array.from({ length: 6 }, (_, i) => (
+            <path
+              d={`M${i * 64 + 12} 116 l16 -28 h32 l16 28 l-16 28 h-32 Z`}
+              opacity="0.25"
+            />
+          ))}
+        </g>
+      )}
+    </svg>
   </div>
   <div class="project-body">
     <span class="project-category">{category}</span>
@@ -32,19 +102,17 @@ const { title, description, tags, category, link } = Astro.props;
     padding: 0;
   }
 
-  .project-placeholder {
-    height: 180px;
-    background: linear-gradient(135deg, var(--bg-surface) 0%, rgba(0, 212, 255, 0.05) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .project-art {
+    height: 120px;
+    color: var(--art-color);
+    background: linear-gradient(180deg, rgba(236, 229, 216, 0.02), transparent);
     border-bottom: 1px solid var(--border);
   }
 
-  .placeholder-icon {
-    font-size: 3rem;
-    color: var(--accent);
-    opacity: 0.3;
+  .project-art svg {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   .project-body {
@@ -53,14 +121,15 @@ const { title, description, tags, category, link } = Astro.props;
 
   .project-category {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent-warm);
+    letter-spacing: 0.12em;
+    color: var(--art-color, var(--accent));
   }
 
   .project-title {
     margin: 0.5rem 0 0.75rem;
+    font-size: 1.15rem;
   }
 
   .project-title a {
@@ -89,8 +158,8 @@ const { title, description, tags, category, link } = Astro.props;
     font-size: 0.7rem;
     padding: 0.25rem 0.6rem;
     border-radius: 99px;
-    background: rgba(0, 212, 255, 0.08);
-    color: var(--accent);
-    border: 1px solid rgba(0, 212, 255, 0.15);
+    background: rgba(236, 229, 216, 0.05);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
   }
 </style>

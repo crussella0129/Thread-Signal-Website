@@ -131,3 +131,9 @@
 - **Completed:** 2026-07-02T13:47:00Z
 - **Files modified:** src/pages/skills.astro
 - **Commit:** c863025
+
+## T-108 (sprint 1)
+- **Description:** /design visual + verbal pass (madder)
+- **Completed:** 2026-07-02T13:48:00Z
+- **Files modified:** src/pages/design.astro
+- **Commit:** 56215c7
