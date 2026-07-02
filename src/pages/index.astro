@@ -1,51 +1,95 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import ServiceCard from '../components/ServiceCard.astro';
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, EMAIL, GITHUB_URL, LINKEDIN_URL, OWNER_NAME } from '../data/site';
+import { TOTAL_STARS_CLAIM } from '../data/projects';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+    email: EMAIL,
+    description: SITE_DESCRIPTION,
+    founder: { '@type': 'Person', name: OWNER_NAME },
+    sameAs: [GITHUB_URL, LINKEDIN_URL],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: OWNER_NAME,
+    jobTitle: 'Lead Developer & Designer',
+    worksFor: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    url: SITE_URL,
+    sameAs: [GITHUB_URL, LINKEDIN_URL],
+  },
+];
 ---
 
-<BaseLayout title="Home">
+<BaseLayout title="Agentic Development, Automation & Design" jsonLd={jsonLd}>
   <Hero />
 
   <div class="geo-divider"></div>
 
-  <!-- Services Preview -->
+  <!-- Three revenue lanes -->
   <section class="section container">
-    <h2 class="section-title">What We Build</h2>
+    <h2 class="section-title">Three Ways We Deliver</h2>
     <p class="section-subtitle">
-      From embedded geometry kernels to full-stack web apps — we tackle the problems others walk away from.
+      Everything below is backed by public code — {TOTAL_STARS_CLAIM} across the open-source catalog.
     </p>
 
-    <div class="services-grid">
-      <ServiceCard
-        icon="{ }"
-        title="Software Development"
-        description="Full-stack applications, APIs, and systems built with precision and care."
-      />
-      <ServiceCard
-        icon="&#9650;"
-        title="CAD &amp; Geometry"
-        description="CAD software development, geometry kernels, and professional CAD training."
-      />
-      <ServiceCard
-        icon="&#9881;"
-        title="Game Development"
-        description="From concept to release — game engines, mechanics, and interactive experiences."
-      />
-      <ServiceCard
-        icon="&#9733;"
-        title="AI &amp; ML Solutions"
-        description="Intelligent agents, ML pipelines, and LLM integrations for real-world problems."
-      />
-      <ServiceCard
-        icon="&#8644;"
-        title="Technical Consulting"
-        description="Architecture reviews, code audits, and strategic technical guidance."
-      />
-    </div>
+    <div class="lanes-grid">
+      <a href="/animus" class="card lane">
+        <p class="lane-tag">Agents &amp; Automation</p>
+        <h3>Animus &amp; Custom Harnesses</h3>
+        <p class="lane-desc">
+          Agentic coding on your hardware. The open-source Animus Ferric harness (Rust,
+          built for 1B–14B local models), plus paid implementations: llama.cpp deployments,
+          on-prem agents, and business process automation.
+        </p>
+        <span class="lane-proof">Animus Ferric · diploid · edge AI deployments</span>
+        <span class="lane-link">Explore Animus &rarr;</span>
+      </a>
 
-    <div style="text-align: center; margin-top: 3rem;">
-      <a href="/services" class="btn btn-outline">View All Services</a>
+      <a href="/skills" class="card lane">
+        <p class="lane-tag">Skills &amp; Training</p>
+        <h3>Agent Skills &amp; Workshops</h3>
+        <p class="lane-desc">
+          Brand-agnostic skills that run on Claude Code, Codex CLI, Antigravity, and open
+          harnesses — Sprint Loops, GECK, MDR. Custom skill development for your team's
+          workflows, and hands-on agentic-development workshops.
+        </p>
+        <span class="lane-proof">Sprint Loops · GECK · MDR</span>
+        <span class="lane-link">Explore Skills &rarr;</span>
+      </a>
+
+      <a href="/design" class="card lane">
+        <p class="lane-tag">Design &amp; Fabrication</p>
+        <h3>CAD &amp; 3D Printing</h3>
+        <p class="lane-desc">
+          Commissioned designs — jigs &amp; fixtures, corporate gear, gaming assets,
+          manufacturing equipment — and 1-on-1 Autodesk Fusion lessons in geometry and
+          additive manufacturing.
+        </p>
+        <span class="lane-proof">Jetson Orin Nano Super Case · HexQuest</span>
+        <span class="lane-link">Explore Design &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="geo-divider"></div>
+
+  <!-- Why local-first -->
+  <section class="section container why-local">
+    <h2 class="section-title">The Niche: AI That Stays Home</h2>
+    <p class="section-subtitle">
+      Plenty of shops will wire you to a cloud API. We specialize in the harder, rarer thing:
+      <strong>agents that run entirely on hardware you own</strong> — air-gapped workstations,
+      on-prem servers, Jetson-class edge devices. Privacy by architecture, not by policy.
+    </p>
+    <div style="text-align: center;">
+      <a href="/animus" class="btn btn-outline">How We Do It</a>
     </div>
   </section>
 
@@ -55,16 +99,73 @@ import ServiceCard from '../components/ServiceCard.astro';
   <section class="section container" style="text-align: center;">
     <h2 class="section-title">Ready to Build Something?</h2>
     <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">
-      Whether you need a full product, a consulting session, or CAD training — let's talk.
+      An automation, a harness, a skill, a design, a lesson — every engagement starts
+      with a conversation.
     </p>
     <a href="/contact" class="btn btn-primary">Get In Touch</a>
   </section>
 </BaseLayout>
 
 <style>
-  .services-grid {
+  .lanes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
+  }
+
+  .lane {
+    display: flex;
+    flex-direction: column;
+    color: var(--text);
+  }
+
+  .lane:hover {
+    color: var(--text);
+    border-color: var(--accent);
+  }
+
+  .lane-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-warm);
+    margin-bottom: 0.75rem;
+  }
+
+  .lane h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .lane-desc {
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .lane-proof {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .lane-link {
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .why-local {
+    text-align: center;
+  }
+
+  .why-local .section-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 720px;
   }
 </style>
