@@ -1,6 +1,5 @@
 # Agent Tasks (Persistent Backlog)
 
-- [ ] T-009 (sprint 0): Replace /portfolio with a real /projects page — touches: src/pages/projects.astro, src/pages/portfolio.astro (delete), astro.config.mjs
 - [ ] T-010 (sprint 0): Retire the fictional /product page — touches: src/pages/product.astro (delete), astro.config.mjs
 - [ ] T-011 (sprint 0): Rewrite the home page around the three revenue lanes — touches: src/pages/index.astro, src/components/Hero.astro
 - [ ] T-012 (sprint 0): Rewrite the services page as the commercial umbrella — touches: src/pages/services.astro

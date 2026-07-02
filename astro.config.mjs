@@ -7,5 +7,8 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://threadandsignal.com',
-  integrations: [react(), sitemap()]
+  integrations: [react(), sitemap()],
+  redirects: {
+    '/portfolio': '/projects'
+  }
 });

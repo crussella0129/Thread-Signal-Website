@@ -46,4 +46,10 @@
 - **Description:** Build the /design landing page (CAD & 3D printing)
 - **Completed:** 2026-07-02T04:03:00Z
 - **Files modified:** src/pages/design.astro
+- **Commit:** 986a644
+
+## T-009 (sprint 0)
+- **Description:** Replace /portfolio with a real /projects page
+- **Completed:** 2026-07-02T04:05:00Z
+- **Files modified:** src/pages/projects.astro (new), src/pages/portfolio.astro (deleted), astro.config.mjs
 - **Commit:** (filled post-commit)
