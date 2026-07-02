@@ -130,4 +130,4 @@
 - **Description:** /skills visual + verbal pass (verdigris)
 - **Completed:** 2026-07-02T13:47:00Z
 - **Files modified:** src/pages/skills.astro
-- **Commit:** (filled post-commit)
+- **Commit:** c863025
