@@ -118,4 +118,4 @@
 - **Description:** Home page verbal + visual pass
 - **Completed:** 2026-07-02T13:43:00Z
 - **Files modified:** src/pages/index.astro
-- **Commit:** (filled post-commit)
+- **Commit:** a1a41f4
