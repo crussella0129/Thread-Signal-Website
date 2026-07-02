@@ -15,9 +15,9 @@ const links = [
 <nav class="nav">
   <div class="container nav-inner">
     <a href="/" class="nav-logo">
-      <span class="logo-thread">Thread</span>
+      <span class="logo-word">Thread</span>
       <span class="logo-amp">&amp;</span>
-      <span class="logo-signal">Signal</span>
+      <span class="logo-word">Signal</span>
     </a>
 
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -35,6 +35,9 @@ const links = [
           </a>
         </li>
       ))}
+      <li class="nav-cta-item">
+        <a href="/contact" class="nav-cta">Commission a build</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -46,8 +49,8 @@ const links = [
     left: 0;
     right: 0;
     height: var(--nav-height);
-    background: rgba(10, 14, 26, 0.85);
-    backdrop-filter: blur(12px);
+    background: rgba(20, 18, 16, 0.82);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
     z-index: 1000;
   }
@@ -61,42 +64,88 @@ const links = [
 
   .nav-logo {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     display: flex;
-    gap: 0.35rem;
+    align-items: baseline;
+    gap: 0.4rem;
     color: var(--text);
   }
 
   .nav-logo:hover { color: var(--text); }
 
-  .logo-thread { color: var(--accent); }
-  .logo-amp { color: var(--text-muted); }
-  .logo-signal { color: var(--accent-warm); }
+  .logo-word { color: var(--text); }
+
+  .logo-amp {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 450;
+  }
 
   .nav-links {
     display: flex;
+    align-items: center;
     list-style: none;
-    gap: 0.25rem;
+    gap: 0.35rem;
   }
 
   .nav-link {
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
+    position: relative;
+    padding: 0.5rem 0.85rem;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     font-weight: 500;
-    transition: all var(--transition);
+    transition: color var(--transition);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0.85rem;
+    right: 0.85rem;
+    bottom: 0.15rem;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
   }
 
   .nav-link:hover,
   .nav-link.active {
     color: var(--text);
-    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    transform: scaleX(1);
   }
 
   .nav-link.active {
     color: var(--accent);
+  }
+
+  .nav-cta-item {
+    margin-left: 0.75rem;
+  }
+
+  .nav-cta {
+    display: inline-block;
+    padding: 0.5rem 1.1rem;
+    border-radius: 9px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #241a09;
+    background: linear-gradient(180deg, #f0b355, var(--accent));
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+
+  .nav-cta:hover {
+    color: #241a09;
+    transform: translateY(-1px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 8px 20px rgba(232, 163, 61, 0.28);
   }
 
   .nav-toggle {
@@ -131,7 +180,7 @@ const links = [
   .hamburger::before { top: -7px; }
   .hamburger::after { top: 7px; }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .nav-toggle {
       display: block;
     }
@@ -143,6 +192,7 @@ const links = [
       right: 0;
       bottom: 0;
       flex-direction: column;
+      align-items: stretch;
       background: var(--bg);
       padding: 2rem 1.5rem;
       gap: 0.5rem;
@@ -157,6 +207,31 @@ const links = [
     .nav-link {
       font-size: 1.1rem;
       padding: 0.75rem 1rem;
+      display: block;
+    }
+
+    .nav-link::after {
+      display: none;
+    }
+
+    .nav-cta-item {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+
+    .nav-cta {
+      display: block;
+      text-align: center;
+      padding: 0.85rem 1.1rem;
+      font-size: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link::after,
+    .nav-cta,
+    .nav-links {
+      transition: none;
     }
   }
 </style>

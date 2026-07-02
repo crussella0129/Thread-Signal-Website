@@ -1,6 +1,5 @@
 # Agent Tasks (Persistent Backlog)
 
-- [ ] T-103 (sprint 1): Rebrand nav and footer — touches: src/components/Nav.astro, src/components/Footer.astro
 - [ ] T-104 (sprint 1): Reveal/motion infrastructure in BaseLayout — touches: src/layouts/BaseLayout.astro
 - [ ] T-105 (sprint 1): Home page verbal + visual pass — touches: src/pages/index.astro
 - [ ] T-106 (sprint 1): /animus visual + verbal pass (lineage timeline) — touches: src/pages/animus.astro

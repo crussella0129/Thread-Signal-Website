@@ -9,11 +9,11 @@ const year = new Date().getFullYear();
   <div class="container footer-inner">
     <div class="footer-brand">
       <span class="footer-logo">
-        <span style="color: var(--accent)">Thread</span>
-        <span style="color: var(--text-muted)">&amp;</span>
-        <span style="color: var(--accent-warm)">Signal</span>
+        <span class="footer-word">Thread</span>
+        <span class="footer-amp">&amp;</span>
+        <span class="footer-word">Signal</span>
       </span>
-      <p class="footer-tagline">Building the future, one thread at a time.</p>
+      <p class="footer-tagline">Handwoven automation, running on hardware you own.</p>
     </div>
 
     <nav class="footer-nav">
@@ -48,7 +48,7 @@ const year = new Date().getFullYear();
   }
 
   .footer-inner {
-    padding: 3rem 1.5rem 2rem;
+    padding: 3.5rem 1.5rem 2rem;
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 2rem;
@@ -61,14 +61,26 @@ const year = new Date().getFullYear();
 
   .footer-logo {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .footer-word { color: var(--text); }
+
+  .footer-amp {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 450;
   }
 
   .footer-tagline {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 450;
     color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    margin-top: 0.6rem;
+    max-width: 300px;
   }
 
   .footer-nav {
@@ -83,11 +95,13 @@ const year = new Date().getFullYear();
   }
 
   .footer-col h4 {
-    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.12em;
     color: var(--text-muted);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.35rem;
   }
 
   .footer-col a {
@@ -116,6 +130,7 @@ const year = new Date().getFullYear();
 
     .footer-nav {
       gap: 2rem;
+      flex-wrap: wrap;
     }
   }
 </style>

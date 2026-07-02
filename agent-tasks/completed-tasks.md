@@ -100,4 +100,10 @@
 - **Description:** Rebuild hero (verbal + loom canvas) and remove React/three stack
 - **Completed:** 2026-07-02T13:38:00Z
 - **Files modified:** src/components/Hero.astro, src/components/HeroCanvas.tsx (deleted), package.json, package-lock.json, astro.config.mjs
+- **Commit:** 10d85cc
+
+## T-103 (sprint 1)
+- **Description:** Rebrand nav and footer
+- **Completed:** 2026-07-02T13:40:00Z
+- **Files modified:** src/components/Nav.astro, src/components/Footer.astro
 - **Commit:** (filled post-commit)
