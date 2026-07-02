@@ -88,4 +88,4 @@
 - **Description:** Write the positioning & marketing guidance doc
 - **Completed:** 2026-07-02T04:11:00Z
 - **Files modified:** docs/positioning.md
-- **Commit:** (filled post-commit)
+- **Commit:** 7d28930
