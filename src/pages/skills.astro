@@ -15,83 +15,97 @@ const jsonLd = {
   provider: { '@type': 'Organization', name: 'Thread & Signal', url: SITE_URL },
   url: `${SITE_URL}/skills`,
 };
+
+const harnesses = ['Claude Code', 'Codex CLI', 'Antigravity', 'Open harnesses'];
 ---
 
-<BaseLayout title="Agent Skills — Harness-Agnostic Tooling" description={description} jsonLd={jsonLd}>
+<BaseLayout title="Agent Skills — Skills That Outlive Subscriptions" description={description} jsonLd={jsonLd}>
   <!-- Hero -->
   <section class="section container skills-hero">
-    <p class="page-tag">Agent Skills</p>
-    <h1>Skills your agents keep<br /><span class="highlight">when you switch harnesses.</span></h1>
+    <p class="eyebrow eyebrow-thread">Agent skills</p>
+    <h1><span class="ink-thread">Skills that outlive subscriptions.</span></h1>
     <p class="lead">
-      Every AI vendor wants to lock your workflows into their runtime. We build the opposite:
-      <strong>brand-agnostic, cross-compatible agent skills</strong> — protocols and tools that
-      run identically on Claude Code, Codex CLI, Antigravity, and open local harnesses.
+      Every AI vendor wants to lock your workflows into their runtime. We weave
+      the opposite: <strong>brand-agnostic, cross-compatible agent skills</strong> —
+      protocols and tools that run identically wherever your agents live.
       Your process shouldn't be a hostage of your subscription.
     </p>
+
+    <div class="works-with" role="list" aria-label="Compatible harnesses">
+      <span class="works-with-label">Works with</span>
+      {harnesses.map(h => <span class="harness-chip" role="listitem">{h}</span>)}
+    </div>
   </section>
 
   <div class="geo-divider"></div>
 
   <!-- The skills line -->
   <section class="section container">
-    <h2 class="section-title">The Skills Line</h2>
+    <p class="eyebrow eyebrow-thread">The pattern book</p>
+    <h2 class="section-title">The skills line.</h2>
     <p class="section-subtitle">
       Open source, in production use, and installable today.
     </p>
 
-    <div class="skill-list">
-      <div class="card skill-detail">
+    <div class="skill-list reveal-stagger">
+      <div class="card card-thread skill-detail">
         <div class="skill-header">
           <h3><a href="https://github.com/crussella0129/sprint-loops" target="_blank" rel="noopener">Sprint Loops</a></h3>
           <span class="skill-kind">Loop engineering protocol</span>
         </div>
         <p>
-          <strong>The problem:</strong> long-horizon autonomous coding drifts — agents lose the
-          plot across sessions, redo work, and leave no audit trail.
+          <strong>The problem:</strong> long-horizon autonomous coding drifts —
+          agents lose the plot across sessions, redo work, and leave no audit
+          trail.
           <br />
-          <strong>The skill:</strong> a lightweight five-phase protocol (Research → Plan → Build →
-          Test → Loop) with persistent state on disk. The filesystem is the state machine. Ships
-          three ways: a Claude Code plugin marketplace, a Codex CLI skill, and a runtime-agnostic
-          spec for open harnesses.
+          <strong>The skill:</strong> a lightweight five-phase protocol (Research
+          → Plan → Build → Test → Loop) with persistent state on disk. The
+          filesystem is the state machine. Ships three ways: a Claude Code plugin
+          marketplace, a Codex CLI skill, and a runtime-agnostic spec for open
+          harnesses.
         </p>
       </div>
 
-      <div class="card skill-detail">
+      <div class="card card-thread skill-detail">
         <div class="skill-header">
           <h3><a href="https://github.com/crussella0129/GECK" target="_blank" rel="noopener">GECK</a></h3>
           <span class="skill-kind">Structured memory framework</span>
         </div>
         <p>
-          <strong>The problem:</strong> context amnesia. Every CLI-agent session starts from zero —
-          repeated mistakes, forgotten decisions, no coherence across a large project.
+          <strong>The problem:</strong> context amnesia. Every CLI-agent session
+          starts from zero — repeated mistakes, forgotten decisions, no coherence
+          across a large project.
           <br />
-          <strong>The skill:</strong> the Garden of Eden Creation Kit — a protocol plus generator
-          that gives agents typed tasks, decision records, learnings, and episodic logs in a
-          structured folder, read within a declared context budget.
+          <strong>The skill:</strong> the Garden of Eden Creation Kit — a
+          protocol plus generator that gives agents typed tasks, decision
+          records, learnings, and episodic logs in a structured folder, read
+          within a declared context budget.
         </p>
       </div>
 
-      <div class="card skill-detail">
+      <div class="card card-thread skill-detail">
         <div class="skill-header">
           <h3><a href="https://github.com/crussella0129/MDR" target="_blank" rel="noopener">MDR</a></h3>
           <span class="skill-kind">Download resilience skill</span>
         </div>
         <p>
-          <strong>The problem:</strong> multi-hour, multi-gigabyte model downloads from HuggingFace
-          die at 87% and nobody notices until morning.
+          <strong>The problem:</strong> multi-hour, multi-gigabyte model
+          downloads from HuggingFace die at 87% and nobody notices until morning.
           <br />
-          <strong>The skill:</strong> Massive Download Resilience — procurement of large models
-          with nested cron jobs that watch, resume, and verify until the weights are truly on disk.
-          Works from Claude Code, Codex, and Antigravity.
+          <strong>The skill:</strong> Massive Download Resilience — procurement
+          of large models with nested cron jobs that watch, resume, and verify
+          until the weights are truly on disk. Works from Claude Code, Codex, and
+          Antigravity.
         </p>
       </div>
     </div>
 
     <p class="supporting-note">
       Supporting cast: <a href="https://github.com/crussella0129/oovra" target="_blank" rel="noopener">oovra</a>
-      (compose and diff agentic system prompts from standardized .md + TOML elements) and
-      <a href="https://github.com/crussella0129/.lux" target="_blank" rel="noopener">.lux</a>
-      (a document format designed for human <em>and</em> AI readers as first-class consumers).
+      (compose and diff agentic system prompts from standardized .md + TOML
+      elements) and <a href="https://github.com/crussella0129/.lux" target="_blank" rel="noopener">.lux</a>
+      (a document format designed for human <em>and</em> AI readers as
+      first-class consumers).
     </p>
   </section>
 
@@ -99,28 +113,31 @@ const jsonLd = {
 
   <!-- Offers -->
   <section class="section container">
-    <h2 class="section-title">Two Ways to Work With Us</h2>
+    <p class="eyebrow eyebrow-thread">The commission</p>
+    <h2 class="section-title">Two ways to work with us.</h2>
 
-    <div class="offer-grid">
-      <div class="card offer">
+    <div class="offer-grid reveal-stagger">
+      <div class="card card-thread offer">
+        <p class="numeral numeral-thread">01</p>
         <h3>Custom Skill &amp; Protocol Development</h3>
         <p>
-          Your team has a workflow — code review, release management, data pipeline babysitting —
-          that an agent should run reliably. We design and build it as a portable skill:
-          documented, versioned, and working across the harnesses you already use.
-          One protocol, every runtime.
+          Your team has a workflow — code review, release management, data
+          pipeline babysitting — that an agent should run reliably. We design and
+          build it as a portable skill: documented, versioned, and working across
+          the harnesses you already use. One protocol, every runtime.
         </p>
-        <a href="/contact" class="btn btn-primary">Scope a Skill</a>
+        <a href="/contact" class="btn btn-primary">Scope a skill</a>
       </div>
-      <div class="card offer">
+      <div class="card card-thread offer">
+        <p class="numeral numeral-thread">02</p>
         <h3>Agentic Development Workshops</h3>
         <p>
-          Hands-on training for engineering teams: how to actually work with Claude Code, Codex
-          CLI, and local harnesses — loop engineering, context management, permission models,
-          and the habits that separate "tried the demo" from "shipped with agents."
-          Remote or on-site, sized to your team.
+          Hands-on training for engineering teams: how to actually work with
+          Claude Code, Codex CLI, and local harnesses — loop engineering, context
+          management, permission models, and the habits that separate "tried the
+          demo" from "shipped with agents." Remote or on-site, sized to your team.
         </p>
-        <a href="/contact" class="btn btn-primary">Book a Workshop</a>
+        <a href="/contact" class="btn btn-primary">Book a workshop</a>
       </div>
     </div>
 
@@ -132,26 +149,66 @@ const jsonLd = {
 
 <style>
   .skills-hero {
+    position: relative;
     padding-top: 5rem;
-    max-width: 820px;
+    max-width: 860px;
   }
 
-  .page-tag {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 1rem;
+  /* Interlocking-loops motif. */
+  .skills-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle 120px at 82% 22%, transparent 118px, rgba(79, 184, 168, 0.09) 119px, transparent 121px),
+      radial-gradient(circle 120px at 92% 38%, transparent 118px, rgba(79, 184, 168, 0.07) 119px, transparent 121px),
+      radial-gradient(circle 120px at 74% 44%, transparent 118px, rgba(79, 184, 168, 0.05) 119px, transparent 121px);
+    pointer-events: none;
   }
 
-  .highlight { color: var(--accent); }
+  .eyebrow-thread {
+    color: var(--thread);
+  }
+
+  .eyebrow-thread::before {
+    background: linear-gradient(90deg, var(--thread), transparent);
+  }
+
+  .numeral-thread {
+    color: var(--thread);
+  }
 
   .lead {
     color: var(--text-muted);
     font-size: 1.15rem;
     line-height: 1.7;
-    margin: 1.5rem 0 0;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .works-with {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .works-with-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-right: 0.25rem;
+  }
+
+  .harness-chip {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 99px;
+    background: var(--thread-glow);
+    color: var(--thread);
+    border: 1px solid rgba(79, 184, 168, 0.3);
   }
 
   .skill-list {
@@ -169,17 +226,25 @@ const jsonLd = {
   }
 
   .skill-header h3 {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+  }
+
+  .skill-header h3 a {
+    color: var(--text);
+  }
+
+  .skill-header h3 a:hover {
+    color: var(--thread);
   }
 
   .skill-kind {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.73rem;
     padding: 0.3rem 0.75rem;
     border-radius: 99px;
-    background: rgba(0, 212, 255, 0.08);
-    color: var(--accent);
-    border: 1px solid rgba(0, 212, 255, 0.15);
+    background: var(--thread-glow);
+    color: var(--thread);
+    border: 1px solid rgba(79, 184, 168, 0.25);
   }
 
   .skill-detail p {
@@ -201,9 +266,12 @@ const jsonLd = {
     gap: 1.5rem;
   }
 
+  .offer .numeral {
+    margin-bottom: 0.6rem;
+  }
+
   .offer h3 {
-    color: var(--accent);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     margin-bottom: 0.75rem;
   }
 

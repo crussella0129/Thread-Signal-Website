@@ -119,3 +119,15 @@
 - **Completed:** 2026-07-02T13:43:00Z
 - **Files modified:** src/pages/index.astro
 - **Commit:** a1a41f4
+
+## T-106 (sprint 1)
+- **Description:** /animus visual + verbal pass (lineage timeline)
+- **Completed:** 2026-07-02T13:45:00Z
+- **Files modified:** src/pages/animus.astro
+- **Commit:** 933fc99
+
+## T-107 (sprint 1)
+- **Description:** /skills visual + verbal pass (verdigris)
+- **Completed:** 2026-07-02T13:47:00Z
+- **Files modified:** src/pages/skills.astro
+- **Commit:** (filled post-commit)
