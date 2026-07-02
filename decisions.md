@@ -1,5 +1,17 @@
 # Architectural Decisions
 
+## 2026-07-02 — Remove the React/three.js island; framework-free hero canvas (sprint 1)
+- **Context:** The only React usage was HeroCanvas.tsx, a stock three.js icosahedron costing ~100KB+ of page JS and fighting hero text legibility.
+- **Decision:** Deleted react, react-dom, three, @react-three/fiber, @astrojs/react and types; the hero is a ~3KB inline vanilla canvas (thread weave + golden textile wave packets — zigzag carrier in a raised-cosine envelope, per user direction at the checkpoint). Build time dropped ~4.0s → ~1.4s.
+- **Alternatives considered:** Art-directing the three.js scene (rejected: weight, genericness, legibility).
+- **Consequences:** No UI-framework runtime on the site; future interactive islands need a deliberate re-introduction decision. Canvas honors prefers-reduced-motion with a static weave.
+
+## 2026-07-02 — "Lamplight Atelier" rebrand: visual + verbal identity (sprint 1)
+- **Context:** User rejected sprint-0's cyan/navy look as plain, then escalated to a complete reimagining; chose Lamplight Atelier from three previewed directions.
+- **Decision:** Palette = traditional dye colors on ink (ground #141210, linen #ece5d8, copper #e8a33d = signal/Animus, verdigris #4fb8a8 = thread/Skills, madder #c2543f = fabrication/Design; token names --accent/--accent-warm retained). Type = Fraunces display + Inter + JetBrains Mono. Verbal identity: "Handwoven automation." anchored in the Jacquard-loom story; lane taglines "Intelligence that stays home." / "Skills that outlive subscriptions." / "Drawn, printed, held."; atelier vocabulary (commission/workshop/bench). This AMENDS the 2026-07-02 positioning ADR's verbal expression only — the local-first commercial positioning is unchanged. Full voice guide: docs/positioning.md §Brand voice.
+- **Alternatives considered:** Midnight Broadcast (phosphor/CRT) and Paper & Ink (editorial light) — previewed and declined by the user; incremental polish of the cyan system — rejected by the user before planning.
+- **Consequences:** All future copy uses the voice guide; banned strings for new copy ("Early Access", "CAD Platform"/"CAD platform", /game develop/i, "Placeholder", hello@) are enforced by a full-dist sweep in the s1 test suite.
+
 ## 2026-07-02 — Positioning: local-first agentic development is the lead (sprint 0)
 - **Context:** The site sold generic "software consultancy" services with fictional portfolio items; the user asked what he is most marketable at.
 - **Decision:** Lead commercially with AI-native automation & custom agent tooling; differentiate on "agents that run on hardware you own" (local/edge, 1B–14B models). Three revenue lanes: Animus/automation (/animus), skills & workshops (/skills), CAD/3D design & lessons (/design). Game development dropped as a service; the crusst CAD-platform ambition demoted to an honest R&D entry on /projects.
