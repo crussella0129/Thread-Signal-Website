@@ -1,6 +1,5 @@
 # Agent Tasks (Persistent Backlog)
 
-- [ ] T-003 (sprint 0): Upgrade BaseLayout head with full SEO/social/structured-data support — touches: src/layouts/BaseLayout.astro, src/pages/blog/index.astro
 - [ ] T-004 (sprint 0): Update Nav and Footer to the new IA and correct identity — touches: src/components/Nav.astro, src/components/Footer.astro
 - [ ] T-005 (sprint 0): Fix the contact page identity and offers — touches: src/pages/contact.astro
 - [ ] T-006 (sprint 0): Build the /animus landing page — touches: src/pages/animus.astro

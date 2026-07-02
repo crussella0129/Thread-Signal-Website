@@ -10,4 +10,10 @@
 - **Description:** Add @astrojs/sitemap so builds emit a sitemap
 - **Completed:** 2026-07-02T03:56:00Z
 - **Files modified:** package.json, package-lock.json, astro.config.mjs
+- **Commit:** d6c3a25
+
+## T-003 (sprint 0)
+- **Description:** Upgrade BaseLayout head with full SEO/social/structured-data support
+- **Completed:** 2026-07-02T03:57:00Z
+- **Files modified:** src/layouts/BaseLayout.astro, src/pages/blog/index.astro
 - **Commit:** (filled post-commit)

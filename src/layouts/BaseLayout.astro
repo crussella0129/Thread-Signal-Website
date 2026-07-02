@@ -1,14 +1,21 @@
 ---
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { SITE_NAME, SITE_DESCRIPTION } from '../data/site';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
+  /** Optional schema.org structured data, rendered as JSON-LD. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  ogType?: string;
 }
 
-const { title, description = 'Thread & Signal — Software consultancy specializing in applications, games, CAD, and AI solutions.' } = Astro.props;
+const { title, description = SITE_DESCRIPTION, jsonLd, ogType = 'website' } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = `${title} | ${SITE_NAME}`;
 ---
 
 <!doctype html>
@@ -17,8 +24,22 @@ const { title, description = 'Thread & Signal — Software consultancy specializ
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title} | Thread &amp; Signal</title>
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+    <title>{fullTitle}</title>
   </head>
   <body>
     <Nav />
