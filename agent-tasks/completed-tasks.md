@@ -70,4 +70,4 @@
 - **Description:** Rewrite the services page as the commercial umbrella
 - **Completed:** 2026-07-02T04:08:00Z
 - **Files modified:** src/pages/services.astro
-- **Commit:** (filled post-commit)
+- **Commit:** 3717c91
