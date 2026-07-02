@@ -1,6 +1,5 @@
 # Agent Tasks (Persistent Backlog)
 
-- [ ] T-102 (sprint 1): Rebuild hero (verbal + loom canvas) and remove React/three stack — touches: src/components/Hero.astro, src/components/HeroCanvas.tsx (delete), package.json, astro.config.mjs
 - [ ] T-103 (sprint 1): Rebrand nav and footer — touches: src/components/Nav.astro, src/components/Footer.astro
 - [ ] T-104 (sprint 1): Reveal/motion infrastructure in BaseLayout — touches: src/layouts/BaseLayout.astro
 - [ ] T-105 (sprint 1): Home page verbal + visual pass — touches: src/pages/index.astro

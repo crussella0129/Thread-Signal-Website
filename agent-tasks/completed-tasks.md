@@ -94,4 +94,10 @@
 - **Description:** Rebuild global.css as the Lamplight Atelier design system
 - **Completed:** 2026-07-02T13:35:00Z
 - **Files modified:** src/styles/global.css
+- **Commit:** 3ba7f44
+
+## T-102 (sprint 1)
+- **Description:** Rebuild hero (verbal + loom canvas) and remove React/three stack
+- **Completed:** 2026-07-02T13:38:00Z
+- **Files modified:** src/components/Hero.astro, src/components/HeroCanvas.tsx (deleted), package.json, package-lock.json, astro.config.mjs
 - **Commit:** (filled post-commit)
