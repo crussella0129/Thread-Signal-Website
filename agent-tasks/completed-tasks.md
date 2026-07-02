@@ -112,4 +112,10 @@
 - **Description:** Reveal/motion infrastructure in BaseLayout
 - **Completed:** 2026-07-02T13:41:00Z
 - **Files modified:** src/layouts/BaseLayout.astro
+- **Commit:** 031a888
+
+## T-105 (sprint 1)
+- **Description:** Home page verbal + visual pass
+- **Completed:** 2026-07-02T13:43:00Z
+- **Files modified:** src/pages/index.astro
 - **Commit:** (filled post-commit)

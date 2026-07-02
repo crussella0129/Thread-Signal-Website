@@ -27,53 +27,72 @@ const jsonLd = [
 ];
 ---
 
-<BaseLayout title="Agentic Development, Automation & Design" jsonLd={jsonLd}>
+<BaseLayout title="Handwoven Automation — Agents, Skills & Design" jsonLd={jsonLd}>
   <Hero />
 
   <div class="geo-divider"></div>
 
-  <!-- Three revenue lanes -->
+  <!-- Three benches -->
   <section class="section container">
-    <h2 class="section-title">Three Ways We Deliver</h2>
+    <p class="eyebrow">The workshop</p>
+    <h2 class="section-title">Three benches, one craft.</h2>
     <p class="section-subtitle">
-      Everything below is backed by public code — {TOTAL_STARS_CLAIM} across the open-source catalog.
+      Everything below is backed by public code — {TOTAL_STARS_CLAIM} across the
+      open-source catalog. Same hands, same standards, three kinds of work.
     </p>
 
-    <div class="lanes-grid">
-      <a href="/animus" class="card lane">
-        <p class="lane-tag">Agents &amp; Automation</p>
-        <h3>Animus &amp; Custom Harnesses</h3>
+    <div class="lanes-grid reveal-stagger">
+      <a href="/animus" class="card card-copper lane">
+        <svg class="lane-icon" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M4 12 H36 M4 20 H36 M4 28 H36" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+          <circle cx="14" cy="12" r="2.4" fill="currentColor"/>
+          <circle cx="26" cy="20" r="2.4" fill="currentColor"/>
+          <circle cx="18" cy="28" r="2.4" fill="currentColor"/>
+        </svg>
+        <p class="lane-tag">Agents &amp; automation</p>
+        <h3>Animus &amp; custom harnesses</h3>
+        <p class="lane-motto">Intelligence that stays home.</p>
         <p class="lane-desc">
-          Agentic coding on your hardware. The open-source Animus Ferric harness (Rust,
-          built for 1B–14B local models), plus paid implementations: llama.cpp deployments,
-          on-prem agents, and business process automation.
+          The open-source Animus Ferric harness — Rust, built for 1B–14B local
+          models — plus paid implementations: llama.cpp deployments, on-prem
+          agents, business process automation.
         </p>
-        <span class="lane-proof">Animus Ferric · diploid · edge AI deployments</span>
-        <span class="lane-link">Explore Animus &rarr;</span>
+        <span class="lane-proof">Animus Ferric · diploid · edge deployments</span>
+        <span class="lane-link">Visit the bench &rarr;</span>
       </a>
 
-      <a href="/skills" class="card lane">
-        <p class="lane-tag">Skills &amp; Training</p>
-        <h3>Agent Skills &amp; Workshops</h3>
+      <a href="/skills" class="card card-thread lane">
+        <svg class="lane-icon" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="15" cy="20" r="9" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <circle cx="25" cy="20" r="9" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.65"/>
+        </svg>
+        <p class="lane-tag">Skills &amp; training</p>
+        <h3>Agent skills &amp; workshops</h3>
+        <p class="lane-motto">Skills that outlive subscriptions.</p>
         <p class="lane-desc">
-          Brand-agnostic skills that run on Claude Code, Codex CLI, Antigravity, and open
-          harnesses — Sprint Loops, GECK, MDR. Custom skill development for your team's
-          workflows, and hands-on agentic-development workshops.
+          Brand-agnostic skills that run on Claude Code, Codex CLI, Antigravity,
+          and open harnesses — Sprint Loops, GECK, MDR — plus custom skill
+          development and hands-on team workshops.
         </p>
         <span class="lane-proof">Sprint Loops · GECK · MDR</span>
-        <span class="lane-link">Explore Skills &rarr;</span>
+        <span class="lane-link">Visit the bench &rarr;</span>
       </a>
 
-      <a href="/design" class="card lane">
-        <p class="lane-tag">Design &amp; Fabrication</p>
-        <h3>CAD &amp; 3D Printing</h3>
+      <a href="/design" class="card card-madder lane">
+        <svg class="lane-icon" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M20 6 L34 14 V26 L20 34 L6 26 V14 Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M20 6 V20 M20 20 L34 14 M20 20 L6 14 M20 20 V34" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+        </svg>
+        <p class="lane-tag">Design &amp; fabrication</p>
+        <h3>CAD &amp; 3D printing</h3>
+        <p class="lane-motto">Drawn, printed, held.</p>
         <p class="lane-desc">
-          Commissioned designs — jigs &amp; fixtures, corporate gear, gaming assets,
-          manufacturing equipment — and 1-on-1 Autodesk Fusion lessons in geometry and
-          additive manufacturing.
+          Commissioned designs — jigs &amp; fixtures, corporate gear, gaming
+          assets, manufacturing equipment — and 1-on-1 Autodesk Fusion lessons
+          in geometry and additive manufacturing.
         </p>
         <span class="lane-proof">Jetson Orin Nano Super Case · HexQuest</span>
-        <span class="lane-link">Explore Design &rarr;</span>
+        <span class="lane-link">Visit the bench &rarr;</span>
       </a>
     </div>
   </section>
@@ -81,28 +100,30 @@ const jsonLd = [
   <div class="geo-divider"></div>
 
   <!-- Why local-first -->
-  <section class="section container why-local">
-    <h2 class="section-title">The Niche: AI That Stays Home</h2>
+  <section class="section container why-local reveal">
+    <p class="eyebrow eyebrow-center">The conviction</p>
+    <h2 class="section-title">Why the signal stays home.</h2>
     <p class="section-subtitle">
-      Plenty of shops will wire you to a cloud API. We specialize in the harder, rarer thing:
-      <strong>agents that run entirely on hardware you own</strong> — air-gapped workstations,
-      on-prem servers, Jetson-class edge devices. Privacy by architecture, not by policy.
+      Plenty of shops will wire you to a cloud API. We practice the harder,
+      rarer craft: <strong>local-first agents that run entirely on hardware you
+      own</strong> — air-gapped workstations, on-prem servers, Jetson-class
+      edge devices. Privacy by architecture, not by policy.
     </p>
     <div style="text-align: center;">
-      <a href="/animus" class="btn btn-outline">How We Do It</a>
+      <a href="/animus" class="btn btn-outline">How we do it</a>
     </div>
   </section>
 
   <div class="geo-divider"></div>
 
   <!-- CTA Section -->
-  <section class="section container" style="text-align: center;">
-    <h2 class="section-title">Ready to Build Something?</h2>
+  <section class="section container reveal" style="text-align: center;">
+    <h2 class="section-title">Bring us the first thread.</h2>
     <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">
-      An automation, a harness, a skill, a design, a lesson — every engagement starts
-      with a conversation.
+      An automation, a harness, a skill, a design, a lesson — every commission
+      starts with a conversation.
     </p>
-    <a href="/contact" class="btn btn-primary">Get In Touch</a>
+    <a href="/contact" class="btn btn-primary">Commission a build</a>
   </section>
 </BaseLayout>
 
@@ -121,21 +142,35 @@ const jsonLd = [
 
   .lane:hover {
     color: var(--text);
-    border-color: var(--accent);
+  }
+
+  .lane-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--lane);
+    margin-bottom: 1.25rem;
   }
 
   .lane-tag {
     font-family: var(--font-mono);
     font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent-warm);
-    margin-bottom: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
   }
 
   .lane h3 {
-    font-size: 1.15rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .lane-motto {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 450;
+    color: var(--lane);
+    margin-bottom: 0.9rem;
   }
 
   .lane-desc {
@@ -148,19 +183,30 @@ const jsonLd = [
 
   .lane-proof {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.73rem;
     color: var(--text-muted);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
   }
 
   .lane-link {
-    color: var(--accent);
+    color: var(--lane);
     font-size: 0.9rem;
     font-weight: 600;
   }
 
   .why-local {
     text-align: center;
+  }
+
+  .eyebrow-center {
+    justify-content: center;
+  }
+
+  .eyebrow-center::after {
+    content: '';
+    width: 2.25rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent));
   }
 
   .why-local .section-subtitle {
