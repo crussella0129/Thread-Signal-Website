@@ -40,4 +40,10 @@
 - **Description:** Build the /skills landing page with workshops offer
 - **Completed:** 2026-07-02T04:02:00Z
 - **Files modified:** src/pages/skills.astro
+- **Commit:** ed8009f
+
+## T-008 (sprint 0)
+- **Description:** Build the /design landing page (CAD & 3D printing)
+- **Completed:** 2026-07-02T04:03:00Z
+- **Files modified:** src/pages/design.astro
 - **Commit:** (filled post-commit)
