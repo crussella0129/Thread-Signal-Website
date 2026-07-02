@@ -115,9 +115,10 @@
     var ctx = canvas.getContext('2d');
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var THREADS = 16;
+    var THREADS = 14;
+    var GOLD = '232,163,61';
     var threads = [];
-    var pulses = [];
+    var packets = [];
     var W = 0, H = 0, dpr = 1;
 
     function resize() {
@@ -131,17 +132,17 @@
       for (var i = 0; i < THREADS; i++) {
         threads.push({
           y: (H * (i + 1)) / (THREADS + 1),
-          amp: 6 + Math.random() * 18,
-          wl: 420 + Math.random() * 520,      // wavelength
+          amp: 5 + Math.random() * 14,
+          wl: 460 + Math.random() * 520,
           phase: Math.random() * Math.PI * 2,
-          speed: 0.00012 + Math.random() * 0.00022,
-          hue: Math.random() < 0.18 ? 'thread' : 'linen',
+          speed: 0.1 + Math.random() * 0.18,   // radians per second
+          hue: Math.random() < 0.2 ? 'thread' : 'linen',
         });
       }
     }
 
     function threadY(t, x, time) {
-      return t.y + Math.sin(x / t.wl + t.phase + time * t.speed * 1000) * t.amp;
+      return t.y + Math.sin(x / t.wl + t.phase + time * t.speed) * t.amp;
     }
 
     function drawThread(t, time) {
@@ -150,68 +151,99 @@
         var y = threadY(t, x, time);
         x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = t.hue === 'thread' ? 'rgba(79,184,168,0.10)' : 'rgba(236,229,216,0.055)';
+      ctx.strokeStyle = t.hue === 'thread' ? 'rgba(79,184,168,0.13)' : 'rgba(236,229,216,0.07)';
       ctx.lineWidth = 1;
       ctx.stroke();
     }
 
-    function spawnPulse() {
-      var t = threads[Math.floor(Math.random() * threads.length)];
-      var r = Math.random();
-      pulses.push({
-        t: t,
-        x: -40,
-        v: 90 + Math.random() * 110,           // px per second
-        color: r < 0.68 ? '232,163,61' : r < 0.88 ? '79,184,168' : '194,84,63',
+    // Golden wave packets: a textile waveform — triangular (zigzag) carrier
+    // inside a raised-cosine envelope — traveling along a thread, with
+    // stitch ticks marking the weave.
+    function spawnPacket() {
+      packets.push({
+        t: threads[Math.floor(Math.random() * threads.length)],
+        x: -120,
+        v: 55 + Math.random() * 45,            // px per second — unhurried
+        w: 130 + Math.random() * 70,           // packet width
+        amp: 9 + Math.random() * 6,            // displacement amplitude
+        wl: 22 + Math.random() * 8,            // carrier zigzag wavelength
+        ph: Math.random(),
       });
     }
 
-    function drawPulse(p, time) {
-      var y = threadY(p.t, p.x, time);
-      var tail = 90;
-      var grad = ctx.createLinearGradient(p.x - tail, y, p.x, y);
-      grad.addColorStop(0, 'rgba(' + p.color + ',0)');
-      grad.addColorStop(1, 'rgba(' + p.color + ',0.55)');
-      ctx.beginPath();
-      for (var x = Math.max(0, p.x - tail); x <= Math.min(W, p.x); x += 8) {
-        var yy = threadY(p.t, x, time);
-        x <= Math.max(0, p.x - tail) ? ctx.moveTo(x, yy) : ctx.lineTo(x, yy);
-      }
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = 1.6;
-      ctx.stroke();
+    // Triangle (zigzag) wave in [-1, 1] — the woven carrier.
+    function zig(u) {
+      var f = u - Math.floor(u);
+      return 4 * Math.abs(f - 0.5) - 1;
+    }
+
+    function drawPacket(p, time) {
+      var half = p.w / 2;
+      var x0 = Math.max(0, p.x - half);
+      var x1 = Math.min(W, p.x + half);
+      if (x1 <= x0) return;
+
+      // Horizontal gradient tracks the envelope: sheer at the selvages,
+      // golden at the heart of the packet.
+      var grad = ctx.createLinearGradient(p.x - half, 0, p.x + half, 0);
+      grad.addColorStop(0, 'rgba(' + GOLD + ',0)');
+      grad.addColorStop(0.5, 'rgba(' + GOLD + ',0.9)');
+      grad.addColorStop(1, 'rgba(' + GOLD + ',0)');
 
       ctx.beginPath();
-      ctx.arc(p.x, y, 2.2, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(' + p.color + ',0.95)';
-      ctx.shadowColor = 'rgba(' + p.color + ',0.8)';
-      ctx.shadowBlur = 10;
-      ctx.fill();
+      for (var x = x0; x <= x1; x += 3) {
+        var env = 0.5 * (1 + Math.cos(Math.PI * (x - p.x) / half));
+        var dy = env * p.amp * zig(x / p.wl - time * 1.1 + p.ph);
+        var y = threadY(p.t, x, time) + dy;
+        x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = 'rgba(' + GOLD + ',0.55)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
       ctx.shadowBlur = 0;
+
+      // Stitch ticks: short weft marks pinned to the weave, strongest at
+      // the packet's heart.
+      var step = p.wl / 2;
+      var start = Math.ceil(x0 / step) * step;
+      for (var sx = start; sx <= x1; sx += step) {
+        var e = 0.5 * (1 + Math.cos(Math.PI * (sx - p.x) / half));
+        if (e < 0.12) continue;
+        var sy = threadY(p.t, sx, time);
+        ctx.beginPath();
+        ctx.moveTo(sx, sy - 2 - 2.5 * e);
+        ctx.lineTo(sx, sy + 2 + 2.5 * e);
+        ctx.strokeStyle = 'rgba(' + GOLD + ',' + (0.5 * e).toFixed(2) + ')';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
     }
 
     var last = 0;
-    var pulseTimer = 0;
+    var spawnTimer = 1.2;
 
     function frame(now) {
-      var dt = Math.min((now - last) / 1000, 0.05);
-      last = now;
+      var time = now / 1000;
+      var dt = Math.min(time - last, 0.05);
+      last = time;
       ctx.clearRect(0, 0, W, H);
 
-      for (var i = 0; i < threads.length; i++) drawThread(threads[i], now);
+      for (var i = 0; i < threads.length; i++) drawThread(threads[i], time);
 
-      pulseTimer += dt;
-      if (pulseTimer > 0.9 && pulses.length < 7) {
-        pulseTimer = 0;
-        spawnPulse();
+      spawnTimer += dt;
+      if (spawnTimer > 1.6 && packets.length < 5) {
+        spawnTimer = 0;
+        spawnPacket();
       }
-      for (var j = pulses.length - 1; j >= 0; j--) {
-        var p = pulses[j];
+      for (var j = packets.length - 1; j >= 0; j--) {
+        var p = packets[j];
         p.x += p.v * dt;
-        if (p.x - 100 > W) {
-          pulses.splice(j, 1);
+        if (p.x - p.w > W) {
+          packets.splice(j, 1);
         } else {
-          drawPulse(p, now);
+          drawPacket(p, time);
         }
       }
       requestAnimationFrame(frame);
@@ -221,11 +253,13 @@
     window.addEventListener('resize', resize);
 
     if (reduced) {
-      // Static weave: threads only, one still frame, no pulses.
+      // Static weave: threads plus one still golden packet, no motion.
       for (var k = 0; k < threads.length; k++) drawThread(threads[k], 0);
+      packets.push({ t: threads[Math.floor(THREADS / 2)], x: W * 0.7, v: 0, w: 170, amp: 11, wl: 26, ph: 0 });
+      drawPacket(packets[0], 0);
     } else {
       requestAnimationFrame(function (now) {
-        last = now;
+        last = now / 1000;
         requestAnimationFrame(frame);
       });
     }

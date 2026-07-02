@@ -143,3 +143,15 @@
 - **Completed:** 2026-07-02T13:50:00Z
 - **Files modified:** src/components/ProjectCard.astro, src/pages/projects.astro
 - **Commit:** ad6578e
+
+## T-110 (sprint 1)
+- **Description:** Services and contact atelier pass with commission steps
+- **Completed:** 2026-07-02T13:51:00Z
+- **Files modified:** src/pages/services.astro, src/pages/contact.astro
+- **Commit:** 006c621
+
+## T-111 (sprint 1)
+- **Description:** Blog inheritance + identity-file voice alignment
+- **Completed:** 2026-07-02T13:52:00Z
+- **Files modified:** src/pages/blog/index.astro, src/pages/blog/[slug].astro, src/data/site.ts, public/llms.txt, docs/positioning.md
+- **Commit:** 81e8d17
