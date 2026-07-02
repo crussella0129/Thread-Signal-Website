@@ -1,6 +1,5 @@
 # Agent Tasks (Persistent Backlog)
 
-- [ ] T-104 (sprint 1): Reveal/motion infrastructure in BaseLayout — touches: src/layouts/BaseLayout.astro
 - [ ] T-105 (sprint 1): Home page verbal + visual pass — touches: src/pages/index.astro
 - [ ] T-106 (sprint 1): /animus visual + verbal pass (lineage timeline) — touches: src/pages/animus.astro
 - [ ] T-107 (sprint 1): /skills visual + verbal pass (verdigris) — touches: src/pages/skills.astro

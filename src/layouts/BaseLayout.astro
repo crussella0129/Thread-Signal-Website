@@ -24,6 +24,7 @@ const fullTitle = `${title} | ${SITE_NAME}`;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#141210" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -47,5 +48,31 @@ const fullTitle = `${title} | ${SITE_NAME}`;
       <slot />
     </main>
     <Footer />
+
+    <script is:inline>
+      // Progressive-enhancement marker: reveal styles only apply under html.js.
+      document.documentElement.classList.add('js');
+
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var targets = document.querySelectorAll('.reveal, .reveal-stagger');
+        if (reduced || !('IntersectionObserver' in window)) {
+          targets.forEach(function (el) { el.classList.add('revealed'); });
+          return;
+        }
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
+        targets.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
   </body>
 </html>

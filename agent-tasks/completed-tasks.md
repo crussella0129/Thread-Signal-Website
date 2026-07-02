@@ -106,4 +106,10 @@
 - **Description:** Rebrand nav and footer
 - **Completed:** 2026-07-02T13:40:00Z
 - **Files modified:** src/components/Nav.astro, src/components/Footer.astro
+- **Commit:** db12a61
+
+## T-104 (sprint 1)
+- **Description:** Reveal/motion infrastructure in BaseLayout
+- **Completed:** 2026-07-02T13:41:00Z
+- **Files modified:** src/layouts/BaseLayout.astro
 - **Commit:** (filled post-commit)
