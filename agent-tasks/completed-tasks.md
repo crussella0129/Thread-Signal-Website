@@ -82,4 +82,10 @@
 - **Description:** Add llms.txt for AI-agent discovery
 - **Completed:** 2026-07-02T04:10:00Z
 - **Files modified:** public/llms.txt
+- **Commit:** e3a49ca
+
+## T-015 (sprint 0)
+- **Description:** Write the positioning & marketing guidance doc
+- **Completed:** 2026-07-02T04:11:00Z
+- **Files modified:** docs/positioning.md
 - **Commit:** (filled post-commit)
