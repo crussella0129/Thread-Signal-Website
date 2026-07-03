@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://threadandsignal.com/sitemap-index.xml
