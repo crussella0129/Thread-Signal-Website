@@ -1,24 +1,64 @@
+---
+// The specimen plate (fig. 01): a square wave and its sine fundamental,
+// generated at build time so the geometry is exact.
+const P = { x0: 30, x1: 350, mid: 112, amp: 30, periods: 3 };
+const per = (P.x1 - P.x0) / P.periods;
+
+let sqPath = `M ${P.x0} ${P.mid - P.amp}`;
+for (let i = 0; i < P.periods; i++) {
+  const a = P.x0 + i * per;
+  sqPath += ` H ${(a + per / 2).toFixed(1)} V ${P.mid + P.amp} H ${(a + per).toFixed(1)} V ${P.mid - P.amp}`;
+}
+
+const sinePts = Array.from({ length: 97 }, (_, i) => {
+  const x = P.x0 + (i / 96) * (P.x1 - P.x0);
+  const y = P.mid - P.amp * 0.9 * Math.sin(2 * Math.PI * P.periods * (i / 96));
+  return `${x.toFixed(1)},${y.toFixed(1)}`;
+}).join(' ');
+---
+
 <section class="hero">
   <canvas id="loom" aria-hidden="true"></canvas>
   <div class="hero-scrim" aria-hidden="true"></div>
 
   <div class="container hero-content">
-    <p class="eyebrow">Agentic development studio</p>
-    <h1 class="hero-title">
-      <span class="ink-gradient">Handwoven</span> automation.
-    </h1>
-    <p class="hero-sub">
-      Custom AI agents and business process automation — woven in Rust and Python,
-      running entirely on hardware you own.
-    </p>
-    <p class="hero-story">
-      The first programmable business machine was a loom<br class="story-break" />
-      &mdash; let's build yours.
-    </p>
-    <div class="hero-cta">
-      <a href="/contact" class="btn btn-primary">Commission a build</a>
-      <a href="/projects" class="btn btn-outline">See the open source</a>
+    <div class="hero-copy">
+      <p class="eyebrow">Agentic development studio</p>
+      <h1 class="hero-title">
+        <span class="ink-gradient">Handwoven</span> automation.
+      </h1>
+      <p class="hero-sub">
+        Custom AI agents and business process automation — woven in Rust and Python,
+        running entirely on hardware you own.
+      </p>
+      <p class="hero-story">
+        The first programmable business machine was a loom<br class="story-break" />
+        &mdash; let's build yours.
+      </p>
+      <div class="hero-cta">
+        <a href="/contact" class="btn btn-primary">Commission a build</a>
+        <a href="/projects" class="btn btn-outline">See the open source</a>
+      </div>
     </div>
+
+    <figure class="hero-plate" aria-hidden="true">
+      <svg viewBox="0 0 380 236">
+        <rect x="1" y="1" width="378" height="234" fill="none" stroke="currentColor" opacity="0.18" />
+        <line x1={P.x0} y1={P.mid} x2={P.x1} y2={P.mid} stroke="currentColor" stroke-width="1" opacity="0.14" />
+
+        <polyline points={sinePts} fill="none" class="plate-sine" stroke-width="1.4" />
+        <path d={sqPath} fill="none" class="plate-square" stroke-width="1.6" />
+
+        <text x={P.x0} y="28" class="plate-label plate-label-gold">sq — the signal</text>
+        <text x={P.x0} y="42" class="plate-label plate-label-thread">sin — the thread</text>
+
+        <line x1={P.x0} y1="196" x2={P.x1} y2="196" stroke="currentColor" stroke-width="1" opacity="0.18" />
+        <rect x="186" y="192.5" width="7" height="7" transform="rotate(45 189.5 196)" fill="none" class="plate-node" stroke-width="1" />
+        <text x={P.x0} y="216" class="plate-label plate-label-muted">FIG. 01 — THREAD &amp; SIGNAL</text>
+        <text x={P.x1} y="216" text-anchor="end" class="plate-label plate-label-muted">EST. ON A LOOM</text>
+      </svg>
+      <figcaption class="plate-caption">a square wave and its fundamental, traveling in tandem</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -55,10 +95,79 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 760px;
-    margin-left: 0;
+    width: 100%;
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+
+  .hero-copy {
+    max-width: 760px;
+  }
+
+  /* The specimen plate: fills the wide-screen right side with the brand
+     dichotomy drawn as a technical figure. Hidden below 1200px. */
+  .hero-plate {
+    display: none;
+  }
+
+  @media (min-width: 1200px) {
+    .hero-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 460px);
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .hero-plate {
+      display: block;
+      margin: 0;
+      padding: 1.5rem 1.5rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(28, 25, 23, 0.55);
+      backdrop-filter: blur(6px);
+      color: var(--text);
+    }
+  }
+
+  .hero-plate svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .plate-sine {
+    stroke: var(--thread);
+    opacity: 0.85;
+  }
+
+  .plate-square {
+    stroke: var(--accent);
+    filter: drop-shadow(0 0 6px rgba(232, 163, 61, 0.35));
+  }
+
+  .plate-node {
+    stroke: var(--accent);
+  }
+
+  .plate-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+  }
+
+  .plate-label-gold { fill: var(--accent); }
+  .plate-label-thread { fill: var(--thread); }
+  .plate-label-muted { fill: var(--text-muted); }
+
+  .plate-caption {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 450;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 1rem;
   }
 
   .hero-title {
@@ -128,16 +237,24 @@
       canvas.width = W * dpr;
       canvas.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      threads = [];
+      // Update threads IN PLACE: in-flight packets hold references to these
+      // objects, so rebuilding the array on resize would leave packets riding
+      // stale, invisible paths (the de-sync bug). Only geometry that depends
+      // on the viewport is recomputed; identity and character survive.
       for (var i = 0; i < THREADS; i++) {
-        threads.push({
-          y: (H * (i + 1)) / (THREADS + 1),
-          amp: 5 + Math.random() * 14,
-          wl: 460 + Math.random() * 520,
-          phase: Math.random() * Math.PI * 2,
-          speed: 0.1 + Math.random() * 0.18,   // radians per second
-          hue: Math.random() < 0.2 ? 'thread' : 'linen',
-        });
+        var y = (H * (i + 1)) / (THREADS + 1);
+        if (threads[i]) {
+          threads[i].y = y;
+        } else {
+          threads.push({
+            y: y,
+            amp: 5 + Math.random() * 14,
+            wl: 460 + Math.random() * 520,
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.1 + Math.random() * 0.18, // radians per second
+            hue: Math.random() < 0.2 ? 'thread' : 'linen',
+          });
+        }
       }
     }
 

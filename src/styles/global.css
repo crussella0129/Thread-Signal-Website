@@ -28,7 +28,7 @@
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  --max-width: 1200px;
+  --max-width: 1320px;
   --nav-height: 76px;
   --radius: 14px;
   --transition: 0.25s ease;
@@ -316,6 +316,24 @@ html.js .reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.1s; }
 html.js .reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.2s; }
 html.js .reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.3s; }
 html.js .reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.4s; }
+
+/* ── Wide Looms (2K/4K) ─────────────────────── */
+/* Let the composition breathe into big viewports instead of hugging a
+   narrow column. Placed after base rules so these declarations win. */
+@media (min-width: 1800px) {
+  :root {
+    --max-width: 1480px;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 3.4vw, 5.25rem);
+  }
+
+  .section-subtitle {
+    font-size: 1.2rem;
+    max-width: 700px;
+  }
+}
 
 /* ── Reduced Motion ─────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
