@@ -31,6 +31,10 @@ import { EMAIL, GITHUB_URL, LINKEDIN_URL, FORMSPREE_ENDPOINT } from '../data/sit
     </div>
 
     <form class="card contact-form" action={FORMSPREE_ENDPOINT} method="POST">
+      <input type="hidden" name="_subject" value="New inquiry — threadandsignal.com" />
+      <!-- Honeypot: bots fill it, humans never see it; Formspree drops any
+           submission where _gotcha is non-empty. -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required placeholder="Your name" />
@@ -56,6 +60,7 @@ import { EMAIL, GITHUB_URL, LINKEDIN_URL, FORMSPREE_ENDPOINT } from '../data/sit
         <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
       </div>
       <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+      <p class="form-status" role="status" aria-live="polite" hidden></p>
       <p class="form-note">Prefer email? Writing directly to <a href={`mailto:${EMAIL}`}>{EMAIL}</a> gets the fastest response.</p>
     </form>
   </section>
@@ -106,6 +111,30 @@ import { EMAIL, GITHUB_URL, LINKEDIN_URL, FORMSPREE_ENDPOINT } from '../data/sit
     font-size: 0.85rem;
     text-align: center;
     margin-top: 0.25rem;
+  }
+
+  .form-status {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .form-status.ok {
+    color: var(--thread);
+    background: var(--thread-glow);
+    border: 1px solid rgba(79, 184, 168, 0.35);
+  }
+
+  .form-status.err {
+    color: var(--accent-warm);
+    background: var(--accent-warm-glow);
+    border: 1px solid rgba(194, 84, 63, 0.4);
+  }
+
+  .form-status.err :global(a) {
+    color: var(--accent);
   }
 
   .contact-form {
@@ -170,3 +199,65 @@ import { EMAIL, GITHUB_URL, LINKEDIN_URL, FORMSPREE_ENDPOINT } from '../data/sit
     }
   }
 </style>
+
+<script>
+  import { EMAIL } from '../data/site';
+
+  // Progressive enhancement: without JS the form POSTs natively to Formspree;
+  // with JS we submit in place and answer in the site's own voice.
+  const form = document.querySelector<HTMLFormElement>('.contact-form');
+  const status = document.querySelector<HTMLParagraphElement>('.form-status');
+  const button = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+  function show(kind: 'ok' | 'err', html: string) {
+    if (!status) return;
+    status.className = `form-status ${kind}`;
+    status.innerHTML = html;
+    status.hidden = false;
+  }
+
+  const mailtoFallback = `The signal didn't land — email me directly at <a href="mailto:${EMAIL}">${EMAIL}</a> and I'll reply from there.`;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (form.action.includes('YOUR_FORMSPREE_ID')) {
+      show('err', mailtoFallback);
+      return;
+    }
+
+    // Put the chosen service in the notification subject line.
+    const select = form.querySelector<HTMLSelectElement>('#subject');
+    const subjectField = form.querySelector<HTMLInputElement>('input[name="_subject"]');
+    if (select && subjectField && select.selectedIndex > 0) {
+      subjectField.value = `threadandsignal.com — ${select.options[select.selectedIndex].text}`;
+    }
+
+    const label = button?.textContent ?? 'Send Message';
+    if (button) {
+      button.disabled = true;
+      button.textContent = 'Sending…';
+    }
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        form.reset();
+        show('ok', "Received — the thread is on the loom. I'll reply within a business day.");
+      } else {
+        show('err', mailtoFallback);
+      }
+    } catch {
+      show('err', mailtoFallback);
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = label;
+      }
+    }
+  });
+</script>
