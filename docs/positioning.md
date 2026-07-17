@@ -58,9 +58,11 @@ warm lead for automation work.
 
 ## Next marketing moves (in priority order)
 
-1. **Activate the contact form.** Create the Formspree form and replace
-   `FORMSPREE_ENDPOINT` in `src/data/site.ts`. A dead form is a dead funnel; until
-   then the mailto CTA carries everything.
+1. **Guard the direct-email funnel.** The contact page is deliberately
+   form-free (decided 2026-07): no vendor, no spam surface — every channel goes
+   straight to charles@threadandsignal.com. The asset is response time: answer
+   within one business day, every time. Revisit a form only if volume ever
+   makes triage necessary.
 2. **Write the "benchmark your hardware" lead magnet.** A blog post (or free
    15-minute consult offer): "Can a 7B model on your hardware actually run your
    workflow? Ferric's L0–L6 ladder answers that." This converts curiosity into

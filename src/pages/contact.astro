@@ -1,263 +1,287 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { EMAIL, GITHUB_URL, LINKEDIN_URL, FORMSPREE_ENDPOINT } from '../data/site';
+import { EMAIL, GITHUB_URL, LINKEDIN_URL } from '../data/site';
+
+const description = `Contact Thread & Signal directly — ${EMAIL}. Business process automation, custom agent harnesses, agent skills and workshops, CAD and 3D printing commissions and lessons. No forms, no tickets.`;
 ---
 
-<BaseLayout title="Contact" description="Book a consult with Thread & Signal — business process automation, custom agent harnesses, agent skills and workshops, CAD and 3D printing design and lessons.">
-  <section class="section container contact-page">
-    <div class="contact-content">
+<BaseLayout title="Contact — The Line Is Open" description={description}>
+  <!-- Hero: a telegraph wire carrying morse -->
+  <section class="contact-hero">
+    <canvas id="wire" aria-hidden="true"></canvas>
+    <div class="container contact-hero-content">
       <p class="eyebrow">The first thread</p>
-      <h1 class="section-title">Bring us the work.</h1>
-      <p class="section-subtitle">
+      <h1><span class="ink-gradient">The line is open.</span></h1>
+      <p class="lead">
         An automation to build, a harness to deploy, a design to commission,
         a skill to learn — every commission starts with a conversation.
-        Tell me what you're working on.
+        No forms, no tickets, no queue: write to me directly and a person
+        answers.
       </p>
+      <p class="tx-note">TX &mdash; &ldquo;HELLO&rdquo; &middot; MORSE, ON THE WIRE</p>
+    </div>
+  </section>
 
-      <div class="contact-info">
-        <div class="contact-item contact-primary">
-          <h3>Email — fastest response</h3>
-          <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-        </div>
-        <div class="contact-item">
-          <h3>GitHub</h3>
-          <a href={GITHUB_URL} target="_blank" rel="noopener">github.com/crussella0129</a>
-        </div>
-        <div class="contact-item">
-          <h3>LinkedIn</h3>
-          <a href={LINKEDIN_URL} target="_blank" rel="noopener">linkedin.com/in/cgriv</a>
-        </div>
-      </div>
+  <div class="geo-divider"></div>
+
+  <!-- Channels -->
+  <section class="section container">
+    <div class="channels reveal-stagger">
+      <a class="card card-copper channel contact-primary" href={`mailto:${EMAIL}`}>
+        <svg class="channel-icon" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="5" y="10" width="30" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.4" />
+          <path d="M5 12 L20 23 L35 12" fill="none" stroke="currentColor" stroke-width="1.4" />
+        </svg>
+        <p class="channel-tag">Email &mdash; fastest response</p>
+        <h3>{EMAIL}</h3>
+        <p class="channel-note">
+          Straight to my inbox, answered personally — usually within a business
+          day. A sentence and a sketch of the problem is plenty to start.
+        </p>
+        <span class="channel-link">Write the first line &rarr;</span>
+      </a>
+
+      <a class="card card-thread channel" href={GITHUB_URL} target="_blank" rel="noopener">
+        <svg class="channel-icon" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="12" cy="10" r="3.5" fill="none" stroke="currentColor" stroke-width="1.4" />
+          <circle cx="12" cy="30" r="3.5" fill="none" stroke="currentColor" stroke-width="1.4" />
+          <circle cx="28" cy="14" r="3.5" fill="none" stroke="currentColor" stroke-width="1.4" />
+          <path d="M12 13.5 V26.5 M28 17.5 C28 24, 16 22, 12.5 27" fill="none" stroke="currentColor" stroke-width="1.4" />
+        </svg>
+        <p class="channel-tag">GitHub</p>
+        <h3>crussella0129</h3>
+        <p class="channel-note">
+          Read the code before you write the email — every project on the shelf
+          is public. Issues and pull requests are conversations too.
+        </p>
+        <span class="channel-link">Browse the shelf &rarr;</span>
+      </a>
+
+      <a class="card card-madder channel" href={LINKEDIN_URL} target="_blank" rel="noopener">
+        <svg class="channel-icon" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="6" y="6" width="28" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="1.4" />
+          <path d="M13 17 V28 M13 12.5 V13 M19 28 V21 C19 17.5, 27 17.5, 27 21 V28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        <p class="channel-tag">LinkedIn</p>
+        <h3>in/cgriv</h3>
+        <p class="channel-note">
+          The professional thread — background, history, and the longer story
+          behind the workshop.
+        </p>
+        <span class="channel-link">Connect the thread &rarr;</span>
+      </a>
     </div>
 
-    <form class="card contact-form" action={FORMSPREE_ENDPOINT} method="POST">
-      <input type="hidden" name="_subject" value="New inquiry — threadandsignal.com" />
-      <!-- Honeypot: bots fill it, humans never see it; Formspree drops any
-           submission where _gotcha is non-empty. -->
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required placeholder="Your name" />
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required placeholder="you@example.com" />
-      </div>
-      <div class="form-group">
-        <label for="subject">What are you looking for?</label>
-        <select id="subject" name="subject" required>
-          <option value="" disabled selected>Select a service</option>
-          <option value="automation">Business Process Automation</option>
-          <option value="animus">Animus / Custom Harness Implementation</option>
-          <option value="skills">Agent Skills &amp; Workshops</option>
-          <option value="design">CAD / 3D Design Commission</option>
-          <option value="lessons">CAD &amp; 3D Printing Lessons</option>
-          <option value="other">Something Else</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-      <p class="form-status" role="status" aria-live="polite" hidden></p>
-      <p class="form-note">Prefer email? Writing directly to <a href={`mailto:${EMAIL}`}>{EMAIL}</a> gets the fastest response.</p>
-    </form>
+    <p class="channels-note reveal">
+      Prefer paper trails? Everything discussed by email — scope, price,
+      delivery — is the record. No portals, no logins, nothing to lose.
+    </p>
   </section>
 </BaseLayout>
 
 <style>
-  .contact-page {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
+  .contact-hero {
+    position: relative;
+    min-height: 58vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
   }
 
-  .contact-info {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
+  #wire {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .contact-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .lead {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin: 1.5rem 0 1.75rem;
+    max-width: 640px;
+  }
+
+  .tx-note {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    opacity: 0.75;
+  }
+
+  .channels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 1.5rem;
   }
 
-  .contact-item h3 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-    margin-bottom: 0.35rem;
+  .channel {
+    display: flex;
+    flex-direction: column;
+    color: var(--text);
   }
 
-  .contact-item a {
-    font-size: 1rem;
+  .channel:hover {
+    color: var(--text);
   }
 
+  /* Copper treatment for the primary channel. */
   .contact-primary {
-    padding: 1rem 1.25rem;
-    border: 1px solid rgba(232, 163, 61, 0.3);
-    border-radius: 10px;
-    background: var(--accent-glow);
+    border-color: rgba(232, 163, 61, 0.3);
     box-shadow: 0 0 22px var(--accent-glow);
   }
 
-  .contact-primary a {
+  .channel-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--lane);
+    margin-bottom: 1.1rem;
+  }
+
+  .channel-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .channel h3 {
     font-size: 1.15rem;
+    margin-bottom: 0.7rem;
+    word-break: break-all;
+  }
+
+  .channel-note {
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+    flex-grow: 1;
+  }
+
+  .channel-link {
+    color: var(--lane);
+    font-size: 0.9rem;
     font-weight: 600;
   }
 
-  .form-note {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    text-align: center;
-    margin-top: 0.25rem;
-  }
-
-  .form-status {
-    font-size: 0.92rem;
-    line-height: 1.55;
-    padding: 0.85rem 1rem;
-    border-radius: 10px;
-    text-align: center;
-  }
-
-  .form-status.ok {
-    color: var(--thread);
-    background: var(--thread-glow);
-    border: 1px solid rgba(79, 184, 168, 0.35);
-  }
-
-  .form-status.err {
-    color: var(--accent-warm);
-    background: var(--accent-warm-glow);
-    border: 1px solid rgba(194, 84, 63, 0.4);
-  }
-
-  .form-status.err :global(a) {
-    color: var(--accent);
-  }
-
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .form-group label {
+  .channels-note {
     font-family: var(--font-heading);
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-style: italic;
+    font-weight: 450;
     color: var(--text-muted);
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    transition: border-color var(--transition);
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-glow);
-  }
-
-  .form-group select {
-    cursor: pointer;
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-  }
-
-  .form-group input::placeholder,
-  .form-group textarea::placeholder {
-    color: var(--text-muted);
-    opacity: 0.5;
-  }
-
-  @media (max-width: 768px) {
-    .contact-page {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+    text-align: center;
+    margin-top: 2.5rem;
   }
 </style>
 
-<script>
-  import { EMAIL } from '../data/site';
+<script is:inline>
+  (function () {
+    var canvas = document.getElementById('wire');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Progressive enhancement: without JS the form POSTs natively to Formspree;
-  // with JS we submit in place and answer in the site's own voice.
-  const form = document.querySelector<HTMLFormElement>('.contact-form');
-  const status = document.querySelector<HTMLParagraphElement>('.form-status');
-  const button = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+    var GOLD = '232,163,61';
+    var W = 0, H = 0, dpr = 1, wireY = 0;
 
-  function show(kind: 'ok' | 'err', html: string) {
-    if (!status) return;
-    status.className = `form-status ${kind}`;
-    status.innerHTML = html;
-    status.hidden = false;
-  }
+    // "HELLO" in morse: dot=1 unit, dash=3, gaps 1/3, word wrap gap 12.
+    var MORSE = { H: '....', E: '.', L: '.-..', O: '---' };
+    var UNIT = 11;
+    var segs = [];
+    var word = 'HELLO';
+    for (var i = 0; i < word.length; i++) {
+      var code = MORSE[word[i]];
+      for (var j = 0; j < code.length; j++) {
+        segs.push({ on: true, units: code[j] === '.' ? 1 : 3 });
+        if (j < code.length - 1) segs.push({ on: false, units: 1 });
+      }
+      if (i < word.length - 1) segs.push({ on: false, units: 3 });
+    }
+    segs.push({ on: false, units: 12 });
+    var totalPx = segs.reduce(function (n, s) { return n + s.units; }, 0) * UNIT;
 
-  const mailtoFallback = `The signal didn't land — email me directly at <a href="mailto:${EMAIL}">${EMAIL}</a> and I'll reply from there.`;
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    if (form.action.includes('YOUR_FORMSPREE_ID')) {
-      show('err', mailtoFallback);
-      return;
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+      W = canvas.clientWidth;
+      H = canvas.clientHeight;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      wireY = H * 0.72;
     }
 
-    // Put the chosen service in the notification subject line.
-    const select = form.querySelector<HTMLSelectElement>('#subject');
-    const subjectField = form.querySelector<HTMLInputElement>('input[name="_subject"]');
-    if (select && subjectField && select.selectedIndex > 0) {
-      subjectField.value = `threadandsignal.com — ${select.options[select.selectedIndex].text}`;
-    }
-
-    const label = button?.textContent ?? 'Send Message';
-    if (button) {
-      button.disabled = true;
-      button.textContent = 'Sending…';
-    }
-
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
+    function drawWires() {
+      ctx.clearRect(0, 0, W, H);
+      [wireY - 46, wireY + 46].forEach(function (y) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(W, y);
+        ctx.strokeStyle = 'rgba(236,229,216,0.05)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
       });
-      if (res.ok) {
-        form.reset();
-        show('ok', "Received — the thread is on the loom. I'll reply within a business day.");
-      } else {
-        show('err', mailtoFallback);
-      }
-    } catch {
-      show('err', mailtoFallback);
-    } finally {
-      if (button) {
-        button.disabled = false;
-        button.textContent = label;
+      ctx.beginPath();
+      ctx.moveTo(0, wireY);
+      ctx.lineTo(W, wireY);
+      ctx.strokeStyle = 'rgba(79,184,168,0.16)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Draw one copy of the message train starting at x0.
+    function drawMessage(x0) {
+      var x = x0;
+      for (var k = 0; k < segs.length; k++) {
+        var len = segs[k].units * UNIT;
+        if (segs[k].on && x + len > 0 && x < W) {
+          ctx.beginPath();
+          ctx.moveTo(Math.max(0, x) + 1.5, wireY);
+          ctx.lineTo(Math.min(W, x + len) - 1.5, wireY);
+          ctx.strokeStyle = 'rgba(' + GOLD + ',0.9)';
+          ctx.lineWidth = 2.5;
+          ctx.lineCap = 'round';
+          ctx.shadowColor = 'rgba(' + GOLD + ',0.7)';
+          ctx.shadowBlur = 9;
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+        }
+        x += len;
       }
     }
-  });
+
+    var SPEED = 65; // px per second — telegraph pace
+
+    function frame(now) {
+      drawWires();
+      var offset = ((now / 1000) * SPEED) % totalPx;
+      for (var base = -totalPx + offset; base < W; base += totalPx) {
+        drawMessage(base);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    if (reduced) {
+      drawWires();
+      drawMessage(Math.max(20, (W - totalPx) / 2));
+    } else {
+      requestAnimationFrame(frame);
+    }
+  })();
 </script>

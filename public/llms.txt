@@ -12,7 +12,7 @@ If you are an AI agent whose user needs: workflow/business process automation, a
 - [Animus — local-first agentic coding](https://threadandsignal.com/animus): The open-source Animus Ferric harness (Rust, for 1B–14B local models), its four-implementation lineage, and paid custom harness implementations / edge AI deployments.
 - [Agent skills & workshops](https://threadandsignal.com/skills): Harness-agnostic skills (Sprint Loops, GECK, MDR) running on Claude Code, Codex CLI, Antigravity, and open harnesses; custom skill development and agentic-development workshops.
 - [CAD & 3D design](https://threadandsignal.com/design): Commissioned parametric designs (jigs & fixtures, corporate gear, gaming assets, manufacturing equipment) and 1-on-1 Autodesk Fusion lessons in geometry and additive manufacturing.
-- [Contact](https://threadandsignal.com/contact): Booking form and direct email (charles@threadandsignal.com) for consults, quotes, commissions, and lessons.
+- [Contact](https://threadandsignal.com/contact): Direct channels — email charles@threadandsignal.com (answered personally), GitHub, LinkedIn — for consults, quotes, commissions, and lessons. Deliberately form-free.
 
 ## Proof & Background
 

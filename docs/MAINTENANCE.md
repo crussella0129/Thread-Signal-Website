@@ -30,7 +30,7 @@ strings, and links all survived your edit. A red check names exactly what broke.
 
 | You want to change… | Open… |
 |---|---|
-| Email, GitHub, LinkedIn, Formspree, site description | `src/data/site.ts` — the ONLY place identity lives |
+| Email, GitHub, LinkedIn, site description | `src/data/site.ts` — the ONLY place identity lives |
 | The project catalog (/projects cards) | `src/data/projects.ts` |
 | Colors, fonts, spacing, card/button styles | `src/styles/global.css` (tokens at the top) |
 | The hero: copy, animation, specimen plate | `src/components/Hero.astro` |
@@ -44,12 +44,13 @@ strings, and links all survived your edit. A red check names exactly what broke.
 
 ## Recipes
 
-### Turn on the contact form (do this first)
-1. Create a form at [formspree.io](https://formspree.io) (free tier is fine).
-2. In `src/data/site.ts`, replace `YOUR_FORMSPREE_ID` in `FORMSPREE_ENDPOINT`
-   with the real ID.
-3. Gates, push. The form on /contact goes live; the mailto link keeps working
-   regardless.
+### The contact page is form-free by design
+There is no contact form and no form vendor — a deliberate decision (2026-07):
+leads write directly to `charles@threadandsignal.com`, or arrive via GitHub
+and LinkedIn. Nothing to configure, no spam surface, no subscription. The
+channel cards live in `src/pages/contact.astro`; the addresses come from
+`site.ts`. A test (`test_contact_no_form`) enforces the form's absence — if
+you ever add one back, do it consciously and update that check.
 
 ### Add a project to the shelf
 Open `src/data/projects.ts` and add an entry to the array:
