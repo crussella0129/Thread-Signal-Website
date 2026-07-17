@@ -69,10 +69,19 @@ The first programmable business machine was a loom<br class="story-break" data-a
     // inside one raised-cosine envelope.
     var VERDIGRIS = '79,184,168';
 
-    function spawnPacket() {
+    function spawnPacket(startX) {
+      // One packet per thread, ever: a thread stays occupied until its packet
+      // leaves the right edge, so packets can never share or overtake a line.
+      var free = threads.filter(function (t) {
+        for (var i = 0; i < packets.length; i++) {
+          if (packets[i].t === t) return false;
+        }
+        return true;
+      });
+      if (!free.length) return;
       packets.push({
-        t: threads[Math.floor(Math.random() * threads.length)],
-        x: -140,
+        t: free[Math.floor(Math.random() * free.length)],
+        x: typeof startX === 'number' ? startX : -140,
         v: 55 + Math.random() * 45,            // px per second — unhurried
         w: 150 + Math.random() * 70,           // packet width
         amp: 9 + Math.random() * 22,           // amplitude: 1x–3x, varied on purpose
@@ -161,7 +170,7 @@ The first programmable business machine was a loom<br class="story-break" data-a
       for (var i = 0; i < threads.length; i++) drawThread(threads[i], time);
 
       spawnTimer += dt;
-      if (spawnTimer > 1.6 && packets.length < 5) {
+      if (spawnTimer > 1.6 && packets.length < 6) {
         spawnTimer = 0;
         spawnPacket();
       }
@@ -186,6 +195,12 @@ The first programmable business machine was a loom<br class="story-break" data-a
       packets.push({ t: threads[Math.floor(THREADS / 2)], x: W * 0.7, v: 0, w: 170, amp: 11, wl: 26, ph: 0 });
       drawPacket(packets[0], 0);
     } else {
+      // Open the loom already working: four packets spread across the width
+      // (each on its own thread, guaranteed by the occupancy rule).
+      spawnPacket(W * 0.72);
+      spawnPacket(W * 0.45);
+      spawnPacket(W * 0.18);
+      spawnPacket(-140);
       requestAnimationFrame(function (now) {
         last = now / 1000;
         requestAnimationFrame(frame);
