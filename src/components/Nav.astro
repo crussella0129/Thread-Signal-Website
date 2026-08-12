@@ -49,10 +49,23 @@ const links = [
     left: 0;
     right: 0;
     height: var(--nav-height);
-    background: rgba(20, 18, 16, 0.82);
-    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
     z-index: 1000;
+  }
+
+  /* The blur lives on a pseudo-element, not on .nav itself. An element with
+     backdrop-filter becomes the containing block for its position:fixed
+     descendants — which would trap the mobile drawer inside the 76px-tall
+     bar instead of letting it cover the viewport. Painting the blur here
+     keeps .nav a plain fixed element so the drawer resolves to the viewport. */
+  .nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 18, 16, 0.82);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    z-index: -1;
   }
 
   .nav-inner {
@@ -150,10 +163,18 @@ const links = [
 
   .nav-toggle {
     display: none;
+    position: relative;
+    z-index: 1;                 /* stays above the open drawer so it can close it */
     background: none;
     border: none;
     cursor: pointer;
     padding: 0.5rem;
+    border-radius: 6px;
+  }
+
+  .nav-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 
   .hamburger,
@@ -163,7 +184,7 @@ const links = [
     width: 24px;
     height: 2px;
     background: var(--text);
-    transition: all var(--transition);
+    transition: transform var(--transition), opacity var(--transition), top var(--transition);
   }
 
   .hamburger {
@@ -179,6 +200,21 @@ const links = [
 
   .hamburger::before { top: -7px; }
   .hamburger::after { top: 7px; }
+
+  /* Open: the bars fold into an ✕ so there's a clear way back out. */
+  .nav-toggle[aria-expanded='true'] .hamburger {
+    background: transparent;
+  }
+
+  .nav-toggle[aria-expanded='true'] .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded='true'] .hamburger::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
 
   @media (max-width: 900px) {
     .nav-toggle {
@@ -230,19 +266,46 @@ const links = [
   @media (prefers-reduced-motion: reduce) {
     .nav-link::after,
     .nav-cta,
-    .nav-links {
+    .nav-links,
+    .hamburger,
+    .hamburger::before,
+    .hamburger::after {
       transition: none;
     }
   }
 </style>
 
 <script>
-  const toggle = document.querySelector('.nav-toggle');
-  const links = document.querySelector('.nav-links');
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const links = document.querySelector<HTMLUListElement>('.nav-links');
+  const MOBILE = 900;
+
+  function setOpen(open: boolean) {
+    if (!toggle || !links) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    links.classList.toggle('open', open);
+    // Lock the page behind the full-screen drawer so it doesn't scroll through.
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
 
   toggle?.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    links?.classList.toggle('open');
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Tapping a destination closes the drawer (and clears the scroll lock before
+  // the next page paints).
+  links?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => setOpen(false));
+  });
+
+  // Escape closes it — expected of any overlay.
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+  // Crossing back to desktop must clear both the open state and the scroll lock,
+  // or the body stays frozen after a resize/rotate.
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > MOBILE) setOpen(false);
   });
 </script>
