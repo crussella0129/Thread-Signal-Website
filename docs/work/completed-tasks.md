@@ -171,3 +171,11 @@
 - **Files modified:** src/content/blog/local-llm-business-workflow.md, src/pages/blog/index.astro, src/pages/blog/[slug].astro
 - **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
 - **Commit:** `74d6a68589bebc1cd760a5bd13bee49da7eecf19`
+
+## T-203 (sprint 2)
+- **Intent:** [INT-0001](../intents/INT-0001-marketing-search.md)
+- **Description:** Add search identity, social metadata and accessible navigation
+- **Completed:** 2026-09-06T03:58:40Z
+- **Files modified:** src/layouts/BaseLayout.astro, src/components/Nav.astro, src/pages/design.astro, src/pages/projects.astro, public/social-card.png, public/social-card.svg, public/llms.txt
+- **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
+- **Commit:** PENDING

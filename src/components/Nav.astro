@@ -1,5 +1,5 @@
 ---
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 const links = [
   { href: '/services', label: 'Services' },
@@ -30,6 +30,7 @@ const links = [
           <a
             href={link.href}
             class:list={['nav-link', { active: currentPath === link.href }]}
+            aria-current={currentPath === link.href ? 'page' : undefined}
           >
             {link.label}
           </a>
@@ -233,11 +234,13 @@ const links = [
       padding: 2rem 1.5rem;
       gap: 0.5rem;
       transform: translateX(100%);
+      visibility: hidden;
       transition: transform var(--transition);
     }
 
     .nav-links.open {
       transform: translateX(0);
+      visibility: visible;
     }
 
     .nav-link {
