@@ -170,4 +170,4 @@
 - **Completed:** 2026-09-06T03:58:34Z
 - **Files modified:** src/content/blog/local-llm-business-workflow.md, src/pages/blog/index.astro, src/pages/blog/[slug].astro
 - **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
-- **Commit:** PENDING
+- **Commit:** `74d6a68589bebc1cd760a5bd13bee49da7eecf19`
