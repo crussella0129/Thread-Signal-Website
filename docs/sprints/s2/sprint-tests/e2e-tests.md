@@ -1,5 +1,7 @@
 # Sprint 2 End-to-End Results
 
+**Post-checkpoint update:** `live_deployment` PASSED; see [production verification](deployment.md). The pending entry below preserves the state at local closure. Final mobile keyboard check also confirmed closed drawer visibility:hidden, Tab proceeds to the visible hero CTA, and Escape returns aria-expanded=false.
+
 - **Intent:** [INT-0001](../../../intents/INT-0001-marketing-search.md), criteria 1–4.
 - **Verified source head:** `308d827af696cdb6712fb499b483dd14d3cbcca5`; CUA browser tested the production build at `http://127.0.0.1:4322/` on 2026-09-06 UTC.
 - `browser_lead_path` passed: desktop homepage → Services; visible assessment/FAQs; active nav is Services. Mobile menu opened with aria-expanded=true, Contact navigation succeeded, recipient and decoded brief contain workflow, result, approval, hardware and budget prompts. Plain email remains. No email was sent or external mail client invoked.

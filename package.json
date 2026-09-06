@@ -9,8 +9,9 @@
     "astro": "astro",
     "check": "astro check",
     "test:site": "node scripts/check-site.mjs",
+    "test:hero": "node --test scripts/check-hero-motion.mjs",
     "test:legacy": "node docs/sprints/s0/sprint-tests/dist-check.mjs && node docs/sprints/s1/sprint-tests/dist-check-s1.mjs",
-    "validate": "npm run check && npm run build && npm run test:site && npm run test:legacy",
+    "validate": "npm run check && npm run build && npm run test:site && npm run test:hero && npm run test:legacy",
     "format": "prettier --plugin=prettier-plugin-astro --write src scripts package.json .github/workflows"
   },
   "dependencies": {
