@@ -155,3 +155,11 @@
 - **Completed:** 2026-07-02T13:52:00Z
 - **Files modified:** src/pages/blog/index.astro, src/pages/blog/[slug].astro, src/data/site.ts, public/llms.txt, docs/positioning.md
 - **Commit:** 81e8d17
+
+## T-201 (sprint 2)
+- **Intent:** [INT-0001](../intents/INT-0001-marketing-search.md)
+- **Description:** Clarify automation offers, founder proof and the email brief
+- **Completed:** 2026-09-06T03:58:28Z
+- **Files modified:** src/components/Hero.astro, src/data/site.ts, src/pages/index.astro, src/pages/services.astro, src/pages/contact.astro, src/pages/animus.astro, src/pages/skills.astro, src/styles/global.css, docs/intents/INT-0001-marketing-search.md, docs/sprints/s2/sprint-plans/build-plan.md, docs/sprints/s2/sprint-plans/test-plan.md
+- **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
+- **Commit:** PENDING

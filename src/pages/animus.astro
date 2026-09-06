@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE_URL, EMAIL, OWNER_NAME } from '../data/site';
 
 const description =
-  'Animus is an open-source, local-first agentic coding harness for small local models (1B–14B GGUF). Built in Rust after three prototype generations. Custom harness implementations and edge AI deployments available as a paid service.';
+  'Local LLM deployment and custom AI agent harnesses, informed by Animus Ferric: a Rust project for small local models. Assess your workflow and hardware.';
 
 const jsonLd = [
   {
@@ -15,7 +15,6 @@ const jsonLd = [
     codeRepository: 'https://github.com/crussella0129/Animus_Ferric',
     programmingLanguage: 'Rust',
     author: { '@type': 'Person', name: OWNER_NAME },
-    license: 'https://opensource.org/licenses/MIT',
   },
   {
     '@context': 'https://schema.org',
@@ -30,17 +29,17 @@ const jsonLd = [
 ];
 ---
 
-<BaseLayout title="Animus — Intelligence That Stays Home" description={description} jsonLd={jsonLd}>
+<BaseLayout title="Local LLM Deployment & AI Agents — Animus" description={description} jsonLd={jsonLd}>
   <!-- Hero -->
   <section class="section container animus-hero">
     <p class="eyebrow">The Animus Project</p>
     <h1><span class="ink-gradient">Intelligence that stays home.</span></h1>
     <p class="lead">
-      Cloud agents are remarkable — and for a lot of real work, they're not an
-      option. Air-gapped environments, proprietary code, regulated data, edge
-      devices. Animus is an open-source agentic coding harness built for
-      <strong>small local models (1B–14B GGUF)</strong>: the models you can
-      actually run on a workstation, a home lab, or a Jetson board on your desk.
+      Put inference on hardware you control, with an agent workflow designed
+      around your tools and data. Animus Ferric is a public Rust project built
+      for <strong>small local models (1B–14B GGUF)</strong>. It informs the
+      custom harness and local LLM deployment services offered here; each
+      workload and hardware combination needs its own evaluation.
     </p>
     <div class="hero-cta">
       <a href="https://github.com/crussella0129/Animus_Ferric" class="btn btn-primary" target="_blank" rel="noopener">Ferric on GitHub</a>
@@ -73,8 +72,8 @@ const jsonLd = [
           <h3><a href="https://github.com/crussella0129/Animus" target="_blank" rel="noopener">Animus</a></h3>
           <p>
             The original prototype: an open-source, natively running agentic CLI.
-            It proved the demand — and taught us that a harness gluing together a
-            dynamic runtime leaves too much of the agent's behavior to chance.
+            It explored the local-agent workflow and established the starting
+            point for later work on bounded tool use and execution traces.
           </p>
         </div>
       </li>
@@ -118,8 +117,7 @@ const jsonLd = [
           </div>
           <h3><a href="https://github.com/crussella0129/Animus_Ferric" target="_blank" rel="noopener">Animus Ferric</a></h3>
           <p>
-            The Rust synthesis of everything the lineage learned. Ferric is where
-            the project found real traction: a harness that owns decoding, scales
+            The Rust synthesis of the earlier implementations: a harness that owns decoding, scales
             its behavior to the model, and treats the trajectory as the source of
             truth.
           </p>
@@ -140,9 +138,9 @@ const jsonLd = [
         <h3>The harness owns decoding</h3>
         <p>
           Constrained generation — JSON-Schema, regex, and CFG grammars — is
-          driven end-to-end in the agent loop. Malformed tool calls are
-          <em>impossible</em>, not merely repairable. Small models don't get to
-          improvise the protocol.
+          requested by the harness and enforced by supported inference backends.
+          This constrains tool-call structure. Valid structure does not guarantee
+          a correct action, so tool validation, permissions, and evaluation still matter.
         </p>
       </div>
       <div class="card card-copper conviction">
@@ -174,7 +172,9 @@ const jsonLd = [
     <p class="eyebrow">The commission</p>
     <h2 class="section-title">Open source project. Paid implementations.</h2>
     <p class="section-subtitle">
-      Ferric is MIT-licensed and free forever. What I sell is the last mile:
+      Explore Ferric's public source and documentation, including the
+      <a href="https://github.com/crussella0129/Animus_Ferric" target="_blank" rel="noopener">project's current licensing information</a>.
+      What I sell is the implementation work:
       making local agents work on <em>your</em> hardware, against <em>your</em>
       codebase, inside <em>your</em> security boundary.
     </p>
@@ -192,17 +192,18 @@ const jsonLd = [
         <h3>Edge AI deployments</h3>
         <p>
           llama.cpp servers with custom harnesses on workstations, on-prem
-          servers, and Jetson-class edge devices. Commercial deployments
-          delivered — model selection, quantization, serving, and the agent loop
-          on top.
+          servers, and Jetson-class edge devices. The scope can include model
+          selection, quantization, serving, and the agent loop, with hardware
+          support verified against the chosen inference backend.
         </p>
       </div>
       <div class="card offer">
         <h3>Local-agent strategy</h3>
         <p>
           Not sure whether a 7B model on your hardware can carry your workload?
-          Ferric ships a capability ladder (L0–L6) for measuring exactly that.
-          I'll benchmark it and give you a straight answer before you spend.
+          Ferric includes a capability ladder (L0–L6) for evaluating model behavior.
+          We can scope a benchmark using representative tasks and your hardware,
+          then use the results to guide an implementation decision.
         </p>
       </div>
     </div>

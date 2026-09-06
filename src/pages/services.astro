@@ -1,31 +1,72 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { EMAIL } from '../data/site';
+import { EMAIL, AUTOMATION_BRIEF_URL, OWNER_NAME, SITE_URL } from '../data/site';
 
 const description =
-  'Services from Thread & Signal: business process automation, custom agentic development in Rust and Python, edge AI deployment with llama.cpp, agent skills and workshops, CAD and 3D design commissions and lessons.';
+  'Commission business automation, a local AI feasibility assessment, Rust or Python development, agent skills, workshops, and CAD design from Charles Russella.';
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'Service',
+  '@id': `${SITE_URL}/services/#service`,
+  name: 'AI Automation Services & Local AI Consulting',
+  serviceType: 'Business automation and local AI consulting',
+  description,
+  url: `${SITE_URL}/services/`,
+  provider: { '@id': `${SITE_URL}/#organization` },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog', name: 'Thread & Signal services',
+    itemListElement: [
+      'Business Process Automation', 'Custom Software Development',
+      'Edge AI & Local LLM Deployment', 'Agent Skills & Workshops',
+      'CAD & 3D Design — Commissions & Lessons',
+    ].map(name => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })),
+  },
+};
 ---
 
-<BaseLayout title="Services" description={description}>
+<BaseLayout title="AI Automation Services & Local AI Consulting" description={description} jsonLd={jsonLd}>
   <section class="section container">
     <p class="eyebrow">The workshop's ledger</p>
-    <h1 class="section-title">Five ways to commission us.</h1>
+    <h1 class="section-title">Business automation.<br />Built around your work.</h1>
     <p class="section-subtitle">
-      Every engagement starts with a short consult, then a scoped,
-      fixed-deliverable build — no open-ended retainers unless you want one.
+      Work directly with {OWNER_NAME} to automate a process, assess local AI,
+      or equip your team with practical tools. Begin with a conversation,
+      then agree on a scoped commission and concrete deliverables.
     </p>
+
+    <div id="automation-assessment" class="assessment editorial-split">
+      <div>
+        <p class="eyebrow">The starting point</p>
+        <h2 class="section-title editorial-heading">Automation &amp; local AI assessment</h2>
+        <a href={AUTOMATION_BRIEF_URL} class="btn btn-primary">Scope an automation</a>
+      </div>
+      <div class="prose-stack">
+        <p>
+          Before commissioning a full build, establish what should be automated
+          and how you'll know it works. Useful when you have a recurring workflow
+          or want to evaluate a model on hardware you already own.
+        </p>
+        <ul class="brief-list">
+          <li><strong>Bring:</strong> the current steps, an example input and desired output, existing tools, and any hardware or data restrictions.</li>
+          <li><strong>We scope:</strong> one workflow, its exceptions, human approval points, and an evaluation using representative examples.</li>
+          <li><strong>The deliverables:</strong> a workflow map, feasibility findings, and a recommended build scope. Hardware benchmarking is agreed where needed.</li>
+        </ul>
+        <p class="section-note">The assessment's scope, price, and timing are agreed in writing before work begins.</p>
+      </div>
+    </div>
+
+    <h2 class="services-heading">What I can build with you</h2>
 
     <div class="service-list">
       <div class="card service-detail">
         <div class="service-header">
           <span class="service-icon">&#8644;</span>
-          <h2>Business Process Automation</h2>
+          <h3>Business Process Automation</h3>
         </div>
         <p>
           The workflows eating your team's hours — data entry, report generation, file wrangling,
           multi-system handoffs — rebuilt as reliable automations. Agentic where judgment is
-          needed, deterministic where it isn't. Delivered as maintainable code you own,
-          not a no-code subscription you rent.
+          needed, deterministic where rules are enough. The commission defines
+          the code, documentation, tests, and ownership you'll receive.
         </p>
         <div class="service-tags">
           <span class="tag">Python</span>
@@ -38,13 +79,13 @@ const description =
       <div class="card service-detail">
         <div class="service-header">
           <span class="service-icon">{ }</span>
-          <h2>Custom Agentic Development</h2>
+          <h3>Custom Software Development</h3>
         </div>
         <p>
           Desktop applications, CLI tools, CAD software plugins, and systems software — developed
-          with agentic tooling (Claude Code, Antigravity) at production quality, primarily in Rust
-          and Python. You get the velocity of AI-assisted development with the discipline of
-          per-task commits, tests, and traceable decisions.
+          primarily in Rust and Python. Agent-assisted implementation with
+          reviewable changes, tests, and traceable decisions, shaped around
+          the environment your team actually uses.
         </p>
         <div class="service-tags">
           <span class="tag">Rust</span>
@@ -57,13 +98,14 @@ const description =
       <div class="card service-detail">
         <div class="service-header">
           <span class="service-icon">&#9733;</span>
-          <h2>Edge AI &amp; Local LLM Deployment</h2>
+          <h3>Edge AI &amp; Local LLM Deployment</h3>
         </div>
         <p>
           llama.cpp servers with custom harnesses on your workstations, on-prem servers, or
           Jetson-class devices. Model selection, quantization, serving, and the agent loop on
-          top — proven by the open-source <a href="/animus">Animus Ferric</a> harness.
-          For teams whose code and data can't leave the building.
+          top — informed by the public <a href="/animus">Animus Ferric</a> project.
+          Model and hardware fit are evaluated for your workload, with tool
+          access and network boundaries defined as part of the deployment.
         </p>
         <div class="service-tags">
           <span class="tag">llama.cpp</span>
@@ -76,10 +118,10 @@ const description =
       <div class="card service-detail">
         <div class="service-header">
           <span class="service-icon">&#10022;</span>
-          <h2>Agent Skills &amp; Workshops</h2>
+          <h3>Agent Skills &amp; Workshops</h3>
         </div>
         <p>
-          Custom harness-agnostic skills for your team's workflows — built on the same architecture
+          Custom portable skills for your team's workflows — informed by the same work
           as <a href="/skills">Sprint Loops, GECK, and MDR</a> — plus hands-on agentic-development
           workshops: loop engineering, context management, and the habits that make AI-assisted
           teams actually ship.
@@ -95,7 +137,7 @@ const description =
       <div class="card service-detail">
         <div class="service-header">
           <span class="service-icon">&#9650;</span>
-          <h2>CAD &amp; 3D Design — Commissions &amp; Lessons</h2>
+          <h3>CAD &amp; 3D Design — Commissions &amp; Lessons</h3>
         </div>
         <p>
           Commissioned parametric designs — jigs &amp; fixtures, corporate branded gear, gaming
@@ -111,6 +153,33 @@ const description =
         </div>
       </div>
     </div>
+  </section>
+
+  <div class="geo-divider"></div>
+
+  <section class="section container editorial-split">
+    <div>
+      <p class="eyebrow">Before the build</p>
+      <h2 class="section-title editorial-heading">A few practical answers.</h2>
+    </div>
+    <dl class="faq-list">
+      <div>
+        <dt>Does my workflow need AI?</dt>
+        <dd>Sometimes a script, integration, or rules-based process is enough. We look for the steps that require judgment and assess whether a model adds useful capability.</dd>
+      </div>
+      <div>
+        <dt>Can a local model keep our data on our hardware?</dt>
+        <dd>Inference can run locally. The full boundary also depends on connected tools, network access, logs, and updates. Those need to be scoped and checked; installing a model is only one part of the setup.</dd>
+      </div>
+      <div>
+        <dt>What will we own and maintain?</dt>
+        <dd>The proposal states which source files, documentation, and handover are included, along with ownership and any third-party licenses. Ongoing support can be scoped with the build.</dd>
+      </div>
+      <div>
+        <dt>Can you help the team learn the workflow?</dt>
+        <dd>Yes. <a href="/skills/" class="text-link">Agent development workshops</a> can cover your tools, review process, and everyday tasks. <a href="/design/" class="text-link">CAD and 3D printing lessons</a> are available for individual projects.</dd>
+      </div>
+    </dl>
   </section>
 
   <div class="geo-divider"></div>
@@ -138,10 +207,30 @@ const description =
       <a href="/contact" class="btn btn-primary">Commission a build</a>
       <p class="cta-note">Or email <a href={`mailto:${EMAIL}`}>{EMAIL}</a> directly.</p>
     </div>
+    <p class="guide-note">
+      Exploring the hardware question first?
+      <a href="/blog/local-llm-business-workflow/" class="text-link">Read the local LLM feasibility guide.</a>
+    </p>
   </section>
 </BaseLayout>
 
 <style>
+  .assessment {
+    margin-bottom: var(--space-3xl);
+    padding-block: var(--space-xl);
+    border-block: var(--line-hairline) solid var(--border);
+  }
+
+  .services-heading {
+    margin-bottom: var(--space-xl);
+  }
+
+  .guide-note {
+    max-width: var(--measure-prose);
+    margin-top: var(--space-2xl);
+    color: var(--text-muted);
+  }
+
   .service-list {
     display: flex;
     flex-direction: column;
@@ -152,6 +241,7 @@ const description =
     color: var(--text-muted);
     line-height: 1.7;
     margin-bottom: 1.25rem;
+    max-width: var(--measure-prose);
   }
 
   .service-header {

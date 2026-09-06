@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { EMAIL, GITHUB_URL, LINKEDIN_URL } from '../data/site';
+import { EMAIL, GITHUB_URL, LINKEDIN_URL, OWNER_NAME, OWNER_LOCATION, AUTOMATION_BRIEF_URL } from '../data/site';
 
-const description = `Contact Thread & Signal directly — ${EMAIL}. Business process automation, custom agent harnesses, agent skills and workshops, CAD and 3D printing commissions and lessons. No forms, no tickets.`;
+const description = `Discuss an automation, local AI deployment, workshop, or CAD commission directly with ${OWNER_NAME}. Start with a short project brief by email.`;
 ---
 
-<BaseLayout title="Contact — The Line Is Open" description={description}>
+<BaseLayout title="Contact Charles Russella — Discuss a Project" description={description}>
   <!-- Hero: a telegraph wire carrying morse -->
   <section class="contact-hero">
     <canvas id="wire" aria-hidden="true"></canvas>
@@ -13,10 +13,9 @@ const description = `Contact Thread & Signal directly — ${EMAIL}. Business pro
       <p class="eyebrow">The first thread</p>
       <h1><span class="ink-gradient">The line is open.</span></h1>
       <p class="lead">
-        An automation to build, a harness to deploy, a design to commission,
-        a skill to learn — every commission starts with a conversation.
-        No forms, no tickets, no queue: write to me directly and a person
-        answers.
+        Write directly to {OWNER_NAME}, the developer and designer behind
+        Thread &amp; Signal in {OWNER_LOCATION}. An automation to build, local AI
+        to evaluate, a design to commission, a skill to learn — it starts here.
       </p>
       <p class="tx-note">TX &mdash; &ldquo;HELLO&rdquo; &middot; MORSE, ON THE WIRE</p>
     </div>
@@ -24,8 +23,35 @@ const description = `Contact Thread & Signal directly — ${EMAIL}. Business pro
 
   <div class="geo-divider"></div>
 
+  <section class="section container editorial-split">
+    <div>
+      <p class="eyebrow">Write the first line</p>
+      <h2 class="section-title editorial-heading">Bring the problem.<br />We'll find the scope.</h2>
+    </div>
+    <div class="prose-stack">
+      <p>For automation and local AI projects, these details help me understand what a useful first commission would look like:</p>
+      <ol class="brief-list">
+        <li><strong>The workflow:</strong> what happens today, which tools you use, and what is repetitive or difficult.</li>
+        <li><strong>The result:</strong> an example input and output, plus any step that needs a person's approval.</li>
+        <li><strong>The environment:</strong> available hardware, where data can be processed, and timing or budget if known.</li>
+      </ol>
+      <div class="action-row">
+        <a href={AUTOMATION_BRIEF_URL} class="btn btn-primary">Scope an automation</a>
+      </div>
+      <p class="section-note">
+        Opens an editable draft in your email app. You can also write to
+        <a href={`mailto:${EMAIL}`} class="text-link">{EMAIL}</a> in your own words.
+        For a workshop or design, a sentence about the team or part is plenty.
+      </p>
+      <p>I'll follow up to clarify fit and propose a scope. Price, timing, and deliverables are agreed in writing before work begins.</p>
+    </div>
+  </section>
+
+  <div class="geo-divider"></div>
+
   <!-- Channels -->
   <section class="section container">
+    <h2 class="section-title">Direct lines to the workshop.</h2>
     <div class="channels reveal-stagger">
       <a class="card card-copper channel contact-primary" href={`mailto:${EMAIL}`}>
         <svg class="channel-icon" viewBox="0 0 40 40" aria-hidden="true">
@@ -122,8 +148,9 @@ const description = `Contact Thread & Signal directly — ${EMAIL}. Business pro
 
   .channels {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
     gap: 1.5rem;
+    margin-top: var(--space-xl);
   }
 
   .channel {

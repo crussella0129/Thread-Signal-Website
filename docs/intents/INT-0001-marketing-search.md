@@ -2,7 +2,7 @@
 
 <!-- sprint-loop-intent-v2 -->
 - **Intent ID:** INT-0001
-- **State:** planned
+- **State:** active
 - **Work evidence:** [T-201 through T-204 plan](../sprints/s2/sprint-plans/build-plan.md)
 - **Completion evidence:** none
 - **Code evidence:** none
@@ -33,3 +33,4 @@ The bundle requires sprint closure before opening its checkpoint. Pre-checkpoint
 ## Transition history
 - 2026-09-06: created as `proposed` from the user's request for marketing/search improvements, push, and live deployment.
 - 2026-09-06: `proposed` → `planned`; bounded marketing, guide, discovery and validation tasks accepted under the user's sprint request.
+- 2026-09-06: `planned` → `active`; independent critic accepted the plan and the installed helper locked it; implementation started.
