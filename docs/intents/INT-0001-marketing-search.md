@@ -6,7 +6,7 @@
 - **Work evidence:** [T-201 through T-204 plan](../sprints/s2/sprint-plans/build-plan.md)
 - **Completion evidence:** none
 - **Code evidence:** none
-- **Test evidence:** none
+- **Test evidence:** [Sprint 2 verified implementation](../sprints/s2/sprint-tests/test-report.md)
 - **Documentation evidence:** none
 
 ## Intent
