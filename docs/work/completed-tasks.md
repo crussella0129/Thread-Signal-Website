@@ -186,4 +186,4 @@
 - **Completed:** 2026-09-06T03:58:46Z
 - **Files modified:** package.json, package-lock.json, scripts/check-site.mjs, .github/workflows/check.yml, .github/workflows/deploy.yml, docs/sprints/s0/sprint-tests/dist-check.mjs, docs/sprints/s1/sprint-tests/dist-check-s1.mjs, README.md, docs/MAINTENANCE.md, docs/positioning.md
 - **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
-- **Commit:** PENDING
+- **Commit:** `754503c653d8ddbead1546b77416f13724d467c1`
