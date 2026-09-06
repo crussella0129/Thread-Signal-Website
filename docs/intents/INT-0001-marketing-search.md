@@ -2,12 +2,12 @@
 
 <!-- sprint-loop-intent-v2 -->
 - **Intent ID:** INT-0001
-- **State:** active
+- **State:** realized
 - **Work evidence:** [T-201 through T-204 plan](../sprints/s2/sprint-plans/build-plan.md)
-- **Completion evidence:** none
-- **Code evidence:** none
-- **Test evidence:** [Sprint 2 verified implementation](../sprints/s2/sprint-tests/test-report.md)
-- **Documentation evidence:** none
+- **Completion evidence:** [T-201 through T-204 completions](../work/completed-tasks.md#t-201-sprint-2)
+- **Code evidence:** [Production merge](https://github.com/crussella0129/Thread-Signal-Website/commit/e03f6efd5e07e93ccbb46b3a0676d3cf50e11cce)
+- **Test evidence:** [Sprint 2 verified implementation](../sprints/s2/sprint-tests/test-report.md), [Live deployment](../sprints/s2/sprint-tests/deployment.md)
+- **Documentation evidence:** [Maintenance](../MAINTENANCE.md), [Positioning](../positioning.md)
 
 ## Intent
 Help prospective clients understand and commission Thread & Signal's AI automation, local LLM deployment, agent workshops, and CAD work. Retain the approved Lamplight Atelier identity and direct-email funnel. Ground claims in Charles Russella's existing public work and Ohio identity. Upgrade the repository to the current Sprint Loops substrate, publish the completed sprint through the existing GitHub Pages pipeline, and verify the live site.
@@ -34,3 +34,4 @@ The bundle requires sprint closure before opening its checkpoint. Pre-checkpoint
 - 2026-09-06: created as `proposed` from the user's request for marketing/search improvements, push, and live deployment.
 - 2026-09-06: `proposed` → `planned`; bounded marketing, guide, discovery and validation tasks accepted under the user's sprint request.
 - 2026-09-06: `planned` → `active`; independent critic accepted the plan and the installed helper locked it; implementation started.
+- 2026-09-06: `active` → `realized`; all local and CI checks passed, PR #1 merged, deployment succeeded for e03f6ef, and the custom domain served the verified pages and image. Production evidence completes acceptance criterion 4.

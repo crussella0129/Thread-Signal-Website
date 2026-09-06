@@ -1,5 +1,7 @@
 # Sprint 2 Test Report
 
+**Final status:** PASS including production. [Deployment evidence](deployment.md) completes the pending post-checkpoint check in the historical pre-checkpoint report below. INT-0001 is now realized; no publication work remains.
+
 ## Intent Verification
 | Intent | Acceptance criterion | EARS / tests | Result | Intent evidence update |
 |---|---|---|---|---|
