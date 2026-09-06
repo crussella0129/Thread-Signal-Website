@@ -83,10 +83,12 @@ warm lead for automation work.
    Development Workshop — half-day, remote, up to 8 engineers" and "Automation
    Sprint — one workflow automated in two weeks, fixed price." Named, scoped
    offers convert far better than "contact us"; add prices when you're confident.
-6. **Submit the site for AI discovery.** llms.txt and JSON-LD are live; also add
-   the site to your GitHub org/profile README, and answer relevant questions
-   (r/LocalLLaMA, HN threads on local agents) with genuinely useful content that
-   links back. AI crawlers weight exactly these sources.
+6. **Measure search discovery.** Keep sitemap, page metadata and helpful content
+   current. Use an owner-verified Search Console property to measure impressions
+   and clicks when available. Keep llms.txt accurate for readers who use it;
+   [Google requires no special AI file or schema](https://developers.google.com/search/docs/appearance/ai-features).
+   Share useful project explanations through your own profiles when appropriate;
+   do not assume a particular crawler weighting.
 7. **Collect proof continuously.** After every engagement, ask for a two-sentence
    testimonial and (where possible) a case-study paragraph with a number in it
    ("saved 6 hours/week"). Numbers on the services page are the next conversion
@@ -112,6 +114,14 @@ The user-approved rebrand direction. All future copy should speak this voice:
   JetBrains Mono (the machine voice).
 - **Rule:** literary but concrete — every poetic line is backed by a factual
   claim (star counts, repo links, named hardware) in the same breath.
+
+## Sprint 2 marketing update — 2026-09-06
+
+Lead with **AI automation consulting and local LLM deployment**, supported by Charles Russella's visible Ohio identity and public Rust/Python work. Keep “Handwoven automation” as the brand headline. The homepage and services now offer a scoped local AI feasibility assessment; the contact page provides a prefilled email brief, and the [local LLM guide](../src/content/blog/local-llm-business-workflow.md) answers buyer questions before an inquiry.
+
+Do not turn public repositories into implied client results. State deployment privacy as a configured and verified data boundary; valid tool syntax is not guaranteed action correctness. Describe portable skills as adapted and tested for selected tools. Refer to current project license files instead of promising perpetual licensing. July star counts remain historical snapshots, not live metrics.
+
+Search performance is a follow-up measurement, not a launch claim. No new prices, guaranteed turnaround, testimonials, certifications or client outcomes were introduced.
 
 ## What NOT to sell (for now)
 

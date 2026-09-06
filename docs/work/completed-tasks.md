@@ -155,3 +155,35 @@
 - **Completed:** 2026-07-02T13:52:00Z
 - **Files modified:** src/pages/blog/index.astro, src/pages/blog/[slug].astro, src/data/site.ts, public/llms.txt, docs/positioning.md
 - **Commit:** 81e8d17
+
+## T-201 (sprint 2)
+- **Intent:** [INT-0001](../intents/INT-0001-marketing-search.md)
+- **Description:** Clarify automation offers, founder proof and the email brief
+- **Completed:** 2026-09-06T03:58:28Z
+- **Files modified:** src/components/Hero.astro, src/data/site.ts, src/pages/index.astro, src/pages/services.astro, src/pages/contact.astro, src/pages/animus.astro, src/pages/skills.astro, src/styles/global.css, docs/intents/INT-0001-marketing-search.md, docs/sprints/s2/sprint-plans/build-plan.md, docs/sprints/s2/sprint-plans/test-plan.md
+- **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
+- **Commit:** `7ba1bf45d069e8f48b75166720614285d9e38e68`
+
+## T-202 (sprint 2)
+- **Intent:** [INT-0001](../intents/INT-0001-marketing-search.md)
+- **Description:** Publish the local LLM buyer guide and attributed article pages
+- **Completed:** 2026-09-06T03:58:34Z
+- **Files modified:** src/content/blog/local-llm-business-workflow.md, src/pages/blog/index.astro, src/pages/blog/[slug].astro
+- **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
+- **Commit:** `74d6a68589bebc1cd760a5bd13bee49da7eecf19`
+
+## T-203 (sprint 2)
+- **Intent:** [INT-0001](../intents/INT-0001-marketing-search.md)
+- **Description:** Add search identity, social metadata and accessible navigation
+- **Completed:** 2026-09-06T03:58:40Z
+- **Files modified:** src/layouts/BaseLayout.astro, src/components/Nav.astro, src/pages/design.astro, src/pages/projects.astro, public/social-card.png, public/social-card.svg, public/llms.txt
+- **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
+- **Commit:** `89d4d5209def2c1a206bfa3c71b0294aaf7b7858`
+
+## T-204 (sprint 2)
+- **Intent:** [INT-0001](../intents/INT-0001-marketing-search.md)
+- **Description:** Gate publication on site validation and document maintenance
+- **Completed:** 2026-09-06T03:58:46Z
+- **Files modified:** package.json, package-lock.json, scripts/check-site.mjs, .github/workflows/check.yml, .github/workflows/deploy.yml, docs/sprints/s0/sprint-tests/dist-check.mjs, docs/sprints/s1/sprint-tests/dist-check-s1.mjs, README.md, docs/MAINTENANCE.md, docs/positioning.md
+- **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
+- **Commit:** `754503c653d8ddbead1546b77416f13724d467c1`

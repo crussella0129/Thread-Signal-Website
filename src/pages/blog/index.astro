@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
 
 function readingTime(body: string): string {
@@ -13,43 +13,67 @@ function readingTime(body: string): string {
 }
 ---
 
-<BaseLayout title="Blog">
-  <section class="section container">
-    <h1 class="section-title">Blog</h1>
+<BaseLayout
+  title="Local AI & Business Automation Guides"
+  description="Practical guides from Charles Russella on local LLM deployment, business automation, and building AI agents in Rust and Python."
+>
+  <section class="section container blog-index">
+    <p class="eyebrow">The workshop journal</p>
+    <h1 class="section-title">Local AI &amp; automation, explained.</h1>
     <p class="section-subtitle">
-      Technical deep-dives, project updates, and lessons learned.
+      Practical decisions before you commission a build: what to automate, what
+      to test, and what it takes to run local AI. Guides and project notes from
+      <a href="/#about">Charles Russella</a>, the developer behind Thread &amp;
+      Signal.
     </p>
 
     <div class="post-list">
-      {posts.map(post => (
-        <a href={`/blog/${post.id}`} class="card post-card">
-          <div class="post-meta">
-            <time datetime={post.data.pubDate.toISOString()}>
-              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-            </time>
-            <span class="post-reading-time">{readingTime(post.body ?? '')}</span>
-          </div>
-          <h2 class="post-title">{post.data.title}</h2>
-          <p class="post-desc">{post.data.description}</p>
-          <div class="post-tags">
-            {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
-          </div>
-        </a>
-      ))}
+      {
+        posts.map((post) => (
+          <a href={`/blog/${post.id}`} class="post-card">
+            <div class="post-meta">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  timeZone: "UTC",
+                })}
+              </time>
+              <span class="post-reading-time">
+                {readingTime(post.body ?? "")}
+              </span>
+            </div>
+            <h2 class="post-title">{post.data.title}</h2>
+            <p class="post-desc">{post.data.description}</p>
+            <div class="post-tags">
+              {post.data.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))
+      }
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  .blog-index {
+    max-width: calc(var(--measure-prose) + var(--space-gutter) * 2);
+  }
+
   .post-list {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    border-top: thin solid var(--border);
   }
 
   .post-card {
     display: block;
     color: var(--text);
+    padding-block: var(--space-xl);
+    border-bottom: thin solid var(--border);
   }
 
   .post-card:hover {
@@ -58,40 +82,37 @@ function readingTime(body: string): string {
 
   .post-meta {
     display: flex;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-lg);
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: var(--text-small);
     color: var(--text-muted);
-    margin-bottom: 0.75rem;
+    margin-bottom: var(--space-sm);
   }
 
   .post-title {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-sm);
   }
 
-  .post-card:hover .post-title {
+  .post-card:is(:hover, :focus-visible) .post-title {
     color: var(--accent);
   }
 
   .post-desc {
     color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
+    font-size: var(--text-body);
+    margin-bottom: var(--space-md);
   }
 
   .post-tags {
     display: flex;
-    gap: 0.4rem;
+    gap: var(--space-xs) var(--space-md);
     flex-wrap: wrap;
   }
 
   .tag {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 99px;
-    background: var(--accent-glow);
+    font-size: var(--text-small);
     color: var(--accent);
-    border: 1px solid rgba(232, 163, 61, 0.22);
   }
 </style>

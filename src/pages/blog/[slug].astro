@@ -1,10 +1,11 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection, render } from 'astro:content';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+import { OWNER_NAME, SITE_URL } from "../../data/site";
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(post => ({
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
   }));
@@ -12,30 +13,72 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const readingMinutes = Math.ceil((post.body ?? "").split(/\s+/).length / 200);
+const articleURL = new URL(Astro.url.pathname, SITE_URL).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': `${articleURL}#article`,
+  url: articleURL,
+  mainEntityOfPage: articleURL,
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  author: {
+    '@type': 'Person', '@id': `${SITE_URL}/#charles-russella`,
+    name: OWNER_NAME, url: `${SITE_URL}/#about`,
+  },
+  publisher: { '@id': `${SITE_URL}/#organization` },
+  image: `${SITE_URL}/social-card.png`,
+  inLanguage: 'en-US',
+};
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout title={post.data.title} description={post.data.description} jsonLd={jsonLd} ogType="article" publishedTime={post.data.pubDate.toISOString()}>
   <article class="section container blog-post">
     <header class="post-header">
+      <p class="eyebrow">The workshop journal</p>
       <div class="post-meta">
         <time datetime={post.data.pubDate.toISOString()}>
-          {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          {
+            post.data.pubDate.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              timeZone: "UTC",
+            })
+          }
         </time>
+        <span>{readingMinutes} min read</span>
       </div>
       <h1>{post.data.title}</h1>
       <p class="post-description">{post.data.description}</p>
+      <p class="post-author">
+        By <a href="/#about" rel="author">{OWNER_NAME}</a>
+      </p>
       <div class="post-tags">
-        {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+        {post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
       </div>
     </header>
 
-    <div class="geo-divider" style="margin: 2rem 0;"></div>
+    <div class="geo-divider article-divider"></div>
 
     <div class="prose">
       <Content />
     </div>
 
-    <div class="geo-divider" style="margin: 3rem 0 2rem;"></div>
+    <aside class="article-cta" aria-labelledby="article-cta-heading">
+      <p class="eyebrow">From reading to building</p>
+      <h2 id="article-cta-heading">Have a workflow in mind?</h2>
+      <p>
+        Bring the task, your existing tools, and a redacted example. We can
+        scope a useful first step for your automation or local AI project.
+      </p>
+      <div class="article-actions">
+        <a href="/contact" class="btn btn-primary">Discuss your workflow</a>
+        <a href="/services" class="service-link">Explore services &rarr;</a>
+      </div>
+    </aside>
 
     <a href="/blog" class="back-link">&larr; Back to all posts</a>
   </article>
@@ -43,7 +86,7 @@ const { Content } = await render(post);
 
 <style>
   .blog-post {
-    max-width: 740px;
+    max-width: calc(var(--measure-prose) + var(--space-gutter) * 2);
   }
 
   .post-header {
@@ -51,69 +94,85 @@ const { Content } = await render(post);
   }
 
   .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-lg);
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: var(--text-small);
     color: var(--text-muted);
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-md);
   }
 
   .post-description {
     color: var(--text-muted);
-    font-size: 1.1rem;
-    margin: 1rem 0 1.25rem;
+    font-size: var(--text-lead);
+    margin: var(--space-lg) 0;
+  }
+
+  .post-author {
+    margin-bottom: var(--space-md);
+  }
+
+  .post-author a,
+  .service-link,
+  .prose :global(a) {
+    text-decoration: underline;
+    text-underline-offset: var(--space-xs);
+  }
+
+  .article-divider {
+    margin-block: var(--space-xl);
   }
 
   .post-tags {
     display: flex;
-    gap: 0.4rem;
+    gap: var(--space-xs) var(--space-md);
     flex-wrap: wrap;
   }
 
   .tag {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 99px;
-    background: var(--accent-glow);
+    font-size: var(--text-small);
     color: var(--accent);
-    border: 1px solid rgba(232, 163, 61, 0.22);
   }
 
   /* Prose styles for rendered Markdown */
   .prose {
-    line-height: 1.8;
+    font-size: var(--text-body);
+    overflow-wrap: anywhere;
   }
 
   .prose :global(h2) {
-    margin: 2.5rem 0 1rem;
+    margin: var(--space-2xl) 0 var(--space-md);
     color: var(--accent);
   }
 
   .prose :global(h3) {
-    margin: 2rem 0 0.75rem;
+    margin: var(--space-xl) 0 var(--space-sm);
   }
 
   .prose :global(p) {
-    margin-bottom: 1.25rem;
+    margin-bottom: var(--space-lg);
     color: var(--text);
   }
 
-  .prose :global(ul), .prose :global(ol) {
-    margin-bottom: 1.25rem;
-    padding-left: 1.5rem;
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin-bottom: var(--space-lg);
+    padding-left: var(--space-lg);
   }
 
   .prose :global(li) {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-xs);
   }
 
   .prose :global(pre) {
     background: var(--bg-surface);
-    border: 1px solid var(--border);
+    border: thin solid var(--border);
     border-radius: var(--radius);
-    padding: 1.25rem;
+    padding: var(--space-lg);
     overflow-x: auto;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-lg);
   }
 
   .prose :global(code) {
@@ -121,9 +180,9 @@ const { Content } = await render(post);
   }
 
   .prose :global(blockquote) {
-    border-left: 3px solid var(--accent);
-    padding-left: 1.25rem;
-    margin: 1.5rem 0;
+    border-left: medium solid var(--accent);
+    padding-left: var(--space-lg);
+    margin: var(--space-lg) 0;
     color: var(--text-muted);
     font-style: italic;
   }
@@ -134,12 +193,43 @@ const { Content } = await render(post);
   }
 
   .back-link {
+    display: inline-block;
+    padding-block: var(--space-sm);
     font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-size: var(--text-small);
     color: var(--text-muted);
   }
 
   .back-link:hover {
     color: var(--accent);
+  }
+
+  .article-cta {
+    display: grid;
+    gap: var(--space-md);
+    margin-block: var(--space-2xl) var(--space-lg);
+    padding-block: var(--space-xl);
+    border-top: thin solid var(--border);
+    border-bottom: thin solid var(--border);
+  }
+
+  .article-cta .eyebrow {
+    margin: 0;
+  }
+
+  .article-cta > p:not(.eyebrow) {
+    color: var(--text-muted);
+  }
+
+  .article-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-md) var(--space-lg);
+    margin-top: var(--space-xs);
+  }
+
+  .service-link {
+    padding-block: var(--space-sm);
   }
 </style>

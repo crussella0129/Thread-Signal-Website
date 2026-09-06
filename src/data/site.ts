@@ -12,4 +12,20 @@ export const GITHUB_URL = 'https://github.com/crussella0129';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/cgriv/';
 
 export const SITE_DESCRIPTION =
-  'Thread & Signal — handwoven automation. Custom AI agents and business process automation in Rust and Python, local-first LLM deployments on hardware you own, harness-agnostic agent skills, and CAD/3D-printing design and lessons.';
+  'AI automation consulting and local LLM deployment by Charles Russella in Ohio. Custom workflows, Rust and Python development, agent skills and team workshops.';
+
+const automationBrief = [
+  'Hi Charles,',
+  '',
+  'I would like to discuss an automation or local AI project.',
+  '',
+  'Workflow and current tools:',
+  'Example input and the result we need:',
+  'Where a person should review or approve the work:',
+  'Hardware and where the data may be processed:',
+  'Target timing and budget range (if known):',
+  '',
+  'Thanks,',
+].join('\r\n');
+
+export const AUTOMATION_BRIEF_URL = `mailto:${EMAIL}?subject=${encodeURIComponent('Automation project brief')}&body=${encodeURIComponent(automationBrief)}`;

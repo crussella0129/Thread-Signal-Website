@@ -6,10 +6,22 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "test:site": "node scripts/check-site.mjs",
+    "test:legacy": "node docs/sprints/s0/sprint-tests/dist-check.mjs && node docs/sprints/s1/sprint-tests/dist-check-s1.mjs",
+    "validate": "npm run check && npm run build && npm run test:site && npm run test:legacy",
+    "format": "prettier --plugin=prettier-plugin-astro --write src scripts package.json .github/workflows"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
     "astro": "^5.17.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "parse5": "^8.0.1",
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
   }
 }

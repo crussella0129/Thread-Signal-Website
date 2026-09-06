@@ -1,4 +1,6 @@
 ---
+import { OWNER_NAME, OWNER_LOCATION } from '../data/site';
+
 // The specimen plate (fig. 01): a square wave and its sine fundamental,
 // generated at build time so the geometry is exact.
 const P = { x0: 30, x1: 350, mid: 112, amp: 30, periods: 3 };
@@ -23,13 +25,14 @@ const sinePts = Array.from({ length: 97 }, (_, i) => {
 
   <div class="container hero-content">
     <div class="hero-copy">
-      <p class="eyebrow">Agentic development studio</p>
+      <p class="eyebrow">AI automation &amp; local LLM consulting</p>
       <h1 class="hero-title">
         <span class="ink-gradient">Handwoven</span> automation.
       </h1>
       <p class="hero-sub">
-        Custom AI agents and business process automation — woven in Rust and Python,
-        running entirely on hardware you own.
+        Turn repetitive work into software your team can run and maintain.
+        Custom business automation and local AI agents, built in Rust and Python
+        for your workflows and hardware.
       </p>
       <p class="hero-story">
         The first programmable business machine was a loom<br class="story-break" />
@@ -39,6 +42,7 @@ const sinePts = Array.from({ length: 97 }, (_, i) => {
         <a href="/contact" class="btn btn-primary">Commission a build</a>
         <a href="/projects" class="btn btn-outline">See the open source</a>
       </div>
+      <p class="hero-byline">An independent studio by {OWNER_NAME} · {OWNER_LOCATION}</p>
     </div>
 
     <figure class="hero-plate" aria-hidden="true">
@@ -195,6 +199,12 @@ const sinePts = Array.from({ length: 97 }, (_, i) => {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+  }
+
+  .hero-byline {
+    margin-top: var(--space-lg);
+    color: var(--text-muted);
+    font-size: var(--text-small);
   }
 
   @media (max-width: 768px) {
