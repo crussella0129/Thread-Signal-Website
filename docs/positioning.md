@@ -115,15 +115,15 @@ The user-approved rebrand direction. All future copy should speak this voice:
 - **Rule:** literary but concrete — every poetic line is backed by a factual
   claim (star counts, repo links, named hardware) in the same breath.
 
-## What NOT to sell (for now)
-
-### Sprint 2 marketing update — 2026-09-06
+## Sprint 2 marketing update — 2026-09-06
 
 Lead with **AI automation consulting and local LLM deployment**, supported by Charles Russella's visible Ohio identity and public Rust/Python work. Keep “Handwoven automation” as the brand headline. The homepage and services now offer a scoped local AI feasibility assessment; the contact page provides a prefilled email brief, and the [local LLM guide](../src/content/blog/local-llm-business-workflow.md) answers buyer questions before an inquiry.
 
 Do not turn public repositories into implied client results. State deployment privacy as a configured and verified data boundary; valid tool syntax is not guaranteed action correctness. Describe portable skills as adapted and tested for selected tools. Refer to current project license files instead of promising perpetual licensing. July star counts remain historical snapshots, not live metrics.
 
 Search performance is a follow-up measurement, not a launch claim. No new prices, guaranteed turnaround, testimonials, certifications or client outcomes were introduced.
+
+## What NOT to sell (for now)
 
 - **Game development as a service** — removed from the site; it diluted the story.
   HexQuest lives on as design proof instead.
