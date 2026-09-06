@@ -163,3 +163,11 @@
 - **Files modified:** src/components/Hero.astro, src/data/site.ts, src/pages/index.astro, src/pages/services.astro, src/pages/contact.astro, src/pages/animus.astro, src/pages/skills.astro, src/styles/global.css, docs/intents/INT-0001-marketing-search.md, docs/sprints/s2/sprint-plans/build-plan.md, docs/sprints/s2/sprint-plans/test-plan.md
 - **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
 - **Commit:** `7ba1bf45d069e8f48b75166720614285d9e38e68`
+
+## T-202 (sprint 2)
+- **Intent:** [INT-0001](../intents/INT-0001-marketing-search.md)
+- **Description:** Publish the local LLM buyer guide and attributed article pages
+- **Completed:** 2026-09-06T03:58:34Z
+- **Files modified:** src/content/blog/local-llm-business-workflow.md, src/pages/blog/index.astro, src/pages/blog/[slug].astro
+- **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
+- **Commit:** PENDING
