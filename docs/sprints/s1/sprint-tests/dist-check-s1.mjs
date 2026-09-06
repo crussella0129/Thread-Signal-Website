@@ -3,7 +3,8 @@
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
-const ROOT = resolve(import.meta.dirname, '..', '..', '..');
+// Sprint 2 Book migration moved this script one directory deeper.
+const ROOT = resolve(import.meta.dirname, '..', '..', '..', '..');
 const DIST = join(ROOT, 'dist');
 
 let pass = 0;
@@ -131,7 +132,9 @@ check(
     home.includes(t),
   ),
 );
-check('test_home_local_first', home.includes('local-first'));
+// AMENDED sprint 2, INT-0001 criterion 1: preserve the local-computing offer
+// through the clearer buyer-facing local AI/LLM and hardware language.
+check('test_home_local_ai', /local (?:AI|LLM)/i.test(homeText) && /hardware/i.test(homeText));
 
 // ---------- T-106 ----------
 check('test_animus_tagline', animus.includes('Intelligence that stays home.'));
@@ -181,12 +184,14 @@ check(
 
 // ---------- T-111 ----------
 const siteTs = read(join(ROOT, 'src', 'data', 'site.ts'));
+// AMENDED sprint 2, INT-0001 criteria 1/3: the discovery description now
+// leads with understandable services. The approved handwoven brand remains
+// enforced by test_hero_headline, test_footer_tagline and lane tagline checks.
 check(
-  'test_site_description_voice',
-  /SITE_DESCRIPTION[\s\S]{0,400}handwoven/i.test(siteTs) &&
-    /SITE_DESCRIPTION[\s\S]{0,400}automation/i.test(siteTs) &&
+  'test_site_description_services',
+  /SITE_DESCRIPTION[\s\S]{0,400}automation/i.test(siteTs) &&
     /SITE_DESCRIPTION[\s\S]{0,400}agent/i.test(siteTs) &&
-    /SITE_DESCRIPTION[\s\S]{0,400}local-first/i.test(siteTs),
+    /SITE_DESCRIPTION[\s\S]{0,400}local(?:-first| LLM| AI)/i.test(siteTs),
 );
 const llms = read(join(DIST, 'llms.txt'));
 check(

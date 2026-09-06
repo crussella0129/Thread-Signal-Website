@@ -6,23 +6,23 @@ repo root.*
 
 ---
 
-## The three commands
+## Development and publication
 
 ```bash
 npm run dev      # workbench: live site at localhost:4321, hot-reloads on save
 npm run build    # weave the cloth: static site into dist/
-git push         # SHIP IT — pushing main deploys to threadandsignal.com
+npm run validate # type checks, build, metadata/link checks and legacy regressions
 ```
 
-**Push is production.** The gh-pages workflow deploys every push to `main`.
-Before any push, run the gates:
+**A push to main is production.** Sprint work lives on `codex/work`; the check workflow validates pushes and pull requests. After an authorized checkpoint merge to `main`, the deploy workflow validates again before publishing `dist/` to `gh-pages`.
 
 ```bash
-npm run build && node sprints/s0/sprint-tests/dist-check.mjs && node sprints/s1/sprint-tests/dist-check-s1.mjs
+npm run validate
 ```
 
-Two green summaries (46 + 39 checks) mean the contact info, SEO layer, brand
-strings, and links all survived your edit. A red check names exactly what broke.
+Require green Astro diagnostics, current metadata/link/schema/sitemap checks, and both legacy regression suites. Then inspect the deploy run for the merged SHA and fetch the custom domain; a successful source push alone does not prove the site is live.
+
+On Windows, if a stale roaming npm shim fails, invoke `node "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js"` and put `C:/Program Files/nodejs` first in the process PATH. Set `ASTRO_TELEMETRY_DISABLED=1` for local checks.
 
 ---
 
@@ -84,7 +84,7 @@ tags: ["local-first", "animus"]
 Body in plain Markdown. Code blocks, lists, and headings are styled already.
 ```
 
-That's the whole job — the index page, RSS-ready dates, and SEO tags come free.
+The index, UTC publication date, visible Charles Russella byline, and BlogPosting metadata are generated from the post. Use accurate dates; link claims to primary sources and add contextual links from relevant service pages. There is no RSS feed configured.
 
 ### Change a color or font
 The palette is five tokens at the top of `src/styles/global.css`:
@@ -138,17 +138,16 @@ Edit the `.astro` file, keep two habits:
   subjects, "100+ stars", the Animus lineage, taglines). If a gate goes red
   after a copy edit, it's telling you which promise you rewrote — either
   restore the string or consciously update the check in
-  `sprints/s1/sprint-tests/dist-check-s1.mjs` and note why in the commit.
+  `docs/sprints/s1/sprint-tests/dist-check-s1.mjs` and note why in the commit.
 
 ---
 
 ## The deeper records
 
-- `decisions.md` — why the site is the way it is (ADR log: the rebrand, the
-  react removal, the push gate). Read before undoing something that looks odd.
+- `docs/intents/` — current desired outcomes and acceptance criteria; `docs/history/decisions-legacy.md` preserves the old decisions without competing authority.
 - `docs/positioning.md` — what you sell, to whom, the niche argument, the next
   marketing moves, and the full brand-voice guide.
-- `agent-tasks/completed-tasks.md` — the ledger of every change made by sprint,
+- `docs/work/completed-tasks.md` — the ledger of every change made by sprint,
   with commit hashes.
 - The site was built (and is best maintained) with **Sprint Loops** — your own
   protocol. Point Claude Code at this repo, run `/sprint-loop start "<goal>"`,
@@ -156,3 +155,9 @@ Edit the `.astro` file, keep two habits:
   the site will maintain it too. The gates above run automatically inside it.
 
 *Keep the signal on the thread.*
+
+## Search maintenance
+
+Use concise, distinct titles and descriptions that match the visible offer. The shared layout emits identity, canonical and social metadata; the blog adds matching article metadata. The editable social artwork is `public/social-card.svg`, exported as the 1200×630 PNG used for sharing. Sitemap and robots are automatic/static discovery aids, not guarantees of indexing.
+
+After publishing, use an owner-verified Search Console property, if available, to submit `/sitemap-index.xml` and inspect the homepage, services and new guide. Record a baseline for impressions, clicks and qualified email inquiries; compare after search engines recrawl. This sprint did not create a property, submit ownership verification, or claim a ranking result. Maintain `llms.txt` as a helpful summary; Google requires no special AI file.

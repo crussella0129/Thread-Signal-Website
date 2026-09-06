@@ -3,7 +3,8 @@
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
-const ROOT = resolve(import.meta.dirname, '..', '..', '..');
+// Sprint 2 Book migration moved this script one directory deeper.
+const ROOT = resolve(import.meta.dirname, '..', '..', '..', '..');
 const DIST = join(ROOT, 'dist');
 
 let pass = 0;
@@ -122,9 +123,11 @@ check(
   ),
 );
 check('test_sitemap_link_head', pages.every(f => f.body.includes('rel="sitemap"')));
-const siteDescConst = siteTs.match(/SITE_DESCRIPTION =\s*\n?\s*'([^']+)'/)?.[1] ?? 'MISSING';
+const homeDesc = decode(home).match(/<meta name="description" content="([^"]+)"/)?.[1] ?? '';
 const blogDesc = decode(blogIndex).match(/<meta name="description" content="([^"]+)"/)?.[1] ?? '';
-check('test_default_description', blogDesc === siteDescConst, blogDesc.slice(0, 80));
+// AMENDED sprint 2, INT-0001 criterion 3: blog now has its own descriptive
+// metadata. Requiring the site-wide default would enforce duplicate snippets.
+check('test_blog_description', homeDesc.length > 0 && blogDesc.length > 0 && blogDesc !== homeDesc, blogDesc.slice(0, 80));
 
 // ---------- T-004 ----------
 check(
@@ -238,16 +241,31 @@ const fullDecoded = decode(fullCorpus);
 check('test_no_retired_copy', !fullDecoded.includes('CAD Platform') && !fullDecoded.includes('Early Access'));
 
 // ---------- T-011 ----------
+// AMENDED sprint 2, INT-0001 criterion 1: buyer language now says local AI
+// and hardware explicitly instead of requiring the retired "local-first"
+// or "your hardware" phrase. Inspect visible copy, retaining brand/no-games.
+const homeText = decode(home.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
 check(
   'test_home_positioning',
   decode(home).includes('Thread & Signal') && !/game develop/i.test(home) &&
-    (home.includes('local-first') || home.includes('your hardware')),
+    /local (?:AI|LLM)/i.test(homeText) && /hardware/i.test(homeText),
 );
 check(
   'test_home_lanes',
   ['/animus', '/skills', '/design'].every(h => home.includes(`href="${h}"`)),
 );
-check('test_home_proof', home.includes('100+ stars'));
+// AMENDED sprint 2, INT-0001 criterion 1: replace a dated star-count pitch
+// with visible founder identity and a path to inspect the named public work.
+// The detailed project catalog and source links retain their separate checks.
+const founderSection = home.match(/<section[^>]*id="about"[^>]*>([\s\S]*?)<\/section>/)?.[1] ?? '';
+check(
+  'test_home_proof',
+  founderSection.includes('Charles Russella') &&
+    founderSection.includes('href="https://github.com/crussella0129"') &&
+    founderSection.includes('Animus Ferric') &&
+    founderSection.includes('href="/animus/"') &&
+    animus.includes('github.com/crussella0129/Animus_Ferric'),
+);
 const homeTypes = jsonLdTypes(home);
 check('test_home_jsonld', homeTypes.includes('Organization') && homeTypes.includes('Person'), homeTypes.join(','));
 // Accent design tokens survive into the built CSS (T-011 clause 1, critique C-011).
@@ -256,10 +274,14 @@ check('test_home_accent_tokens', builtCss.includes('--accent') && builtCss.inclu
 
 // ---------- T-012 ----------
 const servicesDec = decode(services);
+// AMENDED sprint 2, INT-0001 criterion 1: the offer is now named "Custom
+// Software Development". Read visible page text so JSON-LD cannot mask a
+// missing commercial offer or satisfy this content check on its own.
+const servicesText = decode(services.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
 check(
   'test_services_offers',
-  ['Business Process Automation', 'Custom Agentic Development', 'Edge AI', 'Workshops', 'CAD'].every(s =>
-    servicesDec.includes(s),
+  ['Business Process Automation', 'Custom Software Development', 'Edge AI', 'Workshops', 'CAD'].every(s =>
+    servicesText.includes(s),
   ),
 );
 check('test_services_no_games', !/game develop/i.test(servicesDec));
