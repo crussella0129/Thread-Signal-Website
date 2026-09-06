@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#141210"/>
+  <g fill="none" stroke="#ece5d8" stroke-opacity=".08">
+    <path d="M760 0v630m40-630v630m40-630v630m40-630v630m40-630v630m40-630v630m40-630v630m40-630v630m40-630v630m40-630v630"/>
+    <path d="M720 100h480M720 140h480M720 180h480M720 220h480M720 260h480M720 300h480M720 340h480M720 380h480M720 420h480M720 460h480M720 500h480M720 540h480"/>
+  </g>
+  <path d="M780 355h52v-90h55v90h55v-90h55v90h55v-90h55v90h55" fill="none" stroke="#e8a33d" stroke-width="3"/>
+  <path d="M780 310c28-80 56-80 84 0s56 80 84 0 56-80 84 0 56 80 84 0" fill="none" stroke="#4fb8a8" stroke-width="3"/>
+  <g font-family="Georgia, serif">
+    <text x="72" y="102" fill="#ece5d8" font-size="35">Thread <tspan fill="#e8a33d" font-style="italic">&amp;</tspan> Signal</text>
+    <text x="68" y="248" fill="#e8a33d" font-size="77">Handwoven</text>
+    <text x="68" y="332" fill="#ece5d8" font-size="77">automation.</text>
+  </g>
+  <g font-family="Segoe UI, sans-serif" fill="#ece5d8">
+    <text x="72" y="404" font-size="27">AI automation. Local LLMs. Agent workshops.</text>
+    <text x="72" y="449" fill="#9a9184" font-size="25">Built by Charles Russella · Ohio, USA</text>
+    <path d="M72 512h1056" stroke="#ece5d8" stroke-opacity=".2"/>
+    <text x="72" y="564" font-size="23">threadandsignal.com</text>
+    <text x="1128" y="564" text-anchor="end" font-size="21" fill="#4fb8a8">RUST / PYTHON / YOUR HARDWARE</text>
+  </g>
+</svg>
