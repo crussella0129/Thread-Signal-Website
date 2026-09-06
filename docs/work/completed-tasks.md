@@ -178,4 +178,4 @@
 - **Completed:** 2026-09-06T03:58:40Z
 - **Files modified:** src/layouts/BaseLayout.astro, src/components/Nav.astro, src/pages/design.astro, src/pages/projects.astro, public/social-card.png, public/social-card.svg, public/llms.txt
 - **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
-- **Commit:** PENDING
+- **Commit:** `89d4d5209def2c1a206bfa3c71b0294aaf7b7858`
