@@ -8,6 +8,6 @@
 - **Bundle version:** 0.22.0
 - **Exit status:** in-progress
 - **Token count:** (filled at Loop Phase if observable)
-- **Summary:** (one-line description of sprint goal, filled after Plan Phase)
-- **Intents:** (filled after Plan Phase)
+- **Summary:** Clarify Charles's automation offer, add a local AI buyer guide, improve search metadata, and publish verified changes.
+- **Intents:** [INT-0001](../../intents/INT-0001-marketing-search.md)
 - **Completion evidence:** (filled at Loop Phase)

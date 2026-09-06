@@ -2,8 +2,8 @@
 
 <!-- sprint-loop-intent-v2 -->
 - **Intent ID:** INT-0001
-- **State:** proposed
-- **Work evidence:** none
+- **State:** planned
+- **Work evidence:** [T-201 through T-204 plan](../sprints/s2/sprint-plans/build-plan.md)
 - **Completion evidence:** none
 - **Code evidence:** none
 - **Test evidence:** none
@@ -28,5 +28,8 @@ A visual rebrand would discard an approved identity. Keyword-heavy doorway pages
 ## Consequences
 Search indexing and ranking remain external outcomes; deployment can be verified immediately. Maintain the new guide when tools change. Keep snapshot metrics dated and avoid claiming special AI ranking benefits from llms.txt. Existing hosting and email remain in use.
 
+The bundle requires sprint closure before opening its checkpoint. Pre-checkpoint closure will therefore record only locally validated implementation with publication pending; this intent remains active. Post-checkpoint acceptance requires the actual merge, deployment and live checks before realization. This documented orchestration adaptation preserves the user's explicit publication request without calling pending external evidence a pass.
+
 ## Transition history
 - 2026-09-06: created as `proposed` from the user's request for marketing/search improvements, push, and live deployment.
+- 2026-09-06: `proposed` → `planned`; bounded marketing, guide, discovery and validation tasks accepted under the user's sprint request.
