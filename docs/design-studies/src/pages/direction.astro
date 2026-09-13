@@ -1,0 +1,224 @@
+---
+import "../styles/study.css";
+import "../styles/direction.css";
+
+const tokens = [
+  [
+    "Type families",
+    "Arial, Helvetica, sans-serif. Consolas / Liberation Mono for actual code and item identifiers only.",
+  ],
+  [
+    "Body and captions",
+    "17px / 1.55, weight 400; supporting captions 14px / 1.5. Paragraph measure capped at 61ch.",
+  ],
+  [
+    "Headings",
+    "H1 clamp(42px, 5.7vw, 80px); H2 clamp(32px, 3.5vw, 48px). Weight 500, line-height 1.04, tracking −0.045em. H3 24px / 1.15, tracking −0.025em. Arial resolves 500 to its available regular face.",
+  ],
+  [
+    "Wordmark",
+    "24px, weight 700, tracking −0.06em. The name itself forms the mark.",
+  ],
+  [
+    "Color roles",
+    "White #FFFFFF ground; #181818 primary text and action; #5B5B5B secondary text; #F0F0F0 evidence field; #C7C7C7 nonessential grouping rules. No accent hue in the interface.",
+  ],
+  [
+    "Spacing",
+    "4px base. Use 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96 and 128px. Section separation clamp(64px, 7vw, 104px).",
+  ],
+  [
+    "Page geometry",
+    "1320px maximum width including gutters. Gutters clamp(24px, 4.5vw, 64px). Intro columns 1.5:1; software feature 0.7:1.3; hardware 0.8:1.2.",
+  ],
+  [
+    "Responsive behavior",
+    "At 900px, reduce large column gaps to 40px. At 620px, use one column, 24px gutters, and a visible wrapping navigation row. Introduce the offer and inquiry action before the evidence.",
+  ],
+  [
+    "Links and actions",
+    "Underline text links; primary action is solid ink with white text and a 2px radius. Hover #5B5B5B; pressed #454545. Minimum 44px height for standalone links, 48px for the primary action.",
+  ],
+  [
+    "Focus and motion",
+    "2px #181818 focus outline, offset 4px. Static content appears immediately. Only 150ms interaction color feedback; reduced-motion removes transitions and smooth scrolling.",
+  ],
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Recommended visual direction and exact specifications from the Thread & Signal homepage studies."
+    />
+    <title>Visual direction | Thread &amp; Signal</title>
+  </head>
+  <body>
+    <main class="direction page-width">
+      <a class="text-link" href="/">Open the current, simplified homepage</a>
+      <p class="caption">
+        Earlier direction. Superseded by the shorter sales page after review.
+      </p>
+      <header>
+        <p class="project-kind">Thread &amp; Signal · September 13, 2026</p>
+        <h1>Let the work<br />give the site its identity.</h1>
+        <p class="direction-lead">
+          Recommended: the portfolio opening, with a direct offer, readable
+          software evidence, and actual objects.
+        </p>
+        <a class="text-link" href="/portfolio/"
+          >Open the recommended composition →</a
+        >
+      </header>
+
+      <section aria-labelledby="choice">
+        <h2 id="choice">Why this composition</h2>
+        <p>
+          The portfolio opening makes the custom software offer and the person
+          behind it clear before asking a visitor to interpret an experiment.
+          The software test, enclosure render, assembly photograph, and release
+          records each have a different job and a proportion suited to their
+          content.
+        </p>
+        <p>
+          The case-study opening explains how an assessment can identify a
+          result that should not ship. It is a useful structure for a project
+          detail page. As the homepage, however, it makes one failed evaluation
+          dominate the practice before a visitor sees the rest of the work.
+        </p>
+        <p>
+          This is a design recommendation based on the rendered studies, not a
+          measured conversion result or a decision already approved by visitors.
+        </p>
+      </section>
+
+      <section aria-labelledby="structure">
+        <h2 id="structure">The page has a deliberate sequence</h2>
+        <ol class="direction-sequence">
+          <li>
+            <strong>Offer and author.</strong> Custom software for recurring work;
+            local AI explained in the accompanying sentence. A visible invitation
+            to discuss a workflow.
+          </li>
+          <li>
+            <strong>One software example.</strong> A readable inventory table with
+            the failed check beside it. The table is an explanation of the documented
+            test, not a simulated product interface.
+          </li>
+          <li>
+            <strong>A physical object.</strong> The enclosure render shows the exterior;
+            a smaller photograph shows the board and heatsink inside. Captions distinguish
+            CAD from photography.
+          </li>
+          <li>
+            <strong>A short process record.</strong> Request, checks, and release
+            form a real three-step sequence across the page, then stack on mobile.
+          </li>
+          <li>
+            <strong>A practical engagement.</strong> What to bring, what the assessment
+            covers, and what the visitor receives. Then a short introduction to Charles
+            and a direct contact invitation.
+          </li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="specification">
+        <h2 id="specification">Exact visual specification</h2>
+        <p>
+          These values are implemented in the studies. The interface can remain
+          black and white in the next iteration; restore the original colors of
+          genuine photographs when developing the selected homepage. Color in a
+          real object conveys material information.
+        </p>
+        <dl class="direction-tokens">
+          {
+            tokens.map(([name, value]) => (
+              <div>
+                <>
+                  <dt>{name}</dt>
+                  <dd>{value}</dd>
+                </>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
+
+      <section aria-labelledby="evidence">
+        <h2 id="evidence">Evidence is part of the design</h2>
+        <p>
+          The Animus Ferric example is the recorded August 26, 2026 evaluation
+          of Qwen2.5-Coder-7B-Instruct Q4_K_M. It failed the required output
+          contract. Expected quantities remain explicitly labeled; neither study
+          presents them as successful model output. The broader evaluation
+          completed zero of three task contracts.
+        </p>
+        <p>
+          The enclosure assets come from the public project. The closed design
+          is a v2.2 CAD render; the assembly photograph has no verified version
+          label. Sprint Loops is illustrated using this website's own recorded
+          update. None is presented as a client outcome.
+        </p>
+        <p>
+          For production, generate responsive image sizes, preserve useful
+          detail, and link each project to its source and a fuller explanation.
+          A successful demonstration would need its own verified record before
+          making an outcome claim.
+        </p>
+      </section>
+
+      <section aria-labelledby="review">
+        <h2 id="review">How this addresses the feedback</h2>
+        <p>
+          The supplied <a
+            href="https://claude.ai/public/artifacts/37cb0fd0-c3a9-457e-bd1b-745a4c1009fa"
+            >house-style specimen</a
+          > shows why a palette change leaves the same structural habits intact. These
+          studies replace decorative technical imagery with evidence, remove repeated
+          promotional containers, and use content to determine scale and arrangement.
+        </p>
+        <p>
+          The remaining familiar elements have explicit roles: a table compares
+          quantities; a gray field groups one evaluation; small project labels
+          identify the work; and three process stages represent an actual
+          sequence. Avoid judging the page by counting stylistic markers alone.
+        </p>
+        <p>
+          Useful references were <a href="https://panic.com/"
+            >Panic's recognizable products</a
+          >, <a href="https://play.date/">Playdate's views of a real object</a>,
+          and <a href="https://ciechanow.ski/"
+            >Bartosz Ciechanowski's connection between explanations and
+            demonstrations</a
+          >. Their palettes and page templates are not prescribed here.
+        </p>
+      </section>
+
+      <section aria-labelledby="next">
+        <h2 id="next">The next implementation boundary</h2>
+        <p>
+          Use the portfolio composition to develop the production homepage,
+          connect the full Work and Writing navigation, restore useful
+          photographic color, and integrate the contact route. Then apply the
+          resulting system to the remaining pages and update the affected
+          regression checks.
+        </p>
+        <p>
+          Review whether visitors can identify the offer, the author, and the
+          next step. These local studies establish a reviewable direction; they
+          have not been published to the live site.
+        </p>
+      </section>
+      <footer>
+        <a class="text-link" href="/comparison/"
+          >← Back to the earlier comparison</a
+        >
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+---
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+const repository =
+  "https://github.com/crussella0129/Jetson-Orin-Nano-Super-Case";
+---
+
+<section
+  class:list={[
+    "hardware-section",
+    "page-width",
+    "section-space",
+    { "hardware-compact": compact },
+  ]}
+  aria-labelledby="hardware-heading"
+>
+  <div class="hardware-title">
+    <p class="project-kind">Design &amp; fabrication</p>
+    <h2 id="hardware-heading">A home for<br />the hardware.</h2>
+  </div>
+  <figure class="hardware-render">
+    <img
+      src="/jetson-v2-2-render.png"
+      width="2160"
+      height="1082"
+      alt="CAD render of the Jetson enclosure, with a fan opening and external cutouts."
+      loading="lazy"
+    />
+    <figcaption>
+      Jetson enclosure, v2.2. CAD render of the closed design.
+    </figcaption>
+  </figure>
+  <figure class="hardware-photo">
+    <img
+      src="/jetson-assembly-photo.jpg"
+      width="1685"
+      height="2247"
+      alt="Assembly photograph of the Jetson board and SSD heatsink inside the printed enclosure."
+      loading="lazy"
+    />
+    <figcaption>
+      The board and heatsink inside the printed enclosure.
+    </figcaption>
+  </figure>
+  <div class="hardware-copy">
+    <h3>Jetson Orin Nano Super Case</h3>
+    <p>
+      An open-source enclosure design for the Jetson developer kit. The CAD
+      model and assembly photographs make the work inspectable, from external
+      openings to the fit of the parts inside.
+    </p>
+    <a class="text-link" href={repository}
+      >See the design files <span aria-hidden="true">↗</span></a
+    >
+  </div>
+</section>

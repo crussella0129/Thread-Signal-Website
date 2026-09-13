@@ -1,0 +1,64 @@
+---
+import {
+  SITE_NAME,
+  OWNER_NAME,
+  EMAIL,
+  GITHUB_URL,
+} from "../../../../src/data/site";
+import "../styles/offer.css";
+
+const quoteBody = [
+  "Hi Charles,",
+  "",
+  "I'd like help with:",
+  "",
+  "What I do now:",
+  "What I want to change:",
+  "",
+  "Thanks,",
+].join("\r\n");
+const quoteUrl = `mailto:${EMAIL}?subject=${encodeURIComponent("Project quote")}&body=${encodeURIComponent(quoteBody)}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Hire Charles Russella to automate repetitive work or set up and test AI on your own computer."
+    />
+    <title>Automate repetitive work | {SITE_NAME}</title>
+  </head>
+  <body>
+    <div class="offer-page">
+      <header class="offer-header"><p>{SITE_NAME}</p></header>
+      <main>
+        <section class="offer-intro" aria-labelledby="offer-heading">
+          <h1 id="offer-heading">I automate<br />repetitive work.</h1>
+          <p>Reports, data entry, and moving data between apps.</p>
+        </section>
+        <section class="offer-services" aria-label="What you can hire me for">
+          <div>
+            <h2>Automate one task</h2>
+            <p>You get a working tool built around your process.</p>
+          </div>
+          <div>
+            <h2>Test AI on your computer</h2>
+            <p>I install it, test your task, and tell you what works.</p>
+          </div>
+        </section>
+        <section class="offer-contact" aria-label="Get a project quote">
+          <a class="offer-action" href={quoteUrl}>Ask for a quote</a>
+          <p>Scope and price agreed before work starts.</p>
+        </section>
+      </main>
+      <footer class="offer-footer">
+        <p>{OWNER_NAME} · Ohio</p>
+        <a href={GITHUB_URL}>View my work</a>
+      </footer>
+    </div>
+  </body>
+</html>

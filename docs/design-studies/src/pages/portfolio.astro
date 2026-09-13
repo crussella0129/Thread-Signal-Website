@@ -1,0 +1,56 @@
+---
+import StudyLayout from "../layouts/StudyLayout.astro";
+import Evaluation from "../components/Evaluation.astro";
+import Hardware from "../components/Hardware.astro";
+import Process from "../components/Process.astro";
+import Services from "../components/Services.astro";
+import About from "../components/About.astro";
+import { AUTOMATION_BRIEF_URL } from "../../../../src/data/site";
+import { evaluation } from "../data/evidence";
+---
+
+<StudyLayout title="Portfolio opening" variant="portfolio">
+  <section class="portfolio-intro page-width" aria-label="Introduction">
+    <h1>Custom software<br />for work that<br />keeps repeating.</h1>
+    <div class="intro-note">
+      <p>
+        I build custom software and local AI systems around your workflows,
+        tools, and hardware.
+      </p>
+      <p class="byline">
+        Charles Russella · Independent developer &amp; designer
+      </p>
+      <a class="action" href={AUTOMATION_BRIEF_URL}
+        >Discuss a workflow <span aria-hidden="true">↗</span></a
+      >
+    </div>
+  </section>
+  <section
+    class="portfolio-feature page-width"
+    id="work"
+    aria-labelledby="feature-heading"
+  >
+    <div class="feature-copy">
+      <p class="project-kind">Local AI evaluation · Animus Ferric</p>
+      <h2 id="feature-heading">
+        Check the result<br />before calling<br />it done.
+      </h2>
+      <p>
+        Could a small local coding model finish an inventory reorder feature?
+        This evaluation gave it a specific contract, then checked the result.
+      </p>
+      <p>
+        The result did not pass. That finding is useful before a workflow
+        depends on it.
+      </p>
+      <a class="text-link" href={evaluation.trace}
+        >Inspect the actual run <span aria-hidden="true">↗</span></a
+      >
+    </div>
+    <Evaluation />
+  </section>
+  <Hardware />
+  <Process />
+  <Services />
+  <About />
+</StudyLayout>

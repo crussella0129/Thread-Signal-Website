@@ -1,0 +1,41 @@
+---
+import { EMAIL, GITHUB_URL } from "../../../../src/data/site";
+---
+
+<section
+  class="about-section section-space"
+  id="about"
+  aria-labelledby="about-heading"
+>
+  <div class="page-width about-grid">
+    <h2 id="about-heading">I'm Charles.<br />I build the work.</h2>
+    <div>
+      <p>
+        Thread &amp; Signal is my independent software and design practice in
+        Ohio. I work across Rust, Python, local AI, and CAD for parts you can
+        make.
+      </p>
+      <p>
+        You work directly with me, from the first explanation of the problem to
+        the code and documentation you receive.
+      </p>
+      <a class="text-link" href={GITHUB_URL}
+        >Explore my public work <span aria-hidden="true">↗</span></a
+      >
+    </div>
+  </div>
+</section>
+<section
+  class="contact-section page-width section-space"
+  id="contact"
+  aria-labelledby="contact-heading"
+>
+  <div>
+    <h2 id="contact-heading">What keeps landing<br />on your to-do list?</h2><p>
+      Tell me what happens today and what you need to happen instead.
+    </p>
+  </div>
+  <a class="contact-email" href={`mailto:${EMAIL}`}
+    >{EMAIL}<span aria-hidden="true">↗</span></a
+  >
+</section>

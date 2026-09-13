@@ -1,0 +1,50 @@
+.direction {
+  padding-block: var(--space-8) var(--space-16);
+}
+.direction header {
+  padding-block: var(--space-16);
+}
+.direction h1 {
+  max-width: 23ch;
+}
+.direction-lead {
+  font-size: var(--size-lead);
+  margin-top: var(--space-8);
+}
+.direction section {
+  padding-block: var(--space-12);
+  border-top: var(--border) solid var(--line);
+}
+.direction h2 {
+  margin-bottom: var(--space-8);
+}
+.direction-sequence {
+  max-width: var(--measure);
+  padding-left: var(--space-6);
+}
+.direction-sequence li + li {
+  margin-top: var(--space-5);
+}
+.direction-tokens {
+  margin-top: var(--space-8);
+}
+.direction-tokens > div {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: var(--space-8);
+  padding-block: var(--space-5);
+  border-top: var(--border) solid var(--line);
+}
+.direction-tokens dt {
+  font-weight: 700;
+}
+.direction-tokens dd {
+  margin: 0;
+  max-width: var(--measure);
+}
+@media (max-width: 620px) {
+  .direction-tokens > div {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+}

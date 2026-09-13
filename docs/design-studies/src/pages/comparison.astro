@@ -1,0 +1,181 @@
+---
+import "../styles/review.css";
+
+const studies = [
+  {
+    title: "Portfolio opening",
+    description:
+      "Introduce the studio, then let the range of work establish credibility.",
+    path: "/portfolio/",
+    link: "Open portfolio study",
+  },
+  {
+    title: "Case-study opening",
+    description:
+      "Begin with one concrete project, then explain the practice behind it.",
+    path: "/case-study/",
+    link: "Open case study",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Compare two grayscale homepage compositions for Thread & Signal at desktop and mobile viewport sizes."
+    />
+    <title>Two homepage studies | Thread & Signal</title>
+  </head>
+  <body>
+    <main class="review-page" data-review>
+      <div class="review-context">
+        <a href="/">View the revised homepage</a>
+        <a href="/direction/">Read the visual direction</a>
+      </div>
+
+      <header class="review-header">
+        <div class="review-introduction">
+          <h1>Two ways to introduce the work</h1>
+          <p>
+            The same content and project material, arranged into two different
+            openings. Grayscale keeps the comparison focused on hierarchy,
+            typography, and proportion.
+          </p>
+        </div>
+        <div class="review-controls" hidden>
+          <div
+            class="review-viewport-buttons"
+            role="group"
+            aria-label="Preview viewport"
+          >
+            <button type="button" data-viewport="desktop" aria-pressed="true"
+              >Desktop</button
+            >
+            <button type="button" data-viewport="mobile" aria-pressed="false"
+              >Mobile</button
+            >
+          </div>
+          <p
+            class="review-viewport-size"
+            role="status"
+            aria-live="polite"
+            data-viewport-size
+          >
+            1440 × 1050 viewport
+          </p>
+        </div>
+      </header>
+
+      <div class="review-comparison">
+        {
+          studies.map((study) => (
+            <section class="review-study" aria-label={study.title}>
+              <header class="review-study-header">
+                <h2>{study.title}</h2>
+                <p>{study.description}</p>
+                <a class="review-study-link" href={study.path}>
+                  {study.link}
+                </a>
+              </header>
+              <div class="review-preview-space">
+                <div class="review-viewport" data-preview-viewport>
+                  <iframe
+                    class="review-frame"
+                    src={study.path}
+                    title={`${study.title}: interactive homepage preview`}
+                    width="1440"
+                    height="1050"
+                  />
+                </div>
+              </div>
+            </section>
+          ))
+        }
+      </div>
+
+      <footer class="review-footer">
+        <p>
+          Each preview scrolls independently. Open a study to read it at full
+          size; use the viewport controls to compare its desktop and mobile
+          composition.
+        </p>
+        <noscript>
+          <p>
+            Open either study for a full-size view. The viewport comparison
+            requires JavaScript.
+          </p>
+        </noscript>
+      </footer>
+    </main>
+
+    <script>
+      const review = document.querySelector<HTMLElement>("[data-review]");
+
+      if (review) {
+        const viewports = {
+          desktop: [1440, 1050],
+          mobile: [390, 844],
+        } as const;
+        const buttons =
+          review.querySelectorAll<HTMLButtonElement>("[data-viewport]");
+        const previewWindows = review.querySelectorAll<HTMLElement>(
+          "[data-preview-viewport]",
+        );
+        const viewportSize = review.querySelector<HTMLElement>(
+          "[data-viewport-size]",
+        );
+        let selectedViewport: keyof typeof viewports = "desktop";
+
+        const sizePreview = (preview: HTMLElement) => {
+          const frame = preview.querySelector("iframe");
+          if (!frame) return;
+
+          const [width, height] = viewports[selectedViewport];
+          preview.style.maxWidth = `${width}px`;
+          const scale = Math.min(1, preview.clientWidth / width);
+          preview.style.height = `${height * scale}px`;
+          frame.width = String(width);
+          frame.height = String(height);
+          frame.style.width = `${width}px`;
+          frame.style.height = `${height}px`;
+          frame.style.transform = `scale(${scale})`;
+        };
+
+        const resizeObserver = new ResizeObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.target instanceof HTMLElement) sizePreview(entry.target);
+          }
+        });
+
+        for (const preview of previewWindows) {
+          sizePreview(preview);
+          resizeObserver.observe(preview);
+        }
+
+        for (const button of buttons) {
+          button.addEventListener("click", () => {
+            const value = button.dataset.viewport;
+            if (value !== "desktop" && value !== "mobile") return;
+
+            selectedViewport = value;
+            for (const option of buttons) {
+              option.setAttribute("aria-pressed", String(option === button));
+            }
+            for (const preview of previewWindows) sizePreview(preview);
+
+            const [width, height] = viewports[selectedViewport];
+            if (viewportSize)
+              viewportSize.textContent = `${width} × ${height} viewport`;
+          });
+        }
+        const controls = review.querySelector<HTMLElement>(".review-controls");
+        if (controls) controls.hidden = false;
+      }
+    </script>
+  </body>
+</html>

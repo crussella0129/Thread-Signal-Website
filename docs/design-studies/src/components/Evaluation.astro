@@ -1,0 +1,57 @@
+---
+import { evaluation } from "../data/evidence";
+---
+
+<figure class="evaluation-figure">
+  <div class="evaluation">
+    <p class="evaluation-heading">The inventory test</p>
+    <p class="evaluation-explanation">
+      Order when stock falls below the reorder point. Bring stock up to twice
+      that point.
+    </p>
+    <table>
+      <caption class="table-caption"
+        >Inputs and expected order quantities</caption
+      >
+      <thead
+        ><tr
+          ><th scope="col">Item</th><th scope="col">In stock</th><th scope="col"
+            >Reorder<br />point</th
+          ><th scope="col">Expected<br />order</th></tr
+        ></thead
+      >
+      <tbody
+        >{
+          evaluation.rows.map((row) => (
+            <tr>
+              <>
+                <th scope="row">
+                  <code>{row.sku}</code>
+                </th>
+                <td>{row.stock}</td>
+                <td>{row.point}</td>
+                <td>{row.order}</td>
+              </>
+            </tr>
+          ))
+        }</tbody
+      >
+    </table>
+    <div class="evaluation-result">
+      <strong>Failed<br />the check.</strong>
+      <p>
+        The agent edited the code, but returned the wrong output structure.
+        Completion was blocked.
+      </p>
+    </div>
+    <p class="evaluation-limit">
+      The table shows expected values, not successful model output.
+    </p>
+  </div>
+  <figcaption class="evaluation-caption">
+    Public project evaluation · {evaluation.date} · {evaluation.model}. The full
+    three-task evaluation completed 0 of 3 tasks to their contracts. <a
+      href={evaluation.report}>Read the recorded results ↗</a
+    >
+  </figcaption>
+</figure>
