@@ -130,9 +130,16 @@ a:focus-visible {
   display: block;
   width: 100%;
   max-width: 100%;
+  /* Source render is 2:1 with wide empty margins; crop (never stretch) to a
+     calmer 3:2 frame so the enclosure fills more of the space. height:auto lets
+     aspect-ratio drive the box (the img's height attribute would otherwise pin
+     it); object-fit:cover keeps the object's true proportions. */
   height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center 42%;
   border: var(--offer-stroke) solid var(--offer-rule);
-  border-radius: var(--offer-radius);
+  border-radius: 20px;
 }
 .offer-hero figcaption {
   margin-top: var(--offer-space-3);
