@@ -21,7 +21,7 @@
 | `check_builds_export` | T-001 #1 (builds data renders: names + repo links) | PASS (Animus Ferric, sdr.rs, SpecuLex with hrefs) |
 | `check_links_resolve` | T-001 #2 (only verified-resolving URLs; no broken links) | PASS (3 hrefs, all in the verified set) |
 | `check_no_js_dependence` | T-002 #5 / INT-0002 #4 (JS-off content) | PASS (0 `<script>`) |
-| `check_no_inception_or_outcome_claim` | T-002 #6 / INT-0002 #6 (no false claims) | PASS (no "Inception", no metric, no client-outcome) |
+| `check_no_membership_or_outcome_claim` | T-002 #6 / INT-0002 #6 (no false claims) | PASS (no membership claim, no metric, no client-outcome) |
 | `check_monochrome_only` | INT-0002 #4 (monochrome) | PASS (all hex grayscale; no rgb color) |
 | `check_contrast_tokens` | T-003 #3 (contrast) | PASS (body 19.0, muted 8.8, action 19.0) |
 | `check_touch_targets` | T-003 #5 (≥44px) | PASS (action 52px, standalone link 44px) |
