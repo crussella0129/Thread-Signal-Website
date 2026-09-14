@@ -210,4 +210,4 @@
 - **Completed:** 2026-09-14T00:16:21Z
 - **Files modified:** docs/design-studies/src/styles/offer.css
 - **Verification:** Astro build regenerated dist with the new styles; hero img rule sets max-width:100%/height:auto; palette stays monochrome (--offer-* only, no accent hue). Browser viewport/focus/contrast checks run in the Test Phase.
-- **Commit:** PENDING
+- **Commit:** `343eaaa3ad8e94282e2dde31453b124e3d805dc7`
