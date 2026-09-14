@@ -2,7 +2,7 @@
 
 <!-- sprint-loop-intent-v2 -->
 - **Intent ID:** INT-0002
-- **State:** planned
+- **State:** active
 - **Work evidence:** [T-001–T-004 build plan](../sprints/s3/sprint-plans/build-plan.md)
 - **Completion evidence:** none
 - **Code evidence:** none
@@ -103,3 +103,5 @@ both what Charles asked for and a stronger sales instrument.
   honesty guardrails against Inception-membership and client-outcome claims.
 - 2026-09-13: `proposed` → `planned`; the Sprint 3 build plan (T-001–T-004) was
   accepted under Charles's approval and linked as Work evidence.
+- 2026-09-13: `planned` → `active`; Sprint 3 Build Phase began implementing the
+  locked tasks (T-301–T-304).

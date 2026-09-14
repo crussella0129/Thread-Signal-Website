@@ -187,3 +187,11 @@
 - **Files modified:** package.json, package-lock.json, scripts/check-site.mjs, .github/workflows/check.yml, .github/workflows/deploy.yml, docs/sprints/s0/sprint-tests/dist-check.mjs, docs/sprints/s1/sprint-tests/dist-check-s1.mjs, README.md, docs/MAINTENANCE.md, docs/positioning.md
 - **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
 - **Commit:** `754503c653d8ddbead1546b77416f13724d467c1`
+
+## T-301 (sprint 3)
+- **Intent:** [INT-0002](../intents/INT-0002-work-led-homepage.md)
+- **Description:** Add `builds` project data (Animus Ferric, sdr.rs, SpecuLex in development) with honest provenance; record the verified community SDR fork of the enclosure
+- **Completed:** 2026-09-14T00:16:21Z
+- **Files modified:** docs/design-studies/src/data/evidence.ts, docs/design-studies/jetson-image-sources.md, docs/intents/INT-0002-work-led-homepage.md
+- **Verification:** Repo URLs verified via git ls-remote (Animus_Ferric, sdr.rs, SpecuLex all resolve); SDR fork dkozel/orin-nano-litex-m2-sdr-case verified via GitHub forks API. Astro check: 14 files, 0 errors. Study build: 5 pages.
+- **Commit:** PENDING

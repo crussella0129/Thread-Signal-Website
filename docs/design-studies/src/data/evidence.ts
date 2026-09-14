@@ -15,6 +15,36 @@ export const evaluation = {
   expected: '[{"sku": "b", "order_qty": 6}, {"sku": "z", "order_qty": 8}]',
 };
 
+// Compact "recent builds" list for the homepage: just enough to show Charles
+// makes real devices do useful things. Verified 2026-09-13 (git ls-remote); an
+// entry without a resolving public repo omits `url` and renders as plain text.
+// No client outcomes or performance claims. SpecuLex is honestly in development.
+export interface Build {
+  name: string;
+  blurb: string;
+  url?: string;
+  status?: string;
+}
+
+export const builds: Build[] = [
+  {
+    name: "Animus Ferric",
+    blurb: "local AI agents",
+    url: "https://github.com/crussella0129/Animus_Ferric",
+  },
+  {
+    name: "sdr.rs",
+    blurb: "software-defined radio in Rust",
+    url: "https://github.com/crussella0129/sdr.rs",
+  },
+  {
+    name: "SpecuLex",
+    blurb: "a non-destructive book-scanning table",
+    status: "in development",
+    url: "https://github.com/crussella0129/SpecuLex",
+  },
+];
+
 export const process = {
   name: "Sprint Loops",
   repository: "https://github.com/crussella0129/Animus_Sprint_Loops",

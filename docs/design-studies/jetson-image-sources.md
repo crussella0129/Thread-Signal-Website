@@ -11,6 +11,18 @@ Retrieved and visually inspected on 2026-09-13 for the Thread & Signal homepage 
 - The README describes STEP files suitable for 3D printing or CNC machining. This supports describing the work as an enclosure design. Do not claim measured cooling gains, client results, or that the CAD render is a photograph of a manufactured metal enclosure.
 - The repository reports GPL-3.0 licensing. The study uses the user's own published project imagery; the image authors are not independently identified in asset metadata.
 
+## Community forks (verified 2026-09-13)
+
+The enclosure repository has public forks, confirming reuse of Charles's design.
+One adapts it for software-defined radio:
+
+- `dkozel/orin-nano-litex-m2-sdr-case` — "An Open Source Enclosure for the NVIDIA
+  Jetson Orin Super Developer Kit and LiteX M2 SDR." Verified via the GitHub forks
+  API for `crussella0129/Jetson-Orin-Nano-Super-Case`.
+
+Present this only as a third-party fork of Charles's design (community reuse),
+never as Charles's own work or a client outcome.
+
 ## Closed enclosure CAD render
 
 - Local file: `assets/jetson-v2-2-render.png`
