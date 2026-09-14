@@ -194,4 +194,4 @@
 - **Completed:** 2026-09-14T00:16:21Z
 - **Files modified:** docs/design-studies/src/data/evidence.ts, docs/design-studies/jetson-image-sources.md, docs/intents/INT-0002-work-led-homepage.md
 - **Verification:** Repo URLs verified via git ls-remote (Animus_Ferric, sdr.rs, SpecuLex all resolve); SDR fork dkozel/orin-nano-litex-m2-sdr-case verified via GitHub forks API. Astro check: 14 files, 0 errors. Study build: 5 pages.
-- **Commit:** PENDING
+- **Commit:** `e19e40a86f6adba678b4d19469a0186d12e68a80`
