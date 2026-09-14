@@ -1,22 +1,30 @@
 # Homepage composition studies
 
-## Current revision: two paid offers
+## Current revision: work-led minimal homepage
 
 The current [homepage preview](http://127.0.0.1:4323/) supersedes the portfolio
 recommendation below. Charles liked the monochrome treatment but found the
-studies too wordy and weak as a sales pitch. The revised page uses white text on
-black, two concrete services, one quote action, and a small link to public work.
+earlier sales page too wordy and unpersuasive, preferred the work-led
+("portfolio") direction, and singled out the Jetson Orin Nano enclosure as
+working well against the color scheme. The revised page keeps white text on
+black and lets real work carry the pitch.
 
-The two offers are **automate one task** and **test AI on your computer**.
-Custom software is the way the first offer is delivered, rather than a competing
-category. The page contains no project narratives, evaluation table, images,
-process section, motion, or client-side JavaScript. The quote email asks only
-what the visitor does now and wants to change; scope and price are agreed before
-work starts. No prices, turnaround promises, or revenue claims were invented.
+Structure: a one-line promise ("I automate repetitive work") and a single quote
+action, then the **Jetson enclosure CAD render** as the hero proof, then two
+plain offers — **automate a task** and **set up & test local AI** — and one
+compact "recent builds" line naming Animus Ferric, sdr.rs, and SpecuLex (in
+development). Custom software is how the first offer is delivered, and the Jetson
+shows Charles designs the hardware for running AI locally (others have forked the
+enclosure for software-defined radio). No prices, turnaround promises, revenue
+claims, NVIDIA Inception membership, or client outcomes are stated, and the page
+uses no client-side JavaScript.
 
-Current source: [index.astro](src/pages/index.astro) and
-[offer.css](src/styles/offer.css). Earlier material remains below as the review
-record. The production site has not been published or restyled by this revision.
+Current source: [index.astro](src/pages/index.astro),
+[offer.css](src/styles/offer.css), and the `builds` data in
+[evidence.ts](src/data/evidence.ts). Image and fork provenance is in
+[jetson-image-sources.md](jetson-image-sources.md). Earlier material remains
+below as the review record. The production site has not been published or
+restyled by this revision.
 
 ## Earlier studies
 
