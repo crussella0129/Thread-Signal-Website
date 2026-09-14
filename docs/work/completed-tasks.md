@@ -218,4 +218,4 @@
 - **Completed:** 2026-09-14T00:16:21Z
 - **Files modified:** docs/design-studies/README.md, docs/design-studies/src/pages/direction.astro
 - **Verification:** README current-revision now names the Jetson CAD hero + the builds line (Animus Ferric, sdr.rs, SpecuLex in development) and drops the "zero images / two concrete services" description; direction.astro lead pointer no longer says "sales page". Astro check 0 errors; build 5 pages.
-- **Commit:** PENDING
+- **Commit:** `b30e6db74c4ab1fe7064d087c33e013c0fe2946b`
