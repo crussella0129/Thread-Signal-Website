@@ -12,7 +12,7 @@ export const GITHUB_URL = 'https://github.com/crussella0129';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/cgriv/';
 
 export const SITE_DESCRIPTION =
-  'AI automation consulting and local LLM deployment by Charles Russella in Ohio. Custom workflows, Rust and Python development, agent skills and team workshops.';
+  'AI automation and local LLM deployment from Charles Russella — a development and design studio in Ohio building custom workflows in Rust and Python, agent skills, and team workshops.';
 
 const automationBrief = [
   'Hi Charles,',
