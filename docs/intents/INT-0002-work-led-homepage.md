@@ -2,8 +2,8 @@
 
 <!-- sprint-loop-intent-v2 -->
 - **Intent ID:** INT-0002
-- **State:** proposed
-- **Work evidence:** none
+- **State:** planned
+- **Work evidence:** [T-001–T-004 build plan](../sprints/s3/sprint-plans/build-plan.md)
 - **Completion evidence:** none
 - **Code evidence:** none
 - **Test evidence:** none
@@ -17,7 +17,13 @@ promise, and make an actual artifact — the Jetson Orin Nano enclosure Charles
 designed — the page's hero proof rather than a paragraph of service copy. State
 the two things a visitor can pay for (a custom tool that automates a repeating
 task; local AI set up and tested on their own computer) in plain words, and give
-exactly one action to start a conversation.
+exactly one action to start a conversation. Include one compact "recent builds"
+line naming real projects — Animus Ferric (local AI), sdr.rs (software-defined
+radio), and SpecuLex (a non-destructive book-scanning table, in development),
+plus the community SDR fork of the enclosure — so a visitor can see Charles makes
+real devices do useful things. This range also supports his NVIDIA Inception
+application, but the page must never claim Inception membership or any client
+outcome.
 
 Non-goals for the sprint advancing this intent: publishing to the live domain,
 rolling the direction across the rest of the site, adding motion, or introducing
@@ -34,9 +40,10 @@ integration and publication are separate, later, explicitly authorized steps.
    prominent, honestly captioned hero artifact (public project, not a client
    outcome), and the two sellable offers are conveyed in at most two short
    plain-language lines rather than descriptive paragraphs.
-3. The page is meaningfully simpler than the current 61-word offer page: fewer
-   words and fewer distinct blocks, with a single primary action and no invented
-   dashboards, decorative diagrams, or unexplained technical imagery.
+3. The page has no service paragraphs and few distinct blocks: a single primary
+   action, no invented dashboards, decorative diagrams, or unexplained technical
+   imagery. It stays close to the current offer page's brevity while adding the
+   hero image and one compact builds line.
 4. Monochrome white-on-black is preserved; all content is present with
    JavaScript disabled; the layout, focus states, contrast (body ≥ 4.5:1, large
    text/UI ≥ 3:1), and 44px touch targets hold at 360, 390, 768, and 1440 CSS
@@ -45,6 +52,10 @@ integration and publication are separate, later, explicitly authorized steps.
    verification checklist. No push or deployment occurs while this intent is
    `active`; realization of publication is out of scope for the initiating
    sprint.
+6. One compact line names Animus Ferric, sdr.rs, and SpecuLex, with SpecuLex
+   labeled as in development; any linked project resolves to a real public page
+   (name only otherwise). The page contains no claim of NVIDIA Inception
+   membership and no client-outcome or performance claim.
 
 ## Rationale
 Direct feedback: the monochrome look is liked, but the copy "isn't selling
@@ -85,3 +96,10 @@ both what Charles asked for and a stronger sales instrument.
   offer page is liked but too wordy and unpersuasive, his preference for the
   work-led ("portfolio") opening, and his endorsement of the Jetson Orin Nano
   section against the new color scheme.
+- 2026-09-13: refined outcome and added acceptance criterion 6 after Charles
+  confirmed a two-offer framing with the Jetson as proof and asked for one
+  compact "recent builds" line (Animus Ferric, sdr.rs, SpecuLex in development,
+  plus the community SDR fork) to show device-building range, with explicit
+  honesty guardrails against Inception-membership and client-outcome claims.
+- 2026-09-13: `proposed` → `planned`; the Sprint 3 build plan (T-001–T-004) was
+  accepted under Charles's approval and linked as Work evidence.

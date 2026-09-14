@@ -8,6 +8,6 @@
 - **Bundle version:** 0.22.0
 - **Exit status:** in-progress
 - **Token count:** (filled at Loop Phase if observable)
-- **Summary:** (one-line description of sprint goal, filled after Plan Phase)
-- **Intents:** (filled after Plan Phase)
+- **Summary:** Refine the homepage design study into a work-led, minimal, white-on-black composition anchored by the Jetson Orin Nano render, with two plain-language offers, one compact "recent builds" line, and one action; local study only, no publish.
+- **Intents:** [INT-0002](../../intents/INT-0002-work-led-homepage.md) (planned)
 - **Completion evidence:** (filled at Loop Phase)
