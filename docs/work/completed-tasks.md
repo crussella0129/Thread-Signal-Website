@@ -202,4 +202,4 @@
 - **Completed:** 2026-09-14T00:16:21Z
 - **Files modified:** docs/design-studies/src/pages/index.astro
 - **Verification:** Built index.html shows exactly one offer-action (the quote mailto), the Jetson img with width/height + alt + no loading=lazy, a CAD-render figcaption, both offers named, the builds line naming Animus Ferric / sdr.rs / SpecuLex (in development), and 0 script tags. Astro check 0 errors; Neutronium audit passed.
-- **Commit:** PENDING
+- **Commit:** `70b768577171e4b74d5f37287b5c9949e64b8171`
