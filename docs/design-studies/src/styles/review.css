@@ -1,0 +1,254 @@
+/* The review tool stays neutral so color cannot choose the composition for us. */
+:root {
+  color-scheme: light;
+  --review-background: #e7e7e7;
+  --review-paper: #ffffff;
+  --review-ink: #202020;
+  --review-muted: #575757;
+  --review-line: #a8a8a8;
+  --review-control-hover: #d5d5d5;
+  --review-font: Arial, Helvetica, sans-serif;
+  --review-text-small: 0.875rem;
+  --review-text-base: 1rem;
+  --review-text-section: 1.25rem;
+  --review-text-heading: clamp(1.75rem, 1.4rem + 1vw, 2.5rem);
+  --review-space-1: 0.25rem;
+  --review-space-2: 0.5rem;
+  --review-space-3: 0.75rem;
+  --review-space-4: 1rem;
+  --review-space-6: 1.5rem;
+  --review-space-8: 2rem;
+  --review-space-12: 3rem;
+  --review-rule: 1px;
+  --review-focus-width: 2px;
+  --review-control-height: 2.75rem;
+  --review-content-width: 120rem;
+  --review-prose-width: 68ch;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--review-background);
+  color: var(--review-ink);
+  font-family: var(--review-font);
+  font-size: var(--review-text-base);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: var(--review-rule);
+  text-underline-offset: var(--review-space-1);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: var(--review-focus-width) solid var(--review-ink);
+  outline-offset: var(--review-space-1);
+}
+
+button {
+  font: inherit;
+}
+
+.review-page {
+  max-width: var(--review-content-width);
+  margin-inline: auto;
+  padding: var(--review-space-8);
+}
+
+.review-context {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--review-space-2) var(--review-space-6);
+  margin-bottom: var(--review-space-8);
+  font-size: var(--review-text-small);
+}
+
+.review-context p,
+.review-header p,
+.review-study p,
+.review-footer p {
+  margin: 0;
+}
+
+.review-context a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--review-control-height);
+}
+
+.review-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--review-space-6) var(--review-space-12);
+  padding-bottom: var(--review-space-8);
+  border-bottom: var(--review-rule) solid var(--review-line);
+}
+
+.review-introduction {
+  max-width: var(--review-prose-width);
+}
+
+.review-header h1 {
+  margin: 0 0 var(--review-space-3);
+  font-size: var(--review-text-heading);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.review-header p {
+  color: var(--review-muted);
+}
+
+.review-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--review-space-2);
+}
+
+.review-viewport-buttons {
+  display: inline-flex;
+}
+
+.review-viewport-buttons button {
+  min-height: var(--review-control-height);
+  padding: var(--review-space-2) var(--review-space-4);
+  border: var(--review-rule) solid var(--review-ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--review-ink);
+  cursor: pointer;
+}
+
+.review-viewport-buttons button + button {
+  border-left: 0;
+}
+
+.review-viewport-buttons button[aria-pressed="true"] {
+  background: var(--review-ink);
+  color: var(--review-paper);
+}
+
+.review-viewport-buttons button:active {
+  background: var(--review-muted);
+  color: var(--review-paper);
+}
+
+.review-viewport-size {
+  font-size: var(--review-text-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.review-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--review-space-8);
+  padding-top: var(--review-space-8);
+}
+
+.review-study {
+  min-width: 0;
+}
+
+.review-study-header {
+  margin-bottom: var(--review-space-4);
+}
+
+.review-study h2 {
+  margin: 0 0 var(--review-space-1);
+  font-size: var(--review-text-section);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.review-study p {
+  color: var(--review-muted);
+}
+
+.review-study-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--review-control-height);
+  margin-top: var(--review-space-2);
+}
+
+.review-preview-space {
+  width: 100%;
+}
+
+.review-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1440 / 1050;
+  margin-inline: auto;
+  overflow: hidden;
+  background: var(--review-paper);
+  outline: var(--review-rule) solid var(--review-line);
+}
+
+.review-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--review-paper);
+  transform-origin: top left;
+}
+
+.review-footer {
+  margin-top: var(--review-space-8);
+  padding-top: var(--review-space-6);
+  border-top: var(--review-rule) solid var(--review-line);
+  color: var(--review-muted);
+}
+
+.review-footer p {
+  max-width: var(--review-prose-width);
+}
+
+@media (hover: hover) {
+  a:hover {
+    text-decoration-thickness: var(--review-focus-width);
+  }
+
+  .review-viewport-buttons button[aria-pressed="false"]:hover {
+    background: var(--review-control-hover);
+  }
+}
+
+@media (max-width: 64rem) {
+  .review-page {
+    padding: var(--review-space-6);
+  }
+
+  .review-comparison {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--review-space-12);
+  }
+}
+
+@media (max-width: 32rem) {
+  .review-page {
+    padding: var(--review-space-4);
+  }
+
+  .review-context {
+    margin-bottom: var(--review-space-6);
+  }
+}

@@ -1,0 +1,41 @@
+---
+import { process } from "../data/evidence";
+---
+
+<section class="process-section page-width" aria-labelledby="process-heading">
+  <div>
+    <p class="project-kind">Agent workflows</p>
+    <h2 id="process-heading">A record you<br />can follow.</h2>
+    <p>
+      Sprint Loops keeps the request, changes, checks, and release evidence in
+      the project itself. This site's buyer guide provides a real example.
+    </p>
+    <a class="text-link" href={process.repository}
+      >Explore Sprint Loops <span aria-hidden="true">↗</span></a
+    >
+  </div>
+  <ol
+    class="process-record"
+    aria-label="Records from this site's September 6 update"
+  >
+    <li>
+      <span>Requested</span><p>Publish a local LLM buyer guide.</p><a
+        href={process.task}>Read the task record</a
+      >
+    </li>
+    <li>
+      <span>Checked</span><p>
+        Article pages, links, metadata, and the inquiry path.
+      </p><a href={process.checks}>Read the recorded checks</a>
+    </li>
+    <li>
+      <span>Published</span><p>The guide and its live deployment evidence.</p><a
+        href={process.release}>Read the release record</a
+      >
+    </li>
+  </ol>
+  <p class="caption process-caption">
+    Recorded September 6, 2026. This is work on my own site, not a client
+    result. <a href={process.guide}>Read the guide.</a>
+  </p>
+</section>

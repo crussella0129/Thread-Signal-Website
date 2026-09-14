@@ -187,3 +187,35 @@
 - **Files modified:** package.json, package-lock.json, scripts/check-site.mjs, .github/workflows/check.yml, .github/workflows/deploy.yml, docs/sprints/s0/sprint-tests/dist-check.mjs, docs/sprints/s1/sprint-tests/dist-check-s1.mjs, README.md, docs/MAINTENANCE.md, docs/positioning.md
 - **Verification:** Integrated npm run validate passed (0 Astro diagnostics; 7 output checks; 46 + 39 regressions). Browser lead paths verified. Publication pending Loop phase.
 - **Commit:** `754503c653d8ddbead1546b77416f13724d467c1`
+
+## T-301 (sprint 3)
+- **Intent:** [INT-0002](../intents/INT-0002-work-led-homepage.md)
+- **Description:** Add `builds` project data (Animus Ferric, sdr.rs, SpecuLex in development) with honest provenance; record the verified community SDR fork of the enclosure
+- **Completed:** 2026-09-14T00:16:21Z
+- **Files modified:** docs/design-studies/src/data/evidence.ts, docs/design-studies/jetson-image-sources.md, docs/intents/INT-0002-work-led-homepage.md
+- **Verification:** Repo URLs verified via git ls-remote (Animus_Ferric, sdr.rs, SpecuLex all resolve); SDR fork dkozel/orin-nano-litex-m2-sdr-case verified via GitHub forks API. Astro check: 14 files, 0 errors. Study build: 5 pages.
+- **Commit:** `e19e40a86f6adba678b4d19469a0186d12e68a80`
+
+## T-302 (sprint 3)
+- **Intent:** [INT-0002](../intents/INT-0002-work-led-homepage.md)
+- **Description:** Rebuild index.astro as the work-led minimal hero: one-line promise + single quote action above the fold, Jetson CAD render as hero proof, two plain offers, one compact builds line; zero client JS
+- **Completed:** 2026-09-14T00:16:21Z
+- **Files modified:** docs/design-studies/src/pages/index.astro
+- **Verification:** Built index.html shows exactly one offer-action (the quote mailto), the Jetson img with width/height + alt + no loading=lazy, a CAD-render figcaption, both offers named, the builds line naming Animus Ferric / sdr.rs / SpecuLex (in development), and 0 script tags. Astro check 0 errors; Neutronium audit passed.
+- **Commit:** `70b768577171e4b74d5f37287b5c9949e64b8171`
+
+## T-303 (sprint 3)
+- **Intent:** [INT-0002](../intents/INT-0002-work-led-homepage.md)
+- **Description:** Style the work-led hero in offer.css: hero figure (max-width:100%, intrinsic dims, hairline frame), quiet builds line, action-in-intro spacing; monochrome tokens preserved; drop dead .offer-contact rules
+- **Completed:** 2026-09-14T00:16:21Z
+- **Files modified:** docs/design-studies/src/styles/offer.css
+- **Verification:** Astro build regenerated dist with the new styles; hero img rule sets max-width:100%/height:auto; palette stays monochrome (--offer-* only, no accent hue). Browser viewport/focus/contrast checks run in the Test Phase.
+- **Commit:** `343eaaa3ad8e94282e2dde31453b124e3d805dc7`
+
+## T-304 (sprint 3)
+- **Intent:** [INT-0002](../intents/INT-0002-work-led-homepage.md)
+- **Description:** Refresh study docs to match the new homepage: rewrite the README current-revision section for the work-led hero + builds line; fix the stale "sales page" pointer in direction.astro
+- **Completed:** 2026-09-14T00:16:21Z
+- **Files modified:** docs/design-studies/README.md, docs/design-studies/src/pages/direction.astro
+- **Verification:** README current-revision now names the Jetson CAD hero + the builds line (Animus Ferric, sdr.rs, SpecuLex in development) and drops the "zero images / two concrete services" description; direction.astro lead pointer no longer says "sales page". Astro check 0 errors; build 5 pages.
+- **Commit:** `b30e6db74c4ab1fe7064d087c33e013c0fe2946b`
