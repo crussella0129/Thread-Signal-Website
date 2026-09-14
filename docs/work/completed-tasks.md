@@ -195,3 +195,11 @@
 - **Files modified:** docs/design-studies/src/data/evidence.ts, docs/design-studies/jetson-image-sources.md, docs/intents/INT-0002-work-led-homepage.md
 - **Verification:** Repo URLs verified via git ls-remote (Animus_Ferric, sdr.rs, SpecuLex all resolve); SDR fork dkozel/orin-nano-litex-m2-sdr-case verified via GitHub forks API. Astro check: 14 files, 0 errors. Study build: 5 pages.
 - **Commit:** `e19e40a86f6adba678b4d19469a0186d12e68a80`
+
+## T-302 (sprint 3)
+- **Intent:** [INT-0002](../intents/INT-0002-work-led-homepage.md)
+- **Description:** Rebuild index.astro as the work-led minimal hero: one-line promise + single quote action above the fold, Jetson CAD render as hero proof, two plain offers, one compact builds line; zero client JS
+- **Completed:** 2026-09-14T00:16:21Z
+- **Files modified:** docs/design-studies/src/pages/index.astro
+- **Verification:** Built index.html shows exactly one offer-action (the quote mailto), the Jetson img with width/height + alt + no loading=lazy, a CAD-render figcaption, both offers named, the builds line naming Animus Ferric / sdr.rs / SpecuLex (in development), and 0 script tags. Astro check 0 errors; Neutronium audit passed.
+- **Commit:** PENDING

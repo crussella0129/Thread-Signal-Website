@@ -5,12 +5,13 @@ import {
   EMAIL,
   GITHUB_URL,
 } from "../../../../src/data/site";
+import { builds } from "../data/evidence";
 import "../styles/offer.css";
 
 const quoteBody = [
   "Hi Charles,",
   "",
-  "I'd like help with:",
+  "The repetitive task I'd like to automate (or the AI I want set up):",
   "",
   "What I do now:",
   "What I want to change:",
@@ -28,7 +29,7 @@ const quoteUrl = `mailto:${EMAIL}?subject=${encodeURIComponent("Project quote")}
     <meta name="robots" content="noindex, nofollow" />
     <meta
       name="description"
-      content="Hire Charles Russella to automate repetitive work or set up and test AI on your own computer."
+      content="Charles Russella automates repetitive work and sets up local AI on your own computer. Real builds: Jetson hardware, Animus Ferric, sdr.rs, SpecuLex."
     />
     <title>Automate repetitive work | {SITE_NAME}</title>
   </head>
@@ -38,21 +39,57 @@ const quoteUrl = `mailto:${EMAIL}?subject=${encodeURIComponent("Project quote")}
       <main>
         <section class="offer-intro" aria-labelledby="offer-heading">
           <h1 id="offer-heading">I automate<br />repetitive work.</h1>
-          <p>Reports, data entry, and moving data between apps.</p>
-        </section>
-        <section class="offer-services" aria-label="What you can hire me for">
-          <div>
-            <h2>Automate one task</h2>
-            <p>You get a working tool built around your process.</p>
-          </div>
-          <div>
-            <h2>Test AI on your computer</h2>
-            <p>I install it, test your task, and tell you what works.</p>
-          </div>
-        </section>
-        <section class="offer-contact" aria-label="Get a project quote">
+          <p class="offer-lead">
+            Reports, data entry, moving files between apps — done by a tool
+            built for your job.
+          </p>
           <a class="offer-action" href={quoteUrl}>Ask for a quote</a>
-          <p>Scope and price agreed before work starts.</p>
+          <p class="offer-fineprint">
+            Scope and price agreed before any work starts.
+          </p>
+        </section>
+
+        <figure class="offer-hero">
+          <img
+            src="/jetson-v2-2-render.png"
+            width="2160"
+            height="1082"
+            alt="Three-quarter CAD render of a rectangular Jetson enclosure with a circular fan opening on top and a rectangular side opening."
+            decoding="async"
+            fetchpriority="high"
+          />
+          <figcaption>
+            CAD render of an enclosure I designed for the Jetson Orin Nano — a
+            small computer for running AI locally. Open-source; forked by others
+            for software-defined radio.
+          </figcaption>
+        </figure>
+
+        <section class="offer-services" aria-label="Two ways to start">
+          <div>
+            <h2>Automate a task</h2>
+            <p>A custom tool that does the repetitive work for you.</p>
+          </div>
+          <div>
+            <h2>Set up &amp; test local AI</h2>
+            <p>Installed on your own computer and tested on your real task.</p>
+          </div>
+        </section>
+
+        <section class="offer-builds" aria-label="Other things I build">
+          <p class="offer-builds-line">
+            Also building:{" "}
+            {
+              builds.map((b, i) => (
+                <Fragment>
+                  {i > 0 && <span class="offer-sep"> · </span>}
+                  {b.url ? <a href={b.url}>{b.name}</a> : <span>{b.name}</span>}
+                  {" "}
+                  <span class="offer-build-note">{`(${b.blurb}${b.status ? `, ${b.status}` : ""})`}</span>
+                </Fragment>
+              ))
+            }
+          </p>
         </section>
       </main>
       <footer class="offer-footer">
