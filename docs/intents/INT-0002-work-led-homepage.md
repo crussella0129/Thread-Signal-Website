@@ -21,8 +21,8 @@ exactly one action to start a conversation. Include one compact "recent builds"
 line naming real projects — Animus Ferric (local AI), sdr.rs (software-defined
 radio), and SpecuLex (a non-destructive book-scanning table, in development),
 plus the community SDR fork of the enclosure — so a visitor can see Charles makes
-real devices do useful things. This range also supports his NVIDIA Inception
-application, but the page must never claim Inception membership or any client
+real devices do useful things. This range also supports his accelerator-program
+application, but the page must never claim program membership or any client
 outcome.
 
 Non-goals for the sprint advancing this intent: publishing to the live domain,
@@ -54,7 +54,7 @@ integration and publication are separate, later, explicitly authorized steps.
    sprint.
 6. One compact line names Animus Ferric, sdr.rs, and SpecuLex, with SpecuLex
    labeled as in development; any linked project resolves to a real public page
-   (name only otherwise). The page contains no claim of NVIDIA Inception
+   (name only otherwise). The page contains no claim of accelerator-program
    membership and no client-outcome or performance claim.
 
 ## Rationale
@@ -100,7 +100,7 @@ both what Charles asked for and a stronger sales instrument.
   confirmed a two-offer framing with the Jetson as proof and asked for one
   compact "recent builds" line (Animus Ferric, sdr.rs, SpecuLex in development,
   plus the community SDR fork) to show device-building range, with explicit
-  honesty guardrails against Inception-membership and client-outcome claims.
+  honesty guardrails against program-membership and client-outcome claims.
 - 2026-09-13: `proposed` → `planned`; the Sprint 3 build plan (T-001–T-004) was
   accepted under Charles's approval and linked as Work evidence.
 - 2026-09-13: `planned` → `active`; Sprint 3 Build Phase began implementing the

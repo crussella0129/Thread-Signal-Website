@@ -16,7 +16,7 @@ compact "recent builds" line naming Animus Ferric, sdr.rs, and SpecuLex (in
 development). Custom software is how the first offer is delivered, and the Jetson
 shows Charles designs the hardware for running AI locally (others have forked the
 enclosure for software-defined radio). No prices, turnaround promises, revenue
-claims, NVIDIA Inception membership, or client outcomes are stated, and the page
+claims, accelerator-program membership, or client outcomes are stated, and the page
 uses no client-side JavaScript.
 
 Current source: [index.astro](src/pages/index.astro),

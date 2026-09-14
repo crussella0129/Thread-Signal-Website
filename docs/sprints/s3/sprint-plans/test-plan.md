@@ -10,7 +10,7 @@ Finalized - DO NOT EDIT
 | [INT-0002](../../../intents/INT-0002-work-led-homepage.md) | #3 no service paragraphs, few blocks, one action | T-002 / one CTA; T-003 | `check_single_primary_action`, `check_block_count` |
 | [INT-0002](../../../intents/INT-0002-work-led-homepage.md) | #4 monochrome, JS-off, responsive, focus, contrast, 44px | T-003 / overflow; focus; contrast; targets; hero max-width. T-002 / JS-off content | `check_monochrome_only`, `check_no_js_dependence`, `check_hero_responsive_css`, browser `check_no_overflow_360_390_768_1440`, browser `check_focus_ring`, `check_contrast_tokens`, `check_touch_targets` |
 | [INT-0002](../../../intents/INT-0002-work-led-homepage.md) | #5 builds & passes local checks; no deploy | T-002+T-003 / build & type check | `astro_check`, `astro_build`, `neutronium_audit`, `check_no_deploy_action` |
-| [INT-0002](../../../intents/INT-0002-work-led-homepage.md) | #6 builds line named + honest; no false claims | T-001 / `builds` export; T-002 / builds line + no false claims | `check_builds_export`, `check_builds_line`, `check_no_inception_or_outcome_claim`, `check_links_resolve_or_nameonly` |
+| [INT-0002](../../../intents/INT-0002-work-led-homepage.md) | #6 builds line named + honest; no false claims | T-001 / `builds` export; T-002 / builds line + no false claims | `check_builds_export`, `check_builds_line`, `check_no_membership_or_outcome_claim`, `check_links_resolve_or_nameonly` |
 
 ## Unit Tests
 ### T-001 unit tests
@@ -30,7 +30,7 @@ Finalized - DO NOT EDIT
 - `check_block_count`: top-level `<section>` count is small (≤ 5). (criterion #3)
 - `check_builds_line`: page text names Animus Ferric, sdr.rs, and SpecuLex in one region, with "development" adjacent to SpecuLex. (EARS T-002 #4)
 - `check_no_js_dependence`: built HTML has no `<script>` and content is fully present in static markup. (EARS T-002 #5)
-- `check_no_inception_or_outcome_claim`: HTML contains no "Inception" membership phrasing and no client-outcome/performance claim strings. (EARS T-002 #6)
+- `check_no_membership_or_outcome_claim`: HTML contains no unverified program-membership phrasing and no client-outcome/performance claim strings. (EARS T-002 #6)
 - `check_monochrome_only`: no non-grayscale color values in the page's effective CSS (only #000/#fff/#0a0a0a/gray tokens). (criterion #4)
 - `check_contrast_tokens`: computed text/background token pairs meet ≥4.5:1 (body/caption) and the action ≥3:1. (EARS T-003 #3)
 - `check_touch_targets`: the primary action and standalone links have min-height ≥44px in CSS. (EARS T-003 #5)
