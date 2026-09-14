@@ -203,3 +203,11 @@
 - **Files modified:** docs/design-studies/src/pages/index.astro
 - **Verification:** Built index.html shows exactly one offer-action (the quote mailto), the Jetson img with width/height + alt + no loading=lazy, a CAD-render figcaption, both offers named, the builds line naming Animus Ferric / sdr.rs / SpecuLex (in development), and 0 script tags. Astro check 0 errors; Neutronium audit passed.
 - **Commit:** `70b768577171e4b74d5f37287b5c9949e64b8171`
+
+## T-303 (sprint 3)
+- **Intent:** [INT-0002](../intents/INT-0002-work-led-homepage.md)
+- **Description:** Style the work-led hero in offer.css: hero figure (max-width:100%, intrinsic dims, hairline frame), quiet builds line, action-in-intro spacing; monochrome tokens preserved; drop dead .offer-contact rules
+- **Completed:** 2026-09-14T00:16:21Z
+- **Files modified:** docs/design-studies/src/styles/offer.css
+- **Verification:** Astro build regenerated dist with the new styles; hero img rule sets max-width:100%/height:auto; palette stays monochrome (--offer-* only, no accent hue). Browser viewport/focus/contrast checks run in the Test Phase.
+- **Commit:** PENDING

@@ -79,10 +79,18 @@ a:focus-visible {
   letter-spacing: var(--offer-tracking);
   line-height: 1.02;
 }
-.offer-intro p {
+.offer-lead {
   max-width: var(--offer-measure);
   margin-top: var(--offer-space-6);
   font-size: var(--offer-subtitle);
+  color: var(--offer-muted);
+}
+.offer-intro .offer-action {
+  margin-top: var(--offer-space-8);
+}
+.offer-fineprint {
+  margin-top: var(--offer-space-3);
+  font-size: var(--offer-small);
   color: var(--offer-muted);
 }
 .offer-services {
@@ -103,12 +111,6 @@ a:focus-visible {
   max-width: var(--offer-measure);
   color: var(--offer-muted);
 }
-.offer-contact {
-  display: flex;
-  align-items: center;
-  gap: var(--offer-space-6);
-  margin-top: var(--offer-gap);
-}
 .offer-action {
   display: inline-flex;
   align-items: center;
@@ -120,12 +122,39 @@ a:focus-visible {
   color: var(--offer-button-text);
   text-decoration: none;
   font-weight: 700;
-  flex-shrink: 0;
 }
-.offer-contact p {
+.offer-hero {
+  margin: var(--offer-gap) 0 0;
+}
+.offer-hero img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: var(--offer-stroke) solid var(--offer-rule);
+  border-radius: var(--offer-radius);
+}
+.offer-hero figcaption {
+  margin-top: var(--offer-space-3);
+  max-width: 61ch;
   font-size: var(--offer-small);
   color: var(--offer-muted);
-  max-width: 27ch;
+}
+.offer-builds {
+  border-top: var(--offer-stroke) solid var(--offer-rule);
+  padding-top: var(--offer-space-6);
+  margin-top: var(--offer-gap);
+}
+.offer-builds-line {
+  font-size: var(--offer-small);
+  line-height: 1.6;
+  color: var(--offer-muted);
+}
+.offer-builds-line a {
+  color: var(--offer-text);
+}
+.offer-sep {
+  color: var(--offer-rule);
 }
 .offer-footer {
   display: flex;
@@ -157,14 +186,6 @@ a:focus-visible {
   .offer-services {
     grid-template-columns: 1fr;
     gap: var(--offer-space-6);
-  }
-  .offer-contact {
-    align-items: start;
-    flex-direction: column;
-    gap: var(--offer-space-3);
-  }
-  .offer-contact p {
-    max-width: none;
   }
   .offer-footer {
     margin-top: var(--offer-space-6);
