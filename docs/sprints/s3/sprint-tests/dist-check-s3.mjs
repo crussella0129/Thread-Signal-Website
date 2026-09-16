@@ -163,14 +163,14 @@ check(
 const scripts = byTag("script");
 check("check_no_js_dependence", scripts.length === 0, `scripts=${scripts.length}`);
 
-// ---- check_no_inception_or_outcome_claim ----
-const inception = /inception/i.test(html);
+// ---- check_no_membership_or_outcome_claim ----
+const falseMembership = /\b(member of|backed by|accepted into|partnered with)\b/i.test(bodyText);
 const fabricatedMetric = /\b\d+%\s*(faster|savings?|reduction|increase|improvement)\b/i.test(bodyText);
 const clientOutcome = /\b(saved|helped)\s+(our|a)\s+client/i.test(bodyText);
 check(
-  "check_no_inception_or_outcome_claim",
-  !inception && !fabricatedMetric && !clientOutcome,
-  `inception=${inception} metric=${fabricatedMetric} clientOutcome=${clientOutcome}`,
+  "check_no_membership_or_outcome_claim",
+  !falseMembership && !fabricatedMetric && !clientOutcome,
+  `membership=${falseMembership} metric=${fabricatedMetric} clientOutcome=${clientOutcome}`,
 );
 
 // ---- check_monochrome_only ----

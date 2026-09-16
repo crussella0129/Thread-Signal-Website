@@ -39,7 +39,7 @@ Finalized - DO NOT EDIT
   - **WHEN** the homepage renders, **THEN** it **SHALL** state both paid offers (automating a repeating task; setting up and testing local AI) in plain language without acronyms or metaphor.
   - **WHEN** the homepage renders, **THEN** it **SHALL** name Animus Ferric, sdr.rs, and SpecuLex in one compact line, with SpecuLex labeled in development.
   - **WHEN** JavaScript is disabled, **THEN** all homepage content (promise, image, offers, builds line, action, footer) **SHALL** be present in the server-rendered HTML.
-  - **WHEN** the homepage renders, **THEN** it **SHALL NOT** contain any string claiming NVIDIA Inception membership or any client-outcome/performance claim.
+  - **WHEN** the homepage renders, **THEN** it **SHALL NOT** contain any string claiming accelerator-program membership or any client-outcome/performance claim.
   - **WHEN** the hero image is emitted, **THEN** it **SHALL NOT** declare `loading="lazy"` (it is above the fold; use eager loading).
 - **Notes:** Import identity/contact from `src/data/site.ts` (EMAIL, OWNER_NAME, GITHUB_URL) and the quote mailto pattern already in the file; consume `builds` from `evidence.ts`. Reuse the honest-caption pattern from `Hardware.astro` but not its `loading="lazy"` (that component renders below the fold). No client-side JavaScript.
 

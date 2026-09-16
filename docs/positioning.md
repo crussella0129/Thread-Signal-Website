@@ -15,7 +15,7 @@ on-prem servers, and Jetson-class devices. That's the wedge. Lead with automatio
 
 ## Why local-first is your defensible niche
 
-Most AI consultancies are cloud-API wrappers; their moat is a prompt library. Your
+Most AI vendors are cloud-API wrappers; their moat is a prompt library. Your
 moat is a **stack of public, verifiable proof** that you can make small models do
 real work on real hardware:
 
@@ -64,9 +64,9 @@ warm lead for automation work.
    within one business day, every time. Revisit a form only if volume ever
    makes triage necessary.
 2. **Write the "benchmark your hardware" lead magnet.** A blog post (or free
-   15-minute consult offer): "Can a 7B model on your hardware actually run your
+   15-minute intro call): "Can a 7B model on your hardware actually run your
    workflow? Ferric's L0–L6 ladder answers that." This converts curiosity into
-   consults and is unique to you.
+   conversations and is unique to you.
 3. **Publish 3 cornerstone blog posts** targeting the searches your buyers make:
    (a) "Running coding agents on-prem / air-gapped" (automation buyers),
    (b) "Making Claude Code skills portable to Codex and local harnesses" (skills
@@ -117,7 +117,7 @@ The user-approved rebrand direction. All future copy should speak this voice:
 
 ## Sprint 2 marketing update — 2026-09-06
 
-Lead with **AI automation consulting and local LLM deployment**, supported by Charles Russella's visible Ohio identity and public Rust/Python work. Keep “Handwoven automation” as the brand headline. The homepage and services now offer a scoped local AI feasibility assessment; the contact page provides a prefilled email brief, and the [local LLM guide](../src/content/blog/local-llm-business-workflow.md) answers buyer questions before an inquiry.
+Lead with **AI automation and local LLM deployment**, supported by Charles Russella's visible Ohio identity and public Rust/Python work. Keep “Handwoven automation” as the brand headline. The homepage and services now offer a scoped local AI feasibility assessment; the contact page provides a prefilled email brief, and the [local LLM guide](../src/content/blog/local-llm-business-workflow.md) answers buyer questions before an inquiry.
 
 Do not turn public repositories into implied client results. State deployment privacy as a configured and verified data boundary; valid tool syntax is not guaranteed action correctness. Describe portable skills as adapted and tested for selected tools. Refer to current project license files instead of promising perpetual licensing. July star counts remain historical snapshots, not live metrics.
 

@@ -24,7 +24,7 @@
 | #3 no service paragraphs; few blocks; one action | check_block_count (4 sections), check_single_primary_action | met |
 | #4 monochrome, JS-off, responsive, focus, contrast, 44px | check_monochrome_only, check_no_js_dependence, E2E overflow/focus, check_contrast_tokens, check_touch_targets, check_hero_responsive_css | met |
 | #5 builds & passes local checks; no deploy | astro_check, astro_build, neutronium_audit, check_no_deploy_action | met |
-| #6 builds line named + honest; no false claims | check_builds_line, check_builds_export, check_links_resolve, check_no_inception_or_outcome_claim | met |
+| #6 builds line named + honest; no false claims | check_builds_line, check_builds_export, check_links_resolve, check_no_membership_or_outcome_claim | met |
 
 ## Caveats
 - The name-only rendering branch for an unverified build URL is unexercised (all
