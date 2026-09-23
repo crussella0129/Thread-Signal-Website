@@ -1,0 +1,46 @@
+{
+  "owner": "crussella0129",
+  "updatedAt": "2026-09-23T18:40:46.493Z",
+  "repositories": [
+    {
+      "name": "Jetson-Orin-Nano-Super-Case",
+      "url": "https://github.com/crussella0129/Jetson-Orin-Nano-Super-Case",
+      "description": "An Open Source Desktop Case Design for Nvidia's Jetson Orin Super Developer Kit.  ",
+      "stars": 54,
+      "archived": false,
+      "language": null
+    },
+    {
+      "name": "Animus_Ferric",
+      "url": "https://github.com/crussella0129/Animus_Ferric",
+      "description": "Present State of the Animus Project: Animus Ferric — a Rust-native agentic coding harness purpose-built for small local models (1B-14B GGUF). Harness-owned constrained decoding, deterministic model-scale policies, trajectory-first observability.",
+      "stars": 27,
+      "archived": false,
+      "language": "Rust"
+    },
+    {
+      "name": "Animus_1.0",
+      "url": "https://github.com/crussella0129/Animus_1.0",
+      "description": "A repository for the open source, natively running, Agentic CLI project: Animus (Deprecated prototype repo for now, see Animus_Ferric repo for most recent developments)",
+      "stars": 19,
+      "archived": false,
+      "language": "Python"
+    },
+    {
+      "name": "Animus_GECK",
+      "url": "https://github.com/crussella0129/Animus_GECK",
+      "description": "A wizard style software project idea launcher. Use at project launch (sprint 0) with the /sprint-loops protocol (https://github.com/crussella0129/sprint-loops)",
+      "stars": 19,
+      "archived": false,
+      "language": "Rust"
+    },
+    {
+      "name": "Animus_Sprint_Loops",
+      "url": "https://github.com/crussella0129/Animus_Sprint_Loops",
+      "description": "A lightweight, platform agnostic protocol for autonomous development and objective handling (repo acts as a Claude Code Plugin Marketplace, Codex Skill, Antigravity Skill, as well as a drop-in skill for custom, local setups like OpenClaw, Hermes, and Animus_Ferric)",
+      "stars": 14,
+      "archived": false,
+      "language": "Shell"
+    }
+  ]
+}

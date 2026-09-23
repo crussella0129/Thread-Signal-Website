@@ -1,504 +1,192 @@
-/* ════════════════════════════════════════════════════════════
-   Thread & Signal — "Lamplight Atelier" design system (v3)
-   Ink ground, linen text, traditional dye accents:
-   copper (signal) · verdigris (thread) · madder (fabrication)
-   ════════════════════════════════════════════════════════════ */
-
-/* ── Fonts ──────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
-/* ── CSS Variables ──────────────────────────── */
+/* Black, white, real work. Shared tokens for all four pages. */
 :root {
-  --bg: #141210;
-  --bg-surface: #1c1917;
-  --bg-raised: #211d19;
-
-  --accent: #e8a33d;                       /* copper — the signal */
-  --accent-glow: rgba(232, 163, 61, 0.14);
-  --accent-warm: #c2543f;                  /* madder — fabrication */
-  --accent-warm-glow: rgba(194, 84, 63, 0.14);
-  --thread: #4fb8a8;                       /* verdigris — the thread */
-  --thread-glow: rgba(79, 184, 168, 0.13);
-
-  --text: #ece5d8;                         /* linen */
-  --text-muted: #9a9184;
-  --border: rgba(236, 229, 216, 0.09);
-
-  --font-heading: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  --max-width: 1320px;
-  --nav-height: 76px;
-  --radius: 14px;
-  --transition: 0.25s ease;
-  --motion-scan: 7s;
-  --motion-settle: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  --plate-surface: color-mix(in srgb, var(--bg-surface) 88%, transparent);
-  --plate-border-active: color-mix(in srgb, var(--accent) 38%, var(--border));
-  --plate-shadow: 0 18px 60px rgba(0, 0, 0, 0.22);
-
-  /* Editorial spacing and type, shared by the service and inquiry pages. */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-24: 6rem;
-  --space-xs: var(--space-2);
-  --space-sm: var(--space-3);
-  --space-md: var(--space-4);
-  --space-lg: var(--space-6);
-  --space-xl: var(--space-8);
-  --space-2xl: var(--space-12);
-  --space-3xl: var(--space-16);
-  --space-section: clamp(4rem, 7vw, 5.5rem);
-  --space-gutter: var(--space-6);
+  color-scheme: dark;
+  --bg: #000;
+  --surface: #111;
+  --text: #fff;
+  --muted: #b8b8b8;
+  --rule: #333;
+  --hover: #dedede;
+  --pressed: #b8b8b8;
+  --font: Arial, Helvetica, sans-serif;
   --text-sm: 0.875rem;
   --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-small: var(--text-sm);
-  --text-body: var(--text-base);
-  --text-lead: var(--text-lg);
-  --text-subheading: 1.5rem;
-  --line-body: 1.65;
-  --measure-prose: 65ch;
-  --measure-heading: 20ch;
-  --border-width: 1px;
-  --line-hairline: var(--border-width);
-  --radius-pill: 99px;
-  --focus-width: 2px;
-  --focus-offset: 4px;
-  --size-touch-target: 44px;
+  --text-lead: clamp(1.125rem, 1.8vw, 1.375rem);
+  --text-h2: clamp(1.5rem, 2.5vw, 2rem);
+  --text-title: clamp(2.5rem, 5.8vw, 4.5rem);
+  --text-home: clamp(2.875rem, 5.5vw, 4.75rem);
+  --leading: 1.6;
+  --leading-title: 1.04;
+  --tracking-title: -0.045em;
+  --tracking-wordmark: -0.035em;
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.25rem;
+  --s6: 1.5rem;
+  --s8: 2rem;
+  --s10: 2.5rem;
+  --s12: 3rem;
+  --s16: 4rem;
+  --s20: 5rem;
+  --width: 72rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-gap: clamp(3rem, 6vw, 5rem);
+  --measure: 54ch;
+  --radius: 1.5rem;
+  --radius-media: 2rem;
+  --stroke: 1px;
+  --focus: 2px;
+  --target: 2.75rem;
+  --action-height: 3.25rem;
 }
 
-/* ── Reset ──────────────────────────────────── */
-*, *::before, *::after {
+* {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
-
 html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  scroll-padding-top: var(--s6);
 }
-
-/* Ink ground: lamp-glow radials over a faint woven crosshatch. */
 body {
-  font-family: var(--font-body);
-  background-color: var(--bg);
-  background-image:
-    radial-gradient(1100px 750px at 12% -8%, rgba(232, 163, 61, 0.07), transparent 62%),
-    radial-gradient(950px 700px at 90% 112%, rgba(194, 84, 63, 0.055), transparent 62%),
-    repeating-linear-gradient(45deg, rgba(236, 229, 216, 0.013) 0 1px, transparent 1px 8px),
-    repeating-linear-gradient(-45deg, rgba(236, 229, 216, 0.013) 0 1px, transparent 1px 8px);
-  background-attachment: fixed, fixed, scroll, scroll;
+  margin: 0;
+  background: var(--bg);
   color: var(--text);
-  line-height: 1.65;
-  min-height: 100vh;
+  font: var(--text-base)/var(--leading) var(--font);
 }
-
-a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: color var(--transition);
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
 }
-
-a:hover {
-  color: var(--text);
-}
-
-:where(a, button, summary, input, textarea, select):focus-visible {
-  outline: var(--focus-width) solid var(--accent);
-  outline-offset: var(--focus-offset);
-}
-
-.btn:active {
-  filter: brightness(0.92);
-}
-
-h1, h2, h3, h4 {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.015em;
-}
-
 h1 {
-  font-size: clamp(2.5rem, 6vw, 4.25rem);
-  font-weight: 700;
+  font-size: var(--text-title);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-title);
+  font-weight: 400;
+  text-wrap: balance;
 }
-
-h2 { font-size: clamp(1.6rem, 3.2vw, 2.5rem); }
-h3 { font-size: clamp(1.15rem, 2vw, 1.5rem); }
-
+h2 {
+  font-size: var(--text-h2);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-wordmark);
+  font-weight: 400;
+}
+a {
+  color: inherit;
+  text-underline-offset: var(--s1);
+  text-decoration-thickness: var(--stroke);
+}
+a:hover {
+  color: var(--hover);
+}
+a:focus-visible,
+summary:focus-visible,
+video:focus-visible {
+  outline: var(--focus) solid var(--text);
+  outline-offset: var(--s1);
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+main:focus {
+  outline: none;
+}
 ::selection {
-  background: var(--accent);
+  background: var(--text);
   color: var(--bg);
 }
-
-code {
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-  background: var(--bg-surface);
-  padding: 0.15em 0.4em;
-  border-radius: 4px;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* ── Utility Classes ────────────────────────── */
 .container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  width: min(100%, var(--width));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
-
-.section {
-  padding: 5.5rem 0;
+.page {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
 }
-
-.section.container {
-  padding: var(--space-section) var(--space-gutter);
+.page-intro {
+  max-width: var(--measure);
+  margin-bottom: var(--s12);
 }
-
-[id] {
-  scroll-margin-top: calc(var(--nav-height) + var(--space-lg));
-}
-
-/* Open, ruled compositions give longer copy room without another card grid. */
-.editorial-split {
-  display: grid;
-  gap: var(--space-xl);
-  align-items: start;
-}
-
-.editorial-heading {
-  max-width: var(--measure-heading);
-}
-
-.prose-stack {
-  display: grid;
-  gap: var(--space-lg);
-  max-width: var(--measure-prose);
-  font-size: var(--text-body);
-  line-height: var(--line-body);
-}
-
-.prose-stack p {
-  color: var(--text-muted);
-}
-
-.prose-stack strong {
-  color: var(--text);
-}
-
-.action-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-lg);
-}
-
-.text-link {
-  text-decoration: underline;
-  text-underline-offset: var(--space-xs);
-}
-
-.section-note {
-  font-size: var(--text-small);
-  color: var(--text-muted);
-}
-
-.brief-list {
-  display: grid;
-  gap: var(--space-md);
-  padding-left: var(--space-lg);
-  color: var(--text-muted);
-}
-
-.brief-list strong {
-  color: var(--text);
-}
-
-.faq-list {
-  display: grid;
-  gap: var(--space-xl);
-  max-width: var(--measure-prose);
-}
-
-.faq-list > div {
-  border-top: var(--line-hairline) solid var(--border);
-  padding-top: var(--space-lg);
-}
-
-.faq-list dt {
-  color: var(--text);
-  font-weight: 600;
-  margin-bottom: var(--space-sm);
-}
-
-.faq-list dd {
-  color: var(--text-muted);
-}
-
-@media (min-width: 900px) {
-  .editorial-split {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-    gap: var(--space-3xl);
-  }
-}
-
-.section-title {
-  margin-bottom: 1rem;
-}
-
-.section-subtitle {
-  color: var(--text-muted);
-  font-size: 1.125rem;
-  margin-bottom: 3rem;
-  max-width: 640px;
-}
-
-/* Eyebrow: the machine voice announcing the fable. */
 .eyebrow {
-  display: flex;
+  color: var(--muted);
+  margin-bottom: var(--s6);
+}
+.lead {
+  font-size: var(--text-lead);
+  color: var(--muted);
+  margin-top: var(--s6);
+  max-width: var(--measure);
+}
+.muted,
+figcaption {
+  color: var(--muted);
+}
+.small,
+figcaption {
+  font-size: var(--text-sm);
+}
+.action {
+  display: inline-flex;
+  justify-content: center;
   align-items: center;
-  gap: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin-bottom: 1.25rem;
+  min-height: var(--action-height);
+  padding: var(--s3) var(--s6);
+  border-radius: var(--radius);
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 700;
+  text-decoration: none;
 }
-
-.eyebrow::before {
-  content: '';
-  width: 2.25rem;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent), transparent);
+.action:hover {
+  background: var(--hover);
+  color: var(--bg);
 }
-
-/* Gradient ink for display keywords. */
-.ink-gradient {
-  background: linear-gradient(115deg, var(--accent) 20%, #f2cf8a 50%, var(--accent) 80%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.action:active {
+  background: var(--pressed);
 }
-
-.ink-thread {
-  background: linear-gradient(115deg, var(--thread) 20%, #a8ddd2 50%, var(--thread) 80%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.ink-madder {
-  background: linear-gradient(115deg, var(--accent-warm) 15%, #e69078 50%, var(--accent-warm) 85%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Mono copper numerals for numbered plaques/steps. */
-.numeral {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-}
-
-/* ── Carrier Line (section divider) ─────────── */
-/* A thin transmission line with a signal pulse standing in it. */
-.geo-divider {
-  position: relative;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--thread) 22%,
-    var(--accent) 50%,
-    var(--accent-warm) 78%,
-    transparent 100%
-  );
-  opacity: 0.35;
-  margin: 0;
-}
-
-.geo-divider::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 7px;
-  height: 7px;
-  transform: translate(-50%, -50%) rotate(45deg);
-  background: var(--bg);
-  border: 1px solid var(--accent);
-  box-shadow: 0 0 12px var(--accent-glow);
-}
-
-/* ── Button Styles ──────────────────────────── */
-.btn {
+.text-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.8rem;
-  border-radius: 10px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.01em;
-  cursor: pointer;
-  transition: all var(--transition);
-  border: none;
+  min-height: var(--target);
+  gap: var(--s2);
 }
-
-.btn-primary {
-  background: linear-gradient(180deg, #f0b355, var(--accent));
-  color: #241a09;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 8px 24px rgba(232, 163, 61, 0.18);
+.closing {
+  margin-top: var(--s12);
 }
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 12px 32px rgba(232, 163, 61, 0.3);
-  color: #241a09;
+.closing p {
+  margin-top: var(--s4);
+  color: var(--muted);
+  max-width: var(--measure);
 }
-
-.btn-outline {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid rgba(236, 229, 216, 0.25);
+.media-frame {
+  border-radius: var(--radius-media);
+  overflow: hidden;
 }
-
-.btn-outline:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-glow);
-  transform: translateY(-2px);
+.skip-link {
+  position: fixed;
+  top: var(--s4);
+  left: var(--s4);
+  z-index: 10;
+  padding: var(--s3) var(--s4);
+  background: var(--text);
+  color: var(--bg);
+  transform: translateY(-200%);
 }
-
-/* ── Card System ────────────────────────────── */
-.card {
-  --lane: var(--accent);
-  --lane-glow: var(--accent-glow);
-  position: relative;
-  background: linear-gradient(180deg, var(--bg-raised), var(--bg-surface));
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 2rem;
-  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--lane) 40%, transparent);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 28px var(--lane-glow);
-}
-
-/* Lane dye variants: a woven selvedge along the top edge. */
-.card-copper { --lane: var(--accent); --lane-glow: var(--accent-glow); }
-.card-thread { --lane: var(--thread); --lane-glow: var(--thread-glow); }
-.card-madder { --lane: var(--accent-warm); --lane-glow: var(--accent-warm-glow); }
-
-.card-copper::before,
-.card-thread::before,
-.card-madder::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: var(--radius);
-  right: var(--radius);
-  height: 2px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, transparent, var(--lane), transparent);
-  opacity: 0.75;
-}
-
-/* ── Reveal System (progressive enhancement) ── */
-/* Hidden state only exists when JS has marked <html class="js">;
-   without JS everything is visible. */
-html.js .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-
-html.js .reveal.revealed {
-  opacity: 1;
+.skip-link:focus {
   transform: none;
+  color: var(--bg);
 }
-
-/* Staggered children for grids. */
-html.js .reveal-stagger > * {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-html.js .reveal-stagger.revealed > * {
-  opacity: 1;
-  transform: none;
-}
-
-html.js .reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.1s; }
-html.js .reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.2s; }
-html.js .reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.3s; }
-html.js .reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.4s; }
-
-/* ── Wide Looms (2K/4K) ─────────────────────── */
-/* Let the composition breathe into big viewports instead of hugging a
-   narrow column. Placed after base rules so these declarations win. */
-@media (min-width: 1800px) {
-  :root {
-    --max-width: 1480px;
-  }
-
-  h1 {
-    font-size: clamp(2.5rem, 3.4vw, 5.25rem);
-  }
-
-  .section-subtitle {
-    font-size: 1.2rem;
-    max-width: 700px;
-  }
-}
-
-/* ── Reduced Motion ─────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  html.js .reveal,
-  html.js .reveal-stagger > * {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .card:hover,
-  .btn-primary:hover,
-  .btn-outline:hover {
-    transform: none;
-  }
-
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
+/* Progressive enhancement: rounded corners remain usable in other browsers. */
+@supports (corner-shape: squircle) {
+  .action,
+  .media-frame,
+  .site-nav a {
+    corner-shape: squircle;
   }
 }

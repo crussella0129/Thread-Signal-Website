@@ -1,0 +1,201 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import snapshot from "../data/github.json";
+import { validSnapshot } from "../data/github-schema.mjs";
+import { projectNotes } from "../data/project-notes";
+import { GITHUB_URL } from "../data/site";
+import jetson from "../assets/jetson-v3.1a-cad.png";
+if (!validSnapshot(snapshot))
+  throw new Error(
+    "Invalid GitHub project snapshot; refusing to render untrusted links.",
+  );
+const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<BaseLayout
+  title="Open-Source Dev"
+  description="Free and open-source software is central to Thread & Signal. Explore Charles Russella’s most-starred GitHub projects, from local AI tools to Jetson hardware."
+>
+  <div class="container page">
+    <header class="page-intro">
+      <p class="eyebrow">Open-Source Dev</p>
+      <h1>Built to be shared.</h1>
+      <p class="lead">
+        Contributing to and maintaining free and open-source software is a core
+        part of how we do business.
+      </p>
+      <p class="intro-note">
+        Charles’s work spans local AI assistants, tools for AI-assisted
+        development, and hardware designs others can build on.
+      </p>
+    </header>
+    <div class="list-heading">
+      <h2>Most-starred projects</h2><p class="small muted">
+        Updated <time datetime={snapshot.updatedAt}>{updated}</time> · Refreshes daily
+      </p>
+    </div>
+    <ol
+      class="projects"
+      aria-label="Five most-starred original GitHub projects"
+    >
+      {
+        snapshot.repositories.map((repo) => {
+          const note = projectNotes[repo.name];
+          return (
+            <li data-repository={repo.name}>
+              <article>
+                <div class="project-copy">
+                  <div class="project-heading">
+                    <>
+                      <h3>
+                        <a href={repo.url}>
+                          {note?.title || repo.name}{" "}
+                          <span aria-hidden="true">↗</span>
+                        </a>
+                      </h3>
+                      <span
+                        class="stars"
+                        aria-label={`${repo.stars} GitHub stars`}
+                      >
+                        {repo.stars} stars
+                      </span>
+                    </>
+                  </div>
+                  {(note?.status || repo.archived) && (
+                    <p class="status">{note?.status || "Archived"}</p>
+                  )}
+                  <p class="project-summary">
+                    {note?.summary ||
+                      repo.description ||
+                      "View the source, documentation, and latest work on GitHub."}
+                  </p>
+                </div>
+                {repo.name === "Jetson-Orin-Nano-Super-Case" && (
+                  <figure class="project-media">
+                    <a
+                      href={repo.url}
+                      aria-label="View the Jetson case design on GitHub"
+                    >
+                      <Image
+                        class="media-frame"
+                        src={jetson}
+                        alt="CAD view of the v3.1a Jetson enclosure, showing the fan opening, buttons, and front ports."
+                        widths={[400, 700]}
+                        sizes="(max-width: 640px) 100vw, 320px"
+                        format="webp"
+                        loading="lazy"
+                      />
+                    </a>
+                    <figcaption>Jetson case · v3.1a design</figcaption>
+                  </figure>
+                )}
+              </article>
+            </li>
+          );
+        })
+      }
+    </ol>
+    <a class="text-link closing" href={GITHUB_URL}
+      >Explore all of Charles’s projects <span aria-hidden="true">↗</span></a
+    >
+  </div>
+</BaseLayout>
+<style>
+  .page-intro {
+    max-width: 66ch;
+  }
+  .intro-note {
+    margin-top: var(--s5);
+    max-width: var(--measure);
+    color: var(--muted);
+  }
+  .list-heading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--s3) var(--s6);
+    align-items: baseline;
+    margin-bottom: var(--s6);
+  }
+  .list-heading h2 {
+    font-size: var(--text-lead);
+  }
+  .projects {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .projects li {
+    border-top: var(--stroke) solid var(--rule);
+    padding-block: var(--s8);
+  }
+  .projects li:last-child {
+    border-bottom: var(--stroke) solid var(--rule);
+  }
+  article {
+    display: flex;
+    align-items: center;
+    gap: var(--s10);
+    justify-content: space-between;
+  }
+  .project-copy {
+    flex: 1;
+  }
+  .project-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s4);
+  }
+  h3 {
+    font-size: var(--text-lead);
+    font-weight: 400;
+    letter-spacing: var(--tracking-wordmark);
+  }
+  h3 a {
+    display: inline-block;
+    padding-block: var(--s2);
+  }
+  .stars {
+    font-size: var(--text-sm);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .project-summary {
+    margin-top: var(--s3);
+    max-width: 64ch;
+    color: var(--muted);
+  }
+  .status {
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .project-media {
+    flex: 0 0 30%;
+  }
+  .project-media img {
+    width: 100%;
+  }
+  figcaption {
+    margin-top: var(--s2);
+  }
+  @media (max-width: 640px) {
+    article {
+      display: block;
+    }
+    .project-media {
+      margin-top: var(--s6);
+      max-width: 100%;
+    }
+    .project-heading {
+      flex-wrap: wrap;
+      gap: 0 var(--s4);
+    }
+  }
+</style>
