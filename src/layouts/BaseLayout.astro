@@ -1,47 +1,71 @@
 ---
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, OWNER_NAME, OWNER_TITLE, EMAIL, GITHUB_URL, LINKEDIN_URL } from '../data/site';
-import '../styles/global.css';
-
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import {
+  SITE_NAME,
+  SITE_URL,
+  SITE_DESCRIPTION,
+  OWNER_NAME,
+  OWNER_TITLE,
+  DARIAN_NAME,
+  DARIAN_TITLE,
+  EMAIL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+} from "../data/site";
+import "../styles/global.css";
 interface Props {
   title: string;
   description?: string;
-  /** Optional schema.org structured data, rendered as JSON-LD. */
-  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
-  ogType?: string;
-  publishedTime?: string;
 }
-
-const { title, description = SITE_DESCRIPTION, jsonLd, ogType = 'website', publishedTime } = Astro.props;
-
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { title, description = SITE_DESCRIPTION } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, SITE_URL);
 const fullTitle = `${title} | ${SITE_NAME}`;
-const socialImage = new URL('/social-card.png', SITE_URL).href;
-const socialImageAlt = 'Thread & Signal — AI automation, local LLM deployment, and agent workshops by Charles Russella.';
+const socialImage = new URL("/social-card.png", SITE_URL).href;
+const socialImageAlt = "Thread & Signal. We automate repetitive work.";
 const identity = [
   {
-    '@context': 'https://schema.org', '@type': 'Organization',
-    '@id': `${SITE_URL}/#organization`, name: SITE_NAME, url: `${SITE_URL}/`,
-    email: EMAIL, description: SITE_DESCRIPTION,
-    founder: { '@id': `${SITE_URL}/#charles-russella` },
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: SITE_NAME,
+    url: `${SITE_URL}/`,
+    email: EMAIL,
+    description: SITE_DESCRIPTION,
+    founder: { "@id": `${SITE_URL}/#charles-russella` },
   },
   {
-    '@context': 'https://schema.org', '@type': 'Person',
-    '@id': `${SITE_URL}/#charles-russella`, name: OWNER_NAME,
-    jobTitle: OWNER_TITLE, url: `${SITE_URL}/#about`,
-    worksFor: { '@id': `${SITE_URL}/#organization` },
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${SITE_URL}/#charles-russella`,
+    name: OWNER_NAME,
+    jobTitle: OWNER_TITLE,
+    url: `${SITE_URL}/contact/#charles`,
+    worksFor: { "@id": `${SITE_URL}/#organization` },
     sameAs: [GITHUB_URL, LINKEDIN_URL],
   },
-  ...(Astro.url.pathname === '/' ? [{
-    '@context': 'https://schema.org', '@type': 'WebSite',
-    '@id': `${SITE_URL}/#website`, name: SITE_NAME, alternateName: 'Thread and Signal',
-    url: `${SITE_URL}/`, publisher: { '@id': `${SITE_URL}/#organization` },
-  }] : []),
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${SITE_URL}/#darian-russella`,
+    name: DARIAN_NAME,
+    jobTitle: DARIAN_TITLE,
+    url: `${SITE_URL}/contact/#darian`,
+    worksFor: { "@id": `${SITE_URL}/#organization` },
+  },
+  ...(Astro.url.pathname === "/"
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: SITE_NAME,
+          url: `${SITE_URL}/`,
+          publisher: { "@id": `${SITE_URL}/#organization` },
+        },
+      ]
+    : []),
 ];
-const structuredData = [...identity, ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [])];
-// Escape '<' so a content string cannot close the script element.
-const serializedData = JSON.stringify(structuredData).replace(/</g, '\\u003c');
+const serializedData = JSON.stringify(identity).replace(/</g, "\\u003c");
 ---
 
 <!doctype html>
@@ -49,16 +73,20 @@ const serializedData = JSON.stringify(structuredData).replace(/</g, '\\u003c');
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'none'; base-uri 'none'; form-action 'none';"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#141210" />
+    <meta name="theme-color" content="#000000" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:type" content={ogType} />
+    <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content={socialImage} />
@@ -71,58 +99,13 @@ const serializedData = JSON.stringify(structuredData).replace(/</g, '\\u003c');
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
     <meta name="twitter:image:alt" content={socialImageAlt} />
-    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
-
     <script is:inline type="application/ld+json" set:html={serializedData} />
-
     <title>{fullTitle}</title>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <Nav />
-    <main id="main-content" tabindex="-1" style="padding-top: var(--nav-height);">
-      <slot />
-    </main>
+    <main id="main-content" tabindex="-1"><slot /></main>
     <Footer />
-
-    <script is:inline>
-      // Progressive-enhancement marker: reveal styles only apply under html.js.
-      document.documentElement.classList.add('js');
-
-      (function () {
-        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var targets = document.querySelectorAll('.reveal, .reveal-stagger');
-        if (reduced || !('IntersectionObserver' in window)) {
-          targets.forEach(function (el) { el.classList.add('revealed'); });
-          return;
-        }
-        var io = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                io.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-        );
-        targets.forEach(function (el) { io.observe(el); });
-      })();
-    </script>
   </body>
 </html>
-
-<style>
-  .skip-link {
-    position: fixed;
-    top: var(--space-3);
-    left: var(--space-3);
-    z-index: 1100;
-    padding: var(--space-3) var(--space-4);
-    background: var(--accent);
-    color: var(--bg);
-    transform: translateY(-200%);
-  }
-  .skip-link:focus-visible { transform: none; }
-</style>

@@ -1,227 +1,100 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import { GITHUB_URL, LINKEDIN_URL, OWNER_NAME, OWNER_LOCATION, AUTOMATION_BRIEF_URL } from '../data/site';
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import jetson from "../assets/jetson-v3.1a-photo.webp";
+import jetsonCad from "../assets/jetson-v3.1a-cad.png";
+import { GITHUB_URL } from "../data/site";
 ---
 
-<BaseLayout title="AI Automation & Local LLM Deployment">
-  <Hero />
-
-  <div class="geo-divider"></div>
-
-  <!-- Three benches -->
-  <section class="section container">
-    <p class="eyebrow">The workshop</p>
-    <h2 class="section-title">Three benches, one craft.</h2>
-    <p class="section-subtitle">
-      Automate a workflow, equip your engineering team, or bring a physical
-      design to life. Explore the public projects behind each kind of work.
-    </p>
-
-    <div class="lanes-grid reveal-stagger">
-      <a href="/animus" class="card card-copper lane">
-        <svg class="lane-icon" viewBox="0 0 40 40" aria-hidden="true">
-          <path d="M4 12 H36 M4 20 H36 M4 28 H36" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
-          <circle cx="14" cy="12" r="2.4" fill="currentColor"/>
-          <circle cx="26" cy="20" r="2.4" fill="currentColor"/>
-          <circle cx="18" cy="28" r="2.4" fill="currentColor"/>
-        </svg>
-        <p class="lane-tag">Agents &amp; automation</p>
-        <h3>Animus &amp; custom harnesses</h3>
-        <p class="lane-motto">Intelligence that stays home.</p>
-        <p class="lane-desc">
-          The open-source Animus Ferric harness — Rust, built for 1B–14B local
-          models — plus paid implementations: llama.cpp deployments, on-prem
-          agents, business process automation.
-        </p>
-        <span class="lane-proof">Animus Ferric · diploid · edge deployments</span>
-        <span class="lane-link">Visit the bench &rarr;</span>
-      </a>
-
-      <a href="/skills" class="card card-thread lane">
-        <svg class="lane-icon" viewBox="0 0 40 40" aria-hidden="true">
-          <circle cx="15" cy="20" r="9" fill="none" stroke="currentColor" stroke-width="1.4"/>
-          <circle cx="25" cy="20" r="9" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.65"/>
-        </svg>
-        <p class="lane-tag">Skills &amp; training</p>
-        <h3>Agent skills &amp; workshops</h3>
-        <p class="lane-motto">Skills that outlive subscriptions.</p>
-        <p class="lane-desc">
-          Portable agent workflows — Sprint Loops, GECK, MDR — plus custom
-          skills and hands-on team workshops. Adapted to the tools your team
-          uses, including Claude Code, Codex, and local harnesses.
-        </p>
-        <span class="lane-proof">Sprint Loops · GECK · MDR</span>
-        <span class="lane-link">Visit the bench &rarr;</span>
-      </a>
-
-      <a href="/design" class="card card-madder lane">
-        <svg class="lane-icon" viewBox="0 0 40 40" aria-hidden="true">
-          <path d="M20 6 L34 14 V26 L20 34 L6 26 V14 Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
-          <path d="M20 6 V20 M20 20 L34 14 M20 20 L6 14 M20 20 V34" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-        </svg>
-        <p class="lane-tag">Design &amp; fabrication</p>
-        <h3>CAD &amp; 3D printing</h3>
-        <p class="lane-motto">Drawn, printed, held.</p>
-        <p class="lane-desc">
-          Commissioned designs — jigs &amp; fixtures, corporate gear, gaming
-          assets, manufacturing equipment — and 1-on-1 Autodesk Fusion lessons
-          in geometry and additive manufacturing.
-        </p>
-        <span class="lane-proof">Jetson Orin Nano Super Case · HexQuest</span>
-        <span class="lane-link">Visit the bench &rarr;</span>
-      </a>
-    </div>
-  </section>
-
-  <div class="geo-divider"></div>
-
-  <section class="section container editorial-split">
-    <div>
-      <p class="eyebrow">A practical first commission</p>
-      <h2 class="section-title editorial-heading">Start with one workflow.</h2>
-    </div>
-    <div class="prose-stack">
-      <p>
-        A report assembled by hand. Files copied between systems. An internal
-        task that needs judgment before the next step. Bring the recurring work
-        you want to change, and we'll define what a useful first build must do.
+<BaseLayout title="We automate repetitive work">
+  <div class="container home">
+    <section class="home-intro" aria-labelledby="home-title">
+      <h1 id="home-title">We automate<br />repetitive work.</h1>
+      <p class="lead">
+        Reports. Data entry. Moving information between apps. We build tools and
+        set up AI to do the busywork for you.
       </p>
-      <p>
-        <strong>Considering local AI?</strong> Start with a feasibility assessment:
-        your task, available hardware, data boundary, and a clear way to measure
-        whether the result is good enough. Model size alone cannot answer that.
-      </p>
-      <div class="action-row">
-        <a href={AUTOMATION_BRIEF_URL} class="btn btn-primary">Scope an automation</a>
-        <a href="/services/#automation-assessment" class="text-link">See the starting scope</a>
+      <a class="action" href="/services/">See our services</a>
+      <a class="text-link" href="/contact/"
+        >Tell us what takes too long <span aria-hidden="true">→</span></a
+      >
+    </section>
+    <figure>
+      <div class="hero-images">
+        <div class="media-frame home-photo home-cad">
+          <Image
+            src={jetsonCad}
+            alt="CAD design of our Jetson case, showing the fan opening, buttons, and computer ports."
+            widths={[480, 800, 1200]}
+            sizes="(max-width: 760px) 100vw, 50vw"
+            format="webp"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="media-frame home-photo">
+          <Image
+            src={jetson}
+            alt="The finished 3D-printed Jetson case held in one hand, with the fan and computer ports visible."
+            widths={[480, 800, 1200]}
+            sizes="(max-width: 760px) 100vw, 50vw"
+            format="webp"
+            loading="lazy"
+          />
+        </div>
       </div>
-      <p class="section-note">A short email is enough. Scope, price, and deliverables are agreed before the build.</p>
-    </div>
-  </section>
-
-  <div class="geo-divider"></div>
-
-  <section id="about" class="section container editorial-split">
-    <div>
-      <p class="eyebrow">The person at the bench</p>
-      <h2 class="section-title editorial-heading">Built by {OWNER_NAME}.</h2>
-      <p class="founder-location">Independent developer &amp; designer · {OWNER_LOCATION}</p>
-    </div>
-    <div class="prose-stack">
-      <p>
-        I'm Charles. Thread &amp; Signal brings my software and design work into
-        one studio: Rust and Python development, local AI systems, agent workflows,
-        and CAD for parts you can make. You work directly with the person building it.
-      </p>
-      <p>
-        My public work connects those disciplines. <a href="/animus/" class="text-link">Animus Ferric</a>
-        explores how small local models use tools. <a href="/skills/" class="text-link">Sprint Loops</a>
-        gives agent-assisted development a documented process. The
-        <a href="/design/" class="text-link">Jetson Orin Nano Super Case</a> takes the work from code to a printable enclosure.
-      </p>
-      <p>
-        <strong>Local deployment starts with a boundary you can explain.</strong>
-        That means deciding where inference runs, which tools can reach the network,
-        and what a person must approve. Those choices are part of the build.
-      </p>
-      <div class="action-row">
-        <a href={GITHUB_URL} class="text-link" target="_blank" rel="noopener">Explore my GitHub</a>
-        <a href={LINKEDIN_URL} class="text-link" target="_blank" rel="noopener">Professional background</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="geo-divider"></div>
-
-  <section class="section container editorial-split">
-    <div>
-      <p class="eyebrow">From the workshop journal</p>
-      <h2 class="section-title editorial-heading">Before you buy more hardware.</h2>
-    </div>
-    <div class="prose-stack">
-      <p>
-        Can a local LLM run your business workflow? Work through the questions
-        that matter: task fit, memory, data access, evaluation, and maintenance.
-      </p>
-      <a href="/blog/local-llm-business-workflow/" class="text-link">Read the local LLM feasibility guide &rarr;</a>
-      <div class="action-row">
-        <a href="/contact" class="btn btn-primary">Commission a build</a>
-      </div>
-    </div>
-  </section>
+      <figcaption>
+        Pictured here: <a href={`${GITHUB_URL}/Jetson-Orin-Nano-Super-Case`}
+          >Nvidia Jetson Orin Nano Super Case v3.1a</a
+        >
+      </figcaption>
+    </figure>
+  </div>
 </BaseLayout>
-
 <style>
-  .lanes-grid {
+  .home {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 1.05fr 1fr;
+    align-items: center;
+    gap: var(--s12);
+    padding-block: var(--section-gap);
   }
-
-  .lane {
+  h1 {
+    font-size: var(--text-home);
+  }
+  .home-intro .action {
+    margin-top: var(--s8);
+  }
+  .home-intro > .text-link {
     display: flex;
-    flex-direction: column;
-    color: var(--text);
+    width: fit-content;
+    margin-top: var(--s4);
+    color: var(--muted);
   }
-
-  .lane:hover {
-    color: var(--text);
+  .hero-images {
+    display: grid;
+    gap: var(--s4);
   }
-
-  .lane-icon {
-    width: 40px;
-    height: 40px;
-    color: var(--lane);
-    margin-bottom: 1.25rem;
+  .home-photo img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: 50% 60%;
+    filter: grayscale(1);
   }
-
-  .lane-tag {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    margin-bottom: 0.6rem;
+  .home-cad img {
+    object-position: center;
   }
-
-  .lane h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.4rem;
+  figcaption {
+    margin-top: var(--s4);
   }
-
-  .lane-motto {
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-weight: 450;
-    color: var(--lane);
-    margin-bottom: 0.9rem;
-  }
-
-  .lane-desc {
-    color: var(--text-muted);
-    font-size: 0.93rem;
-    line-height: 1.65;
-    margin-bottom: 1.25rem;
-    flex-grow: 1;
-  }
-
-  .lane-proof {
-    font-family: var(--font-mono);
-    font-size: 0.73rem;
-    color: var(--text-muted);
-    margin-bottom: 0.85rem;
-  }
-
-  .lane-link {
-    color: var(--lane);
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-
-  .founder-location {
-    font-size: var(--text-small);
-    color: var(--text-muted);
-    max-width: var(--measure-heading);
+  @media (max-width: 760px) {
+    .home {
+      grid-template-columns: 1fr;
+      gap: var(--s10);
+    }
+    .home-photo img {
+      aspect-ratio: 4 / 3;
+    }
   }
 </style>

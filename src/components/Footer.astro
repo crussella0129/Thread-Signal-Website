@@ -1,135 +1,28 @@
 ---
-import { EMAIL, GITHUB_URL, LINKEDIN_URL } from '../data/site';
-
-const year = new Date().getFullYear();
+import { SITE_NAME, GITHUB_URL } from "../data/site";
 ---
 
-<footer class="footer">
-  <div class="geo-divider"></div>
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <span class="footer-logo">
-        <span class="footer-word">Thread</span>
-        <span class="footer-amp">&amp;</span>
-        <span class="footer-word">Signal</span>
-      </span>
-      <p class="footer-tagline">Handwoven automation, running on hardware you own.</p>
-    </div>
-
-    <nav class="footer-nav">
-      <div class="footer-col">
-        <h4>Work With Us</h4>
-        <a href="/services">Services</a>
-        <a href="/animus">Animus</a>
-        <a href="/skills">Agent Skills</a>
-        <a href="/design">CAD &amp; 3D Design</a>
-      </div>
-      <div class="footer-col">
-        <h4>Explore</h4>
-        <a href="/projects">Projects</a>
-        <a href="/blog">Blog</a>
-        <a href="/contact">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-        <a href={GITHUB_URL} target="_blank" rel="noopener">GitHub</a>
-        <a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-    </nav>
-
-    <p class="footer-copy">&copy; {year} Thread &amp; Signal. All rights reserved.</p>
+<footer class="container">
+  <div class="footer-line">
+    <p>{SITE_NAME} LLC · Kent, Ohio</p>
+    <a class="text-link" href={GITHUB_URL}
+      >GitHub <span aria-hidden="true">↗</span></a
+    >
   </div>
 </footer>
-
 <style>
-  .footer {
-    padding-top: 0;
-  }
-
-  .footer-inner {
-    padding: 3.5rem 1.5rem 2rem;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  .footer-brand {
-    grid-column: 1;
-  }
-
-  .footer-logo {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 600;
-  }
-
-  .footer-word { color: var(--text); }
-
-  .footer-amp {
-    color: var(--accent);
-    font-style: italic;
-    font-weight: 450;
-  }
-
-  .footer-tagline {
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-weight: 450;
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-top: 0.6rem;
-    max-width: 300px;
-  }
-
-  .footer-nav {
+  .footer-line {
+    border-top: var(--stroke) solid var(--rule);
+    padding-block: var(--s5);
     display: flex;
-    gap: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s4);
+    color: var(--muted);
+    font-size: var(--text-sm);
   }
-
-  .footer-col {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .footer-col h4 {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    margin-bottom: 0.35rem;
-  }
-
-  .footer-col a {
-    color: var(--text);
-    font-size: 0.9rem;
-  }
-
-  .footer-col a:hover {
-    color: var(--accent);
-  }
-
-  .footer-copy {
-    grid-column: 1 / -1;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    text-align: center;
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-    margin-top: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    .footer-inner {
-      grid-template-columns: 1fr;
-    }
-
-    .footer-nav {
-      gap: 2rem;
+  @media (max-width: 400px) {
+    .footer-line {
       flex-wrap: wrap;
     }
   }

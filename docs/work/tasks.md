@@ -1,5 +1,10 @@
-# Agent Tasks (Persistent Backlog)
+# Agent tasks
 
-- [ ] T-305 (backlog) [intent: INT-0002]: After Charles signs off on the study, integrate the work-led homepage into the production Astro app (src/pages/index.astro + Hero/global.css), carry the system through the other pages, update the legacy dist-check regressions, then publish and verify live — touches: src/pages/index.astro, src/components/Hero.astro, src/styles/global.css, docs/sprints/s0/sprint-tests/dist-check.mjs, docs/sprints/s1/sprint-tests/dist-check-s1.mjs
-
-
+- [x] T-305: Convert to four pages and obtain Charles's approval of the localhost preview. Includes the black theme, three approved pricing ranges, resume-based bios, daily GitHub ranking with a saved fallback, stacked grayscale CAD/physical images, and the linked Jetson caption.
+- [ ] T-306 (active, publication authorized): Complete the security review and publish the approved conversion.
+  - [x] Audit code, dependencies, contributor access, repository rules, and Actions.
+  - [x] Patch dependencies, isolate deployment privileges, pin actions, validate external data, and enable repository protections.
+  - [x] Pass local type, data, adversarial input, static artifact, and frontend audit checks.
+  - [ ] Integrate the remote work branch, create a PR, and require successful CI.
+  - [ ] Switch Pages to the protected artifact workflow, merge, and verify the live site.
+- [ ] T-307 (optional follow-up, awaiting computer-use permission): Capture real software screenshots/clips with Cap. The approved release uses current project media; this does not block publication. Cap was only opened for setup inspection, and no recording started.
