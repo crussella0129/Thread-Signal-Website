@@ -195,7 +195,7 @@ check(
 );
 
 check(
-  "short homepage, three services with estimates, and direct contact",
+  "short homepage, scope-based automation pricing, and contact for both owners",
   () => {
     assert.ok(
       text(elements(pageAt("/"), "main")[0])
@@ -204,17 +204,27 @@ check(
     );
     const services = pageAt("/services/");
     assert.equal(elements(services, "li").length, 3);
-    for (const li of elements(services, "li"))
+    const offers = elements(services, "li");
+    assert.match(text(offers[0]), /Scope-based pricing/);
+    assert.ok(
+      nodes(offers[0]).some(
+        (n) => n.tagName === "a" && attr(n, "href") === "/contact/",
+      ),
+    );
+    for (const li of offers.slice(1))
       assert.match(text(li), /\$[\d,]+–\$[\d,]+/);
     assert.match(text(services.document), /Planning estimates in USD/);
     const contact = pageAt("/contact/");
     assert.equal(elements(contact, "form").length, 0);
     const links = elements(contact, "a").map((n) => attr(n, "href"));
-    assert.ok(links.includes("mailto:charles@threadandsignal.com"));
+    assert.equal(links.filter((h) => h.startsWith("mailto:")).length, 1);
     const brief = new URL(
       links.find((h) => h.startsWith("mailto:") && h.includes("body=")),
     );
-    assert.equal(brief.pathname, "charles@threadandsignal.com");
+    assert.deepEqual(brief.pathname.split(","), [
+      "charles@threadandsignal.com",
+      "darian@threadandsignal.com",
+    ]);
     assert.match(brief.searchParams.get("body"), /What we do now:\r?\n/);
     for (const name of ["Charles Russella", "Darian Russella"])
       assert.ok(text(contact.document).includes(name));

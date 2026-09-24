@@ -5,8 +5,9 @@ const offers = [
     title: "Stop copying and pasting.",
     description:
       "Turn spreadsheets, emails, and forms into finished reports or updated records. We build and test one tool around the job you repeat.",
-    price: "$1,500–$5,000",
-    unit: "for a focused automation project",
+    price: "Scope-based pricing",
+    unit: "to see how we can help.",
+    contact: true,
   },
   {
     title: "Put AI to work on your documents.",
@@ -27,7 +28,7 @@ const offers = [
 
 <BaseLayout
   title="Services Offered"
-  description="Less copying and pasting. Useful AI for your documents. Hands-on team training. See what we offer and the budget for a small, focused project."
+  description="Less copying and pasting. Useful AI for your documents. Hands-on team training. Automation pricing is based on scope, with planning estimates for AI setup and training."
 >
   <div class="container page">
     <header class="page-intro">
@@ -44,7 +45,15 @@ const offers = [
                 <>
                   <p>{offer.description}</p>
                   <p class="budget">
-                    <strong>{offer.price}</strong> <span>{offer.unit}</span>
+                    <strong>{offer.price + (offer.contact ? ";" : "")}</strong>{" "}
+                    {offer.contact ? (
+                      <>
+                        <a href="/contact/">Tell us more</a>{" "}
+                        <span>{offer.unit}</span>
+                      </>
+                    ) : (
+                      <span>{offer.unit}</span>
+                    )}
                   </p>
                 </>
               </div>

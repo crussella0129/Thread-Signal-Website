@@ -9,9 +9,10 @@ import {
   OWNER_TITLE,
   DARIAN_NAME,
   DARIAN_TITLE,
-  EMAIL,
+  CONTACT_EMAILS,
   GITHUB_URL,
   LINKEDIN_URL,
+  DARIAN_LINKEDIN_URL,
 } from "../data/site";
 import "../styles/global.css";
 interface Props {
@@ -30,7 +31,7 @@ const identity = [
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: `${SITE_URL}/`,
-    email: EMAIL,
+    email: CONTACT_EMAILS,
     description: SITE_DESCRIPTION,
     founder: { "@id": `${SITE_URL}/#charles-russella` },
   },
@@ -52,6 +53,7 @@ const identity = [
     jobTitle: DARIAN_TITLE,
     url: `${SITE_URL}/contact/#darian`,
     worksFor: { "@id": `${SITE_URL}/#organization` },
+    sameAs: [DARIAN_LINKEDIN_URL],
   },
   ...(Astro.url.pathname === "/"
     ? [

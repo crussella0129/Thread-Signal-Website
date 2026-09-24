@@ -6,8 +6,12 @@ export const DARIAN_NAME = "Darian Russella";
 export const DARIAN_TITLE = "Co-owner & systems engineer";
 export const OWNER_LOCATION = "Kent, Ohio";
 export const EMAIL = "charles@threadandsignal.com";
+export const DARIAN_EMAIL = "darian@threadandsignal.com";
+export const CONTACT_EMAILS = [EMAIL, DARIAN_EMAIL];
 export const GITHUB_URL = "https://github.com/crussella0129";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/cgriv/";
+export const DARIAN_LINKEDIN_URL =
+  "https://www.linkedin.com/in/darian-russella-170015176/";
 export const SITE_DESCRIPTION =
   "We automate repetitive work, set up AI, and teach your team how to use it. Thread & Signal is owned by Charles and Darian Russella in Kent, Ohio.";
 const brief = [
@@ -20,4 +24,4 @@ const brief = [
   "",
   "Thanks,",
 ].join("\r\n");
-export const AUTOMATION_BRIEF_URL = `mailto:${EMAIL}?subject=${encodeURIComponent("Help with a business task")}&body=${encodeURIComponent(brief)}`;
+export const AUTOMATION_BRIEF_URL = `mailto:${CONTACT_EMAILS.join(",")}?subject=${encodeURIComponent("Help with a business task")}&body=${encodeURIComponent(brief)}`;

@@ -1,11 +1,9 @@
 ---
-import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import snapshot from "../data/github.json";
 import { validSnapshot } from "../data/github-schema.mjs";
 import { projectNotes } from "../data/project-notes";
 import { GITHUB_URL } from "../data/site";
-import jetson from "../assets/jetson-v3.1a-cad.png";
 if (!validSnapshot(snapshot))
   throw new Error(
     "Invalid GitHub project snapshot; refusing to render untrusted links.",
@@ -20,7 +18,7 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
 
 <BaseLayout
   title="Open-Source Dev"
-  description="Free and open-source software is central to Thread & Signal. Explore Charles Russella’s most-starred GitHub projects, from local AI tools to Jetson hardware."
+  description="Free and open-source software is central to Thread & Signal. Explore our most-starred GitHub projects, from local AI tools to Jetson hardware."
 >
   <div class="container page">
     <header class="page-intro">
@@ -31,8 +29,8 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
         part of how we do business.
       </p>
       <p class="intro-note">
-        Charles’s work spans local AI assistants, tools for AI-assisted
-        development, and hardware designs others can build on.
+        Our work spans local AI assistants, tools for AI-assisted development,
+        and hardware designs others can build on.
       </p>
     </header>
     <div class="list-heading">
@@ -50,7 +48,7 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
           return (
             <li data-repository={repo.name}>
               <article>
-                <div class="project-copy">
+                <div>
                   <div class="project-heading">
                     <>
                       <h3>
@@ -76,25 +74,6 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
                       "View the source, documentation, and latest work on GitHub."}
                   </p>
                 </div>
-                {repo.name === "Jetson-Orin-Nano-Super-Case" && (
-                  <figure class="project-media">
-                    <a
-                      href={repo.url}
-                      aria-label="View the Jetson case design on GitHub"
-                    >
-                      <Image
-                        class="media-frame"
-                        src={jetson}
-                        alt="CAD view of the v3.1a Jetson enclosure, showing the fan opening, buttons, and front ports."
-                        widths={[400, 700]}
-                        sizes="(max-width: 640px) 100vw, 320px"
-                        format="webp"
-                        loading="lazy"
-                      />
-                    </a>
-                    <figcaption>Jetson case · v3.1a design</figcaption>
-                  </figure>
-                )}
               </article>
             </li>
           );
@@ -102,7 +81,7 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
       }
     </ol>
     <a class="text-link closing" href={GITHUB_URL}
-      >Explore all of Charles’s projects <span aria-hidden="true">↗</span></a
+      >Explore all our projects <span aria-hidden="true">↗</span></a
     >
   </div>
 </BaseLayout>
@@ -138,15 +117,6 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
   .projects li:last-child {
     border-bottom: var(--stroke) solid var(--rule);
   }
-  article {
-    display: flex;
-    align-items: center;
-    gap: var(--s10);
-    justify-content: space-between;
-  }
-  .project-copy {
-    flex: 1;
-  }
   .project-heading {
     display: flex;
     align-items: baseline;
@@ -176,23 +146,7 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
     font-size: var(--text-sm);
     color: var(--muted);
   }
-  .project-media {
-    flex: 0 0 30%;
-  }
-  .project-media img {
-    width: 100%;
-  }
-  figcaption {
-    margin-top: var(--s2);
-  }
   @media (max-width: 640px) {
-    article {
-      display: block;
-    }
-    .project-media {
-      margin-top: var(--s6);
-      max-width: 100%;
-    }
     .project-heading {
       flex-wrap: wrap;
       gap: 0 var(--s4);
