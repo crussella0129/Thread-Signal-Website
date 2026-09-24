@@ -45,10 +45,7 @@ const offers = [
                 <>
                   <p>{offer.description}</p>
                   <p class="budget">
-                    <strong>
-                      {offer.price}
-                      {offer.contact ? ";" : ""}
-                    </strong>{" "}
+                    <strong>{offer.price + (offer.contact ? ";" : "")}</strong>{" "}
                     {offer.contact ? (
                       <>
                         <a href="/contact/">Tell us more</a>{" "}
