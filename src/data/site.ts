@@ -13,7 +13,7 @@ export const LINKEDIN_URL = "https://www.linkedin.com/in/cgriv/";
 export const DARIAN_LINKEDIN_URL =
   "https://www.linkedin.com/in/darian-russella-170015176/";
 export const SITE_DESCRIPTION =
-  "We automate repetitive work, set up AI, and teach your team how to use it. Thread & Signal is owned by Charles and Darian Russella in Kent, Ohio.";
+  "We automate repetitive work, set up local AI, and teach your team how to use it. Thread & Signal is owned by Charles and Darian Russella in Kent, Ohio.";
 const brief = [
   "Hi Charles and Darian,",
   "",

@@ -1,9 +1,9 @@
 # Thread & Signal
 
-Thread & Signal LLC is owned by Charles and Darian Russella in Kent, Ohio. It offers task automation, AI setup and testing, and practical team training. Contact: https://threadandsignal.com/contact/.
+Thread & Signal LLC is owned by Charles and Darian Russella in Kent, Ohio. It offers task automation, local AI hardware planning and setup, and practical team training. Contact: https://threadandsignal.com/contact/.
 
 - [Home](https://threadandsignal.com/): We automate repetitive work.
-- [Services Offered](https://threadandsignal.com/services/): Scope-based automation pricing and planning estimates in USD for AI setup and team training. Work and final price are agreed before starting.
+- [Services Offered](https://threadandsignal.com/services/): Scope-based automation pricing, local AI hardware advice and model/agent setup, and team training. Local AI work includes tested document and workflow tasks that can run while customers do other work or sleep. Planning estimates are in USD; hardware is extra, and work and final price are agreed before starting.
 - [Open-Source Dev](https://threadandsignal.com/open-source/): Free and open-source software is a core business practice. The five most-starred original public repositories refresh on a daily schedule, with the last successful update date shown.
 - [About Us & Contact](https://threadandsignal.com/contact/): Charles's business automation background, Darian's systems and broadcast experience, both LinkedIn profiles, and an email draft addressed to both owners.
 - [GitHub](https://github.com/crussella0129): Public repositories and current development.
