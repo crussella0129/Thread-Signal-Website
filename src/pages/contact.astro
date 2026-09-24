@@ -5,9 +5,9 @@ import {
   OWNER_TITLE,
   DARIAN_NAME,
   DARIAN_TITLE,
-  EMAIL,
   AUTOMATION_BRIEF_URL,
   LINKEDIN_URL,
+  DARIAN_LINKEDIN_URL,
 } from "../data/site";
 ---
 
@@ -48,6 +48,9 @@ import {
           troubleshooting, and clear technical documentation to our work, and
           can assist with contract remote broadcast projects.
         </p>
+        <a class="text-link" href={DARIAN_LINKEDIN_URL}
+          >Darian on LinkedIn <span aria-hidden="true">↗</span></a
+        >
       </section>
     </div>
     <section class="contact" aria-labelledby="contact-heading">
@@ -58,8 +61,7 @@ import {
         </p>
       </div>
       <div class="contact-actions">
-        <a class="action" href={AUTOMATION_BRIEF_URL}>Email us about a task</a
-        ><a class="email text-link" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        <a class="action" href={AUTOMATION_BRIEF_URL}>Email us about a task</a>
       </div>
     </section>
   </div>
@@ -104,11 +106,6 @@ import {
   }
   .contact-actions {
     align-self: center;
-  }
-  .email {
-    display: block;
-    overflow-wrap: anywhere;
-    margin-top: var(--s4);
   }
   @media (max-width: 640px) {
     .people,
