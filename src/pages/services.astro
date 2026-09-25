@@ -15,7 +15,10 @@ const offers = [
       "We check your hardware or recommend what you need, then set up compatible local AI models and tools like Hermes Agent. We build and test document and workflow tasks, including overnight jobs where suitable, with agreed limits and human review.",
     price: "Starting at $750",
     unit: "for hardware planning, setup, and testing",
-    disclosure: true,
+    disclosure:
+      "Hardware is not included. Computers and accessories, including any pictured Jetson, are purchased separately.",
+    expectations:
+      "AI can make mistakes. Speed and accuracy depend on your hardware, data, and task.",
   },
   {
     title: "Help your team use it.",
@@ -57,17 +60,10 @@ const offers = [
                     )}
                   </p>
                   {offer.disclosure && (
-                    <p class="offer-disclosure">
-                      <a
-                        class="disclosure-link"
-                        href="#service-disclosure"
-                        aria-label="Hardware is not included. Read the hardware and AI disclosure."
-                      >
-                        <span>
-                          Hardware is not included.<sup>*</sup>
-                        </span>
-                      </a>
-                    </p>
+                    <p class="offer-disclosure">{offer.disclosure}</p>
+                  )}
+                  {offer.expectations && (
+                    <p class="offer-expectations">{offer.expectations}</p>
                   )}
                 </>
               </div>
@@ -85,21 +81,6 @@ const offers = [
       </p>
       <a class="action" href="/contact/">Tell us about your task</a>
     </div>
-    <aside
-      id="service-disclosure"
-      class="service-disclosure"
-      aria-label="Hardware and AI disclosure"
-      tabindex="-1"
-    >
-      <p>
-        * Hardware is not included. Computers and accessories, including any
-        pictured Jetson, are purchased separately.
-      </p>
-      <p>
-        AI can make mistakes. Speed and accuracy depend on your hardware, data,
-        and task.
-      </p>
-    </aside>
   </div>
 </BaseLayout>
 <style>
@@ -131,30 +112,12 @@ const offers = [
   .budget span {
     color: var(--muted);
   }
-  .offer-disclosure {
-    margin-top: var(--s2);
-    color: var(--muted);
-  }
-  .disclosure-link {
-    display: inline-flex;
-    align-items: center;
-    min-height: var(--target);
-  }
-  .disclosure-link:active {
-    color: var(--pressed);
-  }
-  .service-disclosure {
-    margin-top: var(--s8);
-    max-width: 75ch;
+  .offer-disclosure,
+  .offer-expectations {
+    margin-top: var(--s3);
+    max-width: var(--measure);
     font-size: var(--text-sm);
     color: var(--muted);
-  }
-  .service-disclosure p + p {
-    margin-top: var(--s2);
-  }
-  .service-disclosure:focus-visible {
-    outline: var(--focus) solid var(--text);
-    outline-offset: var(--s1);
   }
   .closing {
     margin-top: var(--s6);

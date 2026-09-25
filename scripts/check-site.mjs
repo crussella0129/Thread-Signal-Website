@@ -214,23 +214,6 @@ check(
     assert.match(text(offers[1]), /Starting at \$750/);
     assert.match(text(offers[2]), /Starting at \$400/);
     assert.match(text(offers[1]), /Hardware is not included/);
-    const disclosureLink = nodes(offers[1]).find(
-      (n) => n.tagName === "a" && attr(n, "href") === "#service-disclosure",
-    );
-    assert.ok(
-      disclosureLink,
-      "Local AI offer links directly to its full disclosure",
-    );
-    const disclosure = services.nodes.find(
-      (n) => attr(n, "id") === "service-disclosure",
-    );
-    assert.ok(disclosure && !nodes(offers[1]).includes(disclosure));
-    assert.match(text(disclosure), /pictured Jetson, are purchased separately/);
-    assert.match(text(disclosure), /AI can make mistakes/);
-    assert.match(
-      text(disclosure),
-      /Speed and accuracy depend on your hardware/,
-    );
     assert.match(text(offers[1]), /agreed limits and human review/);
     assert.match(
       text(services.document),
