@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeadlineMotion from "../components/HeadlineMotion.astro";
 const offers = [
   {
     title: "Stop copying and pasting.",
@@ -37,7 +38,12 @@ const offers = [
   <div class="container page">
     <header class="page-intro">
       <p class="eyebrow">Services Offered</p>
-      <h1>Start with the task<br />you’re tired of doing.</h1>
+      <h1>
+        <HeadlineMotion
+          effect="read"
+          lines={["Start with the task", "you’re tired of doing."]}
+        />
+      </h1>
     </header>
     <ul class="offers" aria-label="Services and starting prices">
       {

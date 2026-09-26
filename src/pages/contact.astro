@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeadlineMotion from "../components/HeadlineMotion.astro";
 import {
   OWNER_NAME,
   OWNER_TITLE,
@@ -18,7 +19,12 @@ import {
   <div class="container page">
     <header class="page-intro">
       <p class="eyebrow">About Us & Contact</p>
-      <h1>Two people.<br />Practical help.</h1>
+      <h1>
+        <HeadlineMotion
+          effect="rise"
+          lines={["Two people.", "Practical help."]}
+        />
+      </h1>
       <p class="lead">
         We’re Charles and Darian Russella, a husband-and-wife team in Kent,
         Ohio. We bring business experience and systems engineering to the work

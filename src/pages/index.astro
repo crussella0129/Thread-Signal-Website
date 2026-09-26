@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeadlineMotion from "../components/HeadlineMotion.astro";
 import jetson from "../assets/jetson-v3.1a-photo.webp";
 import jetsonCad from "../assets/jetson-v3.1a-cad.png";
 import { GITHUB_URL } from "../data/site";
@@ -9,7 +10,12 @@ import { GITHUB_URL } from "../data/site";
 <BaseLayout title="We automate repetitive work">
   <div class="container home">
     <section class="home-intro" aria-labelledby="home-title">
-      <h1 id="home-title">We automate<br />repetitive work.</h1>
+      <h1 id="home-title">
+        <HeadlineMotion
+          effect="print"
+          lines={["We automate", "repetitive work."]}
+        />
+      </h1>
       <p class="lead">
         Reports. Data entry. Moving information between apps. We build tools and
         set up AI to do the busywork for you.

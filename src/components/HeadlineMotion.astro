@@ -1,0 +1,223 @@
+---
+/*
+ * Page headline entrances. Pure CSS: the site ships no JavaScript, so the
+ * letters and lines are split here at build time. Each effect plays once on
+ * load and is skipped entirely for visitors who prefer reduced motion.
+ *
+ *   print   Home: each letter strikes as a solid block, then becomes the letter.
+ *   read    Services: a 1px read head sweeps across, revealing the text behind it.
+ *   thread  Open-Source: a 1px thread draws under the words, which lift onto it,
+ *           then its tail pulls through and out, leaving no underline.
+ *   rise    About: each line slides up from behind its own edge, in turn.
+ */
+interface Props {
+  effect: "print" | "read" | "thread" | "rise";
+  lines: string[];
+}
+const { effect, lines } = Astro.props;
+let index = 0;
+const letters = lines.map((line) =>
+  [...line].map((char) => ({ char, index: index++ })),
+);
+const last = lines.length - 1;
+---
+
+<span class={`fx fx-${effect}`}>
+  {
+    effect === "print" &&
+      letters.map((line, n) => (
+        <>
+          {n > 0 && <br />}
+          {line.map(({ char, index }) => (
+            <span class="ch" style={`--i:${index}`} set:text={char} />
+          ))}
+        </>
+      ))
+  }
+  {
+    effect === "read" && (
+      <>
+        <span class="fx-text">
+          {lines.map((line, n) => (
+            <>
+              {n > 0 && <br />}
+              {line}
+            </>
+          ))}
+        </span>
+        <span class="head" aria-hidden="true" />
+      </>
+    )
+  }
+  {
+    effect === "thread" &&
+      lines.map((line, n) =>
+        n === last ? (
+          <span class="threaded">
+            <span class="words" set:text={line} />
+          </span>
+        ) : (
+          <>
+            {line}
+            <br />
+          </>
+        ),
+      )
+  }
+  {
+    effect === "rise" &&
+      lines.map((line, n) => (
+        <span class="mask">
+          <span class="line" style={`--l:${n}`} set:text={line} />
+        </span>
+      ))
+  }
+</span>
+
+<style>
+  /* Print */
+  .fx-print .ch {
+    animation: print var(--duration-print) steps(1, end) both;
+    animation-delay: calc(var(--i) * var(--stagger-letter));
+  }
+  @keyframes print {
+    0% {
+      opacity: 0;
+    }
+    1% {
+      opacity: 1;
+      color: transparent;
+      background: var(--text);
+    }
+    55% {
+      color: transparent;
+      background: var(--text);
+    }
+    100% {
+      opacity: 1;
+      color: var(--text);
+      background: transparent;
+    }
+  }
+
+  /* Read head */
+  .fx-read {
+    position: relative;
+    display: inline-block;
+  }
+  .fx-read .fx-text {
+    display: block;
+    animation: reveal var(--duration-sweep) var(--ease-sweep) both;
+  }
+  .fx-read .head {
+    position: absolute;
+    inset: -0.1em 0;
+    border-right: var(--stroke) solid var(--text);
+    opacity: 0;
+    pointer-events: none;
+    animation:
+      sweep var(--duration-sweep) var(--ease-sweep) both,
+      fade-out var(--duration-fade) ease-out var(--duration-sweep) forwards;
+  }
+  @keyframes reveal {
+    from {
+      clip-path: inset(-0.2em 100% -0.2em 0);
+    }
+    to {
+      clip-path: inset(-0.2em 0 -0.2em 0);
+    }
+  }
+  @keyframes sweep {
+    from {
+      transform: translateX(-100%);
+      opacity: 1;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+
+  /* Thread, pulled through */
+  .fx-thread .threaded {
+    position: relative;
+    display: inline-block;
+  }
+  .fx-thread .threaded::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(var(--s3) * -1);
+    height: var(--stroke);
+    background: var(--text);
+    clip-path: inset(0 0 0 100%);
+    animation: thread-pull var(--duration-thread) var(--ease-out) both;
+  }
+  .fx-thread .words {
+    display: inline-block;
+    animation: lift var(--duration-lift) var(--ease-out)
+      calc(var(--duration-thread) * 0.22) both;
+  }
+  @keyframes thread-pull {
+    0% {
+      clip-path: inset(0 100% 0 0);
+    }
+    45% {
+      clip-path: inset(0 0 0 0);
+    }
+    65% {
+      clip-path: inset(0 0 0 0);
+      animation-timing-function: var(--ease-sweep);
+    }
+    100% {
+      clip-path: inset(0 0 0 100%);
+    }
+  }
+  @keyframes lift {
+    from {
+      opacity: 0.02;
+      transform: translateY(0.35em);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Line rise */
+  .fx-rise .mask {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+  .fx-rise .line {
+    display: block;
+    animation: rise var(--duration-rise) var(--ease-out) both;
+    animation-delay: calc(var(--l) * var(--stagger-line));
+  }
+  @keyframes rise {
+    from {
+      transform: translateY(110%);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fx *,
+    .fx *::after {
+      animation: none !important;
+    }
+    .fx-read .head {
+      display: none;
+    }
+  }
+</style>
