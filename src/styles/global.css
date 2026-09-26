@@ -39,6 +39,16 @@
   --radius-media: 2rem;
   --stroke: 1px;
   --focus: 2px;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --ease-sweep: cubic-bezier(0.45, 0, 0.2, 1);
+  --stagger-letter: 30ms;
+  --stagger-line: 140ms;
+  --duration-print: 180ms;
+  --duration-sweep: 1100ms;
+  --duration-fade: 250ms;
+  --duration-thread: 2000ms;
+  --duration-lift: 700ms;
+  --duration-rise: 850ms;
   --target: 2.75rem;
   --action-height: 3.25rem;
 }

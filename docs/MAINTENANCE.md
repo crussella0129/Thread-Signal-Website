@@ -10,6 +10,7 @@ The production Astro site has four canonical pages: Home (`/`), Services Offered
 - Black/white colors, type, spacing, and radii: `src/styles/global.css`. Controls and image frames use CSS `corner-shape: squircle` where supported, with rounded-corner fallback. No claim of mathematical G2/G3 continuity is made. See [MDN corner-shape](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-shape).
 - Real project images: `src/assets/`; provenance is in `docs/media-sources.md`. Astro generates responsive WebP images. Do not replace real project evidence with generated imagery.
 - Logo: the header uses the white lockup from the Signalium framework (`assets/logo/`), copied to `src/assets/logo/`. `public/favicon.ico`, `icon-192.png`, and `apple-touch-icon.png` are drawn from the white mark on black. Derive replacements from the Signalium files. Never redraw or retype the logo.
+- Headline entrances: `src/components/HeadlineMotion.astro` splits each page's H1 at build time and animates it with CSS only. Home uses Print, Services uses Read head, Open-Source uses Thread (pulled through), and About uses Line rise. Timing and easing tokens are in `src/styles/global.css`. Each effect plays once on load, lasts at most 2 seconds, and is skipped for visitors who prefer reduced motion. Change a headline by editing the `lines` prop; each array item is one line.
 - Social preview: `public/social-card.svg` (with the lockup embedded) and its 1200 x 630 PNG.
 
 ## GitHub project refresh

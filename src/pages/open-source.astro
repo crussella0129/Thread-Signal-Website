@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeadlineMotion from "../components/HeadlineMotion.astro";
 import snapshot from "../data/github.json";
 import { validSnapshot } from "../data/github-schema.mjs";
 import { projectNotes } from "../data/project-notes";
@@ -23,7 +24,9 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
   <div class="container page">
     <header class="page-intro">
       <p class="eyebrow">Open-Source Dev</p>
-      <h1>Built to be shared.</h1>
+      <h1>
+        <HeadlineMotion effect="thread" lines={["Built to be shared."]} />
+      </h1>
       <p class="lead">
         Contributing to and maintaining free and open-source software is a core
         part of how we do business.
