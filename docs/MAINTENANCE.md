@@ -9,7 +9,8 @@ The production Astro site has four canonical pages: Home (`/`), Services Offered
 - Bios: `src/pages/contact.astro`, based on the two resumes supplied by Charles. Full resumes, private phone numbers, and personal emails are not published. Darian's broadcast assistance is mentioned without advertising equipment-dependent production services.
 - Black/white colors, type, spacing, and radii: `src/styles/global.css`. Controls and image frames use CSS `corner-shape: squircle` where supported, with rounded-corner fallback. No claim of mathematical G2/G3 continuity is made. See [MDN corner-shape](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-shape).
 - Real project images: `src/assets/`; provenance is in `docs/media-sources.md`. Astro generates responsive WebP images. Do not replace real project evidence with generated imagery.
-- Social preview: `public/social-card.svg` and its 1200 x 630 PNG. The favicon has SVG and ICO versions.
+- Logo: the header uses the white lockup from the Signalium framework (`assets/logo/`), copied to `src/assets/logo/`. `public/favicon.ico`, `icon-192.png`, and `apple-touch-icon.png` are drawn from the white mark on black. Derive replacements from the Signalium files. Never redraw or retype the logo.
+- Social preview: `public/social-card.svg` (with the lockup embedded) and its 1200 x 630 PNG.
 
 ## GitHub project refresh
 
@@ -34,6 +35,14 @@ npm run preview -- --host 127.0.0.1 --port 4324
 Validation runs Astro type checks, GitHub pagination/ranking/fallback tests, a production build, and static artifact checks for four pages, nine legacy redirects, metadata, images, the sitemap, contact links, and the rendered project ranking. The prior hero-motion and sprint 0/1 page-count assertions described the retired site and are no longer release gates; historical sprint reports are retained.
 
 If the local Windows npm shim is broken, use `C:\Program Files\nodejs\npm.cmd` and prepend `C:\Program Files\nodejs` to the current process PATH. In a restricted environment set `ASTRO_TELEMETRY_DISABLED=1` to avoid writing a global telemetry directory. Do not change the user's global npm installation to run this site.
+
+## Dependency updates
+
+Dependabot version updates target `codex/work`; security updates target GitHub's default branch, `main`. Test updates with `npm ci --ignore-scripts`, `npm audit --audit-level=high`, and `npm run validate` before merging. Keep related updates together when their package or lockfile edits overlap.
+
+The latest `@astrojs/check` (0.9.10, checked September 24, 2026) accepts TypeScript 5 and 6. TypeScript 7 fails at `npm ci` with a peer-dependency conflict. `.github/dependabot.yml` temporarily ignores TypeScript versions 7 and later; remove the bound once the checker supports them. Do not bypass peer dependency resolution or disable the type check to make such an update pass.
+
+Prettier's Astro plugin 1.x can reformat existing Astro source differently. This dependency repair preserves source formatting; a later `npm run format` may produce formatting-only changes.
 
 ## Publication
 

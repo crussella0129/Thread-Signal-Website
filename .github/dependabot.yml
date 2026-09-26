@@ -11,3 +11,8 @@ updates:
       interval: weekly
     target-branch: codex/work
     open-pull-requests-limit: 5
+    ignore:
+      # @astrojs/check 0.9.10 supports TypeScript 5 and 6, not 7.
+      # Remove this bound when its peer dependency supports TypeScript 7.
+      - dependency-name: typescript
+        versions: [">=7.0.0"]
