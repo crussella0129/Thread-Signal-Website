@@ -109,9 +109,12 @@ main:focus {
   padding-top: var(--section-gap);
   padding-bottom: var(--section-gap);
 }
+/* Headlines break by meaning, not by the paragraph measure. */
 .page-intro {
-  max-width: var(--measure);
   margin-bottom: var(--s12);
+}
+.page-intro > p:not(.eyebrow) {
+  max-width: var(--measure);
 }
 .eyebrow {
   color: var(--muted);
