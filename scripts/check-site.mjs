@@ -211,9 +211,14 @@ check(
         (n) => n.tagName === "a" && attr(n, "href") === "/contact/",
       ),
     );
-    for (const li of offers.slice(1))
-      assert.match(text(li), /\$[\d,]+–\$[\d,]+/);
-    assert.match(text(services.document), /Planning estimates in USD/);
+    assert.match(text(offers[1]), /Starting at \$750/);
+    assert.match(text(offers[2]), /Starting at \$400/);
+    assert.match(text(offers[1]), /Hardware is not included/);
+    assert.match(text(offers[1]), /agreed limits and human review/);
+    assert.match(
+      text(services.document),
+      /Starting prices are for services in USD/,
+    );
     const contact = pageAt("/contact/");
     assert.equal(elements(contact, "form").length, 0);
     const links = elements(contact, "a").map((n) => attr(n, "href"));

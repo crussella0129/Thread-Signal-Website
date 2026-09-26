@@ -12,15 +12,19 @@ const offers = [
   {
     title: "Put Local AI to work.",
     description:
-      "We check your hardware or recommend what you need, then set up the latest local AI models it can run and tools like Hermes Agent. We build and test tasks for your documents and workflows, so your computer can handle the busywork while you do other things or sleep.",
-    price: "$750–$2,500",
+      "We check your hardware or recommend what you need, then set up compatible local AI models and tools like Hermes Agent. We build and test document and workflow tasks, including overnight jobs where suitable, with agreed limits and human review.",
+    price: "Starting at $750",
     unit: "for hardware planning, setup, and testing",
+    disclosure:
+      "Hardware is not included. Computers and accessories, including any pictured Jetson, are purchased separately.",
+    expectations:
+      "AI can make mistakes. Speed and accuracy depend on your hardware, data, and task.",
   },
   {
     title: "Help your team use it.",
     description:
       "A hands-on session using your everyday tasks. Your team practices, asks questions, and leaves with simple instructions to follow.",
-    price: "$400–$1,200",
+    price: "Starting at $400",
     unit: "for a team training session",
   },
 ];
@@ -28,14 +32,14 @@ const offers = [
 
 <BaseLayout
   title="Services Offered"
-  description="Task automation, local AI hardware advice and setup, and team training. Put your computer to work on documents and workflows while you focus elsewhere."
+  description="Task automation, local AI hardware advice and setup, and team training. Local AI services start at $750; training starts at $400. Hardware is not included."
 >
   <div class="container page">
     <header class="page-intro">
       <p class="eyebrow">Services Offered</p>
       <h1>Start with the task<br />you’re tired of doing.</h1>
     </header>
-    <ul class="offers" aria-label="Services and estimated budgets">
+    <ul class="offers" aria-label="Services and starting prices">
       {
         offers.map((offer) => (
           <li>
@@ -55,6 +59,12 @@ const offers = [
                       <span>{offer.unit}</span>
                     )}
                   </p>
+                  {offer.disclosure && (
+                    <p class="offer-disclosure">{offer.disclosure}</p>
+                  )}
+                  {offer.expectations && (
+                    <p class="offer-expectations">{offer.expectations}</p>
+                  )}
                 </>
               </div>
             </>
@@ -64,8 +74,10 @@ const offers = [
     </ul>
     <div class="closing">
       <p class="budget-note">
-        Planning estimates in USD. Hardware, software subscriptions, and ongoing
-        support are extra. We agree on the work and the price before starting.
+        Starting prices are for services in USD; final pricing depends on scope.
+        Hardware is purchased separately. Paid software, usage fees, and ongoing
+        support are additional unless included in your written quote. We agree
+        on deliverables and price before work starts.
       </p>
       <a class="action" href="/contact/">Tell us about your task</a>
     </div>
@@ -100,12 +112,20 @@ const offers = [
   .budget span {
     color: var(--muted);
   }
+  .offer-disclosure,
+  .offer-expectations {
+    margin-top: var(--s3);
+    max-width: var(--measure);
+    font-size: var(--text-sm);
+    font-style: italic;
+    color: var(--muted);
+  }
   .closing {
     margin-top: var(--s6);
   }
   .closing .budget-note {
     max-width: 75ch;
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
   }
   .closing .action {
     margin-top: var(--s8);

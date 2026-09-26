@@ -47,6 +47,9 @@ import { GITHUB_URL } from "../data/site";
         Pictured here: <a href={`${GITHUB_URL}/Jetson-Orin-Nano-Super-Case`}
           >Nvidia Jetson Orin Nano Super Case v3.1a</a
         >
+        <span class="hardware-note"
+          >Hardware shown is not included in service prices.</span
+        >
       </figcaption>
     </figure>
   </div>
@@ -87,6 +90,10 @@ import { GITHUB_URL } from "../data/site";
   }
   figcaption {
     margin-top: var(--s4);
+  }
+  .hardware-note {
+    display: block;
+    margin-top: var(--s2);
   }
   @media (max-width: 760px) {
     .home {

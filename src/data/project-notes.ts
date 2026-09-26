@@ -6,7 +6,7 @@ export const projectNotes: Record<
   "Jetson-Orin-Nano-Super-Case": {
     title: "Jetson Orin Nano Super Case",
     summary:
-      "A case for a small AI computer, with space for cooling and storage. Design files are available to print, machine, or adapt.",
+      "A case for a small AI computer, with space for cooling and storage. Design files and build notes are available on GitHub.",
   },
   Animus_Ferric: {
     title: "Animus Ferric",
