@@ -36,6 +36,14 @@ Validation runs Astro type checks, GitHub pagination/ranking/fallback tests, a p
 
 If the local Windows npm shim is broken, use `C:\Program Files\nodejs\npm.cmd` and prepend `C:\Program Files\nodejs` to the current process PATH. In a restricted environment set `ASTRO_TELEMETRY_DISABLED=1` to avoid writing a global telemetry directory. Do not change the user's global npm installation to run this site.
 
+## Dependency updates
+
+Dependabot version updates target `codex/work`; security updates target GitHub's default branch, `main`. Test updates with `npm ci --ignore-scripts`, `npm audit --audit-level=high`, and `npm run validate` before merging. Keep related updates together when their package or lockfile edits overlap.
+
+The latest `@astrojs/check` (0.9.10, checked September 24, 2026) accepts TypeScript 5 and 6. TypeScript 7 fails at `npm ci` with a peer-dependency conflict. `.github/dependabot.yml` temporarily ignores TypeScript versions 7 and later; remove the bound once the checker supports them. Do not bypass peer dependency resolution or disable the type check to make such an update pass.
+
+Prettier's Astro plugin 1.x can reformat existing Astro source differently. This dependency repair preserves source formatting; a later `npm run format` may produce formatting-only changes.
+
 ## Publication
 
 **Charles approved this conversion for publication on September 23, 2026, after a security check.** See `docs/security-review-2026-09-23.md` for findings and applied repository protections. Computer use (including browser automation and Cap recording) still requires Charles's explicit go-ahead.
