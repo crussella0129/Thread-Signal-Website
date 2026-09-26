@@ -1,10 +1,13 @@
 ---
-import { SITE_NAME, GITHUB_URL } from "../data/site";
+import { SITE_NAME, GITHUB_URL, OWNER_LOCATION } from "../data/site";
+
+// Set at build time; the daily scheduled deploy rolls it over each January.
+const year = new Date().getFullYear();
 ---
 
 <footer class="container">
   <div class="footer-line">
-    <p>{SITE_NAME} LLC · Kent, Ohio</p>
+    <p>© {year} {SITE_NAME} LLC · {OWNER_LOCATION}</p>
     <a class="text-link" href={GITHUB_URL}
       >GitHub <span aria-hidden="true">↗</span></a
     >
