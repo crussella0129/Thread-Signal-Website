@@ -9,7 +9,8 @@ The production Astro site has four canonical pages: Home (`/`), Services Offered
 - Bios: `src/pages/contact.astro`, based on the two resumes supplied by Charles. Full resumes, private phone numbers, and personal emails are not published. Darian's broadcast assistance is mentioned without advertising equipment-dependent production services.
 - Black/white colors, type, spacing, and radii: `src/styles/global.css`. Controls and image frames use CSS `corner-shape: squircle` where supported, with rounded-corner fallback. No claim of mathematical G2/G3 continuity is made. See [MDN corner-shape](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-shape).
 - Real project images: `src/assets/`; provenance is in `docs/media-sources.md`. Astro generates responsive WebP images. Do not replace real project evidence with generated imagery.
-- Social preview: `public/social-card.svg` and its 1200 x 630 PNG. The favicon has SVG and ICO versions.
+- Logo: the header uses the white lockup from the Signalium framework (`assets/logo/`), copied to `src/assets/logo/`. `public/favicon.ico`, `icon-192.png`, and `apple-touch-icon.png` are drawn from the white mark on black. Derive replacements from the Signalium files. Never redraw or retype the logo.
+- Social preview: `public/social-card.svg` (with the lockup embedded) and its 1200 x 630 PNG.
 
 ## GitHub project refresh
 

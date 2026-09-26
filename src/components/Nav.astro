@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { SITE_NAME } from "../data/site";
+import lockup from "../assets/logo/thread-and-signal-lockup-white.png";
 const links = [
   { href: "/", label: "Home" },
   { href: "/services/", label: "Services Offered" },
@@ -10,7 +12,15 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
 <header class="site-header container">
-  <a class="wordmark" href="/">{SITE_NAME}</a>
+  <a class="wordmark" href="/">
+    <Image
+      src={lockup}
+      alt={SITE_NAME}
+      height={32}
+      densities={[1, 2, 3]}
+      loading="eager"
+    />
+  </a>
   <nav class="site-nav" aria-label="Main navigation">
     {
       links.map(({ href, label }) => (
@@ -34,13 +44,16 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     gap: var(--s6);
     padding-block: var(--s6);
   }
+  /* Signalium clear space: half the lockup's height on every side. */
   .wordmark {
     flex-shrink: 0;
-    font-size: var(--text-lead);
-    font-weight: 700;
-    letter-spacing: var(--tracking-wordmark);
-    text-decoration: none;
+    display: block;
     padding-block: var(--s2);
+  }
+  .wordmark img {
+    display: block;
+    height: var(--logo-height);
+    width: auto;
   }
   .site-nav {
     display: flex;
@@ -68,7 +81,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     .site-header {
       flex-direction: column;
       align-items: flex-start;
-      gap: var(--s3);
+      gap: var(--s4);
     }
   }
   @media (max-width: 540px) {
