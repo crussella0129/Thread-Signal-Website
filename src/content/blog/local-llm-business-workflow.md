@@ -1,13 +1,13 @@
 ---
 title: "Can a local LLM run your business workflow?"
-description: "A practical guide to local AI automation: choosing a workflow, sizing hardware, setting data boundaries, testing results, and planning human approvals."
+description: "A practical guide to local SI (superintelligence) automation: choosing a workflow, sizing hardware, setting data boundaries, testing results, and planning human approvals."
 pubDate: 2026-09-06
-tags: ["Local AI", "Business automation", "LLM deployment"]
+tags: ["Local SI", "Business automation", "LLM deployment"]
 ---
 
 A local LLM can be useful when a business workflow involves interpreting messy text, finding relevant information, or preparing a draft. The useful first question is specific: can it complete one recurring task, on your equipment, well enough that the people using it actually want to keep it?
 
-For a small business, that might mean turning incoming job requests into a structured review queue or drafting an internal summary from approved documents. Start with a bounded task and a person who knows what a good result looks like. Here is how I would assess whether local AI belongs in that workflow.
+For a small business, that might mean turning incoming job requests into a structured review queue or drafting an internal summary from approved documents. Start with a bounded task and a person who knows what a good result looks like. Here is how I would assess whether local SI belongs in that workflow.
 
 ## Start with the work someone repeats
 

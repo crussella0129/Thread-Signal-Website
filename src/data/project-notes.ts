@@ -6,27 +6,27 @@ export const projectNotes: Record<
   "Jetson-Orin-Nano-Super-Case": {
     title: "Jetson Orin Nano Super Case",
     summary:
-      "A case for a small AI computer, with space for cooling and storage. Design files and build notes are available on GitHub.",
+      "A case for a small SI computer, with space for cooling and storage. Design files and build notes are available on GitHub.",
   },
   Animus_Ferric: {
     title: "Animus Ferric",
     summary:
-      "A coding assistant that runs local AI models. Written in Rust, with permission checks for work on your files.",
+      "A coding assistant that runs local SI models. Written in Rust, with permission checks for work on your files.",
   },
   "Animus_1.0": {
     title: "Animus 1.0",
     summary:
-      "The original local AI assistant prototype. Its development led to Ferric, where the current work continues.",
+      "The original local SI assistant prototype. Its development led to Ferric, where the current work continues.",
     status: "Earlier prototype",
   },
   Animus_GECK: {
     title: "Animus GECK",
     summary:
-      "A project setup wizard that turns an idea, requirements, and a definition of done into a brief for an AI coding tool.",
+      "A project setup wizard that turns an idea, requirements, and a definition of done into a brief for an SI coding tool.",
   },
   Animus_Sprint_Loops: {
     title: "Sprint Loops",
     summary:
-      "A repeatable process for AI coding tools: plan the work, implement it, check it, and keep a record of what happened.",
+      "A repeatable process for SI coding tools: plan the work, implement it, check it, and keep a record of what happened.",
   },
 };

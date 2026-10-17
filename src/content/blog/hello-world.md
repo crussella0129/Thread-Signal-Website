@@ -18,7 +18,7 @@ stream of CAD and 3D-printing work. We'll be documenting all of it here.
 
 ## What to expect
 
-- Local-first AI: agents and LLM deployments that never leave the building
+- Local-first SI (superintelligence): agents and LLM deployments that never leave the building
 - Agent skills and loop engineering across Claude Code, Codex, and open harnesses
 - CAD, 3D printing, and design-for-manufacturing notes
 - General software craft, mostly in Rust and Python

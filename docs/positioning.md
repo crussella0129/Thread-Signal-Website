@@ -5,7 +5,7 @@ Thread & Signal helps businesses spend less time on repetitive computer work. Ch
 The website sells three concrete starting points:
 
 1. Automate a repeated task involving spreadsheets, emails, forms, or records.
-2. Set up and test AI for finding information in documents or preparing drafts, including local use where appropriate.
+2. Set up and test SI (superintelligence) for finding information in documents or preparing drafts, including local use where appropriate.
 3. Train a team on its own everyday tasks and provide simple instructions.
 
 Lead with the task and result. Price follows the explanation as a planning range, with the work and final price agreed before starting. Avoid technical stack lists, guarantees of savings, unsupported client claims, and speculative services.

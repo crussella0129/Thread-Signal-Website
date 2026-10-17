@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeadlineMotion from "../components/HeadlineMotion.astro";
+const products = [
+  {
+    id: "yardulum",
+    name: "Yardulum",
+    kind: "Landscaping CAD",
+    summary:
+      "Landscaping design software that crews can actually drive. Start from a US address, and Yardulum builds a site model from free public data: USGS elevation and lidar, aerial imagery, and building footprints. Design on that model, then quote and schedule every item in the plan.",
+    detail: "Built in Rust, with a mobile-first app for use on the job site.",
+  },
+  {
+    id: "gnash-equilibrium",
+    name: "Gnash Equilibrium",
+    kind: "Grand strategy and real-time battle game",
+    summary:
+      "A (semi) geopolitically accurate WW3 grand strategy game. Think Risk, where every attack becomes a real-time battle on terrain generated from the real region, fought with present-day equipment: drones, jammers, ground robots, and satellite passes.",
+    detail:
+      "Command each battle yourself or let it resolve on its own. An escalation ladder and an event deck mean no two campaigns go the same way.",
+  },
+];
+---
+
+<BaseLayout
+  title="Coming Soon"
+  description="Two Thread & Signal products in development: Yardulum, landscaping CAD that models, quotes, and schedules a property, and Gnash Equilibrium, a WW3 grand strategy and real-time battle game."
+>
+  <div class="container page">
+    <header class="page-intro">
+      <p class="eyebrow">Coming Soon</p>
+      <h1>
+        <HeadlineMotion effect="rise" lines={["On the bench."]} />
+      </h1>
+      <p class="lead">
+        Two products we are building now. Neither is available yet.
+      </p>
+    </header>
+    <div class="products">
+      {
+        products.map((product) => (
+          <section aria-labelledby={product.id}>
+            <h2 id={product.id}>{product.name}</h2>
+            <p class="kind">{product.kind} · In development</p>
+            <p>{product.summary}</p>
+            <p>{product.detail}</p>
+          </section>
+        ))
+      }
+    </div>
+    <p class="follow-up">
+      Want to hear when one is ready? <a href="/contact/">Get in touch</a>.
+    </p>
+  </div>
+</BaseLayout>
+<style>
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s12);
+  }
+  .products section {
+    border-top: var(--stroke) solid var(--rule);
+    padding-top: var(--s8);
+  }
+  .kind {
+    color: var(--muted);
+    margin-top: var(--s2);
+    margin-bottom: var(--s5);
+  }
+  .products section > p:not(.kind) {
+    color: var(--muted);
+    max-width: var(--measure);
+  }
+  .products section > p + p:not(.kind) {
+    margin-top: var(--s4);
+  }
+  .follow-up {
+    margin-top: var(--section-gap);
+    color: var(--muted);
+  }
+  @media (max-width: 640px) {
+    .products {
+      grid-template-columns: 1fr;
+      gap: var(--s8);
+    }
+  }
+</style>
