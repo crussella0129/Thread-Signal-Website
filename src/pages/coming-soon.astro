@@ -1,0 +1,153 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeadlineMotion from "../components/HeadlineMotion.astro";
+const products = [
+  {
+    id: "yardulum",
+    name: "Yardulum",
+    kind: "Landscaping CAD",
+    summary:
+      "Landscaping design software that crews can actually drive. Start from a US address, and Yardulum builds a site model from free public data: USGS elevation and lidar, aerial imagery, and building footprints. Design on that model, then quote and schedule every item in the plan.",
+    detail: "Built in Rust, with a mobile-first app for use on the job site.",
+    more: { href: "#si-powered-trades", label: "Why we’re building it" },
+  },
+  {
+    id: "gnash-equilibrium",
+    name: "Gnash Equilibrium",
+    kind: "Grand strategy and real-time battle game",
+    summary:
+      "A (semi) geopolitically accurate WW3 grand strategy game. Think Risk, where every attack becomes a real-time battle on terrain generated from the real region, fought with present-day equipment: drones, jammers, ground robots, and satellite passes.",
+    detail:
+      "Command each battle yourself or let it resolve on its own. An escalation ladder and an event deck mean no two campaigns go the same way.",
+  },
+];
+---
+
+<BaseLayout
+  title="Coming Soon"
+  description="Two Thread & Signal products in development: Yardulum, landscaping CAD that models, quotes, and schedules a property, and Gnash Equilibrium, a WW3 grand strategy and real-time battle game. Plus why we think SI-powered trades are the opportunity to watch."
+>
+  <div class="container page">
+    <header class="page-intro">
+      <p class="eyebrow">Coming Soon</p>
+      <h1>
+        <HeadlineMotion effect="rise" lines={["On the bench."]} />
+      </h1>
+      <p class="lead">
+        Two products we are building now. Neither is available yet.
+      </p>
+    </header>
+    <div class="products">
+      {
+        products.map((product) => (
+          <section aria-labelledby={product.id}>
+            <h2 id={product.id}>{product.name}</h2>
+            <p class="kind">{product.kind} · In development</p>
+            <p>{product.summary}</p>
+            <p>{product.detail}</p>
+            {product.more && (
+              <a class="text-link" href={product.more.href}>
+                {product.more.label} <span aria-hidden="true">↓</span>
+              </a>
+            )}
+          </section>
+        ))
+      }
+    </div>
+    <section class="thesis" aria-labelledby="si-powered-trades">
+      <p class="eyebrow">Why we’re building Yardulum</p>
+      <h2 id="si-powered-trades">SI-powered trades.</h2>
+      <div class="thesis-body">
+        <p>
+          Most talk about the future of physical work is about humanoid robots
+          and electric vehicles. We think the overlooked opportunity is people:
+          skilled crews whose work is planned, priced, and coordinated by
+          Super Intelligence (SI).
+        </p>
+        <p>
+          Anthropic’s September 2026 study,
+          <a href="https://www.anthropic.com/research/what-work-can-robots-do"
+            >What work can robots do?</a
+          >, found that today’s robots can already perform 74% of US physical
+          tasks but are cost-competitive with people for just 0.3% of them. If
+          robot prices keep falling at past rates, it will take about 40 years
+          for that share to reach 10%. For decades, the work still needs people
+          on site. Give them SI planning, proper
+          training, safety gear, and the right equipment, and each crew gets
+          more done. A more productive crew sells a better service at a fair
+          price, and that pays for good wages and benefits.
+        </p>
+        <p>
+          As robots and equipment improve, the same people take on more:
+          running machines and leading crews, not more people crowded onto the
+          same task.
+        </p>
+        <p>
+          Yardulum comes from Charles’s own landscaping and leaf-removal work.
+          The goal is to sit at a customer’s kitchen table, show them a model of
+          their own property, and walk through a design where every plant,
+          stone, and hour of labor already has a price. The customer sees a
+          detailed estimate before work begins, and the crew arrives with a
+          plan.
+        </p>
+      </div>
+    </section>
+    <p class="follow-up">
+      Want to hear when one is ready? <a href="/contact/">Get in touch</a>.
+    </p>
+  </div>
+</BaseLayout>
+<style>
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s12);
+  }
+  .products section {
+    border-top: var(--stroke) solid var(--rule);
+    padding-top: var(--s8);
+  }
+  .kind {
+    color: var(--muted);
+    margin-top: var(--s2);
+    margin-bottom: var(--s5);
+  }
+  .products section > p:not(.kind) {
+    color: var(--muted);
+    max-width: var(--measure);
+  }
+  .products section > p + p:not(.kind) {
+    margin-top: var(--s4);
+  }
+  .thesis {
+    border-top: var(--stroke) solid var(--rule);
+    padding-top: var(--s8);
+    margin-top: var(--section-gap);
+  }
+  .thesis h2 {
+    margin-top: var(--s2);
+  }
+  .thesis-body {
+    margin-top: var(--s6);
+    max-width: var(--measure);
+  }
+  .thesis-body p {
+    color: var(--muted);
+  }
+  .thesis-body p + p {
+    margin-top: var(--s4);
+  }
+  .products .text-link {
+    margin-top: var(--s4);
+  }
+  .follow-up {
+    margin-top: var(--section-gap);
+    color: var(--muted);
+  }
+  @media (max-width: 640px) {
+    .products {
+      grid-template-columns: 1fr;
+      gap: var(--s8);
+    }
+  }
+</style>

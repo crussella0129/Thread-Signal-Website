@@ -7,7 +7,13 @@ import { parse } from "parse5";
 const origin = "https://threadandsignal.com";
 const root = new URL("../dist/", import.meta.url);
 const dist = decodeURIComponent(root.pathname).replace(/^\/(\w:)/, "$1");
-const routes = ["/", "/contact/", "/open-source/", "/services/"];
+const routes = [
+  "/",
+  "/coming-soon/",
+  "/contact/",
+  "/open-source/",
+  "/services/",
+];
 const legacy = {
   "/portfolio/": "/open-source/",
   "/projects/": "/open-source/",
@@ -82,7 +88,7 @@ function check(name, fn) {
   console.log(`PASS ${name}`);
 }
 
-check("exactly four canonical pages and four navigation choices", () => {
+check("exactly five canonical pages and five navigation choices", () => {
   assert.deepEqual(pages.map((p) => p.route).sort(), routes);
   for (const p of pages) {
     const nav = elements(p, "nav");

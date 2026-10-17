@@ -1,6 +1,6 @@
 # Website maintenance
 
-The production Astro site has four canonical pages: Home (`/`), Services Offered (`/services/`), Open-Source Dev (`/open-source/`), and About & Contact (`/contact/`). The black design replaces the previous marketing site. Historical design studies and blog Markdown remain in the repository; they are not additional published pages.
+The production Astro site has five canonical pages: Home (`/`), Services Offered (`/services/`), Open-Source Dev (`/open-source/`), Coming Soon (`/coming-soon/`), and About & Contact (`/contact/`). The black design replaces the previous marketing site. Historical design studies and blog Markdown remain in the repository; they are not additional published pages.
 
 ## Editing
 
@@ -33,7 +33,7 @@ npm run validate
 npm run preview -- --host 127.0.0.1 --port 4324
 ```
 
-Validation runs Astro type checks, GitHub pagination/ranking/fallback tests, a production build, and static artifact checks for four pages, nine legacy redirects, metadata, images, the sitemap, contact links, and the rendered project ranking. The prior hero-motion and sprint 0/1 page-count assertions described the retired site and are no longer release gates; historical sprint reports are retained.
+Validation runs Astro type checks, GitHub pagination/ranking/fallback tests, a production build, and static artifact checks for five pages, nine legacy redirects, metadata, images, the sitemap, contact links, and the rendered project ranking. The prior hero-motion and sprint 0/1 page-count assertions described the retired site and are no longer release gates; historical sprint reports are retained.
 
 If the local Windows npm shim is broken, use `C:\Program Files\nodejs\npm.cmd` and prepend `C:\Program Files\nodejs` to the current process PATH. In a restricted environment set `ASTRO_TELEMETRY_DISABLED=1` to avoid writing a global telemetry directory. Do not change the user's global npm installation to run this site.
 
@@ -53,6 +53,6 @@ Validate the final revision and use a PR into `main`. Active repository rules re
 
 Build and dependency execution have read-only credentials. A separate Pages/OIDC job publishes the artifact from `main` without checking out or executing source. The Pages environment allows only `main`; `gh-pages` is retained as historical output and is no longer the publishing source. All actions are pinned, only GitHub-owned actions are allowed, and external contributors require approval before their Actions run. Secret scanning, push protection, and Dependabot alerts/security fixes are enabled.
 
-Verify all four live pages, redirects, images, inquiry links, and the GitHub snapshot date after deployment. For rollback, revert the release through a checked PR rather than force-pushing. The content security policy disallows executable JavaScript; adding interactive code requires a deliberate security review and CSP update.
+Verify all five live pages, redirects, images, inquiry links, and the GitHub snapshot date after deployment. For rollback, revert the release through a checked PR rather than force-pushing. The content security policy disallows executable JavaScript; adding interactive code requires a deliberate security review and CSP update.
 
 Retired routes redirect directly to the closest relevant page in `astro.config.mjs`. No old route is in the sitemap. Adding another page requires a deliberate scope decision and an update to the site contract test.

@@ -1,7 +1,7 @@
 # Thread-Signal-Website
 The official [Thread & Signal](https://threadandsignal.com/) website. Astro generates the static site; an isolated GitHub Pages job publishes the validated artifact after a change reaches protected `main`.
 
-The September 2026 conversion has four pages: Home, Services Offered, Open-Source Dev, and About & Contact. GitHub project rankings refresh daily. Charles approved publication after the [release security check](docs/security-review-2026-09-23.md). Browser automation and Cap recordings still require his permission before computer use begins.
+The September 2026 conversion has five pages: Home, Services Offered, Open-Source Dev, Coming Soon, and About & Contact. GitHub project rankings refresh daily. Charles approved publication after the [release security check](docs/security-review-2026-09-23.md). Browser automation and Cap recordings still require his permission before computer use begins.
 
 ```sh
 npm ci
