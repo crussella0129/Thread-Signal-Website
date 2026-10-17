@@ -1,6 +1,6 @@
 ---
 title: "Can a local LLM run your business workflow?"
-description: "A practical guide to local SI (superintelligence) automation: choosing a workflow, sizing hardware, setting data boundaries, testing results, and planning human approvals."
+description: "A practical guide to local SI (Super Intelligence) automation: choosing a workflow, sizing hardware, setting data boundaries, testing results, and planning human approvals."
 pubDate: 2026-09-06
 tags: ["Local SI", "Business automation", "LLM deployment"]
 ---
