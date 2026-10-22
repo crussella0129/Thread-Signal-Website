@@ -268,6 +268,19 @@ check(
     );
   },
 );
+check("media queries use a form iOS Safari before 16.4 can read", () => {
+  // It ignores range syntax such as (width<=640px) and a leading "not (",
+  // which would drop every mobile layout rule. Container queries are exempt.
+  for (const path of files(dist).filter((p) => /\.(css|html)$/.test(p))) {
+    for (const [, query] of readFileSync(path, "utf8").matchAll(
+      /@media([^{]*)\{/g,
+    ))
+      assert.ok(
+        !/[<>]/.test(query) && !/^\s*not\s*\(/.test(query),
+        `${relative(dist, path)} uses @media${query}`,
+      );
+  }
+});
 console.log(
   `${count} site checks passed across ${pages.length} canonical pages and ${Object.keys(legacy).length} redirects.`,
 );

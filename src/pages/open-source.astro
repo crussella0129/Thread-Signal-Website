@@ -58,7 +58,7 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
                       <h3>
                         <a href={repo.url}>
                           {note?.title || repo.name}{" "}
-                          <span aria-hidden="true">↗</span>
+                          <span aria-hidden="true">↗&#xFE0E;</span>
                         </a>
                       </h3>
                       <span
@@ -85,7 +85,7 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
       }
     </ol>
     <a class="text-link closing" href={GITHUB_URL}
-      >Explore all our projects <span aria-hidden="true">↗</span></a
+      >Explore all our projects <span aria-hidden="true">↗&#xFE0E;</span></a
     >
   </div>
 </BaseLayout>
