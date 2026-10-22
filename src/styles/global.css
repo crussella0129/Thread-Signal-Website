@@ -57,6 +57,9 @@
   box-sizing: border-box;
 }
 html {
+  /* Stop iOS enlarging some text in landscape; 100% keeps pinch zoom. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   scroll-padding-top: var(--s6);
 }
 body {
@@ -90,8 +93,11 @@ a {
   text-underline-offset: var(--s1);
   text-decoration-thickness: var(--stroke);
 }
-a:hover {
-  color: var(--hover);
+/* Hover only where a pointer can hover, so taps on touch screens don't stick. */
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    color: var(--hover);
+  }
 }
 a:focus-visible,
 summary:focus-visible,
@@ -157,9 +163,11 @@ figcaption {
   font-weight: 700;
   text-decoration: none;
 }
-.action:hover {
-  background: var(--hover);
-  color: var(--bg);
+@media (hover: hover) and (pointer: fine) {
+  .action:hover {
+    background: var(--hover);
+    color: var(--bg);
+  }
 }
 .action:active {
   background: var(--pressed);

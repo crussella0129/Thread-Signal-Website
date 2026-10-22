@@ -76,8 +76,12 @@ const last = lines.length - 1;
 
 <style>
   /* Print */
+  /* Fill backwards only. After the strike each letter falls back to its own
+     style (white text), which matches the final keyframe. WebKit ends some
+     staggered animations a hair short of 100%, and with steps() and a forward
+     fill that froze letters on the 55% keyframe as solid blocks. */
   .fx-print .ch {
-    animation: print var(--duration-print) steps(1, end) both;
+    animation: print var(--duration-print) steps(1, end) backwards;
     animation-delay: calc(var(--i) * var(--stagger-letter));
   }
   @keyframes print {
@@ -173,7 +177,8 @@ const last = lines.length - 1;
     }
     65% {
       clip-path: inset(0 0 0 0);
-      animation-timing-function: var(--ease-sweep);
+      /* --ease-sweep, written out: var() is ignored as a keyframe easing. */
+      animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
     }
     100% {
       clip-path: inset(0 0 0 100%);

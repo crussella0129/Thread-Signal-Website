@@ -20,6 +20,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
       height={32}
       densities={[1, 2, 3]}
       loading="eager"
+      decoding="sync"
     />
   </a>
   <nav class="site-nav" aria-label="Main navigation">
@@ -75,9 +76,11 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     color: var(--text);
     background: var(--surface);
   }
-  .site-nav a:hover {
-    color: var(--text);
-    text-decoration: underline;
+  @media (hover: hover) and (pointer: fine) {
+    .site-nav a:hover {
+      color: var(--text);
+      text-decoration: underline;
+    }
   }
   @media (max-width: 940px) {
     .site-header {
