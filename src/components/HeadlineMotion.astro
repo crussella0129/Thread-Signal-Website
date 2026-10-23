@@ -9,7 +9,10 @@
  *   thread  Open-Source: a 1px thread draws under the words, which lift onto it,
  *           then its tail pulls through and out, leaving no underline.
  *   rise    How It Works, Founders Club, About: each line slides up from behind
- *           its own edge, in turn.
+ *           its own edge, in turn. A non-breaking space (U+00A0) in a rise line keeps
+ *           the words around it together: "The Founders\u00a0Club." moves "Founders
+ *           Club." to the next line whole, and it still wraps at that space when it
+ *           cannot fit a line by itself (large text on a narrow phone).
  */
 interface Props {
   effect: "print" | "read" | "thread" | "rise";
@@ -21,6 +24,8 @@ const letters = lines.map((line) =>
   [...line].map((char) => ({ char, index: index++ })),
 );
 const last = lines.length - 1;
+// Odd entries are the phrases joined by U+00A0, rendered as one .nobr unit with plain spaces.
+const groups = (line: string) => line.split(/(\S+(?:\u00a0\S+)+)/);
 ---
 
 <span class={`fx fx-${effect}`}>
@@ -69,7 +74,15 @@ const last = lines.length - 1;
     effect === "rise" &&
       lines.map((line, n) => (
         <span class="mask">
-          <span class="line" style={`--l:${n}`} set:text={line} />
+          <span class="line" style={`--l:${n}`}>
+            {groups(line).map((part, i) =>
+              i % 2 ? (
+                <span class="nobr" set:text={part.replaceAll("\u00a0", " ")} />
+              ) : (
+                part
+              ),
+            )}
+          </span>
         </span>
       ))
   }
@@ -149,7 +162,8 @@ const last = lines.length - 1;
     }
   }
 
-  /* Thread, pulled through */
+  /* Thread, pulled through. Fill backwards only, as for rise: each end keyframe equals the
+     element's own style (the ::after's clip-path, the words' opacity 1 and no transform). */
   .fx-thread .threaded {
     position: relative;
     display: inline-block;
@@ -163,12 +177,12 @@ const last = lines.length - 1;
     height: var(--stroke);
     background: var(--text);
     clip-path: inset(0 0 0 100%);
-    animation: thread-pull var(--duration-thread) var(--ease-out) both;
+    animation: thread-pull var(--duration-thread) var(--ease-out) backwards;
   }
   .fx-thread .words {
     display: inline-block;
     animation: lift var(--duration-lift) var(--ease-out)
-      calc(var(--duration-thread) * 0.22) both;
+      calc(var(--duration-thread) * 0.22) backwards;
   }
   @keyframes thread-pull {
     0% {
@@ -198,17 +212,31 @@ const last = lines.length - 1;
   }
 
   /* Line rise */
+  /* The padding and negative margin keep the line box where it was and move the clip edge out:
+     0.12em down for descenders, 0.02em right for a phrase's slack (below). */
   .fx-rise .mask {
     display: block;
     overflow: hidden;
     padding-bottom: 0.12em;
     margin-bottom: -0.12em;
+    padding-inline-end: 0.02em;
+    margin-inline-end: -0.02em;
   }
-  /* Fill backwards only: the end keyframe equals the base style. */
+  /* Fill backwards only: the end keyframe equals the base style. A word wider than the line
+     (large text on a narrow phone) wraps instead of being cut off by the mask: "anywhere",
+     not "break-word", so a .nobr phrase can shrink to the line too. */
   .fx-rise .line {
     display: block;
+    overflow-wrap: anywhere;
     animation: rise var(--duration-rise) var(--ease-out) backwards;
     animation-delay: calc(var(--l) * var(--stagger-line));
+  }
+  /* A phrase held together with U+00A0 wraps greedily inside itself. Its 0.02em of slack (up to
+     the mask's clip edge) keeps a word that overflows the line by a fraction of a pixel whole,
+     instead of splitting it ("Founder / s"). */
+  .fx-rise .nobr {
+    margin-inline-end: -0.02em;
+    text-wrap: wrap;
   }
   @keyframes rise {
     from {

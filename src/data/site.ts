@@ -25,12 +25,12 @@ export const SERVICE_AREA = [
   "Youngstown",
 ];
 export const PITCH =
-  "Yardulum is a sales tool we’re building for landscapers: it turns a model of your customer’s yard into an itemized estimate, priced from your own price list.";
+  "Yardulum is a sales tool we’re building for landscapers: it will turn a model of your customer’s yard into an itemized estimate, priced from your own price list.";
 export const SITE_DESCRIPTION =
   "Thread & Signal LLC is building Yardulum, a sales tool for landscapers in Northeast Ohio. Owned by Charles and Darian Russella in Kent, Ohio.";
 export const SOCIAL_IMAGE = "/social-card-yardulum.png";
 export const SOCIAL_IMAGE_ALT =
-  "Yardulum, a sales tool for landscapers, in development at Thread & Signal in Kent, Ohio. Call or text Charles at (330) 357-2440. Beside the text, an illustration of a sample front yard with a new planting bed and tags for 324 square feet of bed, 56 feet of edging and 2 loads of haul-off.";
+  "Yardulum, a sales tool for landscapers, in development at Thread & Signal in Kent, Ohio. Call or text Charles at (330) 357-2440. Beside the text, an angled 3D illustration of a sample front yard with a new planting bed, and tags for 324 square feet of bed, 56 feet of edging and 2 loads of haul-off.";
 const brief = [
   "Hi Charles and Darian,",
   "",

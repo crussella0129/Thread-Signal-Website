@@ -11,6 +11,9 @@ import {
   LINKEDIN_URL,
   DARIAN_LINKEDIN_URL,
 } from "../data/site";
+// A hyphenated word in a role line ("Co-owner") moves to the next line whole, like every
+// compound on the site (.nobr).
+const keepWhole = (title: string) => title.split(/(\S+-\S+)/);
 ---
 
 <BaseLayout
@@ -24,9 +27,9 @@ import {
         <HeadlineMotion effect="rise" lines={["Who you’ll be", "talking to."]} />
       </h1>
       <p class="lead">
-        Thread &amp; Signal LLC is Charles and Darian Russella, a husband-and-wife
-        company in Kent, Ohio. Charles is building Yardulum, and he’s the one
-        you’ll talk to.
+        Thread &amp; Signal LLC is Charles and Darian Russella, a
+        <span class="nobr">husband-and-wife</span> company in Kent, Ohio. Charles
+        is building Yardulum, and he’s the one you’ll talk to.
       </p>
     </header>
     <section
@@ -51,18 +54,26 @@ import {
     <div class="people section">
       <section aria-labelledby="charles">
         <h2 id="charles">{OWNER_NAME}</h2>
-        <p class="role">{OWNER_TITLE}</p>
+        <p class="role">
+          {
+            keepWhole(OWNER_TITLE).map((part, i) =>
+              i % 2 ? <span class="nobr">{part}</span> : part,
+            )
+          }
+        </p>
         <p>
-          Charles ran his own landscaping and leaf-removal business and has
-          worked a landscaping job for another company.
+          Charles ran his own landscaping and
+          <span class="nobr">leaf-removal</span> business and has worked a
+          landscaping job for another company.
         </p>
         <p>
           He also spent seven years in sales, mortgage lending, and
-          financial-crimes compliance. He’s building Yardulum around the moment
-          that decides whether a job makes money: the quote the customer signs.
+          <span class="nobr">financial-crimes</span> compliance. He’s building
+          Yardulum around the moment that decides whether a job makes money: the
+          quote the customer signs.
         </p>
         <p>
-          He plans to set up the first 100 Yardulum customers himself, in
+          He plans to set up the first 100&nbsp;Yardulum customers himself, in
           person.
         </p>
         <a class="text-link" href={LINKEDIN_URL}
@@ -71,7 +82,13 @@ import {
       </section>
       <section aria-labelledby="darian">
         <h2 id="darian">{DARIAN_NAME}</h2>
-        <p class="role">{DARIAN_TITLE}</p>
+        <p class="role">
+          {
+            keepWhole(DARIAN_TITLE).map((part, i) =>
+              i % 2 ? <span class="nobr">{part}</span> : part,
+            )
+          }
+        </p>
         <p>
           Darian has a master’s in Engineering Management Technology and a
           background in live broadcast systems. She brings systems design,

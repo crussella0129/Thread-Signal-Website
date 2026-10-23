@@ -9,7 +9,7 @@ import SampleEstimate from "../components/SampleEstimate.astro";
 
 <BaseLayout
   title="How Yardulum works"
-  description="Four steps from your customer’s yard to an itemized proposal at the kitchen table. The property model works today. Designing, pricing and the proposal are being built."
+  description="Four steps from yard to itemized proposal. The property model works today; designing, pricing and the proposal are being built."
 >
   <div class="container page">
     <header class="page-intro">
@@ -92,8 +92,8 @@ import SampleEstimate from "../components/SampleEstimate.astro";
       <div class="step-body">
         <p>
           You’ll walk your customer through their own yard, your design and
-          every line of the price, then hand them a one-page itemized proposal,
-          ready to sign.
+          every line of the price, then hand them a
+          <span class="nobr">one-page</span> itemized proposal, ready to sign.
         </p>
         <p class="state">
           <strong>Being built.</strong>
@@ -128,16 +128,17 @@ import SampleEstimate from "../components/SampleEstimate.astro";
           Not a survey
         </h2>
         <p>
-          Measurements come from public mapping data. Use them to design and
-          price, check anything critical on site, and don’t use them to settle
-          property lines.
+          Measurements come from public aerial photos and elevation data.
+          They’re drafts for designing and pricing, not a survey. Confirm every
+          quantity on site before your customer signs, and don’t use them to
+          settle property lines.
         </p>
       </section>
     </div>
     <section class="section faq" aria-labelledby="faq-heading">
-      <h2 id="faq-heading">Questions owners ask</h2>
+      <h2 id="faq-heading">Common questions</h2>
       <details>
-        <summary>Do my crews need CAD skills?</summary>
+        <summary>Do I or my salespeople need CAD skills?</summary>
         <p>
           No. We’re building it for people who’ve never used CAD. Measuring on
           the model takes two taps, and Charles can show you.
@@ -153,8 +154,9 @@ import SampleEstimate from "../components/SampleEstimate.astro";
       <details>
         <summary>Who sees my prices?</summary>
         <p>
-          Your price list stays yours. We use it only to build your estimates,
-          and we don’t sell it.
+          Charles and Darian, the two owners. Your price list stays yours: we
+          use it to build your estimates, and we don’t sell it. Your written
+          terms will list every outside service that handles your data.
         </p>
       </details>
       <details>
@@ -190,9 +192,8 @@ import SampleEstimate from "../components/SampleEstimate.astro";
           elevation data and aerial photos.
         </li>
         <li>
-          <strong>Now</strong>
-          Designing on the model and pricing from your own
-          price list.
+          <strong>Being built now</strong>
+          Designing on the model and pricing from your own price list.
         </li>
       </ul>
     </section>
@@ -207,9 +208,14 @@ import SampleEstimate from "../components/SampleEstimate.astro";
   </div>
 </BaseLayout>
 <style>
+  /* The figure column is 26rem (416 px at default text size). With enlarged text it stops at
+     42% of the row, so the step text keeps a readable width, or at the 18.5rem the step 4
+     proposal needs to show its Amount column, up to half the row. */
   .step {
     display: grid;
-    grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+    grid-template-columns:
+      minmax(0, min(26rem, max(416px, 42%, min(18.5rem, 50%))))
+      minmax(0, 1fr);
     grid-template-areas: "fig head" "fig body";
     grid-template-rows: auto 1fr;
     column-gap: var(--s12);
@@ -223,6 +229,10 @@ import SampleEstimate from "../components/SampleEstimate.astro";
   }
   .step > .step-body {
     grid-area: body;
+  }
+  /* Step 2 shows the design: keep its badge 2 and drop the model's badge 1, which step 1 already shows. */
+  #step-2 + figure :global(.yd-b1) {
+    display: none;
   }
   .step-body p {
     color: var(--muted);
@@ -267,6 +277,14 @@ import SampleEstimate from "../components/SampleEstimate.astro";
   .progress strong {
     color: var(--text);
     display: block;
+  }
+  /* 761-900 px (iPad portrait): a fixed 416 px figure would squeeze the step text to about
+     30 characters a line, so figure and text share the row equally. */
+  @media (max-width: 900px) {
+    .step {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: var(--s8);
+    }
   }
   @media (max-width: 760px) {
     .step {

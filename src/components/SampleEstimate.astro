@@ -5,6 +5,8 @@
  *   estimate  Home figure: hours and amounts, badge 3, "Customer OK" with badge 4.
  *   proposal  Step 4: the customer copy, with quantities instead of labor hours.
  * `flash` marks each amount tape-yellow once, in time with the YardPlan motion.
+ * The sheet scrolls sideways when enlarged text makes the table wider than the figure, so it is
+ * a named region that keyboard users can reach and scroll (one tab stop at every text size).
  */
 import {
   SAMPLE_LINES,
@@ -20,18 +22,27 @@ interface Props {
 }
 const { variant, flash = false } = Astro.props;
 const proposal = variant === "proposal";
+const capId = `yd-${variant}-cap`;
 const qty = (line: (typeof SAMPLE_LINES)[number]) =>
   line.qtyNote ? `${line.qtyLabel} ${line.qtyNote}` : line.qtyLabel;
 ---
 
-<div class={`yd-sheet${proposal ? " yd-proposal" : ""}`}>
-  <span class="yd-badge yd-corner" aria-hidden="true">
-    {proposal ? "4" : "3"}
-  </span>
+<div
+  class={`yd-sheet${proposal ? " yd-proposal" : ""}`}
+  tabindex="0"
+  role="region"
+  aria-labelledby={capId}
+>
   <table class={`yd-estimate${flash ? " yd-flash" : ""}`}>
     <caption>
-      {proposal ? "Proposal: front bed" : "Estimate: front bed"}
-      <span class="yd-label">Sample prices</span>
+      {/* In the caption, so it sits at the table's own corner even when the table scrolls. */}
+      <span class="yd-badge yd-corner" aria-hidden="true">
+        {proposal ? "4" : "3"}
+      </span>
+      <span class="yd-cap" id={capId}>
+        {proposal ? "Proposal: front bed" : "Estimate: front bed"}
+        <span class="yd-label">Sample prices</span>
+      </span>
     </caption>
     <thead>
       <tr>

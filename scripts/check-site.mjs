@@ -233,6 +233,19 @@ check(
           ].includes(type),
           `${p.route}: JSON-LD ${type}`,
         );
+      // Search snippets and link previews cut a description at about 155 characters, so on the
+      // Yardulum pages the status words (or the "for life" qualifier) must come before that.
+      if (yardulumRoutes.includes(p.route)) {
+        const status =
+          /in development|being built|we[’']re building|is building|for as long as (you|they) stay (a member|members)/gi;
+        const found = [...description.matchAll(status)];
+        assert.ok(found.length, `${p.route}: description has no status words`);
+        for (const m of found)
+          assert.ok(
+            m.index + m[0].length <= 155,
+            `${p.route}: "${m[0]}" ends after character 155 of the description`,
+          );
+      }
       assert.equal(meta(p, "theme-color"), "#000000");
       assert.equal(meta(p, "format-detection"), "telephone=no");
     }
@@ -269,19 +282,75 @@ check(
             href,
           );
       }
+      // The short <title> is the name and the long <desc> the description, so a screen
+      // reader reads each once (aria-labelledby on both would read the desc twice).
       for (const svg of within(mainOf(p), "svg")) {
         if (attr(svg, "aria-hidden") === "true") continue;
         assert.equal(attr(svg, "role"), "img", `${p.route}: svg role`);
-        const ids = (attr(svg, "aria-labelledby") || "").split(/\s+/);
-        const labels = ids.map((id) =>
-          nodes(svg).find((n) => attr(n, "id") === id),
-        );
+        for (const [name, tag] of [
+          ["aria-labelledby", "title"],
+          ["aria-describedby", "desc"],
+        ]) {
+          const ids = (attr(svg, name) || "").split(/\s+/).filter(Boolean);
+          assert.equal(ids.length, 1, `${p.route}: svg ${name} "${ids}"`);
+          const target = nodes(svg).find((n) => attr(n, "id") === ids[0]);
+          assert.equal(
+            target?.tagName,
+            tag,
+            `${p.route}: svg ${name} -> <${tag}>`,
+          );
+          assert.ok(squash(text(target)), `${p.route}: empty <${tag}>`);
+        }
+      }
+      // Measurement tags: each label is centred in its yellow box, so the box's slack sits on
+      // both sides and a text-spacing override grows the label evenly (FINAL §4.0).
+      const tags = within(mainOf(p), "rect").filter(
+        (n) => attr(n, "fill") === "#FFD23F",
+      );
+      if (["/", "/how-it-works/"].includes(p.route))
         assert.ok(
-          ids[0] && labels.every(Boolean),
-          `${p.route}: svg aria-labelledby ${ids}`,
+          tags.length >= 3,
+          `${p.route}: ${tags.length} measurement tags`,
         );
-        const tags = labels.map((n) => n.tagName);
-        assert.ok(tags.includes("title") && tags.includes("desc"), p.route);
+      for (const rect of tags) {
+        const row = rect.parentNode.childNodes.filter((n) => n.tagName);
+        const label = row[row.indexOf(rect) + 1];
+        assert.equal(
+          label?.tagName,
+          "text",
+          `${p.route}: tag box without a label`,
+        );
+        const name = `${p.route}: tag "${squash(text(label))}"`;
+        assert.equal(
+          attr(label, "text-anchor"),
+          "middle",
+          `${name} text-anchor`,
+        );
+        assert.equal(
+          Number(attr(label, "x")),
+          Number(attr(rect, "x")) + Number(attr(rect, "width")) / 2,
+          `${name} is not centred in its box`,
+        );
+      }
+      const ids = p.nodes.map((n) => attr(n, "id")).filter(Boolean);
+      assert.equal(new Set(ids).size, ids.length, `${p.route}: duplicate id`);
+      // The sample sheet scrolls sideways at large text sizes: keyboard users must reach it,
+      // and screen readers name it by its caption.
+      for (const sheet of p.nodes.filter((n) => hasClass(n, "yd-sheet"))) {
+        assert.equal(
+          attr(sheet, "tabindex"),
+          "0",
+          `${p.route}: .yd-sheet tabindex`,
+        );
+        assert.equal(
+          attr(sheet, "role"),
+          "region",
+          `${p.route}: .yd-sheet role`,
+        );
+        const label = p.nodes.find(
+          (n) => attr(n, "id") === attr(sheet, "aria-labelledby"),
+        );
+        assert.ok(label && squash(text(label)), `${p.route}: .yd-sheet name`);
       }
       for (const svg of elements(p, "svg"))
         assert.ok(!text(svg).includes("$"), `${p.route}: $ inside an svg`);
@@ -331,7 +400,7 @@ check(
 check(
   "honest Yardulum status, sample prices, and contact for both owners",
   () => {
-    // (a) Home budget, measured on the build: 376 words with <svg> excluded.
+    // (a) Home budget, measured on the build: 384 words with <svg> excluded.
     const home = pageAt("/");
     const words = squash(textNoSvg(mainOf(home))).split(" ").length;
     assert.ok(words <= 400, `home <main> has ${words} words`);
@@ -397,7 +466,9 @@ check(
       assert.ok(!titleOf(p).includes("$"), `${p.route}: $ in title`);
       assert.ok(!meta(p, "description").includes("$"), p.route);
       // (e) "For life" always carries its qualifier.
-      const qualifier = /for as long as (you|they) stay subscribed/i;
+      // A member keeps the price through a pause or a late launch (STRATEGY 2.7), so the
+      // qualifier is membership, not an unbroken subscription.
+      const qualifier = /for as long as (you|they) stay (a member|members)/i;
       for (const block of [
         ...["p", "li", "td", "summary"].flatMap((tag) => within(main, tag)),
       ].map((n) => squash(text(n)))) {
@@ -436,8 +507,25 @@ check(
       "Being built",
       "Not a survey",
       "won’t price the slope",
+      // Measurements are drafts (STRATEGY 2.10, 2.12 item 10).
+      "Confirm every quantity on site before your customer signs",
     ])
       assert.ok(howText.includes(phrase), `/how-it-works/: ${phrase}`);
+    // The privacy answer names who sees prices and promises the full list in writing.
+    const prices = within(mainOf(how), "details").find((n) =>
+      squash(text(within(n, "summary")[0])).startsWith("Who sees my prices?"),
+    );
+    assert.ok(prices, "/how-it-works/: Who sees my prices?");
+    for (const phrase of [
+      "Charles",
+      "Darian",
+      "don’t sell it",
+      "written terms",
+    ])
+      assert.ok(
+        squash(text(prices)).includes(phrase),
+        `Who sees my prices?: ${phrase}`,
+      );
     const stands = how.nodes.find((n) => attr(n, "id") === "where-it-stands");
     assert.ok(stands && within(stands, "time").length > 0, "#where-it-stands");
 
@@ -447,6 +535,20 @@ check(
     assert.match(clubText, /founder pricing for life/i);
     assert.match(clubText, /sales training/i);
     assert.match(clubText, /monthly subscription/i);
+    // Draft contract terms stay off the site: billing before launch is disclosed, the
+    // asks are never a condition of the price, and every term comes in writing first.
+    assert.match(clubText, /starts when you join, before Yardulum is finished/);
+    assert.match(clubText, /every term in writing before you pay anything/);
+    assert.match(clubText, /requests, not conditions/);
+    for (const draft of [
+      /up to three/i,
+      /12 months/i,
+      /pause/i,
+      /participation/i,
+    ])
+      assert.ok(!draft.test(clubText), `/founders-club/: draft term ${draft}`);
+    // The estimating service is what the fee mainly pays for before the software (2.1, 2.3).
+    assert.match(clubText, /Estimates built for you/);
     assert.ok(linksIn(mainOf(club)).includes(TEL));
     assert.ok(linksIn(mainOf(club)).includes(SMS));
 
@@ -535,6 +637,7 @@ check("copy guardrails on the Yardulum pages and llms.txt", () => {
     /\b(Rust|WASM|lidar|point cloud)\b/i,
     /Gnash/i,
     /nothing to sell/i,
+    /stay subscribed/i,
     /automate repetitive work/i,
     /\byet\b/i,
     /slopes? included|grade-aware/i,
@@ -573,7 +676,32 @@ check("copy guardrails on the Yardulum pages and llms.txt", () => {
     if (!siAllowed) assert.ok(!si.test(copy), `${name}: SI outside About`);
   }
   assert.ok(llms.includes("in development"));
-  assert.ok(llms.includes("for as long as they stay subscribed"));
+  assert.ok(llms.includes("for as long as they stay members"));
+});
+
+check("hyphenated words in page text move to the next line whole", () => {
+  // A line break after a compound's hyphen ("a ride- / along") reads as a typo. Wrap every
+  // letter-hyphen-letter word in <main> in <span class="nobr">. SVG text and the sample tables
+  // are laid out on their own, and the Open-Source project list is GitHub data refreshed daily.
+  for (const p of pages) {
+    const walk = (node) => {
+      if (node.nodeName === "#text") {
+        for (const [word] of node.value.matchAll(/\p{L}+(?:-\p{L}+)+/gu))
+          assert.fail(
+            `${p.route}: "${word}" can break at its hyphen; wrap it in <span class="nobr">`,
+          );
+        return;
+      }
+      if (
+        ["svg", "table", "script", "style"].includes(node.tagName) ||
+        hasClass(node, "nobr") ||
+        (p.route === "/open-source/" && hasClass(node, "projects"))
+      )
+        return;
+      for (const child of node.childNodes || []) walk(child);
+    };
+    walk(mainOf(p));
+  }
 });
 
 check("CSS keeps the WebKit motion and hover rules", () => {
@@ -630,6 +758,18 @@ check("CSS keeps the WebKit motion and hover rules", () => {
     return list;
   };
   const compact = (s) => s.replace(/\s+/g, "").toLowerCase();
+  // Split a property value at top-level commas (not inside cubic-bezier() or calc()).
+  const layers = (value) => {
+    const list = [""];
+    let depth = 0;
+    for (const c of value) {
+      if (c === "(") depth++;
+      else if (c === ")") depth--;
+      if (c === "," && depth === 0) list.push("");
+      else list[list.length - 1] += c;
+    }
+    return list.map((l) => l.trim());
+  };
   const sheets = [
     ...files(dist)
       .filter((p) => p.endsWith(".css"))
@@ -656,6 +796,22 @@ check("CSS keeps the WebKit motion and hover rules", () => {
             /\bbackwards\b/.test(value) || /\byd-flash\b/.test(value),
             `${where}: ${value} must fill backwards`,
           );
+        // Entrance animations fill backwards only, so each element ends on its own style and
+        // no identity transform is held: the figure (yd-*, except the yd-flash highlight) and
+        // the headline entrances in use (print, rise, thread-pull, lift).
+        if (prop === "animation")
+          for (const layer of layers(value))
+            if (
+              /(^|\s)(yd-[\w-]+|print|rise|thread-pull|lift)(\s|$)/.test(
+                layer,
+              ) &&
+              !/(^|\s)yd-flash(\s|$)/.test(layer)
+            )
+              assert.ok(
+                /\bbackwards\b/.test(layer) &&
+                  !/\b(forwards|both)\b/.test(layer),
+                `${where}: ${layer} must fill backwards only`,
+              );
       }
       if (/^@(-webkit-)?keyframes\b/i.test(rule.prelude))
         for (const inner of allRules(rule))

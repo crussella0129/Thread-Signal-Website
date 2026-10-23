@@ -21,7 +21,7 @@ const line = SAMPLE_LINES.find((l) => l.key === "edging")!;
     <div class="yd-calc">
       <p>
         <span class="yd-calc-label">
-          <span class="yd-op" aria-hidden="true"></span>From the model
+          <span class="yd-op" aria-hidden="true"></span> From the model
         </span>
         <span class="yd-chip yd-chip-tape" set:text={line.qtyLabel} />
       </p>
@@ -39,7 +39,7 @@ const line = SAMPLE_LINES.find((l) => l.key === "edging")!;
       </p>
       <p
         class="yd-calc-labor"
-        set:text={`Labor: ${line.qtyLabel} × ${line.hoursRateLabel} = ${lineHours(line)} h`}
+        set:text={`Labor: ${line.qtyLabel} × ${line.hoursRateLabel} = ${lineHours(line)}\u00a0h`}
       />
     </div>
     <p class="yd-math-foot">

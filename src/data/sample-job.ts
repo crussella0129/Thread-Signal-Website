@@ -1,4 +1,5 @@
 // Sample job shown in every Yardulum figure. Illustration only: sample prices, not an offer.
+// \u00a0 is a no-break space: a number never wraps away from its unit.
 export const SAMPLE_BED = { areaSqFt: 324, depthIn: 3 } as const;
 export type LineKey = "haul" | "edging" | "shrub" | "bed";
 export interface SampleLine {
@@ -17,42 +18,42 @@ export const SAMPLE_LINES: SampleLine[] = [
     key: "haul",
     item: "Haul-off, old sod",
     qty: 2,
-    qtyLabel: "2 loads",
+    qtyLabel: "2\u00a0loads",
     rateCents: 17500,
-    rateLabel: "$175.00 per load",
+    rateLabel: "$175.00 per\u00a0load",
     hoursPerUnit: 1,
-    hoursRateLabel: "1.0 h per load",
+    hoursRateLabel: "1.0\u00a0h per\u00a0load",
   },
   {
     key: "edging",
     item: "Steel edging",
     qty: 56,
-    qtyLabel: "56 ft",
+    qtyLabel: "56\u00a0ft",
     rateCents: 1200,
-    rateLabel: "$12.00 per ft",
+    rateLabel: "$12.00 per\u00a0ft",
     hoursPerUnit: 0.05,
-    hoursRateLabel: "0.05 h per ft",
+    hoursRateLabel: "0.05\u00a0h per\u00a0ft",
   },
   {
     key: "shrub",
-    item: "Shrubs, 3 gal",
+    item: "Shrubs, 3\u00a0gal",
     qty: 6,
     qtyLabel: "6",
     rateCents: 6500,
     rateLabel: "$65.00 each",
     hoursPerUnit: 0.5,
-    hoursRateLabel: "0.5 h each",
+    hoursRateLabel: "0.5\u00a0h each",
   },
   {
     key: "bed",
-    item: "Mulch, 3 in",
+    item: "Mulch, 3\u00a0in",
     qty: 3,
-    qtyLabel: "3.0 cu yd",
-    qtyNote: "on 324 sq ft",
+    qtyLabel: "3.0\u00a0cu\u00a0yd",
+    qtyNote: "on 324\u00a0sq\u00a0ft",
     rateCents: 9000,
-    rateLabel: "$90.00 per cu yd",
+    rateLabel: "$90.00 per\u00a0cu\u00a0yd",
     hoursPerUnit: 1,
-    hoursRateLabel: "1.0 h per cu yd",
+    hoursRateLabel: "1.0\u00a0h per\u00a0cu\u00a0yd",
   },
 ];
 export const lineCents = (l: SampleLine) => Math.round(l.qty * l.rateCents);

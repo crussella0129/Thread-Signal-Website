@@ -23,22 +23,23 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
 >
   <div class="container page">
     <header class="page-intro">
-      <p class="eyebrow">Open-Source Dev</p>
+      <p class="eyebrow"><span class="nobr">Open-Source</span> Dev</p>
       <h1>
         <HeadlineMotion effect="thread" lines={["Built to be shared."]} />
       </h1>
       <p class="lead">
-        Contributing to and maintaining free and open-source software is a core
-        part of how we do business.
+        Contributing to and maintaining free and
+        <span class="nobr">open-source</span> software is a core part of how we
+        do business.
       </p>
       <p class="intro-note">
-        Our work spans local Super Intelligence (SI) assistants, tools for SI-assisted development,
-        and hardware designs. See each repository for its license and usage
-        terms.
+        Our work spans local Super Intelligence (SI) assistants, tools for
+        <span class="nobr">SI-assisted</span> development, and hardware designs.
+        See each repository for its license and usage terms.
       </p>
     </header>
     <div class="list-heading">
-      <h2>Most-starred projects</h2><p class="small muted">
+      <h2><span class="nobr">Most-starred</span> projects</h2><p class="small muted">
         Updated <time datetime={snapshot.updatedAt}>{updated}</time> · Refreshes daily
       </p>
     </div>
@@ -61,12 +62,7 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
                           <span aria-hidden="true">↗&#xFE0E;</span>
                         </a>
                       </h3>
-                      <span
-                        class="stars"
-                        aria-label={`${repo.stars} GitHub stars`}
-                      >
-                        {repo.stars} stars
-                      </span>
+                      <span class="stars">{repo.stars} stars</span>
                     </>
                   </div>
                   {(note?.status || repo.archived) && (

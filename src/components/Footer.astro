@@ -8,7 +8,10 @@ const openSource = Astro.url.pathname.replace(/\/$/, "") === "/open-source";
 ---
 
 <footer class="container site-footer">
-  <p>Yardulum is in development at {SITE_NAME} LLC in Kent, Ohio.</p>
+  <p>
+    Yardulum is in development at <span class="nobr">{SITE_NAME} LLC</span> in
+    Kent, Ohio.
+  </p>
   <div class="footer-links">
     <a class="text-link" href={TEL_URL}>Call {PHONE_DISPLAY}</a>
     <a class="text-link" href={SMS_URL}>Text Charles</a>
@@ -24,12 +27,19 @@ const openSource = Astro.url.pathname.replace(/\/$/, "") === "/open-source";
   <p>© {year} {SITE_NAME} LLC · Kent, Ohio</p>
 </footer>
 <style>
+  /* The footer's margin is the only gap after <main>: .page has no bottom padding. */
   .site-footer {
-    border-top: var(--stroke) solid var(--rule);
     margin-top: var(--section-gap);
-    padding-block: var(--s6);
+    padding-block: 0 var(--s6);
     color: var(--muted);
     font-size: var(--text-sm);
+  }
+  /* The rule sits inside the content column, like every section rule. */
+  .site-footer::before {
+    content: "";
+    display: block;
+    border-top: var(--stroke) solid var(--rule);
+    margin-bottom: var(--s6);
   }
   .footer-links {
     display: flex;

@@ -84,11 +84,13 @@ const path = trim(Astro.url.pathname);
     color: var(--text);
     background: var(--surface);
   }
+  /* The negative margin puts the number's last digit on the content edge; the padding keeps the 44 px target. */
   .header-phone {
     display: inline-flex;
     align-items: center;
     min-height: var(--target);
     padding-inline: var(--s3);
+    margin-inline-end: calc(var(--s3) * -1);
     font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
@@ -100,22 +102,26 @@ const path = trim(Astro.url.pathname);
       text-decoration: underline;
     }
   }
+  /* Flex, not grid: when the lockup and the phone do not fit on one row (a narrow phone, or
+     enlarged text), the phone drops under the lockup by itself. The nav always takes its own row. */
   @media (max-width: 940px) {
     .site-header {
-      grid-template-columns: max-content 1fr;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      /* The smallest gap that still separates them: lockup and phone share row 1 from 354 px up. */
+      column-gap: var(--s4);
       row-gap: var(--s1);
       padding-block: var(--s4) var(--s2);
     }
     .header-phone {
-      grid-column: 2;
-      grid-row: 1;
-      justify-self: end;
       padding-inline: 0;
+      margin-inline-end: 0;
     }
     .site-nav {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      justify-self: start;
+      order: 3;
+      flex: 1 0 100%;
       margin-inline-start: calc(var(--s3) * -1);
     }
   }
@@ -127,14 +133,22 @@ const path = trim(Astro.url.pathname);
       margin-inline-start: calc(var(--s2) * -1);
     }
   }
-  @media (max-width: 359px) {
-    .header-phone {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      justify-self: start;
+  /* The lockup is white on transparent. A light high-contrast theme paints the page white, so
+     give the unaltered lockup its own black plate there (on the img, so the link's focus
+     outline is still forced to a system colour). */
+  @media (forced-colors: active) {
+    .wordmark img {
+      forced-color-adjust: none;
+      background-color: #000;
+      box-shadow: 0 0 0 0.5rem #000;
+      border-radius: 2px;
     }
+  }
+  /* Keeps How It Works, Founders Club and About on one row down to 320 px. */
+  @media (max-width: 359px) {
     .site-nav {
-      grid-row: 3;
+      gap: 0;
+      margin-inline: calc(var(--s2) * -1);
     }
   }
 </style>

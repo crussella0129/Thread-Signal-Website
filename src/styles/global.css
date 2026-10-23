@@ -19,7 +19,8 @@
   --leading-title: 1.04;
   --tracking-title: -0.045em;
   --tracking-wordmark: -0.035em;
-  --logo-height: 2rem;
+  /* px, not rem: the lockup keeps its size when text is enlarged, so the header still fits. */
+  --logo-height: 32px;
   --s1: 0.25rem;
   --s2: 0.5rem;
   --s3: 0.75rem;
@@ -105,6 +106,17 @@ h2 {
   letter-spacing: var(--tracking-wordmark);
   font-weight: 400;
 }
+/* Fewer one-word last lines. Browsers without text-wrap ignore it. */
+p,
+li,
+figcaption,
+summary {
+  text-wrap: pretty;
+}
+h2,
+h3 {
+  text-wrap: balance;
+}
 a {
   color: inherit;
   text-underline-offset: var(--s1);
@@ -121,6 +133,19 @@ summary:focus-visible,
 video:focus-visible {
   outline: var(--focus) solid var(--text);
   outline-offset: var(--s1);
+}
+/* A phone number in running text stays on one line (the call buttons may still wrap at large text sizes). */
+main a[href^="tel:"]:not(.action) {
+  white-space: nowrap;
+}
+/* A hyphenated compound moves to the next line whole. It still breaks at its hyphens
+   when it cannot fit a line by itself (large text on a narrow phone). */
+.nobr {
+  display: inline-block;
+}
+/* A phone number never splits at its hyphen, even in a wrapping button. */
+.tel-num {
+  white-space: nowrap;
 }
 img {
   display: block;
@@ -141,7 +166,6 @@ main:focus {
 }
 .page {
   padding-top: var(--section-gap);
-  padding-bottom: var(--section-gap);
 }
 /* Headlines break by meaning, not by the paragraph measure. */
 .page-intro {
@@ -300,16 +324,34 @@ h3,
 .faq h2 + details {
   margin-top: var(--s4);
 }
-.faq details:last-of-type {
-  border-bottom: var(--stroke) solid var(--rule);
-}
 .faq summary {
   display: flex;
   align-items: center;
+  gap: var(--s4);
   min-height: var(--target);
   padding-block: var(--s3);
   font-weight: 700;
   cursor: pointer;
+  list-style: none;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+/* Open/closed sign, drawn with borders, so it adds nothing to the question's accessible name. */
+.faq summary::after {
+  content: "";
+  flex: none;
+  /* The rotated square overhangs its box by 0.1em; the end margin keeps it inside the column. */
+  margin-inline: auto 0.1em;
+  width: 0.5em;
+  height: 0.5em;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  color: var(--muted);
+  transform: translateY(-25%) rotate(45deg);
+}
+.faq details[open] > summary::after {
+  transform: translateY(25%) rotate(-135deg);
 }
 .faq details p {
   color: var(--muted);
@@ -349,11 +391,28 @@ h3,
 }
 .yd-sheet {
   position: relative;
+  /* With very large text the table scrolls sideways instead of being cut off. */
+  overflow-x: auto;
   margin: -0.75rem var(--s4) var(--s4);
   padding: var(--s4) var(--s4) var(--s3);
-  background: var(--yd-sheet);
+  /* Scroll cue: a shade on the right edge while columns are hidden. The white cover scrolls with
+     the table (local) and hides the shade once the last column is in view. */
+  background:
+    linear-gradient(to left, var(--yd-sheet) 30%, rgba(255, 255, 255, 0))
+      right / 2rem 100% no-repeat local,
+    radial-gradient(
+        farthest-side at 100% 50%,
+        rgba(27, 42, 34, 0.25),
+        rgba(27, 42, 34, 0)
+      )
+      right / 0.75rem 100% no-repeat scroll,
+    var(--yd-sheet);
   border-radius: var(--s3);
   box-shadow: 0 0 0 1px var(--yd-rule);
+}
+.yd-sheet:focus-visible {
+  outline: var(--focus) solid var(--yd-ink);
+  outline-offset: 2px;
 }
 .yd-estimate {
   width: 100%;
@@ -363,11 +422,19 @@ h3,
   line-height: 1.3;
 }
 .yd-estimate caption {
+  position: relative;
   text-align: left;
   font-weight: 700;
   font-size: 1rem;
   padding-bottom: var(--s2);
   padding-right: 2rem;
+}
+/* Caption text and the "Sample prices" pill: a wrapped pill starts flush with the caption. */
+.yd-cap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s1) var(--s2);
 }
 .yd-label {
   display: inline-block;
@@ -402,9 +469,14 @@ h3,
   white-space: nowrap;
   padding-left: var(--s3);
 }
+/* Amounts never wrap; quantities and hours may, at very large text sizes. */
+.yd-estimate .num:not(:last-child) {
+  white-space: normal;
+}
 .yd-estimate tbody th {
   padding-left: 1.375rem;
   position: relative;
+  text-wrap: balance;
 }
 .yd-qty {
   display: block;
@@ -471,10 +543,11 @@ h3,
   line-height: 1;
   flex: none;
 }
-.yd-sheet > .yd-corner {
+/* Badge 3 or 4 at the table's top right, in the caption's reserved padding. */
+.yd-estimate .yd-corner {
   position: absolute;
-  top: var(--s3);
-  right: var(--s3);
+  top: 0;
+  right: 0;
 }
 .yd-loop figcaption {
   margin-top: var(--s4);
@@ -513,7 +586,8 @@ h3,
   position: static;
   display: inline-block;
 }
-.yd-math-head .yd-label {
+.yd-math-head .yd-label,
+.yd-cap .yd-label {
   margin-left: 0;
 }
 .yd-math-head .yd-badge {
@@ -527,7 +601,6 @@ h3,
   border-radius: 0.25rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
   box-shadow: inset 0 0 0 1px var(--yd-ink);
 }
 .yd-chip-tape {
@@ -546,7 +619,7 @@ h3,
   font-variant-numeric: tabular-nums;
 }
 .yd-math-foot {
-  margin-top: var(--s4);
+  margin-top: 0;
   padding-top: var(--s3);
   border-top: 1px solid var(--yd-rule);
   font-size: 0.875rem;
@@ -568,6 +641,7 @@ h3,
 }
 .yd-calc p {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: var(--s3);
@@ -597,4 +671,23 @@ h3,
   border-bottom: 0;
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
+}
+/* High contrast: shapes drawn with box-shadow or background vanish, so give them a border. */
+@media (forced-colors: active) {
+  .action,
+  .action-outline,
+  .chip,
+  .yd-label,
+  .yd-chip,
+  .yd-badge {
+    border: 1px solid;
+  }
+  .yd-sheet,
+  .yd-figure {
+    outline: 1px solid;
+  }
+  /* The swatches tie table rows to the plan by colour. */
+  .yd-sw {
+    forced-color-adjust: none;
+  }
 }
