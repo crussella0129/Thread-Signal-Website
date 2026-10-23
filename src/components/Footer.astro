@@ -1,32 +1,43 @@
 ---
-import { SITE_NAME, GITHUB_URL, OWNER_LOCATION } from "../data/site";
+import { SITE_NAME, GITHUB_URL, PHONE_DISPLAY, TEL_URL, SMS_URL } from "../data/site";
 
 // Set at build time; the daily scheduled deploy rolls it over each January.
 const year = new Date().getFullYear();
+// A <footer>, never a <nav>, and no list markup: the site check counts both.
+const openSource = Astro.url.pathname.replace(/\/$/, "") === "/open-source";
 ---
 
-<footer class="container">
-  <div class="footer-line">
-    <p>© {year} {SITE_NAME} LLC · {OWNER_LOCATION}</p>
+<footer class="container site-footer">
+  <p>Yardulum is in development at {SITE_NAME} LLC in Kent, Ohio.</p>
+  <div class="footer-links">
+    <a class="text-link" href={TEL_URL}>Call {PHONE_DISPLAY}</a>
+    <a class="text-link" href={SMS_URL}>Text Charles</a>
+    <a
+      class="text-link"
+      href="/open-source/"
+      aria-current={openSource ? "page" : undefined}>Open-Source Dev</a
+    >
     <a class="text-link" href={GITHUB_URL}
       >GitHub <span aria-hidden="true">↗&#xFE0E;</span></a
     >
   </div>
+  <p>© {year} {SITE_NAME} LLC · Kent, Ohio</p>
 </footer>
 <style>
-  .footer-line {
+  .site-footer {
     border-top: var(--stroke) solid var(--rule);
-    padding-block: var(--s5);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--s4);
+    margin-top: var(--section-gap);
+    padding-block: var(--s6);
     color: var(--muted);
     font-size: var(--text-sm);
   }
-  @media (max-width: 400px) {
-    .footer-line {
-      flex-wrap: wrap;
-    }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--s6);
+    margin-block: var(--s2);
+  }
+  .footer-links a {
+    color: var(--text);
   }
 </style>

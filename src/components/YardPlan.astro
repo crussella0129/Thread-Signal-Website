@@ -1,0 +1,371 @@
+---
+/*
+ * Plan view of the sample yard (src/data/sample-job.ts). Illustration only.
+ *   model   Step 1: the property model with two measuring lines (works today).
+ *   design  Home figure and step 2: the new bed, edging, shrubs and tags.
+ * The tag text is literal: if a quantity in sample-job.ts changes, change it here too.
+ * Motion runs only with `animate`, above 760 px, once, and never for reduced motion.
+ */
+interface Props {
+  layer: "model" | "design";
+  id: string;
+  animate?: boolean;
+}
+const { layer, id, animate = false } = Astro.props;
+const model = layer === "model";
+const title = model
+  ? "Illustration of a sample yard on the model, measured"
+  : "Illustration of a sample front yard, with a new planting bed designed on it";
+const desc = model
+  ? "Plan view, not to scale. The same sample property, before any design. Two contour lines show the front yard falling toward the street. One measuring line along the front of the house reads 40 feet. A second line from the house to the street reads 20 feet at a 4 percent slope."
+  : "Plan view, not to scale. A house and garage sit at the back of the lot, with a driveway down to the street. A new planting bed along the front of the house is outlined in pink with steel edging and six shrubs. Tags read: bed 324 square feet, edging 56 feet, and haul-off 2 loads beside a pile of old sod.";
+---
+
+<svg
+  viewBox="0 0 360 258"
+  role="img"
+  aria-labelledby={`${id}-title ${id}-desc`}
+  class={`yd-plan${animate ? " yd-animate" : ""}`}
+  font-family="Arial, Helvetica, sans-serif"
+>
+  <title id={`${id}-title`} set:text={title}></title>
+  <desc id={`${id}-desc`} set:text={desc} />
+  <g class="yd-model">
+    <rect x="0" y="0" width="360" height="258" fill="#F2F4EE"></rect>
+    <rect
+      x="8"
+      y="8"
+      width="344"
+      height="196"
+      rx="6"
+      fill="#D8E5D6"
+      stroke="#1B2A22"
+      stroke-opacity="0.35"
+      stroke-dasharray="5 4"
+    ></rect>
+    {model && (
+      <g fill="none" stroke="#1B2A22" stroke-opacity="0.3" stroke-width="1">
+        <path d="M8,150 C70,144 140,156 200,150 S300,140 352,146" />
+        <path d="M8,182 C80,176 150,188 210,182 S310,172 352,178" />
+      </g>
+    )}
+    <rect x="258" y="78" width="64" height="134" fill="#CDD3CB"></rect>
+    <rect x="0" y="212" width="360" height="28" fill="#CDD3CB"></rect>
+    <text x="14" y="231" font-size="12" fill="#1B2A22" set:text="Street" />
+    <text
+      x="346"
+      y="231"
+      font-size="13"
+      fill="#1B2A22"
+      text-anchor="end"
+      set:text="Illustration · not to scale"
+    />
+    <rect
+      x="50"
+      y="20"
+      width="200"
+      height="70"
+      fill="#E4E8E0"
+      stroke="#1B2A22"
+      stroke-width="1.5"
+    ></rect>
+    <rect
+      x="250"
+      y="20"
+      width="80"
+      height="58"
+      fill="#E4E8E0"
+      stroke="#1B2A22"
+      stroke-width="1.5"
+    ></rect>
+    <text
+      x="150"
+      y="60"
+      font-size="13"
+      font-weight="700"
+      fill="#1B2A22"
+      text-anchor="middle"
+      set:text="House"
+    />
+    <circle cx="30" cy="170" r="14" fill="#3E7C47"></circle>
+    <circle cx="30" cy="170" r="2" fill="#1B2A22"></circle>
+  </g>
+  {model ? (
+    <g class="yd-measure">
+      <path d="M50,98 H250" stroke="#1B2A22" stroke-width="1.5" />
+      <circle
+        cx="50"
+        cy="98"
+        r="4"
+        fill="#FFFFFF"
+        stroke="#1B2A22"
+        stroke-width="1.5"
+      />
+      <circle
+        cx="250"
+        cy="98"
+        r="4"
+        fill="#FFFFFF"
+        stroke="#1B2A22"
+        stroke-width="1.5"
+      />
+      <rect
+        x="178"
+        y="104"
+        width="46"
+        height="22"
+        rx="4"
+        fill="#FFD23F"
+        stroke="#1B2A22"
+        stroke-width="0.75"
+      />
+      <text
+        x="201"
+        y="119.5"
+        font-size="13"
+        font-weight="700"
+        fill="#1B2A22"
+        text-anchor="middle"
+        set:text="40 ft"
+      />
+      <path d="M120,104 V204" stroke="#1B2A22" stroke-width="1.5" />
+      <circle
+        cx="120"
+        cy="104"
+        r="4"
+        fill="#FFFFFF"
+        stroke="#1B2A22"
+        stroke-width="1.5"
+      />
+      <circle
+        cx="120"
+        cy="204"
+        r="4"
+        fill="#FFFFFF"
+        stroke="#1B2A22"
+        stroke-width="1.5"
+      />
+      <rect
+        x="128"
+        y="154"
+        width="122"
+        height="22"
+        rx="4"
+        fill="#FFD23F"
+        stroke="#1B2A22"
+        stroke-width="0.75"
+      />
+      <text
+        x="136"
+        y="169.5"
+        font-size="13"
+        font-weight="700"
+        fill="#1B2A22"
+        set:text="20 ft · 4% slope"
+      />
+    </g>
+  ) : (
+    <g class="yd-design">
+      <path
+        class="yd-bed"
+        d="M50,90 H250 V124 C226,140 196,124 166,132 C134,140 104,126 76,134 C64,137 56,136 50,132 Z"
+        fill="#FBE0EA"
+      />
+      <path
+        class="yd-edging"
+        d="M250,90 V124 C226,140 196,124 166,132 C134,140 104,126 76,134 C64,137 56,136 50,132 V90"
+        fill="none"
+        stroke="#F0287A"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <g fill="#3E7C47" stroke="#F0287A" stroke-width="2">
+        <circle class="yd-shrub yd-s1" cx="70" cy="110" r="7" />
+        <circle class="yd-shrub yd-s2" cx="104" cy="113" r="7" />
+        <circle class="yd-shrub yd-s3" cx="138" cy="108" r="7" />
+        <circle class="yd-shrub yd-s4" cx="172" cy="112" r="7" />
+        <circle class="yd-shrub yd-s5" cx="206" cy="108" r="7" />
+        <circle class="yd-shrub yd-s6" cx="232" cy="110" r="7" />
+      </g>
+      <path class="yd-pile" d="M62,198 Q85,170 108,198 Z" fill="#7A5A3C" />
+      <g class="yd-tag yd-tag-bed">
+        <rect
+          x="40"
+          y="146"
+          width="106"
+          height="22"
+          rx="4"
+          fill="#FFD23F"
+          stroke="#1B2A22"
+          stroke-width="0.75"
+        />
+        <text
+          x="48"
+          y="161.5"
+          font-size="13"
+          font-weight="700"
+          fill="#1B2A22"
+          set:text="Bed 324 sq ft"
+        />
+      </g>
+      <g class="yd-tag yd-tag-edging">
+        <rect
+          x="156"
+          y="146"
+          width="98"
+          height="22"
+          rx="4"
+          fill="#FFD23F"
+          stroke="#1B2A22"
+          stroke-width="0.75"
+        />
+        <text
+          x="164"
+          y="161.5"
+          font-size="13"
+          font-weight="700"
+          fill="#1B2A22"
+          set:text="Edging 56 ft"
+        />
+      </g>
+      <g class="yd-tag yd-tag-haul">
+        <rect
+          x="116"
+          y="178"
+          width="124"
+          height="22"
+          rx="4"
+          fill="#FFD23F"
+          stroke="#1B2A22"
+          stroke-width="0.75"
+        />
+        <text
+          x="124"
+          y="193.5"
+          font-size="13"
+          font-weight="700"
+          fill="#1B2A22"
+          set:text="Haul-off 2 loads"
+        />
+      </g>
+    </g>
+  )}
+  <g font-size="12.5" font-weight="700" text-anchor="middle">
+    <g class="yd-b1">
+      <circle
+        cx="22"
+        cy="22"
+        r="11"
+        fill="#1B2A22"
+        stroke="#F2F4EE"
+        stroke-width="2"
+      ></circle>
+      <text x="22" y="26.5" fill="#FFFFFF" set:text="1" />
+    </g>
+    {!model && (
+      <g class="yd-b2">
+        <circle
+          cx="34"
+          cy="110"
+          r="11"
+          fill="#1B2A22"
+          stroke="#F2F4EE"
+          stroke-width="2"
+        />
+        <text x="34" y="114.5" fill="#FFFFFF" set:text="2" />
+      </g>
+    )}
+  </g>
+</svg>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .yd-animate .yd-pile {
+      animation: yd-rise 220ms cubic-bezier(0.2, 0.7, 0.1, 1) 100ms backwards;
+    }
+    .yd-animate .yd-tag-haul {
+      animation: yd-rise 220ms cubic-bezier(0.2, 0.7, 0.1, 1) 200ms backwards;
+    }
+    .yd-animate .yd-bed {
+      animation: yd-fade 250ms cubic-bezier(0.2, 0.7, 0.1, 1) 350ms backwards;
+    }
+    .yd-animate .yd-b2 {
+      animation: yd-fade 220ms cubic-bezier(0.2, 0.7, 0.1, 1) 350ms backwards;
+    }
+    .yd-animate .yd-edging {
+      animation: yd-draw-edging 500ms cubic-bezier(0.45, 0, 0.2, 1) 350ms
+        backwards;
+    }
+    .yd-animate .yd-tag-edging {
+      animation: yd-rise 220ms cubic-bezier(0.2, 0.7, 0.1, 1) 800ms backwards;
+    }
+    .yd-animate .yd-s1 {
+      animation: yd-rise 220ms cubic-bezier(0.2, 0.7, 0.1, 1) 900ms backwards;
+    }
+    .yd-animate .yd-s2 {
+      animation: yd-rise 220ms cubic-bezier(0.2, 0.7, 0.1, 1) 950ms backwards;
+    }
+    .yd-animate .yd-s3 {
+      animation: yd-rise 220ms cubic-bezier(0.2, 0.7, 0.1, 1) 1000ms backwards;
+    }
+    .yd-animate .yd-s4 {
+      animation: yd-rise 220ms cubic-bezier(0.2, 0.7, 0.1, 1) 1050ms backwards;
+    }
+    .yd-animate .yd-s5 {
+      animation: yd-rise 220ms cubic-bezier(0.2, 0.7, 0.1, 1) 1100ms backwards;
+    }
+    .yd-animate .yd-s6 {
+      animation: yd-rise 220ms cubic-bezier(0.2, 0.7, 0.1, 1) 1150ms backwards;
+    }
+    .yd-animate .yd-tag-bed {
+      animation: yd-rise 220ms cubic-bezier(0.2, 0.7, 0.1, 1) 1250ms backwards;
+    }
+  }
+  @keyframes yd-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes yd-rise {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes yd-draw-edging {
+    from {
+      stroke-dasharray: 280 280;
+      stroke-dashoffset: 280;
+    }
+    to {
+      stroke-dasharray: 280 280;
+      stroke-dashoffset: 0;
+    }
+  }
+  /* Phones: the figure is below the first screen, so it is static there. */
+  @media (max-width: 760px) {
+    .yd-animate .yd-pile,
+    .yd-animate .yd-tag-haul,
+    .yd-animate .yd-bed,
+    .yd-animate .yd-b2,
+    .yd-animate .yd-edging,
+    .yd-animate .yd-tag-edging,
+    .yd-animate .yd-s1,
+    .yd-animate .yd-s2,
+    .yd-animate .yd-s3,
+    .yd-animate .yd-s4,
+    .yd-animate .yd-s5,
+    .yd-animate .yd-s6,
+    .yd-animate .yd-tag-bed {
+      animation: none !important;
+    }
+  }
+</style>

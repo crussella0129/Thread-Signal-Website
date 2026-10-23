@@ -1,0 +1,50 @@
+---
+/*
+ * Step 3 figure (G4): one line of the sample estimate worked out, quantity
+ * from the model times the rate from the price list. HTML, not SVG, so the
+ * prices scale with text settings. Rendered from src/data/sample-job.ts.
+ */
+import { SAMPLE_LINES, lineCents, lineHours, usd } from "../data/sample-job";
+const line = SAMPLE_LINES.find((l) => l.key === "edging")!;
+---
+
+<figure class="yd-step-fig" data-sample>
+  <div class="yd-figure yd-math">
+    <p class="yd-math-head">
+      <span class="yd-sw yd-sw-edging" aria-hidden="true"></span>
+      {line.item}
+      <span class="yd-label">Sample prices</span>
+      <span class="yd-badge" aria-hidden="true">
+        3
+      </span>
+    </p>
+    <div class="yd-calc">
+      <p>
+        <span class="yd-calc-label">
+          <span class="yd-op" aria-hidden="true"></span>From the model
+        </span>
+        <span class="yd-chip yd-chip-tape" set:text={line.qtyLabel} />
+      </p>
+      <p>
+        <span class="yd-calc-label">
+          <span class="yd-op">×</span> From your price list
+        </span>
+        <span class="yd-chip yd-chip-list" set:text={line.rateLabel} />
+      </p>
+      <p class="yd-calc-total">
+        <span class="yd-calc-label">
+          <span class="yd-op">=</span> On the estimate
+        </span>
+        <strong set:text={usd(lineCents(line))} />
+      </p>
+      <p
+        class="yd-calc-labor"
+        set:text={`Labor: ${line.qtyLabel} × ${line.hoursRateLabel} = ${lineHours(line)} h`}
+      />
+    </div>
+    <p class="yd-math-foot">
+      The same math runs on every line of the estimate.
+    </p>
+  </div>
+  <figcaption>Illustration with sample prices.</figcaption>
+</figure>

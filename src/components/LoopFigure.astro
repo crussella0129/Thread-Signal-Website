@@ -1,0 +1,29 @@
+---
+/*
+ * Home hero figure (G1): the sample yard with the design drawn on it, and the
+ * estimate it produces. Badges 1-4 follow the four beats of the home H1.
+ */
+import YardPlan from "./YardPlan.astro";
+import SampleEstimate from "./SampleEstimate.astro";
+---
+
+<figure class="yd-loop" data-sample>
+  <div class="yd-figure">
+    <YardPlan layer="design" id="yd-home-plan" animate />
+    <SampleEstimate variant="estimate" flash />
+  </div>
+  <figcaption>
+    <p>
+      <strong>Works today:</strong> step 1, the property model and measuring on
+      it.
+    </p>
+    <p>
+      <strong>Being built:</strong> steps 2, 3 and 4: designing, pricing and the
+      proposal.
+    </p>
+    <p>
+      Illustration with a sample yard and sample prices. Not a screenshot and
+      not a quote.
+    </p>
+  </figcaption>
+</figure>

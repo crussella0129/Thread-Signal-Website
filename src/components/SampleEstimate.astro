@@ -1,0 +1,137 @@
+---
+/*
+ * The sample job as an HTML table, so prices scale with text settings and
+ * screen readers get table semantics. Rendered from src/data/sample-job.ts.
+ *   estimate  Home figure: hours and amounts, badge 3, "Customer OK" with badge 4.
+ *   proposal  Step 4: the customer copy, with quantities instead of labor hours.
+ * `flash` marks each amount tape-yellow once, in time with the YardPlan motion.
+ */
+import {
+  SAMPLE_LINES,
+  lineCents,
+  lineHours,
+  totalCents,
+  totalHours,
+  usd,
+} from "../data/sample-job";
+interface Props {
+  variant: "estimate" | "proposal";
+  flash?: boolean;
+}
+const { variant, flash = false } = Astro.props;
+const proposal = variant === "proposal";
+const qty = (line: (typeof SAMPLE_LINES)[number]) =>
+  line.qtyNote ? `${line.qtyLabel} ${line.qtyNote}` : line.qtyLabel;
+---
+
+<div class={`yd-sheet${proposal ? " yd-proposal" : ""}`}>
+  <span class="yd-badge yd-corner" aria-hidden="true">
+    {proposal ? "4" : "3"}
+  </span>
+  <table class={`yd-estimate${flash ? " yd-flash" : ""}`}>
+    <caption>
+      {proposal ? "Proposal: front bed" : "Estimate: front bed"}
+      <span class="yd-label">Sample prices</span>
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col" class="num" set:text={proposal ? "Qty" : "Hours"} />
+        <th scope="col" class="num">
+          Amount
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {SAMPLE_LINES.map((line, i) => (
+        <tr
+          class={proposal ? undefined : `yd-r${i + 1}`}
+          data-cents={lineCents(line)}
+        >
+          <th scope="row">
+            <span class={`yd-sw yd-sw-${line.key}`} aria-hidden="true" />
+            {line.item}
+            {!proposal && <span class="yd-qty" set:text={qty(line)} />}
+          </th>
+          <td
+            class="num"
+            set:text={proposal ? line.qtyLabel : lineHours(line)}
+          />
+          <td class="num" set:text={usd(lineCents(line))} />
+        </tr>
+      ))}
+    </tbody>
+    <tfoot>
+      {proposal ? (
+        <tr data-cents-total={totalCents}>
+          <th scope="row" colspan="2">
+            Total before tax
+          </th>
+          <td class="num" set:text={usd(totalCents)} />
+        </tr>
+      ) : (
+        <tr class="yd-rt" data-cents-total={totalCents}>
+          <th scope="row">Total</th>
+          <td class="num" set:text={totalHours} />
+          <td class="num" set:text={usd(totalCents)} />
+        </tr>
+      )}
+    </tfoot>
+  </table>
+  {proposal ? (
+    <p class="yd-ok">
+      Customer OK
+      <span class="yd-line" aria-hidden="true" />
+      Date
+      <span class="yd-line" aria-hidden="true" />
+    </p>
+  ) : (
+    <p class="yd-ok">
+      <span class="yd-badge yd-b4" aria-hidden="true">
+        4
+      </span>
+      Customer OK
+      <span class="yd-line" aria-hidden="true" />
+    </p>
+  )}
+</div>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .yd-flash .yd-r1 .num:last-child {
+      animation: yd-flash 500ms ease-out 200ms;
+    }
+    .yd-flash .yd-r2 .num:last-child {
+      animation: yd-flash 500ms ease-out 800ms;
+    }
+    .yd-flash .yd-r3 .num:last-child {
+      animation: yd-flash 500ms ease-out 1150ms;
+    }
+    .yd-flash .yd-r4 .num:last-child {
+      animation: yd-flash 500ms ease-out 1250ms;
+    }
+    .yd-flash .yd-rt .num:last-child {
+      animation: yd-flash 500ms ease-out 1450ms;
+    }
+  }
+  @keyframes yd-flash {
+    0% {
+      background-color: rgba(255, 210, 63, 0);
+    }
+    30% {
+      background-color: rgba(255, 210, 63, 0.9);
+    }
+    100% {
+      background-color: rgba(255, 210, 63, 0);
+    }
+  }
+  @media (max-width: 760px) {
+    .yd-flash .yd-r1 .num:last-child,
+    .yd-flash .yd-r2 .num:last-child,
+    .yd-flash .yd-r3 .num:last-child,
+    .yd-flash .yd-r4 .num:last-child,
+    .yd-flash .yd-rt .num:last-child {
+      animation: none !important;
+    }
+  }
+</style>

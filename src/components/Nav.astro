@@ -1,19 +1,23 @@
 ---
 import { Image } from "astro:assets";
-import { SITE_NAME } from "../data/site";
+import { SITE_NAME, PHONE_DISPLAY, TEL_URL } from "../data/site";
 import lockup from "../assets/logo/thread-and-signal-lockup-white.png";
+// The logo is the Home link; Open-Source Dev lives in the footer.
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/services/", label: "Services Offered" },
-  { href: "/open-source/", label: "Open-Source Dev" },
-  { href: "/coming-soon/", label: "Coming Soon" },
-  { href: "/contact/", label: "About & Contact" },
+  { href: "/how-it-works/", label: "How It Works" },
+  { href: "/founders-club/", label: "Founders Club" },
+  { href: "/contact/", label: "About" },
 ];
-const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const trim = (path: string) => path.replace(/\/$/, "") || "/";
+const path = trim(Astro.url.pathname);
 ---
 
 <header class="site-header container">
-  <a class="wordmark" href="/">
+  <a
+    class="wordmark"
+    href="/"
+    aria-current={path === "/" ? "page" : undefined}
+  >
     <Image
       src={lockup}
       alt={SITE_NAME}
@@ -28,27 +32,29 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
       links.map(({ href, label }) => (
         <a
           href={href}
-          aria-current={
-            path === (href.replace(/\/$/, "") || "/") ? "page" : undefined
-          }
-        >
-          {label}
-        </a>
+          aria-current={path === trim(href) ? "page" : undefined}
+          set:text={label}
+        />
       ))
     }
   </nav>
+  <a
+    class="header-phone"
+    href={TEL_URL}
+    aria-label={`Call Charles at ${PHONE_DISPLAY}`}
+    set:text={PHONE_DISPLAY}
+  />
 </header>
 <style>
   .site-header {
-    display: flex;
+    display: grid;
+    grid-template-columns: max-content 1fr auto;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--s6);
+    column-gap: var(--s6);
     padding-block: var(--s6);
   }
   /* Signalium clear space: half the lockup's height on every side. */
   .wordmark {
-    flex-shrink: 0;
     display: block;
     padding-block: var(--s2);
   }
@@ -56,8 +62,10 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     display: block;
     height: var(--logo-height);
     width: auto;
+    max-width: none;
   }
   .site-nav {
+    justify-self: end;
     display: flex;
     flex-wrap: wrap;
     gap: var(--s1);
@@ -76,25 +84,57 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     color: var(--text);
     background: var(--surface);
   }
+  .header-phone {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target);
+    padding-inline: var(--s3);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
   @media (hover: hover) and (pointer: fine) {
-    .site-nav a:hover {
+    .site-nav a:hover,
+    .header-phone:hover {
       color: var(--text);
       text-decoration: underline;
     }
   }
   @media (max-width: 940px) {
     .site-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--s4);
+      grid-template-columns: max-content 1fr;
+      row-gap: var(--s1);
+      padding-block: var(--s4) var(--s2);
+    }
+    .header-phone {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      padding-inline: 0;
+    }
+    .site-nav {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      justify-self: start;
+      margin-inline-start: calc(var(--s3) * -1);
     }
   }
   @media (max-width: 540px) {
-    .site-nav {
-      width: 100%;
-    }
     .site-nav a {
       padding-inline: var(--s2);
+    }
+    .site-nav {
+      margin-inline-start: calc(var(--s2) * -1);
+    }
+  }
+  @media (max-width: 359px) {
+    .header-phone {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      justify-self: start;
+    }
+    .site-nav {
+      grid-row: 3;
     }
   }
 </style>

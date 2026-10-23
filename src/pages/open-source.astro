@@ -87,6 +87,11 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
     <a class="text-link closing" href={GITHUB_URL}
       >Explore all our projects <span aria-hidden="true">↗&#xFE0E;</span></a
     >
+    <p class="closing-note">
+      Our main work right now is Yardulum, a sales tool for landscapers. <a
+        href="/">See Yardulum <span aria-hidden="true">→</span></a
+      >
+    </p>
   </div>
 </BaseLayout>
 <style>
@@ -145,6 +150,10 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
   }
   .status {
     font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .closing-note {
+    margin-top: var(--s4);
     color: var(--muted);
   }
   @media (max-width: 640px) {

@@ -4,11 +4,12 @@
  * letters and lines are split here at build time. Each effect plays once on
  * load and is skipped entirely for visitors who prefer reduced motion.
  *
- *   print   Home: each letter strikes as a solid block, then becomes the letter.
- *   read    Services: a 1px read head sweeps across, revealing the text behind it.
+ *   print   (unused) each letter strikes as a solid block, then becomes the letter.
+ *   read    (unused) a 1px read head sweeps across, revealing the text behind it.
  *   thread  Open-Source: a 1px thread draws under the words, which lift onto it,
  *           then its tail pulls through and out, leaving no underline.
- *   rise    About: each line slides up from behind its own edge, in turn.
+ *   rise    How It Works, Founders Club, About: each line slides up from behind
+ *           its own edge, in turn.
  */
 interface Props {
   effect: "print" | "read" | "thread" | "rise";
@@ -84,6 +85,7 @@ const last = lines.length - 1;
     animation: print var(--duration-print) steps(1, end) backwards;
     animation-delay: calc(var(--i) * var(--stagger-letter));
   }
+  /* #fff is --text written out: the site check keeps var() out of keyframes. */
   @keyframes print {
     0% {
       opacity: 0;
@@ -91,15 +93,15 @@ const last = lines.length - 1;
     1% {
       opacity: 1;
       color: transparent;
-      background: var(--text);
+      background: #fff;
     }
     55% {
       color: transparent;
-      background: var(--text);
+      background: #fff;
     }
     100% {
       opacity: 1;
-      color: var(--text);
+      color: #fff;
       background: transparent;
     }
   }
@@ -202,9 +204,10 @@ const last = lines.length - 1;
     padding-bottom: 0.12em;
     margin-bottom: -0.12em;
   }
+  /* Fill backwards only: the end keyframe equals the base style. */
   .fx-rise .line {
     display: block;
-    animation: rise var(--duration-rise) var(--ease-out) both;
+    animation: rise var(--duration-rise) var(--ease-out) backwards;
     animation-delay: calc(var(--l) * var(--stagger-line));
   }
   @keyframes rise {
