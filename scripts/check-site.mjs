@@ -417,6 +417,22 @@ check(
     const heroLinks = linksIn(hero);
     assert.equal(heroLinks.filter((h) => h === TEL).length, 1);
     assert.equal(heroLinks.filter((h) => h === SMS).length, 1);
+    // A Call button's label is one inline run: in a flex button, "Call " and the number as
+    // separate items lose the space between them ("Call(330)…").
+    for (const p of pages)
+      for (const a of elements(p, "a").filter(
+        (n) => attr(n, "href") === TEL && hasClass(n, "action"),
+      )) {
+        const kids = (a.childNodes || []).filter(
+          (n) => n.tagName || (n.nodeName === "#text" && n.value.trim()),
+        );
+        assert.equal(
+          kids.length,
+          1,
+          `${p.route}: Call button has one label element`,
+        );
+        assert.equal(squash(text(a)), "Call (330) 357-2440", p.route);
+      }
     const figures = within(hero, "figure").filter((n) =>
       n.attrs.some((a) => a.name === "data-sample"),
     );
