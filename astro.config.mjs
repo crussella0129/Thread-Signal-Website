@@ -16,15 +16,22 @@ export default defineConfig({
       cssTarget: ["chrome111", "edge111", "firefox114", "safari16", "ios16"],
     },
   },
+  // Each retired URL points straight at its final page (no chains).
+  // scripts/check-site.mjs mirrors this map.
   redirects: {
+    "/services": "/contact/",
+    "/coming-soon": "/how-it-works/",
+    "/skills": "/contact/",
+    "/design": "/contact/",
+    "/blog/local-llm-business-workflow": "/contact/",
     "/portfolio": "/open-source/",
     "/projects": "/open-source/",
     "/product": "/open-source/",
     "/animus": "/open-source/",
-    "/skills": "/services/",
-    "/design": "/services/",
     "/blog": "/open-source/",
     "/blog/hello-world": "/contact/",
-    "/blog/local-llm-business-workflow": "/services/",
+    "/yardulum": "/",
+    "/about": "/contact/",
+    "/founders": "/founders-club/",
   },
 });

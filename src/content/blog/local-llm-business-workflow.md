@@ -66,4 +66,4 @@ A useful first conversation can start with six details:
 - Data that must stay local and actions that need approval.
 - The person who can judge results and maintain the finished workflow.
 
-I offer [business automation and local LLM implementation](/services) through Thread & Signal. A scoped feasibility assessment can define the workflow, evaluation criteria, and implementation options before a larger build. [Send me your workflow brief](/contact), and we can establish what is worth testing first.
+I offer [business automation and local LLM implementation](/contact/) through Thread & Signal. A scoped feasibility assessment can define the workflow, evaluation criteria, and implementation options before a larger build. [Send me your workflow brief](/contact), and we can establish what is worth testing first.

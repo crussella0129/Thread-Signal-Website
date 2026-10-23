@@ -1,113 +1,194 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HeadlineMotion from "../components/HeadlineMotion.astro";
-import jetson from "../assets/jetson-v3.1a-photo.webp";
-import jetsonCad from "../assets/jetson-v3.1a-cad.png";
-import { GITHUB_URL } from "../data/site";
+import CallActions from "../components/CallActions.astro";
+import LoopFigure from "../components/LoopFigure.astro";
+import yardulumIcon from "../assets/yardulum-icon.png";
+import { PITCH } from "../data/site";
 ---
 
-<BaseLayout title="We automate repetitive work">
-  <div class="container home">
-    <section class="home-intro" aria-labelledby="home-title">
-      <h1 id="home-title">
-        <HeadlineMotion
-          effect="print"
-          lines={["We automate", "repetitive work."]}
+<BaseLayout
+  title="Yardulum, a sales tool for landscapers"
+  description="Yardulum is a sales tool we’re building for Northeast Ohio landscapers, to turn a model of your customer’s yard into an itemized estimate from your own price list."
+>
+  <section id="hero" class="hero container" aria-labelledby="home-title">
+    <div class="hero-text">
+      <p class="kicker">
+        <Image
+          src={yardulumIcon}
+          alt="Yardulum"
+          width={28}
+          height={28}
+          densities={[1, 2, 3]}
+          loading="eager"
         />
-      </h1>
-      <p class="lead">
-        Reports. Data entry. Moving information between apps. We build tools and
-        set up Super Intelligence (SI) to do the busywork for you.
+        <span class="kicker-name" aria-hidden="true">
+          Yardulum
+        </span>
+        <span class="chip">In development</span>
       </p>
-      <a class="action" href="/services/">See our services</a>
-      <a class="text-link" href="/contact/"
-        >Tell us what takes too long <span aria-hidden="true">→</span></a
-      >
+      <h1 id="home-title">
+        <span class="beat">Their yard.</span>
+        <span class="beat">Your design.</span>
+        <span class="beat">Your prices.</span>
+        <span class="beat">Closed at the table.</span>
+      </h1>
+      <p class="lead">{PITCH}</p>
+      <CallActions />
+      <p class="byline">
+        Charles Russella is building it in Kent,&nbsp;Ohio. He ran his own
+        landscaping and <span class="nobr">leaf-removal</span> business.
+      </p>
+    </div>
+    <LoopFigure />
+  </section>
+  <div class="container home-rest">
+    <section class="section" aria-labelledby="quote-heading">
+      <h2 id="quote-heading">Where a quote goes wrong</h2>
+      <p>
+        A quote written in the truck can get the big items right and still miss
+        the small ones.
+      </p>
+      <ul class="stories">
+        <li>
+          <h3>Short on mulch</h3>
+          <p>
+            Eyeball a bed at two yards and it takes three. Measure it, and
+            324&nbsp;sq&nbsp;ft at 3&nbsp;inches is 3&nbsp;cubic yards.
+          </p>
+        </li>
+        <li>
+          <h3>
+            <span class="nobr">Haul-off</span> left off
+          </h3>
+          <p>
+            The old sod has to go somewhere. Leave it off the quote and the crew
+            hauls it for free.
+          </p>
+        </li>
+        <li>
+          <h3>The slope nobody saw</h3>
+          <p>
+            A yard can look flat from the driveway and still fall toward the
+            street. On the model, the slope shows before anyone prices the
+            grading.
+          </p>
+        </li>
+      </ul>
+      <p>
+        We’re building Yardulum so <span class="nobr">haul-off</span>, grading
+        and the rest are items you pick from your own price list, priced the
+        same way on every job.
+      </p>
     </section>
-    <figure>
-      <div class="hero-images">
-        <div class="media-frame home-photo home-cad">
-          <Image
-            src={jetsonCad}
-            alt="CAD design of our Jetson case, showing the fan opening, buttons, and computer ports."
-            widths={[480, 800, 1200]}
-            sizes="(max-width: 760px) 100vw, 50vw"
-            format="webp"
-            loading="eager"
-            fetchpriority="high"
-          />
-        </div>
-        <div class="media-frame home-photo">
-          <Image
-            src={jetson}
-            alt="The finished 3D-printed Jetson case held in one hand, with the fan and computer ports visible."
-            widths={[480, 800, 1200]}
-            sizes="(max-width: 760px) 100vw, 50vw"
-            format="webp"
-            loading="lazy"
-          />
-        </div>
-      </div>
-      <figcaption>
-        Pictured here: <a href={`${GITHUB_URL}/Jetson-Orin-Nano-Super-Case`}
-          >Nvidia Jetson Orin Nano Super Case v3.1a</a
-        >
-        <span class="hardware-note"
-          >Hardware shown is not included in service prices.</span
-        >
-      </figcaption>
-    </figure>
+    <section class="section" aria-labelledby="club-heading">
+      <h2 id="club-heading">Ask about the Founders Club</h2>
+      <p>
+        Every landscaping company that takes part before Yardulum goes on sale
+        to everyone joins the Founders Club and keeps founder pricing for life,
+        locked for as long as they stay members. Members get setup at their
+        shop and sales training in person from Charles. In return, he asks for
+        about 30&nbsp;minutes every two weeks to hear what works and what
+        doesn’t.
+      </p>
+      <a class="text-link" href="/founders-club/">
+        How the Founders Club works <span aria-hidden="true">→</span>
+      </a>
+    </section>
+    <section class="section" aria-labelledby="call-heading">
+      <h2 id="call-heading">Call or text Charles</h2>
+      <p>
+        He’ll show you the property model in person and tell you where the rest
+        stands. If he misses your call, he’ll call you back.
+      </p>
+      <CallActions />
+    </section>
   </div>
 </BaseLayout>
 <style>
-  .home {
+  .hero {
     display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    align-items: center;
-    gap: var(--s12);
-    padding-block: var(--section-gap);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+    column-gap: var(--s12);
+    align-items: start;
+    padding-top: var(--s10);
   }
-  h1 {
-    font-size: var(--text-home);
-  }
-  .home-intro .action {
-    margin-top: var(--s8);
-  }
-  .home-intro > .text-link {
+  .kicker {
     display: flex;
-    width: fit-content;
-    margin-top: var(--s4);
-    color: var(--muted);
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--s3);
   }
-  .hero-images {
-    display: grid;
-    gap: var(--s4);
+  .kicker img {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
   }
-  .home-photo img {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-    object-position: 50% 60%;
+  .kicker-name {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: var(--tracking-wordmark);
   }
-  .home-cad img {
-    object-position: center;
-    filter: grayscale(1);
+  .hero h1 {
+    margin-top: var(--s6);
+    font-size: var(--text-hero);
   }
-  figcaption {
-    margin-top: var(--s4);
-  }
-  .hardware-note {
+  .hero h1 .beat {
     display: block;
-    margin-top: var(--s2);
+  }
+  .hero .lead {
+    margin-top: var(--s5);
+  }
+  .byline {
+    margin-top: var(--s4);
+    max-width: var(--measure);
+  }
+  /* CallActions renders .actions, so reach into it with :global. */
+  .hero :global(.actions) {
+    margin-top: var(--s6);
+  }
+  .stories {
+    list-style: none;
+    padding: 0;
+    margin: var(--s6) 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s8);
+  }
+  .stories p {
+    margin-top: var(--s2) !important;
+  }
+  /* Two-column hero, 761-940 px: when Call and Text stack, they share the column width. */
+  @media (max-width: 940px) {
+    .hero :global(.actions > a) {
+      flex: 1 1 auto;
+    }
+  }
+  @media (max-width: 900px) {
+    .stories {
+      grid-template-columns: 1fr;
+      gap: var(--s5);
+    }
   }
   @media (max-width: 760px) {
-    .home {
-      grid-template-columns: 1fr;
-      gap: var(--s10);
+    .hero {
+      grid-template-columns: minmax(0, 1fr);
+      padding-top: var(--s4);
+      row-gap: var(--s10);
     }
-    .home-photo img {
-      aspect-ratio: 4 / 3;
+    .hero h1 {
+      margin-top: var(--s4);
+      font-size: var(--text-hero-phone);
+    }
+    .hero .lead {
+      margin-top: var(--s4);
+      font-size: var(--text-base);
+    }
+    .byline {
+      margin-top: var(--s3);
+    }
+    .hero :global(.actions) {
+      margin-top: var(--s5);
     }
   }
 </style>

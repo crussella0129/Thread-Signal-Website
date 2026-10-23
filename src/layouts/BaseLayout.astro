@@ -13,6 +13,10 @@ import {
   GITHUB_URL,
   LINKEDIN_URL,
   DARIAN_LINKEDIN_URL,
+  PHONE_SCHEMA,
+  SERVICE_AREA,
+  SOCIAL_IMAGE,
+  SOCIAL_IMAGE_ALT,
 } from "../data/site";
 import "../styles/global.css";
 interface Props {
@@ -22,8 +26,8 @@ interface Props {
 const { title, description = SITE_DESCRIPTION } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, SITE_URL);
 const fullTitle = `${title} | ${SITE_NAME}`;
-const socialImage = new URL("/social-card.png", SITE_URL).href;
-const socialImageAlt = "Thread & Signal. We automate repetitive work.";
+const socialImage = new URL(SOCIAL_IMAGE, SITE_URL).href;
+const socialImageAlt = SOCIAL_IMAGE_ALT;
 const identity = [
   {
     "@context": "https://schema.org",
@@ -32,6 +36,17 @@ const identity = [
     name: SITE_NAME,
     url: `${SITE_URL}/`,
     email: CONTACT_EMAILS,
+    telephone: PHONE_SCHEMA,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Kent",
+      addressRegion: "OH",
+      addressCountry: "US",
+    },
+    areaServed: SERVICE_AREA.map((c) => ({
+      "@type": "City",
+      name: `${c}, Ohio`,
+    })),
     description: SITE_DESCRIPTION,
     founder: { "@id": `${SITE_URL}/#charles-russella` },
   },
@@ -82,6 +97,7 @@ const serializedData = JSON.stringify(identity).replace(/</g, "\\u003c");
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />

@@ -1,0 +1,188 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeadlineMotion from "../components/HeadlineMotion.astro";
+import CallActions from "../components/CallActions.astro";
+import { PHONE_DISPLAY, TEL_URL } from "../data/site";
+---
+
+<BaseLayout
+  title="Yardulum Founders Club"
+  description="Landscaping companies that take part before Yardulum goes on sale to everyone get founder pricing for life, locked for as long as they stay members. Members get setup and sales training in person."
+>
+  <div class="container page">
+    <header class="page-intro">
+      <p class="eyebrow">Yardulum · In development</p>
+      <h1>
+        <HeadlineMotion effect="rise" lines={["The Founders Club."]} />
+      </h1>
+      <p class="lead">
+        Every landscaping company that takes part before Yardulum goes on sale
+        to everyone joins the Founders Club and keeps founder pricing for life,
+        locked for as long as they stay members.
+      </p>
+      <CallActions />
+    </header>
+    <div class="club-grid">
+      <section class="section" aria-labelledby="get-heading">
+        <h2 id="get-heading">What you get</h2>
+        <ul class="benefits">
+          <li>
+            <strong>Founder pricing for life</strong>, locked at the monthly
+            price you join at for as long as you stay a member. Your written
+            terms spell out exactly what that covers.
+          </li>
+          <li>
+            <strong>Setup at your shop.</strong> Charles comes to you and sets
+            you up in person.
+          </li>
+          <li>
+            <strong>Your price list, built with you.</strong> Charles builds it
+            with you now and loads it into Yardulum as that part is ready.
+          </li>
+          <li>
+            <strong>Estimates built for you.</strong> Until Yardulum can price
+            your jobs, Charles builds itemized estimates for real jobs you’re
+            bidding, from your price list. Your written terms say how many.
+          </li>
+          <li>
+            <strong>Sales training, in person.</strong> A working session with
+            you and your salespeople: how to walk a customer through an itemized
+            price at the kitchen table.
+          </li>
+          <li>
+            <strong>Each piece as it’s ready.</strong> Members try every part
+            first, starting with the property model.
+          </li>
+          <li>
+            <strong>A direct line.</strong> Call or text Charles at{" "}
+            <a href={TEL_URL} set:text={PHONE_DISPLAY} />.
+          </li>
+        </ul>
+      </section>
+      <section class="section" aria-labelledby="ask-heading">
+        <h2 id="ask-heading">What we ask</h2>
+        <ul class="benefits">
+          <li>
+            Show Charles how you price a job today. One quote that went well and
+            one that went sideways is plenty.
+          </li>
+          <li>
+            About 30&nbsp;minutes every two weeks to tell us what works and what
+            doesn’t.
+          </li>
+          <li>
+            One <span class="nobr">ride-along</span> on a sales visit, with your
+            customer’s OK.
+          </li>
+          <li>Straight answers. If something is wrong or slow, say so.</li>
+        </ul>
+        <p>
+          These are requests, not conditions. Once you have a founder price,
+          it’s never taken away for not helping enough.
+        </p>
+        <p>
+          Not ready to pay? You can still help build it. Charles will tell you
+          in writing what that takes and how your founder price is held.
+        </p>
+      </section>
+    </div>
+    <section class="section" aria-labelledby="for-heading">
+      <h2 id="for-heading">Who it’s for</h2>
+      <p>
+        Landscaping companies in Northeast Ohio that sell install work: beds,
+        plantings, sod, patios and walls. Kent, Akron, Cleveland, Canton,
+        Youngstown and the towns between.
+      </p>
+      <p>
+        Charles sets up each company himself, so he takes on a few at a time.
+      </p>
+    </section>
+    <section class="section" aria-labelledby="stands-heading">
+      <h2 id="stands-heading">Where it stands</h2>
+      <p>
+        Yardulum is in development. Today we can build a 3D model of a property
+        from public mapping data and measure on it, and Charles will show you.
+        Designing, pricing and the proposal are being built now.
+      </p>
+      <a class="text-link" href="/how-it-works/#where-it-stands">
+        See what works today <span aria-hidden="true">→</span>
+      </a>
+    </section>
+    <section class="section faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Questions</h2>
+      <details>
+        <summary>What does it cost?</summary>
+        <p>
+          Membership is a monthly subscription that starts when you join, before
+          Yardulum is finished. Until it’s ready, it pays for the setup visit,
+          your price list, the estimates Charles builds for you and the sales
+          training. After that, it’s Yardulum itself, at the same price. Charles
+          goes over the price with you in person and gives you every term in
+          writing before you pay anything.
+        </p>
+      </details>
+      <details>
+        <summary>Why join before it’s finished?</summary>
+        <p>
+          You lock in the founder price, and how you actually sell shapes what
+          gets built. Charles would rather hear what’s wrong from you now than
+          after it’s done.
+        </p>
+      </details>
+      <details>
+        <summary>How far will Charles drive?</summary>
+        <p>Anywhere in Northeast Ohio. If you’re farther out, call anyway.</p>
+      </details>
+    </section>
+    <section class="section" aria-labelledby="join-heading">
+      <h2 id="join-heading">Ask about joining</h2>
+      <ol class="join">
+        <li>
+          Call or text Charles at <a href={TEL_URL} set:text={PHONE_DISPLAY} />.
+        </li>
+        <li>
+          He comes to your shop, hears how you price jobs now and shows you the
+          property model.
+        </li>
+        <li>If it’s a fit, you get the terms in writing before you decide.</li>
+      </ol>
+      <CallActions />
+    </section>
+  </div>
+</BaseLayout>
+<style>
+  /* The grid carries the section gap: its margin collapses with the intro's, as on other
+     pages, while the sections' own margins inside the grid would add to it. */
+  .club-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--s12);
+    margin-top: var(--section-gap);
+  }
+  .club-grid > .section {
+    margin-top: 0;
+  }
+  .benefits,
+  .join {
+    margin: var(--s4) 0 0;
+    padding-left: 1.25rem;
+    max-width: var(--measure);
+  }
+  .benefits li,
+  .join li {
+    color: var(--muted);
+    margin-top: var(--s3);
+  }
+  .benefits strong {
+    color: var(--text);
+  }
+  @media (max-width: 640px) {
+    .club-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+    .club-grid > .section + .section {
+      margin-top: var(--section-gap);
+    }
+  }
+</style>

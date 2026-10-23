@@ -1,17 +1,15 @@
 # Current positioning
 
-Thread & Signal helps businesses spend less time on repetitive computer work. Charles and Darian Russella own the company in Kent, Ohio.
+Thread & Signal is building Yardulum, a sales tool for landscapers. Charles and Darian Russella own the company in Kent, Ohio; Charles builds Yardulum and sells it in person across Northeast Ohio.
 
-The website sells three concrete starting points:
+One sentence, used on the site and in applications: "Yardulum is a sales tool we’re building for landscapers: it will turn a model of your customer’s yard into an itemized estimate, priced from your own price list."
 
-1. Automate a repeated task involving spreadsheets, emails, forms, or records.
-2. Set up and test SI (Super Intelligence) for finding information in documents or preparing drafts, including local use where appropriate.
-3. Train a team on its own everyday tasks and provide simple instructions.
+The reader is a landscaping owner on a phone, right after Charles called or texted. In ten seconds the home page must show what Yardulum is, that it is in development, who Charles is, and how to call or text him.
 
-Lead with the task and result. Price follows the explanation as a planning range, with the work and final price agreed before starting. Avoid technical stack lists, guarantees of savings, unsupported client claims, and speculative services.
+Lead with the sale: measured, priced scope from the landscaper’s own price list, walked through at the kitchen table. The 3D model is how, not the headline. Say it is meant to work alongside the software landscapers bill and run crews with; never name competitors.
 
-The homepage is short. Actual hardware and public software belong on Open-Source Dev as evidence of work, with context for prototypes and dates for GitHub counts. FOSS participation and maintenance are a core business practice.
+Honesty rules: Works today means the property model from free public mapping data, two-point measuring with slope, and the phone web app that reopens offline. Everything else is Being built, in future tense. Slope shows on the model; Yardulum does not price it. No customers, testimonials, logos, accuracy figures, close-rate or margin claims, dates, offers with dollar amounts, scheduling, "survey-grade", AI or SI in Yardulum copy, or investor/accelerator language. Sample prices appear only inside labelled illustrations. "Founder pricing for life" always carries "for as long as you stay a member" (or "they stay members"). Measurements are drafts, not a survey: every quantity is confirmed on site before the customer signs.
 
-About & Contact explains the relevant business and systems experience behind the work. It does not publish the supplied resumes or turn Darian's broadcast background into a full-service AV offering.
+The homepage is short and scannable: one picture, three short sections. Local Super Intelligence (SI) setup is one line at the bottom of About. Open-Source Dev stays as builder credibility, in the footer.
 
-The visual direction is black and white, plain typography, ample space, squircle controls and image frames, and actual project media. No decorative animations, gradients, icon grids, or long manifestos.
+The visual direction stays black and white, Arial, squircle controls, and real material. Yardulum’s colours appear only inside product figures, where each colour means something: green is growing, pink is new work, yellow is measured.

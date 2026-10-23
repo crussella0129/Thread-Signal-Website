@@ -1,45 +1,80 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeadlineMotion from "../components/HeadlineMotion.astro";
+import CallActions from "../components/CallActions.astro";
 import {
   OWNER_NAME,
   OWNER_TITLE,
   DARIAN_NAME,
   DARIAN_TITLE,
-  AUTOMATION_BRIEF_URL,
+  CONTACT_BRIEF_URL,
   LINKEDIN_URL,
   DARIAN_LINKEDIN_URL,
 } from "../data/site";
+// A hyphenated word in a role line ("Co-owner") moves to the next line whole, like every
+// compound on the site (.nobr).
+const keepWhole = (title: string) => title.split(/(\S+-\S+)/);
 ---
 
 <BaseLayout
-  title="About Us & Contact"
-  description="Meet Charles and Darian Russella, the owners of Thread & Signal in Kent, Ohio. Tell us about the business task you would like to make easier."
+  title="About & Contact"
+  description="Thread & Signal is Charles and Darian Russella in Kent, Ohio. Charles ran his own landscaping and leaf-removal business and is building Yardulum. Call or text (330) 357-2440."
 >
   <div class="container page">
     <header class="page-intro">
-      <p class="eyebrow">About Us & Contact</p>
+      <p class="eyebrow">About &amp; Contact</p>
       <h1>
-        <HeadlineMotion
-          effect="rise"
-          lines={["Two people.", "Practical help."]}
-        />
+        <HeadlineMotion effect="rise" lines={["Who you’ll be", "talking to."]} />
       </h1>
       <p class="lead">
-        We’re Charles and Darian Russella, a husband-and-wife team in Kent,
-        Ohio. We bring business experience and systems engineering to the work
-        you want to make easier.
+        Thread &amp; Signal LLC is Charles and Darian Russella, a
+        <span class="nobr">husband-and-wife</span> company in Kent, Ohio. Charles
+        is building Yardulum, and he’s the one you’ll talk to.
       </p>
     </header>
-    <div class="people">
+    <section
+      id="contact"
+      class="section contact-first"
+      aria-labelledby="contact-heading"
+    >
+      <h2 id="contact-heading">Call or text Charles</h2>
+      <p>
+        (330) 357-2440 is Charles’s business line. If he misses you, leave a
+        message or send a text and he’ll get back to you.
+      </p>
+      <CallActions />
+      <a class="text-link" href={CONTACT_BRIEF_URL}
+        >Email Charles and Darian <span aria-hidden="true">→</span></a
+      >
+      <p class="small">
+        Email goes to both of us. Please leave customer names, addresses and
+        passwords out of a first message.
+      </p>
+    </section>
+    <div class="people section">
       <section aria-labelledby="charles">
         <h2 id="charles">{OWNER_NAME}</h2>
-        <p class="role">{OWNER_TITLE}</p>
+        <p class="role">
+          {
+            keepWhole(OWNER_TITLE).map((part, i) =>
+              i % 2 ? <span class="nobr">{part}</span> : part,
+            )
+          }
+        </p>
         <p>
-          Charles spent seven years in sales, mortgage lending, and
-          financial-crimes compliance. He started automating the Excel and
-          Microsoft 365 tasks he did every day. Now he builds business tools and
-          local SI systems.
+          Charles ran his own landscaping and
+          <span class="nobr">leaf-removal</span> business and has worked a
+          landscaping job for another company.
+        </p>
+        <p>
+          He also spent seven years in sales, mortgage lending, and
+          <span class="nobr">financial-crimes</span> compliance. He’s building
+          Yardulum around the moment that decides whether a job makes money: the
+          quote the customer signs.
+        </p>
+        <p>
+          He plans to set up the first 100&nbsp;Yardulum customers himself, in
+          person.
         </p>
         <a class="text-link" href={LINKEDIN_URL}
           >Charles on LinkedIn <span aria-hidden="true">↗&#xFE0E;</span></a
@@ -47,32 +82,37 @@ import {
       </section>
       <section aria-labelledby="darian">
         <h2 id="darian">{DARIAN_NAME}</h2>
-        <p class="role">{DARIAN_TITLE}</p>
+        <p class="role">
+          {
+            keepWhole(DARIAN_TITLE).map((part, i) =>
+              i % 2 ? <span class="nobr">{part}</span> : part,
+            )
+          }
+        </p>
         <p>
           Darian has a master’s in Engineering Management Technology and a
           background in live broadcast systems. She brings systems design,
-          troubleshooting, and clear technical documentation to our work, and
-          can assist with contract remote broadcast projects.
+          troubleshooting, and clear technical documentation to Thread &amp;
+          Signal.
         </p>
         <a class="text-link" href={DARIAN_LINKEDIN_URL}
           >Darian on LinkedIn <span aria-hidden="true">↗&#xFE0E;</span></a
         >
       </section>
     </div>
-    <section class="contact" aria-labelledby="contact-heading">
-      <div>
-        <h2 id="contact-heading">What takes too long?</h2><p>
-          Tell us what you do now and what you’d like to change. Plain language
-          is perfect.
-        </p>
-      </div>
-      <div class="contact-actions">
-        <a class="action" href={AUTOMATION_BRIEF_URL}>Email us about a task</a>
-        <p>
-          Please leave passwords and sensitive customer data out of your first
-          message.
-        </p>
-      </div>
+    <section class="section" aria-labelledby="area-heading">
+      <h2 id="area-heading">Where we work</h2>
+      <p>
+        We’re based in Kent, Ohio. Charles comes to you anywhere in Northeast
+        Ohio: Akron, Cleveland, Canton, Youngstown and the towns between.
+      </p>
+    </section>
+    <section class="section other-work" aria-labelledby="other-heading">
+      <h2 id="other-heading" class="h3">Other work</h2>
+      <p class="small">
+        Thread &amp; Signal also sets up local Super Intelligence (SI) systems
+        for businesses near Kent. Ask Charles.
+      </p>
     </section>
   </div>
 </BaseLayout>
@@ -82,42 +122,25 @@ import {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--s12);
   }
-  .people section {
-    border-top: var(--stroke) solid var(--rule);
-    padding-top: var(--s8);
-  }
-  .role {
+  .people > section > p {
     color: var(--muted);
+    max-width: var(--measure);
+    margin-top: var(--s3);
+  }
+  /* Scoping raises the rule above's specificity, so name the role the same way. */
+  .people > section > .role {
     margin-top: var(--s2);
-    margin-bottom: var(--s5);
   }
-  .people section > p:last-of-type {
-    color: var(--muted);
-    max-width: var(--measure);
+  .contact-first .text-link {
+    margin-top: var(--s3);
   }
-  .people .text-link {
-    margin-top: var(--s4);
-  }
-  .contact {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--s12);
-    border-top: var(--stroke) solid var(--rule);
-    padding-top: var(--s8);
-    margin-top: var(--section-gap);
-  }
-  .contact p {
-    color: var(--muted);
-    margin-top: var(--s4);
-    max-width: var(--measure);
-  }
-  .contact-actions {
-    align-self: center;
+  .people section {
+    border-top: 0;
+    padding-top: 0;
   }
   @media (max-width: 640px) {
-    .people,
-    .contact {
-      grid-template-columns: 1fr;
+    .people {
+      grid-template-columns: minmax(0, 1fr);
       gap: var(--s8);
     }
   }

@@ -1,0 +1,302 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeadlineMotion from "../components/HeadlineMotion.astro";
+import CallActions from "../components/CallActions.astro";
+import YardPlan from "../components/YardPlan.astro";
+import PriceMath from "../components/PriceMath.astro";
+import SampleEstimate from "../components/SampleEstimate.astro";
+---
+
+<BaseLayout
+  title="How Yardulum works"
+  description="Four steps from yard to itemized proposal. The property model works today; designing, pricing and the proposal are being built."
+>
+  <div class="container page">
+    <header class="page-intro">
+      <p class="eyebrow">How It Works</p>
+      <h1>
+        <HeadlineMotion
+          effect="rise"
+          lines={["From their yard", "to the kitchen table."]}
+        />
+      </h1>
+      <p class="lead">
+        Four steps. The first works today. The other three are what we’re
+        building now.
+      </p>
+    </header>
+    <section class="step" aria-labelledby="step-1">
+      <h2 id="step-1">1. Their yard, modeled</h2>
+      <figure class="yd-step-fig">
+        <div class="yd-figure">
+          <YardPlan layer="model" id="yd-step1" />
+        </div>
+        <figcaption>
+          Illustration of a sample yard, measured on the model.
+        </figcaption>
+      </figure>
+      <div class="step-body">
+        <p>
+          Before a visit, we build a 3D model of the property from free public
+          mapping data: the ground, the house and the trees. Two taps on the
+          model give the distance and the slope between any two points.
+        </p>
+        <p class="state">
+          <strong>Works today.</strong> For now, we build each model for you,
+          and Charles shows it to you in person.
+        </p>
+      </div>
+    </section>
+    <section class="step section" aria-labelledby="step-2">
+      <h2 id="step-2">2. Your design on it</h2>
+      <figure class="yd-step-fig">
+        <div class="yd-figure">
+          <YardPlan layer="design" id="yd-step2" />
+        </div>
+        <figcaption>Illustration. Pink marks new work.</figcaption>
+      </figure>
+      <div class="step-body">
+        <p>
+          You’ll draw beds, edging, plants and patios on the model, using the
+          items you sell. The quantities will come from what you draw.
+        </p>
+        <p class="state">
+          <strong>Being built.</strong>
+        </p>
+      </div>
+    </section>
+    <section class="step section" aria-labelledby="step-3">
+      <h2 id="step-3">3. Your prices on every item</h2>
+      <PriceMath />
+      <div class="step-body">
+        <p>
+          Each item will be priced from your own price list, with labor hours.
+          Change the design and the total will change with it. It’s plain
+          arithmetic you can check, line by line.
+        </p>
+        <p class="state">
+          <strong>Being built.</strong> The slope shows on the model, but
+          Yardulum won’t price the slope for you. Grading will go on the
+          estimate as its own line, from your price list.
+        </p>
+      </div>
+    </section>
+    <section class="step section" aria-labelledby="step-4">
+      <h2 id="step-4">4. Closed at the table</h2>
+      <figure class="yd-step-fig" data-sample>
+        <div class="yd-figure yd-proposal-wrap">
+          <SampleEstimate variant="proposal" />
+        </div>
+        <figcaption>Illustration with sample prices. Not a quote.</figcaption>
+      </figure>
+      <div class="step-body">
+        <p>
+          You’ll walk your customer through their own yard, your design and
+          every line of the price, then hand them a
+          <span class="nobr">one-page</span> itemized proposal, ready to sign.
+        </p>
+        <p class="state">
+          <strong>Being built.</strong>
+        </p>
+      </div>
+    </section>
+    <div class="more section">
+      <section aria-labelledby="phone-heading">
+        <h2 id="phone-heading" class="h3">
+          On a phone or tablet
+        </h2>
+        <p>
+          Yardulum runs in the web browser on a phone or tablet. Once a property
+          is loaded, it opens again without a signal.
+        </p>
+        <p class="state">
+          <strong>Works today.</strong>
+        </p>
+      </section>
+      <section aria-labelledby="sale-heading">
+        <h2 id="sale-heading" class="h3">
+          Built for the sale
+        </h2>
+        <p>
+          Yardulum isn’t the software you bill or run crews with. It’s built for
+          the sale itself, and it’s meant to work alongside the estimating and
+          office software you already use.
+        </p>
+      </section>
+      <section aria-labelledby="survey-heading">
+        <h2 id="survey-heading" class="h3">
+          Not a survey
+        </h2>
+        <p>
+          Measurements come from public aerial photos and elevation data.
+          They’re drafts for designing and pricing, not a survey. Confirm every
+          quantity on site before your customer signs, and don’t use them to
+          settle property lines.
+        </p>
+      </section>
+    </div>
+    <section class="section faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Common questions</h2>
+      <details>
+        <summary>Do I or my salespeople need CAD skills?</summary>
+        <p>
+          No. We’re building it for people who’ve never used CAD. Measuring on
+          the model takes two taps, and Charles can show you.
+        </p>
+      </details>
+      <details>
+        <summary>Do I have to switch software?</summary>
+        <p>
+          No. Keep what you use. Yardulum is for the sale, and we’re building it
+          to work alongside the software you bill and run crews with.
+        </p>
+      </details>
+      <details>
+        <summary>Who sees my prices?</summary>
+        <p>
+          Charles and Darian, the two owners. Your price list stays yours: we
+          use it to build your estimates, and we don’t sell it. Your written
+          terms will list every outside service that handles your data.
+        </p>
+      </details>
+      <details>
+        <summary>Where do you work?</summary>
+        <p>
+          Northeast Ohio: Kent, Akron, Cleveland, Canton, Youngstown and the
+          towns between. Charles sets up each company in person.
+        </p>
+      </details>
+    </section>
+    <section
+      id="where-it-stands"
+      class="section"
+      aria-labelledby="stands-heading"
+    >
+      <h2 id="stands-heading">Where it stands</h2>
+      <p class="small muted">
+        Updated <time datetime="2026-10-23">October 23, 2026</time>
+      </p>
+      <ul class="progress">
+        <li>
+          <strong>
+            <time datetime="2026-10">October 2026</time>
+          </strong>
+          The property model and measuring work in the Yardulum app on our test
+          properties.
+        </li>
+        <li>
+          <strong>
+            <time datetime="2026-10-23">October 23, 2026</time>
+          </strong>
+          Our first test model of a Kent, Ohio location, built from public
+          elevation data and aerial photos.
+        </li>
+        <li>
+          <strong>Being built now</strong>
+          Designing on the model and pricing from your own price list.
+        </li>
+      </ul>
+    </section>
+    <section class="section" aria-labelledby="close-heading">
+      <h2 id="close-heading">See it in person</h2>
+      <p>
+        Call or text Charles. He’ll show you the property model and where the
+        rest stands.
+      </p>
+      <CallActions />
+    </section>
+  </div>
+</BaseLayout>
+<style>
+  /* The figure column is 26rem (416 px at default text size). With enlarged text it stops at
+     42% of the row, so the step text keeps a readable width, or at the 18.5rem the step 4
+     proposal needs to show its Amount column, up to half the row. */
+  .step {
+    display: grid;
+    grid-template-columns:
+      minmax(0, min(26rem, max(416px, 42%, min(18.5rem, 50%))))
+      minmax(0, 1fr);
+    grid-template-areas: "fig head" "fig body";
+    grid-template-rows: auto 1fr;
+    column-gap: var(--s12);
+  }
+  .step > h2 {
+    grid-area: head;
+  }
+  /* PriceMath renders its own <figure>, so reach it with :global. */
+  .step > :global(figure) {
+    grid-area: fig;
+  }
+  .step > .step-body {
+    grid-area: body;
+  }
+  /* Step 2 shows the design: keep its badge 2 and drop the model's badge 1, which step 1 already shows. */
+  #step-2 + figure :global(.yd-b1) {
+    display: none;
+  }
+  .step-body p {
+    color: var(--muted);
+    max-width: var(--measure);
+    margin-top: var(--s4);
+  }
+  .step-body .state {
+    color: var(--text);
+  }
+  .more {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s8);
+  }
+  .more section {
+    border-top: var(--stroke) solid var(--rule);
+    padding-top: var(--s6);
+  }
+  .more p {
+    color: var(--muted);
+    margin-top: var(--s3);
+  }
+  .more .state {
+    color: var(--text);
+  }
+  /* Each column draws its own rule, so the row's section rule would double it. */
+  .more.section {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .progress {
+    list-style: none;
+    padding: 0;
+    margin: var(--s4) 0 0;
+  }
+  .progress li {
+    padding-block: var(--s3);
+    border-top: var(--stroke) solid var(--rule);
+    color: var(--muted);
+    max-width: var(--measure);
+  }
+  .progress strong {
+    color: var(--text);
+    display: block;
+  }
+  /* 761-900 px (iPad portrait): a fixed 416 px figure would squeeze the step text to about
+     30 characters a line, so figure and text share the row equally. */
+  @media (max-width: 900px) {
+    .step {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: var(--s8);
+    }
+  }
+  @media (max-width: 760px) {
+    .step {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "head" "fig" "body";
+    }
+    .step > :global(figure) {
+      margin-top: var(--s5);
+    }
+    .more {
+      grid-template-columns: 1fr;
+      gap: var(--s6);
+    }
+  }
+</style>
