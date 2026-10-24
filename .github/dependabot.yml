@@ -4,12 +4,10 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
-    target-branch: codex/work
   - package-ecosystem: npm
     directory: "/"
     schedule:
       interval: weekly
-    target-branch: codex/work
     open-pull-requests-limit: 5
     ignore:
       # @astrojs/check 0.9.10 supports TypeScript 5 and 6, not 7.
