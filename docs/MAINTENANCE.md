@@ -43,7 +43,7 @@ If the local Windows npm shim is broken, use `C:\Program Files\nodejs\npm.cmd` a
 
 ## Dependency updates
 
-Dependabot version updates target `codex/work`; security updates target GitHub's default branch, `main`. Test updates with `npm ci --ignore-scripts`, `npm audit --audit-level=high`, and `npm run validate` before merging. Keep related updates together when their package or lockfile edits overlap.
+Dependabot version and security updates both target `main`, the branch that deploys; `main` needs a passing `validate` check and the owner's review to merge. Test updates with `npm ci --ignore-scripts`, `npm audit --audit-level=high`, and `npm run validate` before merging. Keep related updates together when their package or lockfile edits overlap.
 
 The latest `@astrojs/check` (0.9.10, checked September 24, 2026) accepts TypeScript 5 and 6. TypeScript 7 fails at `npm ci` with a peer-dependency conflict. `.github/dependabot.yml` temporarily ignores TypeScript versions 7 and later; remove the bound once the checker supports them. Do not bypass peer dependency resolution or disable the type check to make such an update pass.
 
