@@ -20,7 +20,8 @@ export default defineConfig({
   // scripts/check-site.mjs mirrors this map.
   redirects: {
     "/services": "/contact/",
-    "/coming-soon": "/how-it-works/",
+    "/coming-soon": "/yardulum/",
+    "/how-it-works": "/yardulum/",
     "/skills": "/contact/",
     "/design": "/contact/",
     "/blog/local-llm-business-workflow": "/contact/",
@@ -30,7 +31,6 @@ export default defineConfig({
     "/animus": "/open-source/",
     "/blog": "/open-source/",
     "/blog/hello-world": "/contact/",
-    "/yardulum": "/",
     "/about": "/contact/",
     "/founders": "/founders-club/",
   },

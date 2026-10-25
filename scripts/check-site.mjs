@@ -12,16 +12,17 @@ const routes = [
   "/",
   "/contact/",
   "/founders-club/",
-  "/how-it-works/",
   "/open-source/",
+  "/yardulum/",
 ];
-const navRoutes = ["/contact/", "/founders-club/", "/how-it-works/"];
-const yardulumRoutes = ["/", "/how-it-works/", "/founders-club/", "/contact/"];
+const navRoutes = ["/contact/", "/founders-club/", "/yardulum/"];
+const yardulumRoutes = ["/", "/yardulum/", "/founders-club/", "/contact/"];
 const TEL = "tel:+13303572440";
 const SMS = "sms:+13303572440";
 const legacy = {
   "/services/": "/contact/",
-  "/coming-soon/": "/how-it-works/",
+  "/coming-soon/": "/yardulum/",
+  "/how-it-works/": "/yardulum/",
   "/skills/": "/contact/",
   "/design/": "/contact/",
   "/blog/local-llm-business-workflow/": "/contact/",
@@ -31,7 +32,6 @@ const legacy = {
   "/animus/": "/open-source/",
   "/blog/": "/open-source/",
   "/blog/hello-world/": "/contact/",
-  "/yardulum/": "/",
   "/about/": "/contact/",
   "/founders/": "/founders-club/",
 };
@@ -307,7 +307,7 @@ check(
       const tags = within(mainOf(p), "rect").filter(
         (n) => attr(n, "fill") === "#FFD23F",
       );
-      if (["/", "/how-it-works/"].includes(p.route))
+      if (["/", "/yardulum/"].includes(p.route))
         assert.ok(
           tags.length >= 3,
           `${p.route}: ${tags.length} measurement tags`,
@@ -515,8 +515,8 @@ check(
     for (const route of ["/founders-club/", "/contact/"])
       assert.ok(!pageAt(route).source.includes("$"), `${route} contains $`);
 
-    // (g) How It Works keeps its status words and limits.
-    const how = pageAt("/how-it-works/");
+    // (g) The Yardulum page keeps its status words and limits.
+    const how = pageAt("/yardulum/");
     const howText = squash(text(mainOf(how)));
     for (const phrase of [
       "Works today",
@@ -526,12 +526,12 @@ check(
       // Measurements are drafts (STRATEGY 2.10, 2.12 item 10).
       "Confirm every quantity on site before your customer signs",
     ])
-      assert.ok(howText.includes(phrase), `/how-it-works/: ${phrase}`);
+      assert.ok(howText.includes(phrase), `/yardulum/: ${phrase}`);
     // The privacy answer names who sees prices and promises the full list in writing.
     const prices = within(mainOf(how), "details").find((n) =>
       squash(text(within(n, "summary")[0])).startsWith("Who sees my prices?"),
     );
-    assert.ok(prices, "/how-it-works/: Who sees my prices?");
+    assert.ok(prices, "/yardulum/: Who sees my prices?");
     for (const phrase of [
       "Charles",
       "Darian",
