@@ -20,8 +20,9 @@ export default defineConfig({
   // scripts/check-site.mjs mirrors this map.
   redirects: {
     "/services": "/contact/",
-    "/coming-soon": "/yardulum/",
-    "/how-it-works": "/yardulum/",
+    "/coming-soon": "/yarduluv/",
+    "/how-it-works": "/yarduluv/",
+    "/yardulum": "/yarduluv/",
     "/skills": "/contact/",
     "/design": "/contact/",
     "/blog/local-llm-business-workflow": "/contact/",

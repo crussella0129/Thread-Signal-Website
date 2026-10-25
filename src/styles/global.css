@@ -1,4 +1,4 @@
-/* Black, white, real work. Shared tokens for every page; Yardulum colours live only inside figures. */
+/* Black, white, real work. Shared tokens for every page; YardUluv colours live only inside figures. */
 :root {
   color-scheme: dark;
   --bg: #000;
@@ -55,7 +55,7 @@
   /* Home headline: four one-line beats ("Closed at the table." never wraps, 300-1600 px). */
   --text-hero: clamp(2.25rem, 3.6vw, 3.25rem);
   --text-hero-phone: clamp(1.75rem, 8.6vw, 2.5rem);
-  /* Yardulum figure tokens: used only inside .yd-figure elements and the social card. */
+  /* YardUluv figure tokens: used only inside .yd-figure elements and the social card. */
   --yd-paper: #f2f4ee; /* the model surface */
   --yd-sheet: #ffffff; /* the estimate */
   --yd-ink: #1b2a22; /* lines and text */
@@ -384,7 +384,7 @@ h3,
     transition: none !important;
   }
 }
-/* Yardulum figure classes, shared by YardPlan, SampleEstimate, LoopFigure and PriceMath. */
+/* YardUluv figure classes, shared by YardPlan, SampleEstimate, LoopFigure and PriceMath. */
 .yd-figure {
   background: var(--yd-paper);
   border-radius: var(--radius-media);

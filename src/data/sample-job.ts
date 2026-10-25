@@ -1,4 +1,4 @@
-// Sample job shown in every Yardulum figure. Illustration only: sample prices, not an offer.
+// Sample job shown in every YardUluv figure. Illustration only: sample prices, not an offer.
 // \u00a0 is a no-break space: a number never wraps away from its unit.
 export const SAMPLE_BED = { areaSqFt: 324, depthIn: 3 } as const;
 export type LineKey = "haul" | "edging" | "shrub" | "bed";
