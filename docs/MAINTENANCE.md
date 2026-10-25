@@ -1,6 +1,6 @@
 # Website maintenance
 
-The production Astro site has five canonical pages: Home (`/`, Yardulum), How It Works (`/how-it-works/`), Founders Club (`/founders-club/`), About & Contact (`/contact/`) and Open-Source Dev (`/open-source/`, linked from the footer only). The main nav holds How It Works, Founders Club and About; the logo is the Home link. Historical design studies and blog Markdown remain in the repository; they are not additional published pages.
+The production Astro site has five canonical pages: Home (`/`, Yardulum), Yardulum (`/yardulum/`, formerly How It Works; `/how-it-works/` redirects there), Founders Club (`/founders-club/`), About & Contact (`/contact/`) and Open-Source Dev (`/open-source/`, linked from the footer only). The main nav holds How It Works, Founders Club and About; the logo is the Home link. Historical design studies and blog Markdown remain in the repository; they are not additional published pages.
 
 ## Editing
 
