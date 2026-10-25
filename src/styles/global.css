@@ -185,6 +185,54 @@ main:focus {
   margin-top: var(--s6);
   text-wrap: balance;
 }
+.nowrap {
+  white-space: nowrap;
+}
+/* Read by screen readers, hidden on screen. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* The tagline's first word flips through the product loop, one word every
+   2 s (5 words, 10 s cycle). All words share one grid cell, so the box is as
+   wide as the longest word and the rest of the line never moves. With motion
+   off, only the first word shows. */
+.spin {
+  display: inline-grid;
+  vertical-align: bottom;
+  overflow: hidden;
+  color: #8fd17a; /* leaf green, close to the heart */
+}
+.spin > span {
+  grid-area: 1 / 1;
+  justify-self: end;
+  opacity: 0;
+  animation: spin-word 10s var(--ease-out) infinite;
+  animation-delay: calc(var(--i) * 2s);
+}
+.spin > span:first-child {
+  opacity: 1;
+}
+@keyframes spin-word {
+  0% {
+    opacity: 0;
+    transform: translateY(0.6em);
+  }
+  4%,
+  18% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  22%,
+  100% {
+    opacity: 0;
+    transform: translateY(-0.6em);
+  }
+}
 /* The green heart pops in just after the title rises. */
 .heart {
   display: inline-block;

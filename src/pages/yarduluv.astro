@@ -17,7 +17,19 @@ import SampleEstimate from "../components/SampleEstimate.astro";
         <HeadlineMotion effect="rise" lines={["YardUluv"]} />
       </h1>
       <p class="tagline">
-        The Yard U Love <span class="heart" aria-hidden="true">💚</span>
+        <span class="sr-only">
+          Model, design, price, sell and maintain the yard you love.
+        </span>
+        <span aria-hidden="true">
+          <span class="spin">
+            <span style="--i: 0">Model</span>
+            <span style="--i: 1">Design</span>
+            <span style="--i: 2">Price</span>
+            <span style="--i: 3">Sell</span>
+            <span style="--i: 4">Maintain</span>
+          </span>
+          <span class="nowrap">The Yard U Love <span class="heart">💚</span></span>
+        </span>
       </p>
       <p class="lead">
         Four steps. The first works today. The other three are what we’re
