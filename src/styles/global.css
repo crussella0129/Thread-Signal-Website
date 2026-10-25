@@ -178,6 +178,13 @@ main:focus {
   color: var(--muted);
   margin-bottom: var(--s6);
 }
+.tagline {
+  font-size: var(--text-h2);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-wordmark);
+  margin-top: var(--s6);
+  text-wrap: balance;
+}
 .lead {
   font-size: var(--text-lead);
   color: var(--muted);
