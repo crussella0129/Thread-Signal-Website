@@ -5,6 +5,7 @@ import CallActions from "../components/CallActions.astro";
 import YardPlan from "../components/YardPlan.astro";
 import PriceMath from "../components/PriceMath.astro";
 import SampleEstimate from "../components/SampleEstimate.astro";
+import Brand from "../components/Brand.astro";
 ---
 
 <BaseLayout
@@ -12,7 +13,7 @@ import SampleEstimate from "../components/SampleEstimate.astro";
   description="Four steps from yard to itemized proposal. The property model works today; designing, pricing and the proposal are being built."
 >
   <div class="container page">
-    <header class="page-intro">
+    <header class="page-intro intro-center">
       <h1>
         <HeadlineMotion effect="rise" lines={["YardUluv"]} />
       </h1>
@@ -89,7 +90,7 @@ import SampleEstimate from "../components/SampleEstimate.astro";
         </p>
         <p class="state">
           <strong>Being built.</strong> The slope shows on the model, but
-          YardUluv won’t price the slope for you. Grading will go on the
+          <Brand /> won’t price the slope for you. Grading will go on the
           estimate as its own line, from your price list.
         </p>
       </div>
@@ -119,8 +120,8 @@ import SampleEstimate from "../components/SampleEstimate.astro";
           On a phone or tablet
         </h2>
         <p>
-          YardUluv runs in the web browser on a phone or tablet. Once a property
-          is loaded, it opens again without a signal.
+          <Brand /> runs in the web browser on a phone or tablet. Once a
+          property is loaded, it opens again without a signal.
         </p>
         <p class="state">
           <strong>Works today.</strong>
@@ -131,9 +132,9 @@ import SampleEstimate from "../components/SampleEstimate.astro";
           Built for the sale
         </h2>
         <p>
-          YardUluv isn’t the software you bill or run crews with. It’s built for
-          the sale itself, and it’s meant to work alongside the estimating and
-          office software you already use.
+          <Brand /> isn’t the software you bill or run crews with. It’s built
+          for the sale itself, and it’s meant to work alongside the estimating
+          and office software you already use.
         </p>
       </section>
       <section aria-labelledby="survey-heading">
@@ -160,8 +161,8 @@ import SampleEstimate from "../components/SampleEstimate.astro";
       <details>
         <summary>Do I have to switch software?</summary>
         <p>
-          No. Keep what you use. YardUluv is for the sale, and we’re building it
-          to work alongside the software you bill and run crews with.
+          No. Keep what you use. <Brand /> is for the sale, and we’re building
+          it to work alongside the software you bill and run crews with.
         </p>
       </details>
       <details>
@@ -194,7 +195,7 @@ import SampleEstimate from "../components/SampleEstimate.astro";
           <strong>
             <time datetime="2026-10">October 2026</time>
           </strong>
-          The property model and measuring work in the YardUluv app on our test
+          The property model and measuring work in the <Brand /> app on our test
           properties.
         </li>
         <li>
@@ -210,6 +211,17 @@ import SampleEstimate from "../components/SampleEstimate.astro";
         </li>
       </ul>
     </section>
+    <section class="section" aria-labelledby="club-heading">
+      <h2 id="club-heading">The Founders Club</h2>
+      <p>
+        Every landscaping company that takes part before <Brand /> goes on sale
+        to everyone joins the Founders Club and keeps founder pricing for life,
+        locked for as long as they stay members.
+      </p>
+      <a class="text-link" href="/founders-club/">
+        How the Founders Club works <span aria-hidden="true">→</span>
+      </a>
+    </section>
     <section class="section" aria-labelledby="close-heading">
       <h2 id="close-heading">See it in person</h2>
       <p>
@@ -221,6 +233,16 @@ import SampleEstimate from "../components/SampleEstimate.astro";
   </div>
 </BaseLayout>
 <style>
+  /* The product name, its tagline and the lead sit centred over the page. */
+  .intro-center h1,
+  .intro-center .tagline,
+  .intro-center .lead {
+    text-align: center;
+  }
+  /* The tagline and the lead keep the measure, centred too. */
+  .intro-center > p {
+    margin-inline: auto;
+  }
   /* The figure column is 26rem (416 px at default text size). With enlarged text it stops at
      42% of the row, so the step text keeps a readable width, or at the 18.5rem the step 4
      proposal needs to show its Amount column, up to half the row. */

@@ -188,6 +188,10 @@ main:focus {
 .nowrap {
   white-space: nowrap;
 }
+/* The product name is written Yard, a bold U, luv (src/components/Brand.astro). */
+.brand b {
+  font-weight: 700;
+}
 /* Read by screen readers, hidden on screen. */
 .sr-only {
   position: absolute;
@@ -454,7 +458,10 @@ h3,
 .yd-figure {
   background: var(--yd-paper);
   border-radius: var(--radius-media);
+  /* clip where supported: a hidden box is a scroll container, and the phone figure's
+     scroll-driven animations must follow the page, not this box. */
   overflow: hidden;
+  overflow: clip;
   color: var(--yd-ink);
 }
 .yd-figure svg {
