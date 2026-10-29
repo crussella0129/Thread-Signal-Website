@@ -14,6 +14,7 @@
  *           Club." to the next line whole, and it still wraps at that space when it
  *           cannot fit a line by itself (large text on a narrow phone).
  */
+import Brand from "./Brand.astro";
 interface Props {
   effect: "print" | "read" | "thread" | "rise";
   lines: string[];
@@ -26,6 +27,8 @@ const letters = lines.map((line) =>
 const last = lines.length - 1;
 // Odd entries are the phrases joined by U+00A0, rendered as one .nobr unit with plain spaces.
 const groups = (line: string) => line.split(/(\S+(?:\u00a0\S+)+)/);
+// Plain runs show the product name with its bold U (Brand.astro): odd entries are the name.
+const runs = (part: string) => part.split(/(YardUluv)/);
 ---
 
 <span class={`fx fx-${effect}`}>
@@ -79,7 +82,7 @@ const groups = (line: string) => line.split(/(\S+(?:\u00a0\S+)+)/);
               i % 2 ? (
                 <span class="nobr" set:text={part.replaceAll("\u00a0", " ")} />
               ) : (
-                part
+                runs(part).map((run, j) => (j % 2 ? <Brand /> : run))
               ),
             )}
           </span>

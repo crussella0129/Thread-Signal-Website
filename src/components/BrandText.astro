@@ -1,0 +1,13 @@
+---
+/*
+ * Renders a plain string (from src/data/site.ts) with every "YardUluv" as <Brand />.
+ */
+import Brand from "./Brand.astro";
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+const parts = text.split(/(YardUluv)/);
+---
+
+{parts.map((part, i) => (i % 2 ? <Brand /> : part))}

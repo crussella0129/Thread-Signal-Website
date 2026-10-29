@@ -15,7 +15,12 @@ const routes = [
   "/open-source/",
   "/yarduluv/",
 ];
-const navRoutes = ["/contact/", "/founders-club/", "/yarduluv/"];
+const navRoutes = [
+  "/contact/",
+  "/founders-club/",
+  "/open-source/",
+  "/yarduluv/",
+];
 const yardulumRoutes = ["/", "/yarduluv/", "/founders-club/", "/contact/"];
 const TEL = "tel:+13303572440";
 const SMS = "sms:+13303572440";
@@ -52,19 +57,24 @@ const ancestors = (node) => {
 const attr = (node, name) => node?.attrs?.find((a) => a.name === name)?.value;
 const hasClass = (node, name) =>
   (attr(node, "class") || "").split(/\s+/).includes(name);
+// The product name's bold U (Brand.astro) is one word: no space around the <b>.
 const text = (node) =>
   node.nodeName === "#text"
     ? node.value
     : ["script", "style"].includes(node.tagName)
       ? ""
-      : (node.childNodes || []).map(text).join(" ");
+      : (node.childNodes || [])
+          .map(text)
+          .join(hasClass(node, "brand") ? "" : " ");
 // Like text(), but SVG titles, descriptions and labels are left out too.
 const textNoSvg = (node) =>
   node.nodeName === "#text"
     ? node.value
     : ["script", "style", "svg"].includes(node.tagName)
       ? ""
-      : (node.childNodes || []).map(textNoSvg).join(" ");
+      : (node.childNodes || [])
+          .map(textNoSvg)
+          .join(hasClass(node, "brand") ? "" : " ");
 const squash = (s) => s.replace(/\s+/g, " ").trim();
 const elements = (page, tag) => page.nodes.filter((n) => n.tagName === tag);
 const meta = (page, name) =>
@@ -132,7 +142,7 @@ function check(name, fn) {
 }
 
 check(
-  "five canonical pages, three in the main nav, Home on the logo, Open-Source in the footer",
+  "five canonical pages, four in the main nav (Founders Club under YardUluv), Home on the logo, Open-Source in the nav and the footer",
   () => {
     assert.deepEqual(pages.map((p) => p.route).sort(), routes);
     for (const p of pages) {
@@ -149,12 +159,7 @@ check(
       const current = p.nodes.filter((n) => attr(n, "aria-current") === "page");
       assert.equal(current.length, 1, `${p.route}: one aria-current`);
       assert.equal(attr(current[0], "href"), p.route, p.route);
-      const owner =
-        p.route === "/"
-          ? wordmark
-          : p.route === "/open-source/"
-            ? elements(p, "footer")[0]
-            : nav[0];
+      const owner = p.route === "/" ? wordmark : nav[0];
       assert.ok(
         current[0] === owner || ancestors(current[0]).includes(owner),
         `${p.route}: aria-current is on the wrong link`,

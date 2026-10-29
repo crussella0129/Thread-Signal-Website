@@ -1,23 +1,17 @@
 ---
 import { Image } from "astro:assets";
+import Brand from "./Brand.astro";
 import { SITE_NAME, PHONE_DISPLAY, TEL_URL } from "../data/site";
 import lockup from "../assets/logo/thread-and-signal-lockup-white.png";
-// The logo is the Home link; Open-Source Dev lives in the footer.
-const links = [
-  { href: "/yarduluv/", label: "YardUluv" },
-  { href: "/founders-club/", label: "Founders Club" },
-  { href: "/contact/", label: "About" },
-];
+// The logo is the Home link. Founders Club sits under YardUluv as its sub-link, and
+// Open-Source Dev is in the nav as well as the footer.
 const trim = (path: string) => path.replace(/\/$/, "") || "/";
 const path = trim(Astro.url.pathname);
+const current = (href: string) => (path === trim(href) ? "page" : undefined);
 ---
 
 <header class="site-header container">
-  <a
-    class="wordmark"
-    href="/"
-    aria-current={path === "/" ? "page" : undefined}
-  >
+  <a class="wordmark" href="/" aria-current={path === "/" ? "page" : undefined}>
     <Image
       src={lockup}
       alt={SITE_NAME}
@@ -28,15 +22,24 @@ const path = trim(Astro.url.pathname);
     />
   </a>
   <nav class="site-nav" aria-label="Main navigation">
-    {
-      links.map(({ href, label }) => (
-        <a
-          href={href}
-          aria-current={path === trim(href) ? "page" : undefined}
-          set:text={label}
-        />
-      ))
-    }
+    <div class="nav-group">
+      <a href="/yarduluv/" aria-current={current("/yarduluv/")}>
+        <Brand />
+      </a>
+      <a
+        class="nav-sub"
+        href="/founders-club/"
+        aria-current={current("/founders-club/")}
+      >
+        Founders Club
+      </a>
+    </div>
+    <a href="/open-source/" aria-current={current("/open-source/")}>
+      Open-Source Dev
+    </a>
+    <a href="/contact/" aria-current={current("/contact/")}>
+      About
+    </a>
   </nav>
   <a
     class="header-phone"
@@ -46,10 +49,12 @@ const path = trim(Astro.url.pathname);
   />
 </header>
 <style>
+  /* Top-aligned, so the lockup and the phone line up with the first nav row, not with the
+     Founders Club line under it. */
   .site-header {
     display: grid;
     grid-template-columns: max-content 1fr auto;
-    align-items: center;
+    align-items: start;
     column-gap: var(--s6);
     padding-block: var(--s6);
   }
@@ -68,7 +73,22 @@ const path = trim(Astro.url.pathname);
     justify-self: end;
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     gap: var(--s1);
+  }
+  /* YardUluv with Founders Club under it, as its sub-heading. */
+  .nav-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  /* Smaller and muted, on a 32 px target directly under the YardUluv link. The negative end
+     margin keeps the group as wide as YardUluv, so the next link keeps the usual gap. */
+  .site-nav .nav-sub {
+    min-height: 2rem;
+    padding-block: 0;
+    margin-inline-end: -2em;
+    font-size: var(--text-sm);
   }
   .site-nav a {
     display: flex;
@@ -144,7 +164,7 @@ const path = trim(Astro.url.pathname);
       border-radius: 2px;
     }
   }
-  /* Keeps YardUluv, Founders Club and About on one row down to 320 px. */
+  /* Keeps YardUluv, Open-Source Dev and About on one row down to 320 px. */
   @media (max-width: 359px) {
     .site-nav {
       gap: 0;
