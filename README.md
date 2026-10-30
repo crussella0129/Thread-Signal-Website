@@ -1,7 +1,7 @@
 # Thread-Signal-Website
 The official [Thread & Signal](https://threadandsignal.com/) website. Astro generates the static site; an isolated GitHub Pages job publishes the validated artifact after a change reaches protected `main`.
 
-The October 2026 Yardulum-first redesign has five pages: Home (Yardulum), How It Works, Founders Club, About & Contact, and Open-Source Dev (footer only). GitHub project rankings refresh daily. Charles approved publication after the [release security check](docs/security-review-2026-09-23.md). Browser automation and Cap recordings still require his permission before computer use begins.
+The October 2026 YardUluv-first redesign has five pages: Home (YardUluv), YardUluv (`/yarduluv/`, the product page), Founders Club, About & Contact, and Open-Source Dev (footer only). GitHub project rankings refresh daily. Charles approved publication after the [release security check](docs/security-review-2026-09-23.md). Browser automation and Cap recordings still require his permission before computer use begins.
 
 ```sh
 npm ci

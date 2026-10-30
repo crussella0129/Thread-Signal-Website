@@ -1,22 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Brand from "../components/Brand.astro";
 import HeadlineMotion from "../components/HeadlineMotion.astro";
 import CallActions from "../components/CallActions.astro";
 import { PHONE_DISPLAY, TEL_URL } from "../data/site";
 ---
 
 <BaseLayout
-  title="Yardulum Founders Club"
-  description="Landscaping companies that take part before Yardulum goes on sale to everyone get founder pricing for life, locked for as long as they stay members. Members get setup and sales training in person."
+  title="YardUluv Founders Club"
+  description="Landscaping companies that take part before YardUluv goes on sale to everyone get founder pricing for life, locked for as long as they stay members. Members get setup and sales training in person."
 >
   <div class="container page">
     <header class="page-intro">
-      <p class="eyebrow">Yardulum · In development</p>
+      <p class="eyebrow">
+        <Brand /> · In development
+      </p>
       <h1>
         <HeadlineMotion effect="rise" lines={["The Founders Club."]} />
       </h1>
       <p class="lead">
-        Every landscaping company that takes part before Yardulum goes on sale
+        Every landscaping company that takes part before <Brand /> goes on sale
         to everyone joins the Founders Club and keeps founder pricing for life,
         locked for as long as they stay members.
       </p>
@@ -37,10 +40,10 @@ import { PHONE_DISPLAY, TEL_URL } from "../data/site";
           </li>
           <li>
             <strong>Your price list, built with you.</strong> Charles builds it
-            with you now and loads it into Yardulum as that part is ready.
+            with you now and loads it into <Brand /> as that part is ready.
           </li>
           <li>
-            <strong>Estimates built for you.</strong> Until Yardulum can price
+            <strong>Estimates built for you.</strong> Until <Brand /> can price
             your jobs, Charles builds itemized estimates for real jobs you’re
             bidding, from your price list. Your written terms say how many.
           </li>
@@ -100,11 +103,11 @@ import { PHONE_DISPLAY, TEL_URL } from "../data/site";
     <section class="section" aria-labelledby="stands-heading">
       <h2 id="stands-heading">Where it stands</h2>
       <p>
-        Yardulum is in development. Today we can build a 3D model of a property
+        <Brand /> is in development. Today we can build a 3D model of a property
         from public mapping data and measure on it, and Charles will show you.
         Designing, pricing and the proposal are being built now.
       </p>
-      <a class="text-link" href="/how-it-works/#where-it-stands">
+      <a class="text-link" href="/yarduluv/#where-it-stands">
         See what works today <span aria-hidden="true">→</span>
       </a>
     </section>
@@ -114,11 +117,11 @@ import { PHONE_DISPLAY, TEL_URL } from "../data/site";
         <summary>What does it cost?</summary>
         <p>
           Membership is a monthly subscription that starts when you join, before
-          Yardulum is finished. Until it’s ready, it pays for the setup visit,
+          <Brand /> is finished. Until it’s ready, it pays for the setup visit,
           your price list, the estimates Charles builds for you and the sales
-          training. After that, it’s Yardulum itself, at the same price. Charles
-          goes over the price with you in person and gives you every term in
-          writing before you pay anything.
+          training. After that, it’s <Brand /> itself, at the same price.
+          Charles goes over the price with you in person and gives you every
+          term in writing before you pay anything.
         </p>
       </details>
       <details>

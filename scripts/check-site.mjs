@@ -12,16 +12,23 @@ const routes = [
   "/",
   "/contact/",
   "/founders-club/",
-  "/how-it-works/",
   "/open-source/",
+  "/yarduluv/",
 ];
-const navRoutes = ["/contact/", "/founders-club/", "/how-it-works/"];
-const yardulumRoutes = ["/", "/how-it-works/", "/founders-club/", "/contact/"];
+const navRoutes = [
+  "/contact/",
+  "/founders-club/",
+  "/open-source/",
+  "/yarduluv/",
+];
+const yardulumRoutes = ["/", "/yarduluv/", "/founders-club/", "/contact/"];
 const TEL = "tel:+13303572440";
 const SMS = "sms:+13303572440";
 const legacy = {
   "/services/": "/contact/",
-  "/coming-soon/": "/how-it-works/",
+  "/coming-soon/": "/yarduluv/",
+  "/how-it-works/": "/yarduluv/",
+  "/yardulum/": "/yarduluv/",
   "/skills/": "/contact/",
   "/design/": "/contact/",
   "/blog/local-llm-business-workflow/": "/contact/",
@@ -31,7 +38,6 @@ const legacy = {
   "/animus/": "/open-source/",
   "/blog/": "/open-source/",
   "/blog/hello-world/": "/contact/",
-  "/yardulum/": "/",
   "/about/": "/contact/",
   "/founders/": "/founders-club/",
 };
@@ -51,19 +57,24 @@ const ancestors = (node) => {
 const attr = (node, name) => node?.attrs?.find((a) => a.name === name)?.value;
 const hasClass = (node, name) =>
   (attr(node, "class") || "").split(/\s+/).includes(name);
+// The product name's bold U (Brand.astro) is one word: no space around the <b>.
 const text = (node) =>
   node.nodeName === "#text"
     ? node.value
     : ["script", "style"].includes(node.tagName)
       ? ""
-      : (node.childNodes || []).map(text).join(" ");
+      : (node.childNodes || [])
+          .map(text)
+          .join(hasClass(node, "brand") ? "" : " ");
 // Like text(), but SVG titles, descriptions and labels are left out too.
 const textNoSvg = (node) =>
   node.nodeName === "#text"
     ? node.value
     : ["script", "style", "svg"].includes(node.tagName)
       ? ""
-      : (node.childNodes || []).map(textNoSvg).join(" ");
+      : (node.childNodes || [])
+          .map(textNoSvg)
+          .join(hasClass(node, "brand") ? "" : " ");
 const squash = (s) => s.replace(/\s+/g, " ").trim();
 const elements = (page, tag) => page.nodes.filter((n) => n.tagName === tag);
 const meta = (page, name) =>
@@ -131,7 +142,7 @@ function check(name, fn) {
 }
 
 check(
-  "five canonical pages, three in the main nav, Home on the logo, Open-Source in the footer",
+  "five canonical pages, four in the main nav (Founders Club under YardUluv), Home on the logo, Open-Source in the nav and the footer",
   () => {
     assert.deepEqual(pages.map((p) => p.route).sort(), routes);
     for (const p of pages) {
@@ -148,12 +159,7 @@ check(
       const current = p.nodes.filter((n) => attr(n, "aria-current") === "page");
       assert.equal(current.length, 1, `${p.route}: one aria-current`);
       assert.equal(attr(current[0], "href"), p.route, p.route);
-      const owner =
-        p.route === "/"
-          ? wordmark
-          : p.route === "/open-source/"
-            ? elements(p, "footer")[0]
-            : nav[0];
+      const owner = p.route === "/" ? wordmark : nav[0];
       assert.ok(
         current[0] === owner || ancestors(current[0]).includes(owner),
         `${p.route}: aria-current is on the wrong link`,
@@ -185,7 +191,7 @@ check(
 );
 
 check(
-  "page metadata, the Yardulum social preview, the phone, and both co-owners",
+  "page metadata, the YardUluv social preview, the phone, and both co-owners",
   () => {
     const titles = new Set();
     const descriptions = new Set();
@@ -202,10 +208,10 @@ check(
       assert.equal(meta(p, "og:description"), description);
       assert.equal(meta(p, "twitter:title"), title);
       assert.equal(meta(p, "twitter:description"), description);
-      assert.equal(meta(p, "og:image"), origin + "/social-card-yardulum.png");
+      assert.equal(meta(p, "og:image"), origin + "/social-card-yarduluv.png");
       assert.equal(meta(p, "twitter:image"), meta(p, "og:image"));
       const alt = meta(p, "og:image:alt");
-      assert.match(alt, /Yardulum/);
+      assert.match(alt, /YardUluv/);
       assert.match(alt, /in development/i);
       assert.equal(meta(p, "twitter:image:alt"), alt);
       const schema = schemaOf(p);
@@ -234,7 +240,7 @@ check(
           `${p.route}: JSON-LD ${type}`,
         );
       // Search snippets and link previews cut a description at about 155 characters, so on the
-      // Yardulum pages the status words (or the "for life" qualifier) must come before that.
+      // YardUluv pages the status words (or the "for life" qualifier) must come before that.
       if (yardulumRoutes.includes(p.route)) {
         const status =
           /in development|being built|we[’']re building|is building|for as long as (you|they) stay (a member|members)/gi;
@@ -249,7 +255,7 @@ check(
       assert.equal(meta(p, "theme-color"), "#000000");
       assert.equal(meta(p, "format-detection"), "telephone=no");
     }
-    const png = readFileSync(new URL("social-card-yardulum.png", root));
+    const png = readFileSync(new URL("social-card-yarduluv.png", root));
     assert.equal(png.subarray(0, 8).toString("hex"), "89504e470d0a1a0a");
     assert.equal(png.readUInt32BE(16), 1200);
     assert.equal(png.readUInt32BE(20), 630);
@@ -307,7 +313,7 @@ check(
       const tags = within(mainOf(p), "rect").filter(
         (n) => attr(n, "fill") === "#FFD23F",
       );
-      if (["/", "/how-it-works/"].includes(p.route))
+      if (["/", "/yarduluv/"].includes(p.route))
         assert.ok(
           tags.length >= 3,
           `${p.route}: ${tags.length} measurement tags`,
@@ -398,7 +404,7 @@ check(
 );
 
 check(
-  "honest Yardulum status, sample prices, and contact for both owners",
+  "honest YardUluv status, sample prices, and contact for both owners",
   () => {
     // (a) Home budget, measured on the build: 384 words with <svg> excluded.
     const home = pageAt("/");
@@ -515,8 +521,8 @@ check(
     for (const route of ["/founders-club/", "/contact/"])
       assert.ok(!pageAt(route).source.includes("$"), `${route} contains $`);
 
-    // (g) How It Works keeps its status words and limits.
-    const how = pageAt("/how-it-works/");
+    // (g) The YardUluv page keeps its status words and limits.
+    const how = pageAt("/yarduluv/");
     const howText = squash(text(mainOf(how)));
     for (const phrase of [
       "Works today",
@@ -526,12 +532,12 @@ check(
       // Measurements are drafts (STRATEGY 2.10, 2.12 item 10).
       "Confirm every quantity on site before your customer signs",
     ])
-      assert.ok(howText.includes(phrase), `/how-it-works/: ${phrase}`);
+      assert.ok(howText.includes(phrase), `/yarduluv/: ${phrase}`);
     // The privacy answer names who sees prices and promises the full list in writing.
     const prices = within(mainOf(how), "details").find((n) =>
       squash(text(within(n, "summary")[0])).startsWith("Who sees my prices?"),
     );
-    assert.ok(prices, "/how-it-works/: Who sees my prices?");
+    assert.ok(prices, "/yarduluv/: Who sees my prices?");
     for (const phrase of [
       "Charles",
       "Darian",
@@ -553,7 +559,7 @@ check(
     assert.match(clubText, /monthly subscription/i);
     // Draft contract terms stay off the site: billing before launch is disclosed, the
     // asks are never a condition of the price, and every term comes in writing first.
-    assert.match(clubText, /starts when you join, before Yardulum is finished/);
+    assert.match(clubText, /starts when you join, before YardUluv is finished/);
     assert.match(clubText, /every term in writing before you pay anything/);
     assert.match(clubText, /requests, not conditions/);
     for (const draft of [
@@ -579,7 +585,7 @@ check(
       "charles@threadandsignal.com",
       "darian@threadandsignal.com",
     ]);
-    assert.equal(brief.searchParams.get("subject"), "Yardulum");
+    assert.equal(brief.searchParams.get("subject"), "YardUluv");
     assert.match(brief.searchParams.get("body"), /How we price jobs now:\r?\n/);
     const contactText = squash(text(contact.document));
     for (const name of ["Charles Russella", "Darian Russella"])
@@ -632,7 +638,7 @@ check("media queries use a form iOS Safari before 16.4 can read", () => {
   }
 });
 
-check("copy guardrails on the Yardulum pages and llms.txt", () => {
+check("copy guardrails on the YardUluv pages and llms.txt", () => {
   const banned = [
     /schedul/i,
     /\bCRM\b/,
