@@ -3,27 +3,29 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CallActions from "../components/CallActions.astro";
 import LoopFigure from "../components/LoopFigure.astro";
+import Brand from "../components/Brand.astro";
+import BrandText from "../components/BrandText.astro";
 import yardulumIcon from "../assets/yardulum-icon.png";
 import { PITCH } from "../data/site";
 ---
 
 <BaseLayout
-  title="Yardulum, a sales tool for landscapers"
-  description="Yardulum is a sales tool we’re building for Northeast Ohio landscapers, to turn a model of your customer’s yard into an itemized estimate from your own price list."
+  title="YardUluv, a sales tool for landscapers"
+  description="YardUluv is a sales tool we’re building for Northeast Ohio landscapers, to turn a model of your customer’s yard into an itemized estimate from your own price list."
 >
   <section id="hero" class="hero container" aria-labelledby="home-title">
     <div class="hero-text">
       <p class="kicker">
         <Image
           src={yardulumIcon}
-          alt="Yardulum"
+          alt="YardUluv"
           width={28}
           height={28}
           densities={[1, 2, 3]}
           loading="eager"
         />
         <span class="kicker-name" aria-hidden="true">
-          Yardulum
+          <Brand />
         </span>
         <span class="chip">In development</span>
       </p>
@@ -33,7 +35,9 @@ import { PITCH } from "../data/site";
         <span class="beat">Your prices.</span>
         <span class="beat">Closed at the table.</span>
       </h1>
-      <p class="lead">{PITCH}</p>
+      <p class="lead">
+        <BrandText text={PITCH} />
+      </p>
       <CallActions />
       <p class="byline">
         Charles Russella is building it in Kent,&nbsp;Ohio. He ran his own
@@ -76,7 +80,7 @@ import { PITCH } from "../data/site";
         </li>
       </ul>
       <p>
-        We’re building Yardulum so <span class="nobr">haul-off</span>, grading
+        We’re building <Brand /> so <span class="nobr">haul-off</span>, grading
         and the rest are items you pick from your own price list, priced the
         same way on every job.
       </p>
@@ -84,12 +88,11 @@ import { PITCH } from "../data/site";
     <section class="section" aria-labelledby="club-heading">
       <h2 id="club-heading">Ask about the Founders Club</h2>
       <p>
-        Every landscaping company that takes part before Yardulum goes on sale
+        Every landscaping company that takes part before <Brand /> goes on sale
         to everyone joins the Founders Club and keeps founder pricing for life,
-        locked for as long as they stay members. Members get setup at their
-        shop and sales training in person from Charles. In return, he asks for
-        about 30&nbsp;minutes every two weeks to hear what works and what
-        doesn’t.
+        locked for as long as they stay members. Members get setup at their shop
+        and sales training in person from Charles. In return, he asks for about
+        30&nbsp;minutes every two weeks to hear what works and what doesn’t.
       </p>
       <a class="text-link" href="/founders-club/">
         How the Founders Club works <span aria-hidden="true">→</span>
@@ -124,8 +127,9 @@ import { PITCH } from "../data/site";
     height: 28px;
     border-radius: 6px;
   }
+  /* Regular weight, so the name's bold U shows (Brand.astro). */
   .kicker-name {
-    font-weight: 700;
+    font-weight: 400;
     font-size: 1.25rem;
     letter-spacing: var(--tracking-wordmark);
   }

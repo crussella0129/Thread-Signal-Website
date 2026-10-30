@@ -1,5 +1,7 @@
-// Sample job shown in every Yardulum figure. Illustration only: sample prices, not an offer.
+// Sample job shown in every YardUluv figure. Illustration only: sample prices, not an offer.
 // \u00a0 is a no-break space: a number never wraps away from its unit.
+// Units are the trade's: LF, SF, CY and EA. A plant is written the way ANSI Z60.1 (American
+// Standard for Nursery Stock) asks: plant size first, then the "#" container class, never gallons.
 export const SAMPLE_BED = { areaSqFt: 324, depthIn: 3 } as const;
 export type LineKey = "haul" | "edging" | "shrub" | "bed";
 export interface SampleLine {
@@ -20,40 +22,40 @@ export const SAMPLE_LINES: SampleLine[] = [
     qty: 2,
     qtyLabel: "2\u00a0loads",
     rateCents: 17500,
-    rateLabel: "$175.00 per\u00a0load",
+    rateLabel: "$175.00/load",
     hoursPerUnit: 1,
-    hoursRateLabel: "1.0\u00a0h per\u00a0load",
+    hoursRateLabel: "1.0\u00a0h/load",
   },
   {
     key: "edging",
-    item: "Steel edging",
+    item: "Steel edging, 3/16\u00a0in.",
     qty: 56,
-    qtyLabel: "56\u00a0ft",
+    qtyLabel: "56\u00a0LF",
     rateCents: 1200,
-    rateLabel: "$12.00 per\u00a0ft",
+    rateLabel: "$12.00/LF",
     hoursPerUnit: 0.05,
-    hoursRateLabel: "0.05\u00a0h per\u00a0ft",
+    hoursRateLabel: "0.05\u00a0h/LF",
   },
   {
     key: "shrub",
-    item: "Shrubs, 3\u00a0gal",
+    item: "Shrubs, 18\u00a0in. ht., #3",
     qty: 6,
-    qtyLabel: "6",
+    qtyLabel: "6\u00a0EA",
     rateCents: 6500,
-    rateLabel: "$65.00 each",
+    rateLabel: "$65.00/EA",
     hoursPerUnit: 0.5,
-    hoursRateLabel: "0.5\u00a0h each",
+    hoursRateLabel: "0.5\u00a0h/EA",
   },
   {
     key: "bed",
-    item: "Mulch, 3\u00a0in",
+    item: "Hardwood mulch, 3\u00a0in. deep",
     qty: 3,
-    qtyLabel: "3.0\u00a0cu\u00a0yd",
-    qtyNote: "on 324\u00a0sq\u00a0ft",
+    qtyLabel: "3\u00a0CY",
+    qtyNote: "over 324\u00a0SF",
     rateCents: 9000,
-    rateLabel: "$90.00 per\u00a0cu\u00a0yd",
+    rateLabel: "$90.00/CY",
     hoursPerUnit: 1,
-    hoursRateLabel: "1.0\u00a0h per\u00a0cu\u00a0yd",
+    hoursRateLabel: "1.0\u00a0h/CY",
   },
 ];
 export const lineCents = (l: SampleLine) => Math.round(l.qty * l.rateCents);

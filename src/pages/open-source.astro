@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Brand from "../components/Brand.astro";
 import HeadlineMotion from "../components/HeadlineMotion.astro";
 import snapshot from "../data/github.json";
 import { validSnapshot } from "../data/github-schema.mjs";
@@ -84,8 +85,8 @@ const updated = new Date(snapshot.updatedAt).toLocaleDateString("en-US", {
       >Explore all our projects <span aria-hidden="true">↗&#xFE0E;</span></a
     >
     <p class="closing-note">
-      Our main work right now is Yardulum, a sales tool for landscapers. <a
-        href="/">See Yardulum <span aria-hidden="true">→</span></a
+      Our main work right now is <Brand />, a sales tool for landscapers. <a
+        href="/">See <Brand /> <span aria-hidden="true">→</span></a
       >
     </p>
   </div>

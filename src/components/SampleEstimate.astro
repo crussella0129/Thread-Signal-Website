@@ -136,13 +136,46 @@ const qty = (line: (typeof SAMPLE_LINES)[number]) =>
       background-color: rgba(255, 210, 63, 0);
     }
   }
+  /* Phones: static without scroll-driven animations. With them, the amounts flash in the
+     load-time order as the estimate scrolls in (the sheet is the timeline, since it scrolls
+     sideways itself), each plain again by the time the whole estimate is on screen. */
   @media (max-width: 760px) {
     .yd-flash .yd-r1 .num:last-child,
     .yd-flash .yd-r2 .num:last-child,
     .yd-flash .yd-r3 .num:last-child,
     .yd-flash .yd-r4 .num:last-child,
     .yd-flash .yd-rt .num:last-child {
-      animation: none !important;
+      animation: none;
+    }
+  }
+  @supports (animation-timeline: view()) {
+    @media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+      .yd-sheet {
+        view-timeline-name: --yd-est;
+      }
+      .yd-flash .yd-r1 .num:last-child,
+      .yd-flash .yd-r2 .num:last-child,
+      .yd-flash .yd-r3 .num:last-child,
+      .yd-flash .yd-r4 .num:last-child,
+      .yd-flash .yd-rt .num:last-child {
+        animation: yd-flash ease-out;
+        animation-timeline: --yd-est;
+      }
+      .yd-flash .yd-r1 .num:last-child {
+        animation-range: entry 30% entry 60%;
+      }
+      .yd-flash .yd-r2 .num:last-child {
+        animation-range: entry 45% entry 75%;
+      }
+      .yd-flash .yd-r3 .num:last-child {
+        animation-range: entry 60% entry 90%;
+      }
+      .yd-flash .yd-r4 .num:last-child {
+        animation-range: entry 70% entry 100%;
+      }
+      .yd-flash .yd-rt .num:last-child {
+        animation-range: entry 85% contain 15%;
+      }
     }
   }
 </style>

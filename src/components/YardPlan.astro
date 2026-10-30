@@ -2,13 +2,14 @@
 /*
  * The sample yard (src/data/sample-job.ts) as an angled 3D illustration: an isometric view
  * of a synthetic lot, not a plan, a survey or a capture. Heights and the fall of the front
- * yard are exaggerated, and the figure says so ("3D illustration · not to scale" and <desc>).
+ * yard are exaggerated, and the figure says "Illustration" on its face and "not to scale" in its <desc>.
  *   model   Step 1: the property model with two measuring lines (works today).
  *   design  Home figure and step 2: the new bed, edging, shrubs and tags.
  * The tag text is literal: if a quantity in sample-job.ts changes, change it here too.
  * Coordinates come from the isometric generator (both ground axes at 30 degrees, 0.672 viewBox
  * units per sample-yard unit); move a point only together with everything that touches it.
- * Motion runs only with `animate`, above 760 px, once, and never for reduced motion.
+ * Motion runs only with `animate` and never for reduced motion: once on load above 760 px, and
+ * on phones as the figure scrolls into view (where the browser has scroll-driven animations).
  */
 interface Props {
   layer: "model" | "design";
@@ -270,11 +271,11 @@ const desc = model
          with enlarged letter spacing. */}
     <text font-size="13" fill="#1B2A22" text-anchor="end">
       <tspan x="346" y="22">
-        3D illustration
+        Illustration
       </tspan>
       <tspan x="346" y="38">
         {" "}
-        not to scale
+        Scans kept private
       </tspan>
     </text>
   </g>
@@ -325,9 +326,9 @@ const desc = model
         stroke-width="1.5"
       />
       <rect
-        x="122"
+        x="117.5"
         y="106"
-        width="46"
+        width="55"
         height="22"
         rx="4"
         fill="#FFD23F"
@@ -341,7 +342,7 @@ const desc = model
         font-size="13"
         font-weight="700"
         fill="#1B2A22"
-        set:text="40 ft"
+        set:text="40′-0″"
       />
       <rect
         x="169"
@@ -360,7 +361,7 @@ const desc = model
         font-size="13"
         font-weight="700"
         fill="#1B2A22"
-        set:text="20 ft · 4% slope"
+        set:text="20′-0″ · 4% slope"
       />
     </g>
   ) : (
@@ -369,9 +370,9 @@ const desc = model
         <path d="M200,132 V153" stroke="#1B2A22" stroke-width="1" />
         <circle cx="200" cy="132" r="2" fill="#1B2A22" />
         <rect
-          x="172"
+          x="179"
           y="153"
-          width="118"
+          width="104"
           height="22"
           rx="4"
           fill="#FFD23F"
@@ -385,16 +386,16 @@ const desc = model
           font-size="13"
           font-weight="700"
           fill="#1B2A22"
-          set:text="Bed 324 sq ft"
+          set:text="Bed 324 SF"
         />
       </g>
       <g class="yd-tag yd-tag-edging">
         <path d="M150,111.6 V127" stroke="#1B2A22" stroke-width="1" />
         <circle cx="150" cy="111.6" r="2" fill="#1B2A22" />
         <rect
-          x="63"
+          x="59"
           y="127"
-          width="108"
+          width="116"
           height="22"
           rx="4"
           fill="#FFD23F"
@@ -408,7 +409,7 @@ const desc = model
           font-size="13"
           font-weight="700"
           fill="#1B2A22"
-          set:text="Edging 56 ft"
+          set:text="Edging 56 LF"
         />
       </g>
       <g class="yd-tag yd-tag-haul">
@@ -543,7 +544,8 @@ const desc = model
       stroke-dashoffset: 0;
     }
   }
-  /* Phones: the figure is below the first screen, so it is static there. */
+  /* Phones: the figure is below the first screen, so a load-time animation would end before
+     anyone sees it. Without scroll-driven animations the figure is static there. */
   @media (max-width: 760px) {
     .yd-animate .yd-pile,
     .yd-animate .yd-tag-haul,
@@ -558,7 +560,79 @@ const desc = model
     .yd-animate .yd-s5,
     .yd-animate .yd-s6,
     .yd-animate .yd-tag-bed {
-      animation: none !important;
+      animation: none;
+    }
+  }
+  /* With them, the same build plays as the figure scrolls in: the load-time sequence (100 to
+     1,470 ms) maps onto the figure's entry, from 10% visible to fully visible, so it is
+     finished whenever the whole figure is on screen. Scrolling back up reverses it. Fill is
+     backwards, as on load: past its range each element is back on its own style. */
+  @supports (animation-timeline: view()) {
+    @media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+      .yd-animate {
+        view-timeline-name: --yd-plan;
+      }
+      .yd-animate .yd-pile,
+      .yd-animate .yd-tag-haul,
+      .yd-animate .yd-tag-edging,
+      .yd-animate .yd-s1,
+      .yd-animate .yd-s2,
+      .yd-animate .yd-s3,
+      .yd-animate .yd-s4,
+      .yd-animate .yd-s5,
+      .yd-animate .yd-s6,
+      .yd-animate .yd-tag-bed {
+        animation: yd-rise cubic-bezier(0.2, 0.7, 0.1, 1) backwards;
+        animation-timeline: --yd-plan;
+      }
+      .yd-animate .yd-bed,
+      .yd-animate .yd-b2 {
+        animation: yd-fade cubic-bezier(0.2, 0.7, 0.1, 1) backwards;
+        animation-timeline: --yd-plan;
+      }
+      .yd-animate .yd-edging {
+        animation: yd-draw-edging cubic-bezier(0.45, 0, 0.2, 1) backwards;
+        animation-timeline: --yd-plan;
+      }
+      .yd-animate .yd-pile {
+        animation-range: entry 10% entry 24%;
+      }
+      .yd-animate .yd-tag-haul {
+        animation-range: entry 17% entry 31%;
+      }
+      .yd-animate .yd-bed {
+        animation-range: entry 26% entry 43%;
+      }
+      .yd-animate .yd-b2 {
+        animation-range: entry 26% entry 41%;
+      }
+      .yd-animate .yd-edging {
+        animation-range: entry 26% entry 59%;
+      }
+      .yd-animate .yd-tag-edging {
+        animation-range: entry 56% entry 70%;
+      }
+      .yd-animate .yd-s1 {
+        animation-range: entry 63% entry 77%;
+      }
+      .yd-animate .yd-s2 {
+        animation-range: entry 66% entry 80%;
+      }
+      .yd-animate .yd-s3 {
+        animation-range: entry 69% entry 84%;
+      }
+      .yd-animate .yd-s4 {
+        animation-range: entry 72% entry 87%;
+      }
+      .yd-animate .yd-s5 {
+        animation-range: entry 76% entry 90%;
+      }
+      .yd-animate .yd-s6 {
+        animation-range: entry 79% entry 93%;
+      }
+      .yd-animate .yd-tag-bed {
+        animation-range: entry 86% entry 100%;
+      }
     }
   }
 </style>
