@@ -43,7 +43,7 @@ If the local Windows npm shim is broken, use `C:\Program Files\nodejs\npm.cmd` a
 
 ## Dependency updates
 
-Dependabot version and security updates both target `main`, the branch that deploys; `main` needs a passing `validate` check and the owner's review to merge. Test updates with `npm ci --ignore-scripts`, `npm audit --audit-level=high`, and `npm run validate` before merging. Keep related updates together when their package or lockfile edits overlap.
+Dependabot version and security updates both target `main`, the branch that deploys; `main` needs a pull request with a passing `validate` check to merge; no approving review is required. Test updates with `npm ci --ignore-scripts`, `npm audit --audit-level=high`, and `npm run validate` before merging. Keep related updates together when their package or lockfile edits overlap.
 
 The latest `@astrojs/check` (0.9.10, checked September 24, 2026) accepts TypeScript 5 and 6. TypeScript 7 fails at `npm ci` with a peer-dependency conflict. `.github/dependabot.yml` temporarily ignores TypeScript versions 7 and later; remove the bound once the checker supports them. Do not bypass peer dependency resolution or disable the type check to make such an update pass.
 
@@ -53,7 +53,7 @@ Prettier's Astro plugin 1.x can reformat existing Astro source differently. This
 
 **Charles approved this conversion for publication on September 23, 2026, after a security check.** See `docs/security-review-2026-09-23.md` for findings and applied repository protections. Computer use (including browser automation and Cap recording) still requires Charles's explicit go-ahead.
 
-Validate the final revision and use a PR into `main`. Active repository rules require passing `validate` checks and block direct updates, force-pushes, and deletion. Contributions require Charles's code-owner review; his PR-only review bypass supports his own changes, while the separate integrity rules remain enforced. Rule payloads are versioned under `.github/`; editing those JSON files does not itself change GitHub's live configuration.
+Validate the final revision and use a PR into `main`. Active repository rules require passing `validate` checks and block direct updates, force-pushes, and deletion. No approving review is required (the owner-review ruleset was removed on 2026-11-08 because the sole owner directs every change and reads the PR summary). The rule payload is versioned at `.github/main-integrity.ruleset.json`; editing those JSON files does not itself change GitHub's live configuration.
 
 Build and dependency execution have read-only credentials. A separate Pages/OIDC job publishes the artifact from `main` without checking out or executing source. The Pages environment allows only `main`; `gh-pages` is retained as historical output and is no longer the publishing source. All actions are pinned, only GitHub-owned actions are allowed, and external contributors require approval before their Actions run. Secret scanning, push protection, and Dependabot alerts/security fixes are enabled.
 

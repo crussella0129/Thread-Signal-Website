@@ -10,6 +10,6 @@ Lead with the sale: measured, priced scope from the landscaper’s own price lis
 
 Honesty rules: Works today means the property model from free public mapping data, two-point measuring with slope, and the phone web app that reopens offline. Everything else is Being built, in future tense. Slope shows on the model; Yardulum does not price it. No customers, testimonials, logos, accuracy figures, close-rate or margin claims, dates, offers with dollar amounts, scheduling, "survey-grade", AI or SI in Yardulum copy, or investor/accelerator language. Sample prices appear only inside labelled illustrations. "Founder pricing for life" always carries "for as long as you stay a member" (or "they stay members"). Measurements are drafts, not a survey: every quantity is confirmed on site before the customer signs.
 
-The homepage is short and scannable: one picture, three short sections. Local Super Intelligence (SI) setup is one line at the bottom of About. Open-Source Dev stays as builder credibility, in the footer.
+The homepage is short and scannable: one picture, three short sections. Local AI setup is one line at the bottom of About. Say "AI", never "Super Intelligence", "SI", or "superintelligence": see docs/research/2026-11-08-si-terminology-compliance.md. Open-Source Dev stays as builder credibility, in the footer.
 
 The visual direction stays black and white, Arial, squircle controls, and real material. Yardulum’s colours appear only inside product figures, where each colour means something: green is growing, pink is new work, yellow is measured.
