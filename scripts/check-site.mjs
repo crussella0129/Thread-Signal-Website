@@ -591,9 +591,11 @@ check(
     for (const name of ["Charles Russella", "Darian Russella"])
       assert.ok(contactText.includes(name));
     assert.ok(contactText.includes("seven years in sales"));
-    assert.equal(contactText.split("Super Intelligence (SI)").length - 1, 1);
+    // Plain "AI", once, in the last section. See
+    // docs/research/2026-11-08-si-terminology-compliance.md.
+    assert.equal(contactText.split("local AI systems").length - 1, 1);
     const lastSection = within(mainOf(contact), "section").at(-1);
-    assert.ok(text(lastSection).includes("Super Intelligence (SI)"));
+    assert.ok(text(lastSection).includes("local AI systems"));
     assert.ok(links.includes(TEL) && links.includes(SMS));
   },
 );
@@ -650,7 +652,6 @@ check("copy guardrails on the YardUluv pages and llms.txt", () => {
     /accura(te|cy)/i,
     /close[- ]rate|profit margin|\bROI\b/i,
     /testimonial/i,
-    /\bAI\b/,
     /Founder University/i,
     /\bLAUNCH\b/,
     /\blaunch(es|ed|ing)?\b/i,
@@ -666,7 +667,10 @@ check("copy guardrails on the YardUluv pages and llms.txt", () => {
     /(enter|type|send us) (an|the|your) address/i,
     /our (customers|clients|members)|trusted by|used by|customers love|companies (already|now) use|building it with (landscaping )?companies|works with landscaping companies/i,
   ];
-  const si = /\bSI\b|Super Intelligence/;
+  // "AI" is allowed only in the one About line; "SI", "Super Intelligence" and
+  // "superintelligence" are never allowed (docs/research/2026-11-08-si-terminology-compliance.md).
+  const ai = /\bAI\b/;
+  const si = /\bSI\b|\bASI\b|super ?intelligen/i;
   const llms = readFileSync(new URL("llms.txt", root), "utf8");
   const sources = [
     ...yardulumRoutes.map((route) => {
@@ -680,22 +684,23 @@ check("copy guardrails on the YardUluv pages and llms.txt", () => {
           meta(p, "og:image:alt"),
           squash(text(mainOf(p))),
         ].join("\n"),
-        siAllowed: route === "/contact/",
+        aiAllowed: route === "/contact/",
       };
     }),
     ...llms.split("\n").map((line, i) => ({
       name: `llms.txt line ${i + 1}`,
       copy: line,
-      siAllowed: line.startsWith("- [About & Contact]"),
+      aiAllowed: line.startsWith("- [About & Contact]"),
     })),
   ];
-  for (const { name, copy, siAllowed } of sources) {
+  for (const { name, copy, aiAllowed } of sources) {
     for (const pattern of banned)
       assert.ok(
         !pattern.test(copy),
         `${name}: ${pattern} matches "${copy.match(pattern)?.[0]}"`,
       );
-    if (!siAllowed) assert.ok(!si.test(copy), `${name}: SI outside About`);
+    if (!aiAllowed) assert.ok(!ai.test(copy), `${name}: AI outside About`);
+    assert.ok(!si.test(copy), `${name}: superintelligence wording`);
   }
   assert.ok(llms.includes("in development"));
   assert.ok(llms.includes("for as long as they stay members"));
