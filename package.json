@@ -16,7 +16,7 @@
     "format": "prettier --plugin=prettier-plugin-astro --write src scripts package.json .github/workflows"
   },
   "dependencies": {
-    "@astrojs/sitemap": "3.7.4",
+    "@astrojs/sitemap": "3.7.6",
     "astro": "7.4.5"
   },
   "devDependencies": {
