@@ -16,13 +16,13 @@
     "format": "prettier --plugin=prettier-plugin-astro --write src scripts package.json .github/workflows"
   },
   "dependencies": {
-    "@astrojs/sitemap": "3.7.4",
-    "astro": "7.4.5"
+    "@astrojs/sitemap": "3.7.6",
+    "astro": "7.4.13"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
-    "parse5": "^8.1.0",
-    "prettier": "^3.9.8",
+    "parse5": "^8.1.1",
+    "prettier": "^3.10.1",
     "prettier-plugin-astro": "^1.1.2",
     "typescript": "^6.0.3"
   }
